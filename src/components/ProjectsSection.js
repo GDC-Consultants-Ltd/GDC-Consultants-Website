@@ -1,0 +1,115 @@
+// src/components/ProjectsSection.js
+import React from "react";
+
+const projects = [
+  {
+    title: "Baverstock , Hamilton, Subdivision",
+    category: "3 Waters & Contamination",
+    image: "/images/projects/1.webp", // Make sure to replace with actual image paths
+  },
+  {
+    title: "Lake Rotakauri Walkway",
+    category: "Planning & Environmental",
+    image: "/images/projects/2.webp",
+  },
+  {
+    title: "Waipa District Council",
+    category: "Counsil Buildings",
+    image: "/images/projects/3.webp",
+  },
+  {
+    title: "Cambridge Family Health Medical Centre",
+    category: "Other Assets",
+    image: "/images/projects/4.webp", 
+  },
+  {
+    title: "Tuakau Playground",
+    category: "Planning & Environmental",
+    image: "/images/projects/5.jpg",
+  },
+  {
+    title: "Dickens Street",
+    category: "",
+    image: "/images/projects/6.webp",
+  },
+  {
+    title: "Menzies Building, Waikato Hospital",
+    category: "Medical Sector",
+    image: "/images/projects/7.webp",
+  },
+  {
+    title: "Hockin Building, Waikato Hospital",
+    category: "Medical Sector",
+    image: "/images/projects/8.webp",
+  },
+  {
+    title: "Waiora Building, Waikato Hospital",
+    category: "Medical Sector",
+    image: "/images/projects/9.webp",
+  },
+  {
+    title: "Cambridge Town Hall",
+    category: "Heritage",
+    image: "/images/projects/10.webp",
+  },
+  {
+    title: "Cambridge Clock Tower",
+    category: "Heritage",
+    image: "/images/projects/11.webp",
+  },
+  {
+    title: "Cambridge Museum",
+    category: "Heritage",
+    image: "/images/projects/12.webp",
+  },
+];
+
+const ProjectsSection = () => {
+  return (
+    <section className="py-16 bg-[#F3F5F6]">
+      <div className="text-center mb-12 px-6 md:px-10 xl:px-16">
+        <h2 className="text-4xl text-customYellow uppercase font-bold mt-2">
+          Explore Our Portfolio
+        </h2>
+        <h3 className="text-md text-customBlue tracking-wide">
+          Our portfolio showcases the diverse range of successful projects we’ve
+          completed across New Zealand. From large-scale commercial developments
+          to smaller residential builds.
+        </h3>
+      </div>
+
+      <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
+        {projects.map((project, index) => (
+          <div
+            key={index}
+            className="relative bg-white shadow-md rounded-lg overflow-hidden" // Increase card height
+          >
+            {/* Project Image */}
+            <img
+              src={project.image}
+              alt={project.title}
+              className="object-cover" // Adjusted height for image
+            />
+
+            {/* Project Details */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 bg-white bg-opacity-90 max-h-40 overflow-hidden">
+              <span className="text-xs font-semibold uppercase text-orange-500 bg-orange-100 px-2 py-1 rounded-md">
+                {project.category}
+              </span>
+              <h4 className="text-lg font-semibold mt-2">{project.title}</h4>              
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Button to View All Projects */}
+      <div className="flex justify-center mt-8">
+        <button className="bg-customYellow text-white font-semibold px-6 py-3 rounded-md hover:bg-customBlue transition duration-300">
+          View All Projects
+        </button>
+      </div>
+    </section>
+  );
+};
+
+export default ProjectsSection;
