@@ -10,7 +10,7 @@ const CertificationSection = () => {
         {/* Left Side with Image */}
         <div className="flex justify-center md:justify-end">
           <img
-            src="/images/certification.jpg" // Replace with the correct path to your sample image
+            src="/images/certification.webp" // Replace with the correct path to your sample image
             alt="Sample Image"
             className="object-cover w-full h-[400px] rounded shadow-md" // Adjust the height as needed
           />

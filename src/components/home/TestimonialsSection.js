@@ -13,14 +13,14 @@ const testimonials = [
       "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
     author: "Jeff Freshman",
     role: "Guest",
-    image: "images/testimonials/1.jpg", // Correct path to avatar image
+    image: "images/testimonials/1.webp", // Correct path to avatar image
   },
   {
     message:
       "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
     author: "Jeff Freshman",
     role: "Guest",
-    image: "images/testimonials/1.jpg",
+    image: "images/testimonials/1.webp",
   },
 ];
 
