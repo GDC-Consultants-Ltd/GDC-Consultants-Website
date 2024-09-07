@@ -2,6 +2,7 @@
 "use client"; // This directive ensures the component is treated as a client component
 
 import React from "react";
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules"; // Added Autoplay module
 import "swiper/css";
@@ -13,14 +14,14 @@ const testimonials = [
       "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
     author: "Jeff Freshman",
     role: "Guest",
-    image: "images/testimonials/1.webp", // Correct path to avatar image
+    image: "/images/testimonials/1.webp", // Correct path to avatar image
   },
   {
     message:
       "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
     author: "Jeff Freshman",
     role: "Guest",
-    image: "images/testimonials/1.webp",
+    image: "/images/testimonials/1.webp",
   },
 ];
 
@@ -56,11 +57,14 @@ const TestimonialsSection = () => {
                   {testimonial.message}
                 </p>
                 <div className="mt-2 md:mt-4 flex flex-col items-center">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.author}
-                    className="w-16 h-16 md:w-20 md:h-20 rounded-full mx-auto object-cover"
+                  <Image
+                    src={testimonial.image} // Path to the testimonial image
+                    alt={testimonial.author} // Alt text for accessibility
+                    width={80} // Adjust width as needed
+                    height={80} // Adjust height as needed
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-full mx-auto object-cover" // Use object-cover to ensure the image covers the space
                   />
+
                   <h4 className="font-semibold text-white text-base md:text-lg mt-2">
                     {testimonial.author}
                   </h4>
