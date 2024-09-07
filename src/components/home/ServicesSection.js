@@ -5,6 +5,7 @@ import {
   Cog6ToothIcon,
   BuildingOfficeIcon,
 } from "@heroicons/react/24/solid";
+import Image from "next/image";
 
 const services = [
   {
@@ -85,11 +86,14 @@ const ServicesSection = () => {
             key={index}
             className="bg-white shadow-md overflow-hidden transition duration-300 group hover:bg-gray-100 flex flex-col"
           >
-            <img
-              src={service.image}
-              alt={service.title}
-              className="w-full h-40 object-cover"
+            <Image
+              src={service.image} // Path to the service image
+              alt={service.title} // Alt text for accessibility
+              width={400} // Adjust the width as needed
+              height={160} // Adjust the height as needed
+              className="w-full h-40 object-cover" // Use object-cover to maintain the object-fit behavior
             />
+
             <div className="flex flex-col items-center p-4 flex-1">
               {/* Icon with group-hover effect */}
               <div className="bg-white rounded-full p-3 shadow-lg -mt-8 transition duration-300 group-hover:bg-customYellow">

@@ -1,5 +1,6 @@
 // src/components/Hero.js
 import React from "react";
+import Image from "next/image";
 
 const Hero = () => {
   return (
@@ -28,10 +29,13 @@ const Hero = () => {
       </div>
 
       {/* Ensuring image is fully covered and responsive */}
-      <img
+      <Image
         src="/images/hero-background.webp"
-        alt="Construction Background"
-        className="invisible w-full h-full object-cover"
+        alt="Hero Background"
+        width={1200} // Adjust as needed for your layout
+        height={600} // Adjust as needed for your layout
+        className="w-full h-auto object-cover" // Use object-cover to maintain the object-fit behavior
+        priority // Use priority to optimize loading for important images
       />
     </section>
   );

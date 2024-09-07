@@ -8,6 +8,7 @@ import {
   XMarkIcon,
   ChevronDownIcon,
 } from "@heroicons/react/24/outline";
+import Image from "next/image"; // Importing Image from next/image for optimization
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,7 +58,14 @@ const Header = () => {
         <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center px-5 md:px-10">
           {/* Logo and Company Name */}
           <div className="flex items-center space-x-3 mb-3 md:mb-0">
-            <img src="/images/logo.webp" alt="Logo" className="h-10 md:h-12" />
+            <Image
+              src="/images/logo.webp" // Make sure this path points to a high-quality logo image
+              alt="GDC Consultants Ltd Logo"
+              width={120} // Adjust width as needed for better clarity
+              height={60} // Adjust height as needed for better clarity
+              priority // Ensure the logo loads quickly
+              className="h-auto w-auto" // Maintain the aspect ratio of the logo for better clarity
+            />
           </div>
 
           {/* Contact and Location Info */}

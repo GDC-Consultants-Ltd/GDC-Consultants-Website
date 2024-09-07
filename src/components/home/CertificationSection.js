@@ -1,6 +1,7 @@
 "use client"; // Ensure this is treated as a client component in Next.js
 
 import React from "react";
+import Image from "next/image";
 import { BuildingOfficeIcon } from "@heroicons/react/24/solid"; // Replace with the correct icon you want to use
 
 const CertificationSection = () => {
@@ -9,10 +10,13 @@ const CertificationSection = () => {
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
         {/* Left Side with Image */}
         <div className="flex justify-center md:justify-end">
-          <img
-            src="/images/certification.webp" // Replace with the correct path to your sample image
+          <Image
+            src="/images/certification.webp" // Correct path to your sample image
             alt="Sample Image"
-            className="object-cover w-full h-[400px] rounded shadow-md" // Adjust the height as needed
+            width={600} // Set the width based on the image dimensions or design needs
+            height={400} // Set the height to match your design, adjust as necessary
+            className="object-cover w-full h-[400px] rounded shadow-md" // Use object-cover to maintain the object-fit behavior
+            priority // Use priority to optimize loading for important images
           />
         </div>
 
