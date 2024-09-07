@@ -20,7 +20,7 @@ const projects = [
   {
     title: "Cambridge Family Health Medical Centre",
     category: "Other Assets",
-    image: "/images/projects/4.webp", 
+    image: "/images/projects/4.webp",
   },
   {
     title: "Tuakau Playground",
@@ -82,21 +82,21 @@ const ProjectsSection = () => {
         {projects.map((project, index) => (
           <div
             key={index}
-            className="relative bg-white shadow-md rounded-lg overflow-hidden" // Increase card height
+            className="relative bg-white shadow-md rounded-lg overflow-hidden group"
           >
             {/* Project Image */}
             <img
               src={project.image}
               alt={project.title}
-              className="object-cover" // Adjusted height for image
+              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
             />
 
-            {/* Project Details */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-white bg-opacity-90 max-h-40 overflow-hidden">
-              <span className="text-xs font-semibold uppercase text-orange-500 bg-orange-100 px-2 py-1 rounded-md">
+            {/* Project Details Overlay */}
+            <div className="absolute bottom-0 left-0 right-0 p-3 bg-white bg-opacity-80 group-hover:bg-opacity-100 transition duration-300">
+              <span className="text-xs font-semibold uppercase text-customBlue bg-customYellow/30 px-2 py-1 rounded-md">
                 {project.category}
               </span>
-              <h4 className="text-lg font-semibold mt-2">{project.title}</h4>              
+              <h4 className="text-lg text-customBlue font-semibold mt-2">{project.title}</h4>
             </div>
           </div>
         ))}

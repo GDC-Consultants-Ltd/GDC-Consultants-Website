@@ -1,7 +1,11 @@
-// components/BlogSection.js
 "use client"; // Ensure this is treated as a client component in Next.js
 
 import React from "react";
+import {
+  CalendarIcon,
+  UserIcon,
+  ChatBubbleLeftEllipsisIcon,
+} from "@heroicons/react/24/outline"; // Importing icons
 
 // Sample blog data
 const blogs = [
@@ -11,7 +15,7 @@ const blogs = [
     date: "Sept. 06, 2020",
     author: "Admin",
     comments: 3,
-    image: "/path/to/image1.jpg", // Replace with correct image paths
+    image: "images/services/architectural.webp",
   },
   {
     id: 2,
@@ -19,7 +23,7 @@ const blogs = [
     date: "Sept. 06, 2020",
     author: "Admin",
     comments: 3,
-    image: "/path/to/image2.jpg",
+    image: "images/services/architectural.webp",
   },
   {
     id: 3,
@@ -27,7 +31,7 @@ const blogs = [
     date: "Sept. 06, 2020",
     author: "Admin",
     comments: 3,
-    image: "/path/to/image3.jpg",
+    image: "images/services/architectural.webp",
   },
 ];
 
@@ -60,25 +64,26 @@ const BlogSection = () => {
               <div className="p-6">
                 <div className="flex items-center text-sm text-gray-500 mb-2">
                   <span className="flex items-center mr-4">
-                    <span className="text-orange-500 mr-1">📅</span> {blog.date}
+                    <CalendarIcon className="w-5 h-5 text-customYellow mr-1" />
+                    {blog.date}
                   </span>
                   <span className="flex items-center mr-4">
-                    <span className="text-orange-500 mr-1">👤</span>{" "}
+                    <UserIcon className="w-5 h-5 text-customYellow mr-1" />
                     {blog.author}
                   </span>
                   <span className="flex items-center">
-                    <span className="text-orange-500 mr-1">💬</span>{" "}
+                    <ChatBubbleLeftEllipsisIcon className="w-5 h-5 text-customYellow mr-1" />
                     {blog.comments}
                   </span>
                 </div>
 
-                <h4 className="text-lg font-semibold text-gray-900 mb-4 group-hover:text-orange-500 transition-colors duration-300">
+                <h4 className="text-lg font-semibold text-customBlue mb-4 group-hover:text-customYellow transition-colors duration-300">
                   {blog.title}
                 </h4>
 
                 <a
                   href="#"
-                  className="inline-block text-sm text-white bg-gray-900 py-2 px-4 rounded-full hover:bg-orange-500 transition-colors duration-300"
+                  className="inline-block text-sm text-white bg-customBlue py-2 px-4 rounded-full hover:bg-customYellow transition-colors duration-300"
                 >
                   Read More
                 </a>

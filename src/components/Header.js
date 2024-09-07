@@ -1,12 +1,23 @@
-// src/components/Header.js
 "use client"; // Add this line to make it a Client Component
 
-// src/components/Header.js
-import React, { useState } from "react";
-import { PhoneIcon, MapPinIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import React, { useState, useEffect } from "react";
+import {
+  PhoneIcon,
+  MapPinIcon,
+  Bars3Icon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentPath, setCurrentPath] = useState("");
+
+  useEffect(() => {
+    // This ensures that `window.location.pathname` is only accessed on the client side
+    if (typeof window !== "undefined") {
+      setCurrentPath(window.location.pathname);
+    }
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -73,62 +84,29 @@ const Header = () => {
               isMenuOpen ? "block" : "hidden"
             } absolute top-full left-0 w-full bg-customBlue md:static md:flex md:space-x-6 md:w-auto md:block transition-all`}
           >
-            <li className="md:inline-block">
-              <a
-                href="/"
-                className="block md:inline-block text-white text-sm font-semibold hover:text-customYellow py-2 px-4"
-              >
-                HOME
-              </a>
-            </li>
-            <li className="md:inline-block">
-              <a
-                href="/services"
-                className="block md:inline-block text-white text-sm font-semibold hover:text-customYellow py-2 px-4"
-              >
-                SERVICES
-              </a>
-            </li>
-            <li className="md:inline-block">
-              <a
-                href="/portfolio"
-                className="block md:inline-block text-white text-sm font-semibold hover:text-customYellow py-2 px-4"
-              >
-                OUR PORTFOLIO
-              </a>
-            </li>
-            <li className="md:inline-block">
-              <a
-                href="/team"
-                className="block md:inline-block text-white text-sm font-semibold hover:text-customYellow py-2 px-4"
-              >
-                OUR TEAM
-              </a>
-            </li>
-            <li className="md:inline-block">
-              <a
-                href="/about-us"
-                className="block md:inline-block text-white text-sm font-semibold hover:text-customYellow py-2 px-4"
-              >
-                ABOUT US
-              </a>
-            </li>
-            <li className="md:inline-block">
-              <a
-                href="/blog"
-                className="block md:inline-block text-white text-sm font-semibold hover:text-customYellow py-2 px-4"
-              >
-                BLOG
-              </a>
-            </li>
-            <li className="md:inline-block">
-              <a
-                href="/locations"
-                className="block text-white text-sm font-semibold hover:text-customYellow py-2 px-4"
-              >
-                OUR LOCATIONS
-              </a>
-            </li>
+            {[
+              { href: "/", label: "HOME" },
+              { href: "/services", label: "SERVICES" },
+              { href: "/portfolio", label: "OUR PORTFOLIO" },
+              { href: "/team", label: "OUR TEAM" },
+              { href: "/about-us", label: "ABOUT US" },
+              { href: "/blog", label: "BLOG" },
+              { href: "/locations", label: "OUR LOCATIONS" },
+            ].map((item) => (
+              <li key={item.href} className="md:inline-block">
+                <a
+                  href={item.href}
+                  className={`block md:inline-block text-white text-sm font-semibold py-2 px-4 
+                    ${
+                      currentPath === item.href
+                        ? "bg-customYellow"
+                        : "hover:text-customYellow"
+                    }`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
           </ul>
 
           {/* Locations Button */}
