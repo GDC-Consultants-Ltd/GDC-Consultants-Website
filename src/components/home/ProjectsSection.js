@@ -25,7 +25,7 @@ const projects = [
   {
     title: "Tuakau Playground",
     category: "Planning & Environmental",
-    image: "/images/projects/5.jpg",
+    image: "/images/projects/5.webp",
   },
   {
     title: "Dickens Street",

@@ -31,8 +31,8 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% -50%, 20% 100%, 0 100%);
 }
 
+/* ---------------------------------------------------------------------------- */
 /* TESTIMONIALS SECTION */
-
 /* Ensure custom styles override default Swiper styles */
 .swiper-pagination .swiper-pagination-bullet {
   width: 12px !important; /* Increase size */
@@ -56,4 +56,13 @@ body {
   justify-content: center !important;
   gap: 10px !important; /* Space between pagination dots */
   z-index: 10 !important; /* Ensure dots are above other content */
+}
+
+/* ---------------------------------------------------------------------------- */
+/* HEADER */
+/* CSS for scrollable dropdown */
+.scrollable-dropdown {
+  max-height: 300px; /* Adjust the height as needed */
+  overflow-y: auto;
+  scrollbar-width: thin; /* Optional: customize scrollbar appearance */
 }
