@@ -20,7 +20,7 @@ export default function Footer() {
 
       {/* Background Image */}
       <img
-        src="/images/footer.webp" // Ensure this path matches the image location in the public folder
+        src="/images/footer.webp" 
         alt="Buildings Background"
         className="absolute inset-x-0 bottom-0 w-full object-cover h-[150px] md:h-[180px] lg:h-[350px] z-[-2]"
       />
