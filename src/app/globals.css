@@ -10,7 +10,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #ffffff;
   }
 }
 
@@ -24,4 +24,36 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Custom clip path to create the angular effect */
+.clip-path-custom {
+  clip-path: polygon(0 0, 100% 0, 100% -50%, 20% 100%, 0 100%);
+}
+
+/* TESTIMONIALS SECTION */
+
+/* Ensure custom styles override default Swiper styles */
+.swiper-pagination .swiper-pagination-bullet {
+  width: 12px !important; /* Increase size */
+  height: 12px !important;
+  background-color: #BFC2C8 !important; /* Gray color for inactive dots */
+  opacity: 1 !important;
+  border: 2px solid #BFC2C8 !important; /* Gray border for inactive dots */
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease !important;
+  margin: 0 6px !important; /* Space between dots */
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #ffffff !important; /* White background for active dot */
+  border: 2px solid #ffffff !important; /* White border for active dot */
+  transform: scale(1.1) !important; /* Slightly larger for active state */
+}
+
+.swiper-pagination {
+  bottom: 15px !important; /* Adjust positioning */
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px !important; /* Space between pagination dots */
+  z-index: 10 !important; /* Ensure dots are above other content */
 }
