@@ -1,26 +1,53 @@
 "use client"; // Add this line to make it a Client Component
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   PhoneIcon,
   MapPinIcon,
   Bars3Icon,
   XMarkIcon,
+  ChevronDownIcon,
 } from "@heroicons/react/24/outline";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isPortfolioOpen, setIsPortfolioOpen] = useState(false);
+  const [isAboutUsOpen, setIsAboutUsOpen] = useState(false);
   const [currentPath, setCurrentPath] = useState("");
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     // This ensures that `window.location.pathname` is only accessed on the client side
     if (typeof window !== "undefined") {
       setCurrentPath(window.location.pathname);
     }
+
+    // Add click event listener to detect outside clicks
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsServicesOpen(false);
+        setIsPortfolioOpen(false);
+        setIsAboutUsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleDropdown = (dropdown) => {
+    if (dropdown === "services") setIsServicesOpen(!isServicesOpen);
+    if (dropdown === "portfolio") setIsPortfolioOpen(!isPortfolioOpen);
+    if (dropdown === "aboutus") setIsAboutUsOpen(!isAboutUsOpen);
   };
 
   return (
@@ -30,7 +57,7 @@ const Header = () => {
         <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center px-5 md:px-10">
           {/* Logo and Company Name */}
           <div className="flex items-center space-x-3 mb-3 md:mb-0">
-            <img src="/images/logo.png" alt="Logo" className="h-10 md:h-12" />
+            <img src="/images/logo.webp" alt="Logo" className="h-10 md:h-12" />
           </div>
 
           {/* Contact and Location Info */}
@@ -83,30 +110,124 @@ const Header = () => {
             className={`${
               isMenuOpen ? "block" : "hidden"
             } absolute top-full left-0 w-full bg-customBlue md:static md:flex md:space-x-6 md:w-auto md:block transition-all`}
+            ref={dropdownRef}
           >
             {[
               { href: "/", label: "HOME" },
-              { href: "/services", label: "SERVICES" },
-              { href: "/portfolio", label: "OUR PORTFOLIO" },
+              {
+                label: "SERVICES",
+                dropdown: "services",
+                items: [
+                  {
+                    href: "/services/3-waters",
+                    label: "3 Waters & Contamination",
+                  },
+                  {
+                    href: "/services/architectural-designs",
+                    label: "Architectural Designs",
+                  },
+                  {
+                    href: "/services/electrical-engineering",
+                    label: "Electrical Engineering",
+                  },
+                  {
+                    href: "/services/project-management",
+                    label: "Project & Construction Management",
+                  },
+                  {
+                    href: "/services/geotechnical-engineering",
+                    label: "Geotechnical Engineering",
+                  },
+                  {
+                    href: "/services/infrastructure",
+                    label: "Infrastructure & Subdivision Engineering",
+                  },
+                  {
+                    href: "/services/research-development",
+                    label: "Research & Development",
+                  },
+                  { href: "/services/road-transport", label: "Road Transport" },
+                  {
+                    href: "/services/seismic-engineering",
+                    label: "Seismic Engineering",
+                  },
+                  {
+                    href: "/services/structural-engineering",
+                    label: "Structural Engineering",
+                  },
+                  { href: "/services/planning", label: "Planning" },
+                  { href: "/services/surveying", label: "Surveying" },
+                  { href: "/services/training", label: "Training" },
+                ],
+              },
+              {
+                label: "OUR PORTFOLIO",
+                dropdown: "portfolio",
+                items: [
+                  { href: "/portfolio/all-projects", label: "All Projects" },
+                  { href: "/portfolio/view-on-map", label: "View on Map" },
+                ],
+              },
+              {
+                label: "ABOUT US",
+                dropdown: "aboutus",
+                items: [
+                  { href: "/about-us/who-we-are", label: "Who We Are" },
+                  { href: "/about-us/careers", label: "Careers" },
+                  { href: "/about-us/review", label: "Leave us a Review" },
+                ],
+              },
               { href: "/team", label: "OUR TEAM" },
-              { href: "/about-us", label: "ABOUT US" },
               { href: "/blog", label: "BLOG" },
               { href: "/locations", label: "OUR LOCATIONS" },
-            ].map((item) => (
-              <li key={item.href} className="md:inline-block">
-                <a
-                  href={item.href}
-                  className={`block md:inline-block text-white text-sm font-semibold py-2 px-4 
-                    ${
+            ].map((item) =>
+              item.items ? (
+                <li key={item.label} className="md:inline-block relative">
+                  <button
+                    className={`flex items-center text-white text-sm font-semibold py-2 px-4 cursor-pointer ${
+                      currentPath === "/services" ||
+                      currentPath === "/portfolio" ||
+                      currentPath === "/about-us"
+                        ? "bg-customYellow"
+                        : "hover:text-customYellow"
+                    }`}
+                    onClick={() => toggleDropdown(item.dropdown)}
+                  >
+                    {item.label}
+                    <ChevronDownIcon className="w-4 h-4 ml-1" />
+                  </button>
+                  {((item.dropdown === "services" && isServicesOpen) ||
+                    (item.dropdown === "portfolio" && isPortfolioOpen) ||
+                    (item.dropdown === "aboutus" && isAboutUsOpen)) && (
+                    <ul className="absolute left-0 mt-2 w-56 bg-white shadow-md rounded-md overflow-y-auto max-h-60 scrollable-dropdown">
+                      {item.items.map((subItem) => (
+                        <li key={subItem.href}>
+                          <a
+                            href={subItem.href}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-customBlue hover:text-white"
+                          >
+                            {subItem.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ) : (
+                <li key={item.href} className="md:inline-block">
+                  <a
+                    href={item.href}
+                    className={`block md:inline-block text-white text-sm font-semibold py-2 px-4 ${
                       currentPath === item.href
                         ? "bg-customYellow"
                         : "hover:text-customYellow"
                     }`}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              )
+            )}
           </ul>
 
           {/* Locations Button */}
