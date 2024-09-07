@@ -1,6 +1,7 @@
 "use client"; // Ensure this is treated as a client component in Next.js
 
 import React from "react";
+import Image from "next/image";
 import {
   CalendarIcon,
   UserIcon,
@@ -55,10 +56,13 @@ const BlogSection = () => {
               key={blog.id}
               className="bg-white shadow-lg rounded-lg overflow-hidden group hover:shadow-2xl transition duration-300"
             >
-              <img
-                src={blog.image}
+              <Image
+                src={`/${blog.image}`} // Ensure the path is correctly formatted for Next.js
                 alt={blog.title}
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                width={600} // Adjust width according to your design requirements
+                height={300} // Adjust height according to your design requirements
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" // `object-cover` ensures the image covers its container
+                priority // Use priority if the images are important and need to load quickly
               />
 
               <div className="p-6">

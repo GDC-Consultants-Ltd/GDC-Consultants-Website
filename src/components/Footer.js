@@ -6,6 +6,7 @@ import {
   FaLinkedin,
   FaTwitter,
 } from "react-icons/fa";
+import Image from "next/image";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -19,10 +20,13 @@ export default function Footer() {
       <div className="absolute inset-0 bg-gradient-to-t from-customBlue to-transparent z-[-1]"></div>
 
       {/* Background Image */}
-      <img
-        src="/images/footer.webp" // Ensure this path matches the image location in the public folder
+      <Image
+        src="/images/footer.webp"
         alt="Buildings Background"
-        className="absolute inset-x-0 bottom-0 w-full object-cover h-[150px] md:h-[180px] lg:h-[350px] z-[-2]"
+        width={1920} // Adjust the width as needed
+        height={350} // Adjust the height as needed, this example matches the largest height class used
+        className="absolute inset-x-0 bottom-0 w-full h-[150px] md:h-[180px] lg:h-[350px] z-[-2] object-cover" // object-cover is correctly used here
+        priority
       />
 
       {/* Main Content */}

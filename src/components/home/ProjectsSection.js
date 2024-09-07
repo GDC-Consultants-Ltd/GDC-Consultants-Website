@@ -1,5 +1,6 @@
 // src/components/ProjectsSection.js
 import React from "react";
+import Image from "next/image";
 
 const projects = [
   {
@@ -85,10 +86,12 @@ const ProjectsSection = () => {
             className="relative bg-white shadow-md rounded-lg overflow-hidden group"
           >
             {/* Project Image */}
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+            <Image
+              src={project.image} // The path to your project image
+              alt={project.title} // Alt text for accessibility
+              width={400} // Adjust width based on your design requirements
+              height={192} // Adjust height based on your design requirements
+              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" // Use object-cover for object-fit behavior
             />
 
             {/* Project Details Overlay */}
@@ -96,7 +99,9 @@ const ProjectsSection = () => {
               <span className="text-xs font-semibold uppercase text-customBlue bg-customYellow/30 px-2 py-1 rounded-md">
                 {project.category}
               </span>
-              <h4 className="text-lg text-customBlue font-semibold mt-2">{project.title}</h4>
+              <h4 className="text-lg text-customBlue font-semibold mt-2">
+                {project.title}
+              </h4>
             </div>
           </div>
         ))}
