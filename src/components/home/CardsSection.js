@@ -9,7 +9,6 @@ import {
 } from "@heroicons/react/24/solid";
 
 const CardsSection = () => {
-  // States to manage counts for projects, locations, services, and experience
   const [projectsCount, setProjectsCount] = useState(0);
   const [locationsCount, setLocationsCount] = useState(0);
   const [servicesCount, setServicesCount] = useState(0);
@@ -17,7 +16,6 @@ const CardsSection = () => {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Function to animate counting
   const animateCount = (setCount, maxCount) => {
     let count = 0;
     const interval = setInterval(() => {
@@ -29,7 +27,6 @@ const CardsSection = () => {
     }, 100);
   };
 
-  // Set up Intersection Observer to detect when the section is in view
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -43,18 +40,19 @@ const CardsSection = () => {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentSection = sectionRef.current; // Copy the ref value to a variable
+
+    if (currentSection) {
+      observer.observe(currentSection);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentSection) {
+        observer.unobserve(currentSection); // Use the copied value in the cleanup function
       }
     };
   }, []);
 
-  // Trigger counting animation when section becomes visible
   useEffect(() => {
     if (isVisible) {
       animateCount(setProjectsCount, 20);
@@ -70,7 +68,6 @@ const CardsSection = () => {
       className="relative z-10 mt-4 md:mt-8 lg:mt-[-100px] xl:mt-[-150px] px-4 sm:px-6 lg:px-0 py-10"
     >
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 gap-4">
-        {/* Card 1 - Projects */}
         <Card
           color="bg-customBlue"
           gradient="from-black to-customBlue"
@@ -80,8 +77,6 @@ const CardsSection = () => {
           count={projectsCount}
           label="Projects Completed"
         />
-
-        {/* Card 2 - Locations */}
         <Card
           color="bg-customYellow"
           gradient="from-yellow-500 to-yellow-300"
@@ -91,8 +86,6 @@ const CardsSection = () => {
           count={locationsCount}
           label="Locations"
         />
-
-        {/* Card 3 - Services */}
         <Card
           color="bg-customBlue"
           gradient="from-black to-customBlue"
@@ -102,8 +95,6 @@ const CardsSection = () => {
           count={`${servicesCount}+`}
           label="Services Provided"
         />
-
-        {/* Card 4 - Experience */}
         <Card
           color="bg-customYellow"
           gradient="from-yellow-500 to-yellow-300"
@@ -118,7 +109,6 @@ const CardsSection = () => {
   );
 };
 
-// Card Component for better reusability and readability
 const Card = ({ color, gradient, icon, count, label }) => (
   <div
     className={`relative ${color} text-white shadow-lg p-6 flex flex-col items-center justify-center space-y-2 h-56 md:h-64 overflow-hidden ${

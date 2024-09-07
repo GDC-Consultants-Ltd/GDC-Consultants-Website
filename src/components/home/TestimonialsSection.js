@@ -1,4 +1,3 @@
-// components/TestimonialsSection.js
 "use client"; // This directive ensures the component is treated as a client component
 
 import React from "react";
@@ -34,7 +33,8 @@ const TestimonialsSection = () => {
           Read Testimonials
         </h2>
         <p className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-snug md:leading-tight">
-          It's always a joy to hear that the work we do has positively reviews
+          It&apos;s always a joy to hear that the work we do has positive
+          reviews
         </p>
       </div>
 
@@ -64,7 +64,6 @@ const TestimonialsSection = () => {
                     height={80} // Adjust height as needed
                     className="w-16 h-16 md:w-20 md:h-20 rounded-full mx-auto object-cover" // Use object-cover to ensure the image covers the space
                   />
-
                   <h4 className="font-semibold text-white text-base md:text-lg mt-2">
                     {testimonial.author}
                   </h4>
