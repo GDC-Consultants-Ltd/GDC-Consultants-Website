@@ -1,9 +1,7 @@
 "use client"; // Add this line to make it a Client Component
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import {
-  PhoneIcon,
-  MapPinIcon,
   Bars3Icon,
   XMarkIcon,
   ChevronDownIcon,
@@ -12,95 +10,56 @@ import Image from "next/image"; // Importing Image from next/image for optimizat
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isPortfolioOpen, setIsPortfolioOpen] = useState(false);
-  const [isAboutUsOpen, setIsAboutUsOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const [currentPath, setCurrentPath] = useState("");
   const dropdownRef = useRef(null);
+  const timeoutRef = useRef(null);
+
+  // useCallback to memoize handlers and prevent unnecessary re-renders
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen((prev) => !prev);
+  }, []);
+
+  const handleDropdownMouseEnter = useCallback((dropdown) => {
+    // Cancel the hiding timeout if hovering back
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setActiveDropdown(dropdown);
+  }, []);
+
+  const handleDropdownMouseLeave = useCallback(() => {
+    // Set a slight delay before closing the dropdown
+    timeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 200); // Adjust the delay (200ms) to make it feel more natural
+  }, []);
 
   useEffect(() => {
-    // This ensures that `window.location.pathname` is only accessed on the client side
+    // Set the current path for highlighting menu items based on the current route
     if (typeof window !== "undefined") {
       setCurrentPath(window.location.pathname);
     }
 
-    // Add click event listener to detect outside clicks
+    // Handle clicks outside the dropdown to close it
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsServicesOpen(false);
-        setIsPortfolioOpen(false);
-        setIsAboutUsOpen(false);
+        setActiveDropdown(null);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
 
-    // Cleanup the event listener on component unmount
     return () => {
+      // Clean up the event listener when the component unmounts
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const toggleDropdown = (dropdown) => {
-    if (dropdown === "services") setIsServicesOpen(!isServicesOpen);
-    if (dropdown === "portfolio") setIsPortfolioOpen(!isPortfolioOpen);
-    if (dropdown === "aboutus") setIsAboutUsOpen(!isAboutUsOpen);
-  };
-
   return (
     <header className="w-full sticky top-0 z-50 bg-white shadow-md">
-      {/* Top Header Section with Logo, Contact, and Location Info */}
-      <div className="bg-white py-3">
-        <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center px-5 md:px-10">
-          {/* Logo and Company Name */}
-          <div className="flex items-center space-x-3 mb-3 md:mb-0">
-            <Image
-              src="/images/logo.webp" // Make sure this path points to a high-quality logo image
-              alt="GDC Consultants Ltd Logo"
-              width={120} // Adjust width as needed for better clarity
-              height={60} // Adjust height as needed for better clarity
-              priority // Ensure the logo loads quickly
-              className="h-auto w-auto" // Maintain the aspect ratio of the logo for better clarity
-            />
-          </div>
-
-          {/* Contact and Location Info */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-6">
-            {/* Contact Information */}
-            <div className="flex items-center space-x-2">
-              <PhoneIcon className="w-5 h-5 text-customYellow" />
-              <div>
-                <p className="text-customBlue font-medium text-sm">
-                  +64 7 838 0090
-                </p>
-                <p className="text-gray-500 text-xs">
-                  Call Us Now 24/7 Customer Support
-                </p>
-              </div>
-            </div>
-
-            {/* Location Information */}
-            <div className="flex items-center space-x-2">
-              <MapPinIcon className="w-5 h-5 text-customYellow" />
-              <div>
-                <p className="text-customBlue font-medium text-sm">
-                  Our Location
-                </p>
-                <p className="text-gray-500 text-xs">
-                  89 Church Road, Pukete, Hamilton 3200
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Navigation Bar */}
-      <div className="max-w-screen-xl mx-auto bg-customBlue">
+      <div className="max-w-screen-full mx-auto bg-transparent">
         <nav className="flex justify-between items-center py-3 px-5 md:px-10">
           {/* Hamburger Menu Icon */}
           <div className="flex md:hidden">
@@ -113,11 +72,23 @@ const Header = () => {
             </button>
           </div>
 
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Image
+              src="/images/logo.webp"
+              alt="GDC Consultants Ltd Logo"
+              width={100}
+              height={50}
+              priority
+              className="h-auto w-auto"
+            />
+          </div>
+
           {/* Menu Items */}
           <ul
             className={`${
               isMenuOpen ? "block" : "hidden"
-            } absolute top-full left-0 w-full bg-customBlue md:static md:flex md:space-x-6 md:w-auto md:block transition-all`}
+            } absolute top-full left-0 w-full md:static md:flex md:space-x-6 md:w-auto md:block transition-all`}
             ref={dropdownRef}
           >
             {[
@@ -126,43 +97,16 @@ const Header = () => {
                 label: "SERVICES",
                 dropdown: "services",
                 items: [
-                  {
-                    href: "/services/3-waters",
-                    label: "3 Waters & Contamination",
-                  },
-                  {
-                    href: "/services/architectural-designs",
-                    label: "Architectural Designs",
-                  },
-                  {
-                    href: "/services/electrical-engineering",
-                    label: "Electrical Engineering",
-                  },
-                  {
-                    href: "/services/project-management",
-                    label: "Project & Construction Management",
-                  },
-                  {
-                    href: "/services/geotechnical-engineering",
-                    label: "Geotechnical Engineering",
-                  },
-                  {
-                    href: "/services/infrastructure",
-                    label: "Infrastructure & Subdivision Engineering",
-                  },
-                  {
-                    href: "/services/research-development",
-                    label: "Research & Development",
-                  },
+                  { href: "/services/3-waters", label: "3 Waters & Contamination" },
+                  { href: "/services/architectural-designs", label: "Architectural Designs" },
+                  { href: "/services/electrical-engineering", label: "Electrical Engineering" },
+                  { href: "/services/project-management", label: "Project & Construction Management" },
+                  { href: "/services/geotechnical-engineering", label: "Geotechnical Engineering" },
+                  { href: "/services/infrastructure", label: "Infrastructure & Subdivision Engineering" },
+                  { href: "/services/research-development", label: "Research & Development" },
                   { href: "/services/road-transport", label: "Road Transport" },
-                  {
-                    href: "/services/seismic-engineering",
-                    label: "Seismic Engineering",
-                  },
-                  {
-                    href: "/services/structural-engineering",
-                    label: "Structural Engineering",
-                  },
+                  { href: "/services/seismic-engineering", label: "Seismic Engineering" },
+                  { href: "/services/structural-engineering", label: "Structural Engineering" },
                   { href: "/services/planning", label: "Planning" },
                   { href: "/services/surveying", label: "Surveying" },
                   { href: "/services/training", label: "Training" },
@@ -190,46 +134,48 @@ const Header = () => {
               { href: "/locations", label: "OUR LOCATIONS" },
             ].map((item) =>
               item.items ? (
-                <li key={item.label} className="md:inline-block relative">
+                <li
+                  key={item.label}
+                  className="md:inline-block relative"
+                  onMouseEnter={() => handleDropdownMouseEnter(item.dropdown)}
+                  onMouseLeave={handleDropdownMouseLeave}
+                >
                   <button
-                    className={`flex items-center text-white text-sm font-semibold py-2 px-4 cursor-pointer ${
-                      currentPath === "/services" ||
-                      currentPath === "/portfolio" ||
-                      currentPath === "/about-us"
-                        ? "bg-customYellow"
-                        : "hover:text-customYellow"
+                    className={`flex items-center text-sm font-semibold py-2 px-4 cursor-pointer ${
+                      currentPath.startsWith(item.href) || currentPath === item.href
+                        ? "text-customYellow"
+                        : "text-customBlue"
                     }`}
-                    onClick={() => toggleDropdown(item.dropdown)}
                   >
                     {item.label}
                     <ChevronDownIcon className="w-4 h-4 ml-1" />
                   </button>
-                  {((item.dropdown === "services" && isServicesOpen) ||
-                    (item.dropdown === "portfolio" && isPortfolioOpen) ||
-                    (item.dropdown === "aboutus" && isAboutUsOpen)) && (
-                    <ul className="absolute left-0 mt-2 w-56 bg-white shadow-md rounded-md overflow-y-auto max-h-60 scrollable-dropdown">
-                      {item.items.map((subItem) => (
-                        <li key={subItem.href}>
-                          <a
-                            href={subItem.href}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-customBlue hover:text-white"
-                          >
-                            {subItem.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  <ul
+                    className={`absolute left-0 mt-2 w-56 bg-white shadow-md rounded-md overflow-y-auto max-h-60 ${
+                      activeDropdown === item.dropdown ? "block" : "hidden"
+                    }`}
+                  >
+                    {item.items.map((subItem) => (
+                      <li key={subItem.href}>
+                        <a
+                          href={subItem.href}
+                          className="block px-4 py-2 text-sm text-gray-800 hover:bg-customYellow hover:text-white"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {subItem.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </li>
               ) : (
                 <li key={item.href} className="md:inline-block">
                   <a
                     href={item.href}
-                    className={`block md:inline-block text-white text-sm font-semibold py-2 px-4 ${
-                      currentPath === item.href
-                        ? "bg-customYellow"
-                        : "hover:text-customYellow"
+                    className={`block md:inline-block text-sm font-semibold py-2 px-4 ${
+                      currentPath === item.href ? "text-customYellow" : "text-customBlue"
                     }`}
+                    onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
                   </a>
@@ -242,6 +188,7 @@ const Header = () => {
           <a
             href="/locations"
             className="hidden md:block bg-customYellow text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-yellow-600"
+            onClick={() => setIsMenuOpen(false)}
           >
             OUR LOCATIONS
           </a>
