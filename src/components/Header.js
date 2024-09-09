@@ -63,11 +63,11 @@ const Header = () => {
         <nav className="flex justify-between items-center py-3 px-5 md:px-10">
           {/* Hamburger Menu Icon */}
           <div className="flex md:hidden">
-            <button onClick={toggleMenu}>
+            <button onClick={toggleMenu} aria-label="Toggle Menu">
               {isMenuOpen ? (
-                <XMarkIcon className="w-6 h-6 text-white" />
+                <XMarkIcon className="w-6 h-6 text-customBlue text-black" /> // Changed text color to black for better visibility
               ) : (
-                <Bars3Icon className="w-6 h-6 text-white" />
+                <Bars3Icon className="w-6 h-6 text-customBlue text-black" /> // Changed text color to black for better visibility
               )}
             </button>
           </div>
@@ -88,7 +88,7 @@ const Header = () => {
           <ul
             className={`${
               isMenuOpen ? "block" : "hidden"
-            } absolute top-full left-0 w-full md:static md:flex md:space-x-6 md:w-auto md:block transition-all`}
+            } absolute top-full left-0 w-full md:static md:flex md:space-x-6 md:w-auto md:block transition-all bg-white`}
             ref={dropdownRef}
           >
             {[
@@ -97,16 +97,43 @@ const Header = () => {
                 label: "SERVICES",
                 dropdown: "services",
                 items: [
-                  { href: "/services/3-waters", label: "3 Waters & Contamination" },
-                  { href: "/services/architectural-designs", label: "Architectural Designs" },
-                  { href: "/services/electrical-engineering", label: "Electrical Engineering" },
-                  { href: "/services/project-management", label: "Project & Construction Management" },
-                  { href: "/services/geotechnical-engineering", label: "Geotechnical Engineering" },
-                  { href: "/services/infrastructure", label: "Infrastructure & Subdivision Engineering" },
-                  { href: "/services/research-development", label: "Research & Development" },
+                  {
+                    href: "/services/3-waters",
+                    label: "3 Waters & Contamination",
+                  },
+                  {
+                    href: "/services/architectural-designs",
+                    label: "Architectural Designs",
+                  },
+                  {
+                    href: "/services/electrical-engineering",
+                    label: "Electrical Engineering",
+                  },
+                  {
+                    href: "/services/project-management",
+                    label: "Project & Construction Management",
+                  },
+                  {
+                    href: "/services/geotechnical-engineering",
+                    label: "Geotechnical Engineering",
+                  },
+                  {
+                    href: "/services/infrastructure",
+                    label: "Infrastructure & Subdivision Engineering",
+                  },
+                  {
+                    href: "/services/research-development",
+                    label: "Research & Development",
+                  },
                   { href: "/services/road-transport", label: "Road Transport" },
-                  { href: "/services/seismic-engineering", label: "Seismic Engineering" },
-                  { href: "/services/structural-engineering", label: "Structural Engineering" },
+                  {
+                    href: "/services/seismic-engineering",
+                    label: "Seismic Engineering",
+                  },
+                  {
+                    href: "/services/structural-engineering",
+                    label: "Structural Engineering",
+                  },
                   { href: "/services/planning", label: "Planning" },
                   { href: "/services/surveying", label: "Surveying" },
                   { href: "/services/training", label: "Training" },
@@ -131,7 +158,7 @@ const Header = () => {
               },
               { href: "/team", label: "OUR TEAM" },
               { href: "/blog", label: "BLOG" },
-              { href: "/locations", label: "OUR LOCATIONS" },
+              { href: "/contact-us", label: "CONTACT US" },
             ].map((item) =>
               item.items ? (
                 <li
@@ -142,7 +169,8 @@ const Header = () => {
                 >
                   <button
                     className={`flex items-center text-sm font-semibold py-2 px-4 cursor-pointer ${
-                      currentPath.startsWith(item.href) || currentPath === item.href
+                      currentPath.startsWith(item.href) ||
+                      currentPath === item.href
                         ? "text-customYellow"
                         : "text-customBlue"
                     }`}
@@ -173,7 +201,9 @@ const Header = () => {
                   <a
                     href={item.href}
                     className={`block md:inline-block text-sm font-semibold py-2 px-4 ${
-                      currentPath === item.href ? "text-customYellow" : "text-customBlue"
+                      currentPath === item.href
+                        ? "text-customYellow"
+                        : "text-customBlue"
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
