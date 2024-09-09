@@ -12,6 +12,8 @@ module.exports = {
         foreground: "var(--foreground)",
         customBlue: '#044E80',
         customYellow: '#FFB500',
+        customGray: '#BBBBBB',
+        customGrayLightL: '#A6A6A6'
       },
     },
   },

@@ -5,7 +5,7 @@ import Image from "next/image";
 const Hero = () => {
   return (
     <section
-      className="relative bg-cover bg-center h-[400px] sm:h-[400px] md:h-[500px] lg:h-[600px]"
+      className="relative bg-cover bg-center h-[400px] sm:h-[400px] md:h-[500px] lg:h-[580px]"
       style={{ backgroundImage: "url('/images/hero-background.webp')" }}
     >
       <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-center md:text-left z-0">
@@ -30,7 +30,7 @@ const Hero = () => {
 
       {/* Ensuring image is fully covered and responsive */}
       <Image
-        src="/images/hero-background.webp"
+        src="/images/GDC-OFFICE-EDIT-scaled.jpg"
         alt="Hero Background"
         width={1200} // Adjust as needed for your layout
         height={600} // Adjust as needed for your layout
