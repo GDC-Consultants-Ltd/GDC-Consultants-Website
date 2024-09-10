@@ -1,4 +1,6 @@
 // Dynamic service data with alternating content sections
+import Image from "next/image";
+
 const services = {
   "3-waters": {
     title: "3 Waters & Contamination",
@@ -100,13 +102,16 @@ const services = {
               >
                 {/* Image Section */}
                 <div className="relative w-full h-full">
-                  <img
+                  <Image
                     src={card.image}
                     alt={card.title}
-                    className="w-full h-full object-cover"
+                    width={320} // Explicit width
+                    height={384} // Explicit height
+                    className="w-full h-full"
+                    style={{ objectFit: "cover" }} // Ensure the image covers the container without layout issues
                   />
-                  {/* Semi-transparent Overlay for Better Text Visibility */}
-                  <div className="absolute inset-0 bg-black opacity-20"></div>
+                  {/* Dark Overlay for Better Text Visibility */}
+                  <div className="absolute inset-0 bg-black opacity-60"></div>
                 </div>
 
                 {/* Overlay Content */}
@@ -916,22 +921,25 @@ const services = {
             ].map((card, index) => (
               <div
                 key={index}
-                className="group relative w-80 h-96 rounded-lg overflow-hidden shadow-lg bg-white cursor-pointer transition-transform transform hover:scale-105"
+                className="group relative w-80 h-90 rounded-lg overflow-hidden shadow-lg bg-white cursor-pointer transition-transform transform hover:scale-105"
               >
-                {/* Image with stronger gradient overlay */}
+                {/* Image Section */}
                 <div className="relative w-full h-full">
-                  <img
+                  <Image
                     src={card.image}
                     alt={card.title}
+                    width={320} // Set width and height explicitly
+                    height={384} // Adjust these values to fit your design
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent group-hover:opacity-80 transition-opacity duration-300"></div>
+                  {/* Dark Gradient Overlay for Better Text Visibility */}
+                  <div className="absolute inset-0 bg-black opacity-60 group-hover:opacity-70 transition-opacity duration-300"></div>
                 </div>
 
                 {/* Overlay Content */}
                 <div className="absolute inset-0 bg-green-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out">
                   <div className="flex flex-col justify-center items-center h-full p-4">
-                    <h3 className="text-2xl font-bold text-white">
+                    <h3 className="text-2xl font-bold text-center text-white">
                       {card.title}
                     </h3>
                   </div>
