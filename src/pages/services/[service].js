@@ -1,87 +1,17 @@
+// pages/services/[service].js
+
+"use client";
+
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import "../../app/globals.css";
 import { useRouter } from "next/router";
-
-const services = {
-  "3-waters": {
-    title: "3 Waters & Contamination",
-    description:
-      "We offer structural engineering solutions for all kinds of projects...",
-    image: "/images/services/structural.webp",
-  },
-  "architectural-designs": {
-    title: "Architectural Designs",
-    description: "We provide top-quality geotechnical analysis...",
-    image: "/images/services/architectural.webp",
-  },
-  "electrical-engineering": {
-    title: "Electrical Engineering",
-    description:
-      "Our architectural design services are tailored to meet your needs...",
-    image: "/images/services/architectural.webp",
-  },
-  "project-management": {
-    title: "Project & Construction Management",
-    description:
-      "Our architectural design services are tailored to meet your needs...",
-    image: "/images/services/architectural.webp",
-  },
-  "geotechnical-engineering": {
-    title: "Geotechnical Engineering",
-    description:
-      "Our architectural design services are tailored to meet your needs...",
-    image: "/images/services/architectural.webp",
-  },
-  infrastructure: {
-    title: "Infrastructure & Subdivision Engineerin",
-    description:
-      "Our architectural design services are tailored to meet your needs...",
-    image: "/images/services/architectural.webp",
-  },
-  "research-development": {
-    title: "Research & Development",
-    description:
-      "Our architectural design services are tailored to meet your needs...",
-    image: "/images/services/architectural.webp",
-  },
-  "road-transport": {
-    title: "Road Transport",
-    description:
-      "Our architectural design services are tailored to meet your needs...",
-    image: "/images/services/architectural.webp",
-  },
-  "seismic-engineering": {
-    title: "Seismic Engineering",
-    description:
-      "Our architectural design services are tailored to meet your needs...",
-    image: "/images/services/architectural.webp",
-  },
-  "structural-engineering": {
-    title: "Structural Engineering",
-    description:
-      "Our architectural design services are tailored to meet your needs...",
-    image: "/images/services/architectural.webp",
-  },
-  planning: {
-    title: "Planning",
-    description:
-      "Our architectural design services are tailored to meet your needs...",
-    image: "/images/services/architectural.webp",
-  },
-  surveying: {
-    title: "Surveying",
-    description:
-      "Our architectural design services are tailored to meet your needs...",
-    image: "/images/services/architectural.webp",
-  },
-  training: {
-    title: "Training",
-    description:
-      "Our architectural design services are tailored to meet your needs...",
-    image: "/images/services/architectural.webp",
-  },
-};
+import Image from "next/image";
+import Link from "next/link";
+import GetInTouch from "../../components/services/GetInTouch";
+import ServiceDescription from "../../components/services/ServiceDescription";
+import ServiceSections from "../../components/services/ServiceSections";
+import services from "../../data/servicesData"; // Import the services data
 
 const ServicePage = () => {
   const router = useRouter();
@@ -96,24 +26,44 @@ const ServicePage = () => {
   return (
     <>
       <Header />
-      <div className="container mx-auto py-8 px-4">
-        {/* Landing image */}
-        <img
-          src={serviceData.image}
-          alt={serviceData.title}
-          className="w-full max-w-2xl"
-        />
-        {/* Home < Service */}
-        <h4 className="text-3xl font-bold mb-4">Services</h4>
-        {/* Service type */}
-        <h1 className="text-3xl font-bold mb-4">{serviceData.title}</h1>
-        {/* Description of the relevent page */}
-        <p className="mb-6">{serviceData.description}</p>
-        {/* Content of the each type */}
-
-        {/* Contact Us */}
-        <p className="mb-6">Contact Us</p>
+      <div className="relative">
+        <div className="w-full h-96 relative">
+          <Image
+            src={serviceData.image}
+            alt={serviceData.title}
+            layout="fill"
+            objectFit="cover"
+            className="transition-opacity duration-700 ease-in-out"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        <div className="absolute bottom-5 left-5 p-6 text-left">
+          <nav className="text-2xl text-white font-bold mb-2 flex items-center space-x-1">
+            <Link href="/" className="hover:text-customYellow">
+              Home
+            </Link>
+            <span>&gt;</span>
+            <span className="hover:text-customYellow">Services</span>
+          </nav>
+          <h1 className="text-white text-5xl font-bold leading-tight">
+            {serviceData.title}
+          </h1>
+        </div>
       </div>
+
+      {/* Service Description Section */}
+      <ServiceDescription description={serviceData.description} />
+
+      {/* Dynamic Alternating Sections */}
+      {serviceData.sections && (
+        <ServiceSections sections={serviceData.sections} />
+      )}
+
+      {/* Unique Content for Specific Service */}
+      {serviceData.uniqueContent && serviceData.uniqueContent}
+
+      {/* Get In Touch Component */}
+      <GetInTouch />
       <Footer />
     </>
   );

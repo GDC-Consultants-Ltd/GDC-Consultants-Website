@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <section
       className="relative bg-cover bg-center h-[400px] sm:h-[400px] md:h-[500px] lg:h-[580px]"
-      style={{ backgroundImage: "url('/images/hero-background.webp')" }}
+      style={{ backgroundImage: "url('/images/GDC-OFFICE-EDIT-scaled.jpg')" }}
     >
       <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-center md:text-left z-0">
         <div className="container mx-auto px-5 sm:px-8 md:px-10 py-8 sm:py-10 md:py-16 lg:py-20 text-white flex flex-col items-center md:items-start">
