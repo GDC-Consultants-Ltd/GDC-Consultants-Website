@@ -66,3 +66,41 @@ body {
   overflow-y: auto;
   scrollbar-width: thin; /* Optional: customize scrollbar appearance */
 }
+
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Change this to set the scrollbar width */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Color of the track */
+  border-radius: 5px; /* Rounded corners for track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #d4d4d4; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Rounded corners for thumb */
+  border: 2px solid #f0f0f0; /* Optional border around thumb */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #b8b8b8; /* Thumb color on hover */
+}
+
+/* For Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin; /* Set scrollbar to be thin */
+  scrollbar-color: #d4d4d4 #f0f0f0; /* Thumb color and track color */
+}
+
+/* SERVICES */
+/* Custom CSS to hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+

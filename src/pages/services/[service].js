@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import "../../app/globals.css";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import Link from "next/link";
 import GetInTouch from "../../components/services/GetInTouch";
 import ServiceDescription from "../../components/services/ServiceDescription";
@@ -26,11 +27,15 @@ const ServicePage = () => {
     <>
       <Header />
       <div className="relative">
-        <img
-          src={serviceData.image}
-          alt={serviceData.title}
-          className="w-full h-96 object-cover"
-        />
+        <div className="w-full h-96 relative">
+          <Image
+            src={serviceData.image}
+            alt={serviceData.title}
+            layout="fill"
+            objectFit="cover"
+            className="transition-opacity duration-700 ease-in-out"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
         <div className="absolute bottom-5 left-5 p-6 text-left">
           <nav className="text-2xl text-white font-bold mb-2 flex items-center space-x-1">
@@ -47,12 +52,15 @@ const ServicePage = () => {
       </div>
 
       {/* Service Description Section */}
-      <ServiceDescription description={serviceData} />
+      <ServiceDescription description={serviceData.description} />
 
       {/* Dynamic Alternating Sections */}
       {serviceData.sections && (
         <ServiceSections sections={serviceData.sections} />
       )}
+
+      {/* Unique Content for Specific Service */}
+      {serviceData.uniqueContent && serviceData.uniqueContent}
 
       {/* Get In Touch Component */}
       <GetInTouch />

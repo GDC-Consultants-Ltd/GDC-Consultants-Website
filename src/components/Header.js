@@ -7,6 +7,7 @@ import {
   ChevronDownIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image"; // Importing Image from next/image for optimization
+import Link from "next/link";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -74,14 +75,16 @@ const Header = () => {
 
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Image
-              src="/images/logo.webp"
-              alt="GDC Consultants Ltd Logo"
-              width={100}
-              height={50}
-              priority
-              className="h-auto w-auto"
-            />
+            <Link href="/">
+              <Image
+                src="/images/logo.webp"
+                alt="GDC Consultants Ltd Logo"
+                width={100}
+                height={50}
+                priority
+                className="h-auto w-auto cursor-pointer"
+              />
+            </Link>
           </div>
 
           {/* Menu Items */}
@@ -178,8 +181,9 @@ const Header = () => {
                     {item.label}
                     <ChevronDownIcon className="w-4 h-4 ml-1" />
                   </button>
+                  {/* Services Dropdown */}
                   <ul
-                    className={`absolute left-0 mt-2 w-56 bg-white shadow-md rounded-md overflow-y-auto max-h-60 ${
+                    className={`absolute left-0 mt-2 w-56 bg-white shadow-md rounded-md overflow-y-auto max-h-60 custom-scrollbar ${
                       activeDropdown === item.dropdown ? "block" : "hidden"
                     }`}
                   >
