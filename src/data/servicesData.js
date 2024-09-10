@@ -51,7 +51,7 @@ const services = {
       <div className="mt-6 px-6 lg:px-15">
         {/* First Unique Section */}
         <div
-          className="relative w-full h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md"
+          className="relative w-full h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md mb-10" // Added margin-bottom for spacing
           style={{ backgroundImage: `url('/images/services/structural.webp')` }}
         >
           {/* Dark overlay for contrast */}
@@ -876,7 +876,7 @@ const services = {
       <div className="mt-6 px-6 lg:px-15">
         {/* First Unique Section */}
         <div
-          className="relative w-full h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md"
+          className="relative w-full h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md mb-10" // Added margin-bottom for spacing
           style={{ backgroundImage: `url('/images/services/Planning.webp')` }}
         >
           {/* Dark overlay for contrast */}
