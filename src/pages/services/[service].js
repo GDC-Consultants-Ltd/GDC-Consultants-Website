@@ -8,7 +8,7 @@ import "../../app/globals.css";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import GetInTouch from "../../components/services/GetInTouch";
+import GetInTouch from "../../components/GetInTouch";
 import ServiceDescription from "../../components/services/ServiceDescription";
 import ServiceSections from "../../components/services/ServiceSections";
 import services from "../../data/servicesData"; // Import the services data
