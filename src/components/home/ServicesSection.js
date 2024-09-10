@@ -6,6 +6,16 @@ import {
   BriefcaseIcon,
   Cog6ToothIcon,
   BuildingOfficeIcon,
+  GlobeAltIcon,
+  HomeModernIcon,
+  ClipboardDocumentListIcon,
+  ScaleIcon,
+  AcademicCapIcon,
+  TruckIcon,
+  WrenchScrewdriverIcon,
+  PresentationChartLineIcon,
+  MagnifyingGlassIcon,
+  BookOpenIcon
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
@@ -13,13 +23,13 @@ const services = [
   {
     title: "3 Waters & Contamination",
     slug: "3-waters",
-    icon: <BuildingOfficeIcon className="w-8 h-8 text-customYellow" />,
+    icon: <GlobeAltIcon className="w-8 h-8 text-customYellow" />,
     image: "/images/services/Environmental Engineering.webp",
   },
   {
     title: "Architectural Designs",
     slug: "architectural-designs",
-    icon: <Cog6ToothIcon className="w-8 h-8 text-customYellow" />,
+    icon: <HomeModernIcon className="w-8 h-8 text-customYellow" />,
     image: "/images/services/architectural.webp",
   },
   {
@@ -31,13 +41,13 @@ const services = [
   {
     title: "Project & Construction Management",
     slug: "project-management",
-    icon: <Cog6ToothIcon className="w-8 h-8 text-customYellow" />,
+    icon: <ClipboardDocumentListIcon className="w-8 h-8 text-customYellow" />,
     image: "/images/services/Project & Construction Management.webp",
   },
   {
     title: "Geotechnical Engineering",
     slug: "geotechnical-engineering",
-    icon: <BriefcaseIcon className="w-8 h-8 text-customYellow" />,
+    icon: <ScaleIcon className="w-8 h-8 text-customYellow" />,
     image: "/images/services/geotechnical.webp",
   },
   {
@@ -49,19 +59,19 @@ const services = [
   {
     title: "Research & Development",
     slug: "research-development",
-    icon: <Cog6ToothIcon className="w-8 h-8 text-customYellow" />,
+    icon: <AcademicCapIcon className="w-8 h-8 text-customYellow" />,
     image: "/images/services/Research & Development.webp",
   },
   {
     title: "Road Transport",
     slug: "road-transport",
-    icon: <BuildingOfficeIcon className="w-8 h-8 text-customYellow" />,
+    icon: <TruckIcon className="w-8 h-8 text-customYellow" />,
     image: "/images/services/Road Transport.webp",
   },
   {
     title: "Seismic Engineering",
     slug: "seismic-engineering",
-    icon: <Cog6ToothIcon className="w-8 h-8 text-customYellow" />,
+    icon: <WrenchScrewdriverIcon className="w-8 h-8 text-customYellow" />,
     image: "/images/services/Seismic Engineering.webp",
   },
   {
@@ -73,19 +83,19 @@ const services = [
   {
     title: "Planning",
     slug: "planning",
-    icon: <Cog6ToothIcon className="w-8 h-8 text-customYellow" />,
+    icon: <PresentationChartLineIcon className="w-8 h-8 text-customYellow" />,
     image: "/images/services/Planning.webp",
   },
   {
     title: "Surveying",
     slug: "surveying",
-    icon: <Cog6ToothIcon className="w-8 h-8 text-customYellow" />,
+    icon: <MagnifyingGlassIcon className="w-8 h-8 text-customYellow" />,
     image: "/images/services/survey.webp",
   },
   {
     title: "Training",
     slug: "training",
-    icon: <Cog6ToothIcon className="w-8 h-8 text-customYellow" />,
+    icon: <BookOpenIcon className="w-8 h-8 text-customYellow" />,
     image: "/images/services/Training.webp",
   },
 ];
