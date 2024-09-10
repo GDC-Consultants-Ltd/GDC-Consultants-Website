@@ -1,6 +1,7 @@
 // src/components/ProjectsSection.js
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const projects = [
   {
@@ -78,7 +79,6 @@ const ProjectsSection = () => {
           to smaller residential builds.
         </h3>
       </div>
-
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
         {projects.map((project, index) => (
           <div
@@ -106,12 +106,14 @@ const ProjectsSection = () => {
           </div>
         ))}
       </div>
-
-      {/* Button to View All Projects */}
+      {/* Link to View All Projects */}
       <div className="flex justify-center mt-8">
-        <button className="bg-customYellow text-white font-semibold px-6 py-3 rounded-md hover:bg-customBlue transition duration-300">
+        <Link
+          href="/projects"
+          className="bg-customYellow text-white font-semibold px-6 py-3 rounded-md hover:bg-customBlue transition duration-300"
+        >
           View All Projects
-        </button>
+        </Link>
       </div>
     </section>
   );
