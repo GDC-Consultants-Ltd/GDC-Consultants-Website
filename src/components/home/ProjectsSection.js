@@ -16,7 +16,7 @@ const projects = [
   },
   {
     title: "Waipa District Council",
-    category: "Counsil Buildings",
+    category: "Council Buildings",
     image: "/images/projects/3.webp",
   },
   {

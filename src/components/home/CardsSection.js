@@ -24,7 +24,7 @@ const CardsSection = () => {
       if (count === maxCount) {
         clearInterval(interval);
       }
-    }, 100);
+    }, 10);
   };
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const CardsSection = () => {
       }
     );
 
-    const currentSection = sectionRef.current; // Copy the ref value to a variable
+    const currentSection = sectionRef.current;
 
     if (currentSection) {
       observer.observe(currentSection);
@@ -48,14 +48,14 @@ const CardsSection = () => {
 
     return () => {
       if (currentSection) {
-        observer.unobserve(currentSection); // Use the copied value in the cleanup function
+        observer.unobserve(currentSection);
       }
     };
   }, []);
 
   useEffect(() => {
     if (isVisible) {
-      animateCount(setProjectsCount, 20);
+      animateCount(setProjectsCount, 10000);
       animateCount(setLocationsCount, 13);
       animateCount(setServicesCount, 10);
       animateCount(setExperienceCount, 16);
@@ -74,7 +74,7 @@ const CardsSection = () => {
           icon={
             <BriefcaseIcon className="w-10 h-10 md:w-12 md:h-12 text-customBlue" />
           }
-          count={projectsCount}
+          count={`${projectsCount.toLocaleString()}+`}
           label="Projects Completed"
         />
         <Card
@@ -83,8 +83,8 @@ const CardsSection = () => {
           icon={
             <MapPinIcon className="w-10 h-10 md:w-12 md:h-12 text-customBlue" />
           }
-          count={locationsCount}
-          label="Locations"
+          count={locationsCount.toLocaleString()}
+          label="Locations Serviced"
         />
         <Card
           color="bg-customBlue"
@@ -92,7 +92,7 @@ const CardsSection = () => {
           icon={
             <Cog6ToothIcon className="w-10 h-10 md:w-12 md:h-12 text-customBlue" />
           }
-          count={`${servicesCount}+`}
+          count={`${servicesCount.toLocaleString()}+`}
           label="Services Provided"
         />
         <Card
@@ -101,7 +101,7 @@ const CardsSection = () => {
           icon={
             <CalendarIcon className="w-10 h-10 md:w-12 md:h-12 text-customBlue" />
           }
-          count={`${experienceCount}+`}
+          count={`${experienceCount.toLocaleString()}+`}
           label="Years of Experience"
         />
       </div>
