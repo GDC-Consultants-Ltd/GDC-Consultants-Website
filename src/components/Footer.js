@@ -1,11 +1,7 @@
 import {
   FaFacebook,
-  FaTwitter,
   FaLinkedin,
   FaInstagram,
-  FaYoutube,
-  FaPinterest,
-  FaVimeo,
 } from "react-icons/fa";
 import Image from "next/image";
 
