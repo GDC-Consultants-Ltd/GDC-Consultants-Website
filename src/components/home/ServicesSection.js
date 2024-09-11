@@ -15,88 +15,74 @@ import {
   WrenchScrewdriverIcon,
   PresentationChartLineIcon,
   MagnifyingGlassIcon,
-  BookOpenIcon
+  BookOpenIcon,
 } from "@heroicons/react/24/solid";
-import Image from "next/image";
 
 const services = [
   {
     title: "3 Waters & Contamination",
     slug: "3-waters",
-    icon: <GlobeAltIcon className="w-8 h-8 text-customYellow" />,
-    image: "/images/services/Environmental Engineering.webp",
+    icon: <GlobeAltIcon className="w-12 h-12" />, // Increased size
   },
   {
     title: "Architectural Designs",
     slug: "architectural-designs",
-    icon: <HomeModernIcon className="w-8 h-8 text-customYellow" />,
-    image: "/images/services/architectural.webp",
+    icon: <HomeModernIcon className="w-12 h-12" />, // Increased size
   },
   {
     title: "Electrical Engineering",
     slug: "electrical-engineering",
-    icon: <Cog6ToothIcon className="w-8 h-8 text-customYellow" />,
-    image: "/images/services/electrical.webp",
+    icon: <Cog6ToothIcon className="w-12 h-12" />, // Increased size
   },
   {
     title: "Project & Construction Management",
     slug: "project-management",
-    icon: <ClipboardDocumentListIcon className="w-8 h-8 text-customYellow" />,
-    image: "/images/services/Project & Construction Management.webp",
+    icon: <ClipboardDocumentListIcon className="w-12 h-12" />, // Increased size
   },
   {
     title: "Geotechnical Engineering",
     slug: "geotechnical-engineering",
-    icon: <ScaleIcon className="w-8 h-8 text-customYellow" />,
-    image: "/images/services/geotechnical.webp",
+    icon: <ScaleIcon className="w-12 h-12" />, // Increased size
   },
   {
     title: "Infrastructure & Subdivision Engineering",
     slug: "infrastructure",
-    icon: <BriefcaseIcon className="w-8 h-8 text-customYellow" />,
-    image: "/images/services/Infrastructure & Subdivision Engineering.webp",
+    icon: <BriefcaseIcon className="w-12 h-12" />, // Increased size
   },
   {
     title: "Research & Development",
     slug: "research-development",
-    icon: <AcademicCapIcon className="w-8 h-8 text-customYellow" />,
-    image: "/images/services/Research & Development.webp",
+    icon: <AcademicCapIcon className="w-12 h-12" />, // Increased size
   },
   {
     title: "Road Transport",
     slug: "road-transport",
-    icon: <TruckIcon className="w-8 h-8 text-customYellow" />,
-    image: "/images/services/Road Transport.webp",
+    icon: <TruckIcon className="w-12 h-12" />, // Increased size
   },
   {
     title: "Seismic Engineering",
     slug: "seismic-engineering",
-    icon: <WrenchScrewdriverIcon className="w-8 h-8 text-customYellow" />,
-    image: "/images/services/Seismic Engineering.webp",
+    icon: <WrenchScrewdriverIcon className="w-12 h-12" />, // Increased size
   },
   {
     title: "Structural Engineering",
     slug: "structural-engineering",
-    icon: <BuildingOfficeIcon className="w-8 h-8 text-customYellow" />,
-    image: "/images/services/structural.webp",
+    icon: <BuildingOfficeIcon className="w-12 h-12" />, // Increased size
   },
   {
     title: "Planning",
     slug: "planning",
-    icon: <PresentationChartLineIcon className="w-8 h-8 text-customYellow" />,
-    image: "/images/services/Planning.webp",
+    icon: <PresentationChartLineIcon className="w-12 h-12" />, // Increased size
   },
   {
     title: "Surveying",
     slug: "surveying",
-    icon: <MagnifyingGlassIcon className="w-8 h-8 text-customYellow" />,
-    image: "/images/services/survey.webp",
+    icon: <MagnifyingGlassIcon className="w-12 h-12" />, // Increased size
   },
   {
     title: "Training",
     slug: "training",
-    icon: <BookOpenIcon className="w-8 h-8 text-customYellow" />,
-    image: "/images/services/Training.webp",
+    icon: <BookOpenIcon className="w-12 h-12" />, // Increased size
   },
 ];
 
@@ -115,35 +101,25 @@ const ServicesSection = () => {
         </h3>
       </div>
 
-      <div className="max-w-screen-xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 px-4 md:px-8 xl:px-12">
+      <div className="max-w-screen-xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 px-4 md:px-6 xl:px-10">
         {services.map((service, index) => (
           <div
             key={index}
-            className="bg-white shadow-md overflow-hidden transition duration-300 group hover:bg-gray-100 flex flex-col"
+            className="relative bg-white shadow-md overflow-hidden transition duration-300 group flex flex-col items-center border-b-4 border-customBlue"
           >
-            <Image
-              src={service.image} // Path to the service image
-              alt={service.title} // Alt text for accessibility
-              width={400} // Adjust the width as needed
-              height={160} // Adjust the height as needed
-              className="w-full h-40 object-cover" // Use object-cover to maintain the object-fit behavior
-            />
-
-            <div className="flex flex-col items-center p-4 flex-1">
-              {/* Icon with group-hover effect */}
-              <div className="bg-white rounded-full p-3 shadow-lg -mt-8 transition duration-300 group-hover:bg-customYellow">
+            {/* Sliding background effect */}
+            <div className="absolute inset-0 bg-customBlue transition-transform duration-300 transform translate-y-full group-hover:translate-y-0"></div>
+            <div className="flex flex-col items-center p-4 z-10 relative group-hover:text-white">
+              <div className="bg-white rounded-full p-3 shadow-lg transition duration-300 group-hover:bg-customYellow group-hover:text-white">
                 {React.cloneElement(service.icon, {
-                  className: "w-8 h-8 text-customYellow group-hover:text-white",
+                  className: "w-12 h-12 text-customBlue group-hover:text-white", // Increased size
                 })}
               </div>
-              <h4 className="text-lg font-semibold mt-2 text-center">
+              <h4 className="text-base font-semibold mt-3 text-center text-customBlue group-hover:text-white">
                 {service.title}
               </h4>
-              {/* Spacer to push button down */}
-              <div className="flex-grow"></div>
-              {/* Link button */}
               <Link href={`/services/${service.slug}`} legacyBehavior>
-                <a className="mt-2 bg-blue-900 text-white px-4 py-1.5 rounded-md text-sm font-semibold transition duration-300 group-hover:bg-customYellow">
+                <a className="mt-2 bg-transparent text-white px-3 py-1 rounded-md text-xs font-semibold transition duration-300 group-hover:bg-customYellow group-hover:text-white opacity-0 group-hover:opacity-100">
                   View More
                 </a>
               </Link>
