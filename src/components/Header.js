@@ -91,7 +91,7 @@ const Header = () => {
           <ul
             className={`${
               isMenuOpen ? "block" : "hidden"
-            } absolute top-full left-0 w-full md:static md:flex md:space-x-6 md:w-auto md:block transition-all bg-white`}
+            } absolute top-full left-0 w-full md:static md:flex md:space-x-10 md:w-auto md:block transition-all bg-white`}
             ref={dropdownRef}
           >
             {[
@@ -146,7 +146,7 @@ const Header = () => {
                 label: "OUR PORTFOLIO",
                 dropdown: "portfolio",
                 items: [
-                  { href: "/portfolio/all-projects", label: "All Projects" },
+                  { href: "/projects", label: "All Projects" },
                   { href: "/portfolio/view-on-map", label: "View on Map" },
                 ],
               },
@@ -160,8 +160,7 @@ const Header = () => {
                 ],
               },
               { href: "/team", label: "OUR TEAM" },
-              { href: "/blog", label: "BLOG" },
-              { href: "/contact-us", label: "CONTACT US" },
+              { href: "/blogs", label: "BLOGS" },
             ].map((item) =>
               item.items ? (
                 <li
@@ -183,15 +182,16 @@ const Header = () => {
                   </button>
                   {/* Services Dropdown */}
                   <ul
-                    className={`absolute left-0 mt-2 w-56 bg-white shadow-md rounded-md overflow-y-auto max-h-60 custom-scrollbar ${
+                    className={`absolute left-0 mt-2 w-56 bg-white bg-opacity-90 shadow-md rounded-md overflow-y-hidden ${
                       activeDropdown === item.dropdown ? "block" : "hidden"
                     }`}
+                    style={{ maxHeight: "none" }}
                   >
                     {item.items.map((subItem) => (
                       <li key={subItem.href}>
                         <a
                           href={subItem.href}
-                          className="block px-4 py-2 text-sm text-gray-800 hover:bg-customYellow hover:text-white"
+                          className="block px-4 py-2 text-sm text-customBlue hover:bg-customYellow hover:text-white"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {subItem.label}

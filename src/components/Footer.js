@@ -1,141 +1,165 @@
 import {
-  FaWhatsapp,
-  FaYoutube,
-  FaInstagram,
   FaFacebook,
-  FaLinkedin,
   FaTwitter,
+  FaLinkedin,
+  FaInstagram,
+  FaYoutube,
+  FaPinterest,
+  FaVimeo,
 } from "react-icons/fa";
 import Image from "next/image";
 
 export default function Footer() {
+  // Get the current year
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative text-white py-5 overflow-hidden">
-      {/* Background Color */}
-      <div className="absolute inset-0 bg-customBlue z-[-3]"></div>
+    <footer
+      className="relative bg-cover bg-center text-white"
+      style={{ backgroundImage: "url('/images/GDC-OFFICE-EDIT-scaled.jpg')" }} // Ensure the path to the image is correct
+    >
+      {/* Dark Overlay for the Entire Footer */}
+      <div className="absolute inset-0 bg-black opacity-50"></div>
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-customBlue to-transparent z-[-1]"></div>
+      {/* Subscription Section */}
+      <div className="relative z-10 flex flex-col items-center pt-10">
+        <h4 className="text-white text-xl text-bold mb-4 tracking-wide">
+          Subscribe to our Newsletter
+        </h4>
+        <div className="flex items-center justify-center">
+          <input
+            type="email"
+            placeholder="Enter your email address"
+            className="p-3 rounded-l-lg outline-none w-80 text-black"
+          />
+          <button className="bg-customBlue text-white p-3 rounded-r-lg tracking-wide">
+            SUBSCRIBE
+          </button>
+        </div>
+      </div>
 
-      {/* Background Image */}
-      <Image
-        src="/images/footer.webp"
-        alt="Buildings Background"
-        width={1920} // Adjust the width as needed
-        height={350} // Adjust the height as needed, this example matches the largest height class used
-        className="absolute inset-x-0 bottom-0 w-full h-[150px] md:h-[180px] lg:h-[350px] z-[-2] object-cover" // object-cover is correctly used here
-        priority
-      />
-
-      {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-8 lg:px-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left mb-16 md:mb-20 lg:mb-24">
-        <div>
-          <h2 className="text-lg font-bold mb-4">Company</h2>
-          <ul className="space-y-2">
-            <li>
-              <a href="#" className="hover:text-customYellow">
-                Our Services
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-customYellow">
-                Who We Are
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-customYellow">
-                Blog
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-customYellow">
-                Careers
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h2 className="text-lg font-bold mb-4">Get in Touch</h2>
-          <ul className="space-y-2">
-            <li>
-              <a href="#" className="hover:text-customYellow">
-                Contact Us
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-customYellow">
-                Our Locations
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-customYellow">
-                Leave Us a Review
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h2 className="text-lg font-bold mb-4">Portfolio</h2>
-          <ul className="space-y-2">
-            <li>
-              <a href="#" className="hover:text-customYellow">
-                All Projects
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-customYellow">
-                Project Map
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h2 className="text-lg font-bold mb-4">Newsletter</h2>
-          <form className="flex flex-col sm:flex-row items-center sm:items-stretch">
-            <input
-              type="email"
-              placeholder="Email Address"
-              className="flex-grow w-full sm:w-auto px-4 py-2 text-black rounded-l-md focus:outline-none focus:ring-2 focus:ring-customYellow mb-2 sm:mb-0"
+      <div className="relative z-10 mx-auto bg-customBlue bg-opacity-80 p-10 backdrop-blur-sm shadow-lg mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-5 gap-8">
+          {/* Logo and Company Info Column */}
+          <div className="flex flex-col items-start">
+            <Image
+              src="/images/footer-logo.webp"
+              alt="GDC Logo"
+              width={160} // Set desired width
+              height={40} // Set desired height
+              className="h-10 mb-4 object-contain" // Utility class for object fit
+              style={{ objectFit: "contain" }} // Inline style for object fit
             />
-            <button
-              type="submit"
-              className="bg-customYellow text-white px-4 py-2 rounded-md sm:rounded-r-md sm:rounded-l-none hover:bg-customBlue transition duration-300"
-            >
-              Subscribe
-            </button>
-          </form>
+          </div>
+
+          {/* COMPANY Section */}
+          <div>
+            <h4 className="font-semibold mb-4 text-md tracking-wide">
+              COMPANY
+            </h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a href="#" className="hover:text-customYellow tracking-wide">
+                  Our Services
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-customYellow tracking-wide">
+                  Who We Are
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-customYellow tracking-wide">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-customYellow tracking-wide">
+                  Careers
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* GET IN TOUCH Section */}
+          <div>
+            <h4 className="font-semibold mb-4 text-md tracking-wide">
+              GET IN TOUCH
+            </h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a href="#" className="hover:text-customYellow tracking-wide">
+                  Contact Us
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-customYellow tracking-wide">
+                  Our Locations
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-customYellow tracking-wide">
+                  Leave Us a Review
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* PORTFOLIO Section */}
+          <div>
+            <h4 className="font-semibold mb-4 text-md tracking-wide">
+              PORTFOLIO
+            </h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a href="#" className="hover:text-customYellow tracking-wide">
+                  All Projects
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-customYellow tracking-wide">
+                  Project Map
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* FOLLOW Section */}
+          <div>
+            <h4 className="font-semibold mb-4 text-md tracking-wide">FOLLOW</h4>
+            <div className="flex space-x-4 text-lg">
+              <a href="#" className="hover:text-customYellow tracking-wide">
+                <FaFacebook />
+              </a>
+              <a href="#" className="hover:text-customYellow tracking-wide">
+                <FaLinkedin />
+              </a>
+              <a href="#" className="hover:text-customYellow tracking-wide">
+                <FaInstagram />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Social Media Links */}
-      <div className="relative z-10 flex justify-center space-x-4 mt-6">
-        <a href="#" className="hover:text-customYellow">
-          <FaWhatsapp size={20} />
-        </a>
-        <a href="#" className="hover:text-customYellow">
-          <FaYoutube size={20} />
-        </a>
-        <a href="#" className="hover:text-customYellow">
-          <FaInstagram size={20} />
-        </a>
-        <a href="#" className="hover:text-customYellow">
-          <FaFacebook size={20} />
-        </a>
-        <a href="#" className="hover:text-customYellow">
-          <FaLinkedin size={20} />
-        </a>
-        <a href="#" className="hover:text-customYellow">
-          <FaTwitter size={20} />
-        </a>
-      </div>
-
-      {/* Bottom Section */}
-      <div className="relative z-10 border-t border-white mt-8 py-4 text-center">
-        <p className="text-xs">
-          © {currentYear} GDC Consultants LTD. All Rights Reserved.
-        </p>
+      {/* Bottom Footer Section with Transparent Background */}
+      <div className="relative z-10 bg-[#0E1B24] bg-opacity-80 text-gray-400 text-xs py-4 mx-auto backdrop-blur-sm">
+        <div className="flex justify-between px-10">
+          <div className="flex space-x-6">
+            <a href="#" className="hover:text-white tracking-wide">
+              TERMS & CONDITIONS
+            </a>
+            <a href="#" className="hover:text-white tracking-wide">
+              PRIVACY POLICY
+            </a>
+            <a href="#" className="hover:text-white tracking-wide">
+              SITEMAP
+            </a>
+          </div>
+          <span className="tracking-wide">
+            © {currentYear} GDC Consultants LTD. All Rights Reserved.
+          </span>
+        </div>
       </div>
     </footer>
   );
