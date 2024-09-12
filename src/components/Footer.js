@@ -1,8 +1,4 @@
-import {
-  FaFacebook,
-  FaLinkedin,
-  FaInstagram,
-} from "react-icons/fa";
+import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 import Image from "next/image";
 
 export default function Footer() {
@@ -19,40 +15,39 @@ export default function Footer() {
 
       {/* Subscription Section */}
       <div className="relative z-10 flex flex-col items-center pt-10">
-        <h4 className="text-white text-xl text-bold mb-4 tracking-wide">
+        <h4 className="text-white text-xl font-bold mb-4 tracking-wide text-center">
           Subscribe to our Newsletter
         </h4>
-        <div className="flex items-center justify-center">
+        <div className="flex flex-col sm:flex-row items-center justify-center">
           <input
             type="email"
             placeholder="Enter your email address"
-            className="p-3 rounded-l-lg outline-none w-80 text-black"
+            className="p-3 rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none outline-none w-80 text-black mb-2 sm:mb-0"
           />
-          <button className="bg-customBlue text-white p-3 rounded-r-lg tracking-wide">
+          <button className="bg-customBlue text-white p-3 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none tracking-wide">
             SUBSCRIBE
           </button>
         </div>
       </div>
 
+      {/* Main Footer Content */}
       <div className="relative z-10 mx-auto bg-customBlue bg-opacity-80 p-10 backdrop-blur-sm shadow-lg mt-10">
-        <div className="grid grid-cols-1 sm:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 text-center md:text-left">
           {/* Logo and Company Info Column */}
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-center md:items-start">
             <Image
               src="/images/footer-logo.webp"
               alt="GDC Logo"
               width={160} // Set desired width
               height={40} // Set desired height
-              className="h-10 mb-4 object-contain" // Utility class for object fit
-              style={{ objectFit: "contain" }} // Inline style for object fit
+              className="h-10 mb-4 object-contain"
+              style={{ objectFit: "contain" }}
             />
           </div>
 
           {/* COMPANY Section */}
           <div>
-            <h4 className="font-semibold mb-4 text-md tracking-wide">
-              COMPANY
-            </h4>
+            <h4 className="font-semibold mb-4 text-md tracking-wide">COMPANY</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a href="#" className="hover:text-customYellow tracking-wide">
@@ -123,7 +118,7 @@ export default function Footer() {
           {/* FOLLOW Section */}
           <div>
             <h4 className="font-semibold mb-4 text-md tracking-wide">FOLLOW</h4>
-            <div className="flex space-x-4 text-lg">
+            <div className="flex justify-center md:justify-start space-x-4 text-lg">
               <a href="#" className="hover:text-customYellow tracking-wide">
                 <FaFacebook />
               </a>
@@ -140,8 +135,8 @@ export default function Footer() {
 
       {/* Bottom Footer Section with Transparent Background */}
       <div className="relative z-10 bg-[#0E1B24] bg-opacity-80 text-gray-400 text-xs py-4 mx-auto backdrop-blur-sm">
-        <div className="flex justify-between px-10">
-          <div className="flex space-x-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between px-10 text-center sm:text-left">
+          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6">
             <a href="#" className="hover:text-white tracking-wide">
               TERMS & CONDITIONS
             </a>
@@ -152,7 +147,7 @@ export default function Footer() {
               SITEMAP
             </a>
           </div>
-          <span className="tracking-wide">
+          <span className="tracking-wide mt-2 sm:mt-0">
             © {currentYear} GDC Consultants LTD. All Rights Reserved.
           </span>
         </div>

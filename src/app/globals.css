@@ -17,7 +17,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Roboto, Arial, sans-serif
+  font-family: Roboto, Arial, sans-serif;
 }
 
 @layer utilities {
@@ -32,65 +32,38 @@ body {
 }
 
 /* ---------------------------------------------------------------------------- */
-/* TESTIMONIALS SECTION */
-/* Ensure custom styles override default Swiper styles */
-.swiper-pagination .swiper-pagination-bullet {
-  width: 12px !important; /* Increase size */
-  height: 12px !important;
-  background-color: #BFC2C8 !important; /* Gray color for inactive dots */
-  opacity: 1 !important;
-  border: 2px solid #BFC2C8 !important; /* Gray border for inactive dots */
-  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease !important;
-  margin: 0 6px !important; /* Space between dots */
-}
-
-.swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #ffffff !important; /* White background for active dot */
-  border: 2px solid #ffffff !important; /* White border for active dot */
-  transform: scale(1.1) !important; /* Slightly larger for active state */
-}
-
-.swiper-pagination {
-  bottom: 15px !important; /* Adjust positioning */
-  display: flex !important;
-  justify-content: center !important;
-  gap: 10px !important; /* Space between pagination dots */
-  z-index: 10 !important; /* Ensure dots are above other content */
-}
-
-/* ---------------------------------------------------------------------------- */
 /* HEADER */
 /* CSS for scrollable dropdown */
 .scrollable-dropdown {
-  max-height: 300px; /* Adjust the height as needed */
+  max-height: 300px;
   overflow-y: auto;
-  scrollbar-width: thin; /* Optional: customize scrollbar appearance */
+  scrollbar-width: thin;
 }
 
 /* Custom scrollbar styles */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 8px; /* Change this to set the scrollbar width */
+  width: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #f0f0f0; /* Color of the track */
-  border-radius: 5px; /* Rounded corners for track */
+  background: #f0f0f0;
+  border-radius: 5px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #d4d4d4; /* Color of the scrollbar thumb */
-  border-radius: 5px; /* Rounded corners for thumb */
-  border: 2px solid #f0f0f0; /* Optional border around thumb */
+  background-color: #d4d4d4;
+  border-radius: 5px;
+  border: 2px solid #f0f0f0;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: #b8b8b8; /* Thumb color on hover */
+  background-color: #b8b8b8;
 }
 
 /* For Firefox */
 .custom-scrollbar {
-  scrollbar-width: thin; /* Set scrollbar to be thin */
-  scrollbar-color: #d4d4d4 #f0f0f0; /* Thumb color and track color */
+  scrollbar-width: thin;
+  scrollbar-color: #d4d4d4 #f0f0f0;
 }
 
 /* SERVICES */
@@ -100,8 +73,284 @@ body {
 }
 
 .scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ---------------------------------------------------------------------------- */
+/* HOME HERO SECTION, CARD SECTION, SERVICES SECTION, PROJECT SECTION, BLOG SECTION, TESTIMONIALS SECTION, CERTIFICATION SECTION */
+/* Consolidated Keyframes for various animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes buttonSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Consolidated Animation Classes */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.8s ease-out forwards;
+}
+
+.animate-slide-left {
+  animation: slideLeft 1s ease-out forwards;
+}
+
+.animate-slide-right {
+  animation: slideRight 1s ease-out forwards;
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.8s ease-out forwards;
+}
+
+.animate-button-slide-up {
+  animation: buttonSlideUp 0.8s ease-out forwards;
+}
+
+.animate-zoom-in {
+  animation: zoomIn 8s ease-out forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+/* ---------------------------------------------------------------------------- */
+/* TESTIMONIALS SECTION OF HOME */
+/* Ensure custom styles override default Swiper styles */
+.swiper-pagination .swiper-pagination-bullet {
+  width: 12px !important;
+  height: 12px !important;
+  background-color: #bfc2c8 !important;
+  opacity: 1 !important;
+  border: 2px solid #bfc2c8 !important;
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease !important;
+  margin: 0 6px !important;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  transform: scale(1.1) !important;
+}
+
+.swiper-pagination {
+  bottom: 15px !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  z-index: 10 !important;
+}
+
+/* Updated scrollbar-hide class for cross-browser support */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+/* Optional: Smooth scroll behavior */
+.scrollable-section {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  max-height: 80vh; /* Adjust as necessary to control the height */
+}
+
+/* For visible custom scrollbar */
+.scrollable-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-section::-webkit-scrollbar-thumb {
+  background-color: #d4d4d4;
+  border-radius: 4px;
+  border: 2px solid #f0f0f0;
+}
+
+.scrollable-section::-webkit-scrollbar-thumb:hover {
+  background-color: #b8b8b8;
+}
+
+.test-animation {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Fade-in animation for scroll */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.8s ease-out forwards;
+}
+
+.animate-zoom-in {
+  animation: zoom-in 0.8s ease-out forwards;
 }
 
 

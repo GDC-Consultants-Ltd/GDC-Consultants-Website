@@ -2,6 +2,7 @@
 import "./globals.css"; // Ensure your global styles are imported
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function RootLayout({ children }) {
   return (
@@ -22,7 +23,8 @@ export default function RootLayout({ children }) {
       <body>
         <Header />
         {children}
-        <Footer />        
+        <Footer />   
+        <ScrollToTop />     
       </body>
     </html>
   );

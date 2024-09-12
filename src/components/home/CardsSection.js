@@ -1,3 +1,4 @@
+// src/components/CardsSection.js
 "use client"; // Ensure this is treated as a client component in Next.js
 
 import React, { useEffect, useState, useRef } from "react";
@@ -72,7 +73,7 @@ const CardsSection = () => {
           color="bg-customBlue"
           gradient="from-black to-customBlue"
           icon={
-            <BriefcaseIcon className="w-10 h-10 md:w-12 md:h-12 text-customBlue" />
+            <BriefcaseIcon className="w-10 h-10 md:w-12 md:h-12 text-customBlue transition-transform duration-500 ease-in-out hover:scale-110" />
           }
           count={`${projectsCount.toLocaleString()}+`}
           label="Projects Completed"
@@ -81,7 +82,7 @@ const CardsSection = () => {
           color="bg-customYellow"
           gradient="from-yellow-500 to-yellow-300"
           icon={
-            <MapPinIcon className="w-10 h-10 md:w-12 md:h-12 text-customBlue" />
+            <MapPinIcon className="w-10 h-10 md:w-12 md:h-12 text-customBlue transition-transform duration-500 ease-in-out hover:scale-110" />
           }
           count={locationsCount.toLocaleString()}
           label="Locations Serviced"
@@ -90,7 +91,7 @@ const CardsSection = () => {
           color="bg-customBlue"
           gradient="from-black to-customBlue"
           icon={
-            <Cog6ToothIcon className="w-10 h-10 md:w-12 md:h-12 text-customBlue" />
+            <Cog6ToothIcon className="w-10 h-10 md:w-12 md:h-12 text-customBlue transition-transform duration-500 ease-in-out hover:scale-110" />
           }
           count={`${servicesCount.toLocaleString()}+`}
           label="Services Provided"
@@ -99,7 +100,7 @@ const CardsSection = () => {
           color="bg-customYellow"
           gradient="from-yellow-500 to-yellow-300"
           icon={
-            <CalendarIcon className="w-10 h-10 md:w-12 md:h-12 text-customBlue" />
+            <CalendarIcon className="w-10 h-10 md:w-12 md:h-12 text-customBlue transition-transform duration-500 ease-in-out hover:scale-110" />
           }
           count={`${experienceCount.toLocaleString()}+`}
           label="Years of Experience"
@@ -111,17 +112,17 @@ const CardsSection = () => {
 
 const Card = ({ color, gradient, icon, count, label }) => (
   <div
-    className={`relative ${color} text-white shadow-lg p-6 flex flex-col items-center justify-center space-y-2 h-56 md:h-64 overflow-hidden ${
+    className={`relative ${color} text-white shadow-lg p-6 flex flex-col items-center justify-center space-y-2 h-56 md:h-64 overflow-hidden transform transition-transform duration-500 ease-in-out animate-slide-up hover:scale-105 ${
       color === "bg-customBlue" ? "rounded-none lg:rounded-none" : ""
     }`}
   >
     <div
-      className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-60 clip-path-custom`}
+      className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-60 clip-path-custom transition-opacity duration-500 ease-in-out`}
     ></div>
-    <div className="relative z-10 bg-customYellow rounded-full p-3 flex items-center justify-center">
+    <div className="relative z-10 bg-customYellow rounded-full p-3 flex items-center justify-center animate-fade-in transition-transform duration-500 ease-in-out hover:scale-110">
       {icon}
     </div>
-    <div className="relative z-10 text-center">
+    <div className="relative z-10 text-center animate-fade-in transition-opacity duration-500 ease-in-out">
       <p className="text-3xl md:text-4xl font-extrabold">{count}</p>
       <p className="text-base md:text-lg font-semibold uppercase tracking-wide">
         {label}

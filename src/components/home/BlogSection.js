@@ -1,12 +1,12 @@
 "use client"; // Ensure this is treated as a client component in Next.js
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
   CalendarIcon,
   UserIcon,
   ChatBubbleLeftEllipsisIcon,
-} from "@heroicons/react/24/outline"; // Importing icons
+} from "@heroicons/react/24/outline";
 
 // Sample blog data
 const blogs = [
@@ -37,14 +37,48 @@ const blogs = [
 ];
 
 const BlogSection = () => {
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        root: null,
+        threshold: 0.2,
+      }
+    );
+
+    const currentSection = sectionRef.current;
+
+    if (currentSection) {
+      observer.observe(currentSection);
+    }
+
+    return () => {
+      if (currentSection) {
+        observer.unobserve(currentSection);
+      }
+    };
+  }, []);
+
   return (
-    <div className="py-12 bg-gray-50">
+    <div
+      ref={sectionRef}
+      className={`py-12 bg-gray-50 transform transition-transform duration-500 ease-in-out ${
+        isVisible ? "animate-fade-up" : "opacity-0"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="text-center mb-12 px-6 md:px-10 xl:px-16">
-          <h2 className="text-4xl text-customYellow uppercase font-bold mt-2">
+          <h2 className="text-4xl text-customYellow uppercase font-bold mt-2 animate-slide-down">
             Latest News & Updates
           </h2>
-          <h3 className="text-md text-customBlue tracking-wide">
+          <h3 className="text-md text-customBlue tracking-wide animate-fade-in">
             Stay up-to-date with the latest news and insights from the
             construction industry by checking out our blog.
           </h3>
@@ -54,15 +88,17 @@ const BlogSection = () => {
           {blogs.map((blog) => (
             <div
               key={blog.id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden group hover:shadow-2xl transition duration-300"
+              className={`bg-white shadow-lg rounded-lg overflow-hidden group hover:shadow-2xl transition duration-300 transform transition-transform duration-500 ease-in-out ${
+                isVisible ? "animate-scale-up" : "opacity-0"
+              }`}
             >
               <Image
-                src={`/${blog.image}`} // Ensure the path is correctly formatted for Next.js
+                src={`/${blog.image}`}
                 alt={blog.title}
-                width={600} // Adjust width according to your design requirements
-                height={300} // Adjust height according to your design requirements
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" // `object-cover` ensures the image covers its container
-                priority // Use priority if the images are important and need to load quickly
+                width={600}
+                height={300}
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                priority
               />
 
               <div className="p-6">
