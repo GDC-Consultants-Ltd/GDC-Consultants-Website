@@ -7,54 +7,65 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GetInTouch from "@/components/GetInTouch";
 
+// Updated projects array with categories
 const projects = [
   {
     title: "Claudelands Events Centre",
     image: "/images/projects/1.webp",
     location: "Hamilton",
+    category: "Events",
   },
   {
     title: "Maraenui Medical Centre",
     image: "/images/projects/2.webp",
     location: "Napier",
+    category: "Medical",
   },
   {
     title: "Museum",
     image: "/images/projects/1.webp",
     location: "Rotorua - Seismic",
+    category: "Cultural",
   },
   {
     title: "Fairy Springs Motel",
     image: "/images/projects/2.webp",
     location: "Rotorua",
+    category: "Hospitality",
   },
   {
     title: "Apartments",
     image: "/images/projects/2.webp",
     location: "Structural",
+    category: "Residential",
   },
   {
     title: "Waikato University",
     image: "/images/projects/2.webp",
     location: "Educational",
+    category: "Educational",
   },
   {
     title: "Subdivision Baverstock",
     image: "/images/projects/2.webp",
     location: "Subdivision",
+    category: "Residential",
   },
   {
     title: "Holiday Park and Commercial Centre in the Coromandel",
     image: "/images/projects/2.webp",
     location: "Planning",
+    category: "Commercial",
   },
 ];
 
 const ProjectsPage = () => {
   const [currentProject, setCurrentProject] = useState(projects[0]);
   const [activeIndex, setActiveIndex] = useState(1); // Start from the first real image
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [filteredProjects, setFilteredProjects] = useState(projects);
   const sliderRef = useRef(null);
-  const totalSlides = projects.length;
+  const totalSlides = filteredProjects.length;
 
   // Function to scroll to the active image
   const scrollToActiveImage = () => {
@@ -106,11 +117,48 @@ const ProjectsPage = () => {
     }
   }, [activeIndex]);
 
+  // Extract unique categories from projects
+  const categories = [
+    "All Projects",
+    ...new Set(projects.map((project) => project.category)),
+  ];
+
+  // Filter projects based on selected category
+  const filterProjects = (category) => {
+    setSelectedCategory(category);
+    if (category === "All Projects") {
+      setFilteredProjects(projects);
+    } else {
+      setFilteredProjects(
+        projects.filter((project) => project.category === category)
+      );
+    }
+    setActiveIndex(1); // Reset slider to the first project in filtered list
+  };
+
   return (
     <>
       <Header />
       <ProjectHeader />
-      <section className="py-16 bg-[#F3F5F6]">
+
+      {/* Category Labels */}
+      <div className="flex flex-wrap justify-center py-6 m-4 animate-fade-in-up transition-all duration-500 ease-in-out">
+        {categories.map((category) => (
+          <button
+            key={category}
+            onClick={() => filterProjects(category)}
+            className={`px-4 py-2 rounded-full m-1 md:m-2 transition duration-300 ease-in-out transform hover:scale-105 ${
+              selectedCategory === category
+                ? "bg-customBlue text-white shadow-lg"
+                : "bg-gray-200 text-gray-700 hover:bg-customBlue hover:text-white"
+            }`}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <section className="pb-10">
         <div className="max-w-screen-xl mx-auto px-6 md:px-10 xl:px-16">
           {/* Horizontal Scrollable Slider */}
           <div
@@ -124,15 +172,17 @@ const ProjectsPage = () => {
               }`}
             >
               <Image
-                src={projects[totalSlides - 1].image}
-                alt={projects[totalSlides - 1].title}
+                src={
+                  filteredProjects[totalSlides - 1]?.image || projects[0].image
+                }
+                alt={filteredProjects[totalSlides - 1]?.title || ""}
                 width={500}
                 height={350}
                 className="object-cover w-full h-full rounded-lg"
               />
             </div>
 
-            {projects.map((project, index) => (
+            {filteredProjects.map((project, index) => (
               <div
                 key={index}
                 onClick={() => {
@@ -160,11 +210,11 @@ const ProjectsPage = () => {
               }`}
             >
               <Image
-                src={projects[0].image}
-                alt={projects[0].title}
+                src={filteredProjects[0]?.image || projects[0].image}
+                alt={filteredProjects[0]?.title || ""}
                 width={500}
                 height={350}
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full rounded-lg"
               />
             </div>
           </div>
@@ -180,6 +230,7 @@ const ProjectsPage = () => {
           </div>
         </div>
       </section>
+
       <GetInTouch />
       <Footer />
     </>

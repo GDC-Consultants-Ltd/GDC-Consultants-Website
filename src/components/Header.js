@@ -61,14 +61,14 @@ const Header = () => {
     <header className="w-full sticky top-0 z-50 bg-white shadow-md">
       {/* Navigation Bar */}
       <div className="max-w-screen-full mx-auto bg-transparent">
-        <nav className="flex justify-between items-center py-3 px-5 md:px-10">
+        <nav className="flex justify-between items-center py-3 px-4 lg:px-6">
           {/* Hamburger Menu Icon */}
-          <div className="flex md:hidden">
+          <div className="flex lg:hidden">
             <button onClick={toggleMenu} aria-label="Toggle Menu">
               {isMenuOpen ? (
-                <XMarkIcon className="w-6 h-6 text-customBlue text-black" /> // Changed text color to black for better visibility
+                <XMarkIcon className="w-6 h-6 text-black" />
               ) : (
-                <Bars3Icon className="w-6 h-6 text-customBlue text-black" /> // Changed text color to black for better visibility
+                <Bars3Icon className="w-6 h-6 text-black" />
               )}
             </button>
           </div>
@@ -79,8 +79,8 @@ const Header = () => {
               <Image
                 src="/images/logo.webp"
                 alt="GDC Consultants Ltd Logo"
-                width={100}
-                height={50}
+                width={80}
+                height={40}
                 priority
                 className="h-auto w-auto cursor-pointer"
               />
@@ -91,8 +91,9 @@ const Header = () => {
           <ul
             className={`${
               isMenuOpen ? "block" : "hidden"
-            } absolute top-full left-0 w-full md:static md:flex md:space-x-10 md:w-auto md:block transition-all bg-white`}
+            } lg:flex lg:space-x-4 lg:items-center absolute lg:static top-full left-0 w-full lg:w-auto bg-white lg:bg-transparent transition-all duration-300 ease-in-out`}
             ref={dropdownRef}
+            style={{ maxHeight: "none", overflowY: "visible" }}
           >
             {[
               { href: "/", label: "HOME" },
@@ -100,43 +101,16 @@ const Header = () => {
                 label: "SERVICES",
                 dropdown: "services",
                 items: [
-                  {
-                    href: "/services/3-waters",
-                    label: "3 Waters & Contamination",
-                  },
-                  {
-                    href: "/services/architectural-designs",
-                    label: "Architectural Designs",
-                  },
-                  {
-                    href: "/services/electrical-engineering",
-                    label: "Electrical Engineering",
-                  },
-                  {
-                    href: "/services/project-management",
-                    label: "Project & Construction Management",
-                  },
-                  {
-                    href: "/services/geotechnical-engineering",
-                    label: "Geotechnical Engineering",
-                  },
-                  {
-                    href: "/services/infrastructure",
-                    label: "Infrastructure & Subdivision Engineering",
-                  },
-                  {
-                    href: "/services/research-development",
-                    label: "Research & Development",
-                  },
+                  { href: "/services/3-waters", label: "3 Waters & Contamination" },
+                  { href: "/services/architectural-designs", label: "Architectural Designs" },
+                  { href: "/services/electrical-engineering", label: "Electrical Engineering" },
+                  { href: "/services/project-management", label: "Project & Construction Management" },
+                  { href: "/services/geotechnical-engineering", label: "Geotechnical Engineering" },
+                  { href: "/services/infrastructure", label: "Infrastructure & Subdivision Engineering" },
+                  { href: "/services/research-development", label: "Research & Development" },
                   { href: "/services/road-transport", label: "Road Transport" },
-                  {
-                    href: "/services/seismic-engineering",
-                    label: "Seismic Engineering",
-                  },
-                  {
-                    href: "/services/structural-engineering",
-                    label: "Structural Engineering",
-                  },
+                  { href: "/services/seismic-engineering", label: "Seismic Engineering" },
+                  { href: "/services/structural-engineering", label: "Structural Engineering" },
                   { href: "/services/planning", label: "Planning" },
                   { href: "/services/surveying", label: "Surveying" },
                   { href: "/services/training", label: "Training" },
@@ -165,33 +139,31 @@ const Header = () => {
               item.items ? (
                 <li
                   key={item.label}
-                  className="md:inline-block relative"
+                  className="lg:inline-block relative"
                   onMouseEnter={() => handleDropdownMouseEnter(item.dropdown)}
                   onMouseLeave={handleDropdownMouseLeave}
                 >
                   <button
-                    className={`flex items-center text-sm font-semibold py-2 px-4 cursor-pointer ${
-                      currentPath.startsWith(item.href) ||
-                      currentPath === item.href
+                    className={`flex items-center text-xs sm:text-sm lg:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 cursor-pointer ${
+                      currentPath.startsWith(item.href) || currentPath === item.href
                         ? "text-customYellow"
                         : "text-customBlue"
                     }`}
                   >
                     {item.label}
-                    <ChevronDownIcon className="w-4 h-4 ml-1" />
+                    <ChevronDownIcon className="w-3 h-3 ml-1" />
                   </button>
                   {/* Services Dropdown */}
                   <ul
-                    className={`absolute left-0 mt-2 w-56 bg-white bg-opacity-90 shadow-md rounded-md overflow-y-hidden ${
+                    className={`absolute left-0 mt-2 w-48 bg-white shadow-md rounded-md ${
                       activeDropdown === item.dropdown ? "block" : "hidden"
                     }`}
-                    style={{ maxHeight: "none" }}
                   >
                     {item.items.map((subItem) => (
                       <li key={subItem.href}>
                         <a
                           href={subItem.href}
-                          className="block px-4 py-2 text-sm text-customBlue hover:bg-customYellow hover:text-white"
+                          className="block px-3 py-2 text-xs text-customBlue hover:bg-customYellow hover:text-white"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {subItem.label}
@@ -201,13 +173,11 @@ const Header = () => {
                   </ul>
                 </li>
               ) : (
-                <li key={item.href} className="md:inline-block">
+                <li key={item.href} className="lg:inline-block">
                   <a
                     href={item.href}
-                    className={`block md:inline-block text-sm font-semibold py-2 px-4 ${
-                      currentPath === item.href
-                        ? "text-customYellow"
-                        : "text-customBlue"
+                    className={`block lg:inline-block text-xs sm:text-sm lg:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 ${
+                      currentPath === item.href ? "text-customYellow" : "text-customBlue"
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -221,7 +191,7 @@ const Header = () => {
           {/* Locations Button */}
           <a
             href="/locations"
-            className="hidden md:block bg-customYellow text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-yellow-600"
+            className="hidden lg:block bg-customYellow text-white text-xs sm:text-sm lg:text-base font-semibold px-3 py-1 lg:px-4 lg:py-2 rounded-md hover:bg-yellow-600"
             onClick={() => setIsMenuOpen(false)}
           >
             OUR LOCATIONS

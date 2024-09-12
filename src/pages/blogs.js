@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "../app/globals.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,6 +39,29 @@ const blogs = [
 ];
 
 const BlogGallery = () => {
+  const sectionRef = useRef(null);
+
+  // Intersection Observer to trigger animations when elements come into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const items = sectionRef.current.querySelectorAll(".animate-on-scroll");
+    items.forEach((item) => observer.observe(item));
+
+    return () => {
+      items.forEach((item) => observer.unobserve(item));
+    };
+  }, []);
+
   return (
     <>
       <Header />
@@ -69,21 +92,24 @@ const BlogGallery = () => {
         </div>
       </div>
       <div className="px-10 py-10 min-h-screen">
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <section
+          ref={sectionRef}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+        >
           {blogs.map((blog, index) => (
             <div
               key={index}
-              className={`relative flex flex-col justify-between rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200 ${getRandomCardSize()}`}
+              className={`relative flex flex-col justify-between rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200 animate-on-scroll transform transition-transform duration-500 hover:scale-105 ${getRandomCardSize()}`}
               style={{ minHeight: "300px" }}
             >
               <Image
                 src={blog.backgroundImage}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover"
+                className="object-cover transition-opacity duration-700 hover:opacity-90"
                 alt={blog.title}
               />
-              <div className="absolute inset-0 bg-black bg-opacity-20 flex items-end p-6">
+              <div className="absolute inset-0 bg-black bg-opacity-20 flex items-end p-6 transition-opacity duration-500 hover:bg-opacity-40">
                 <h3 className="text-xl font-semibold text-white">
                   <Link href={blog.link} className="hover:text-customYellow">
                     {blog.title}

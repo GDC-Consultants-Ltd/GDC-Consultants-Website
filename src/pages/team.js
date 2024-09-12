@@ -3,132 +3,101 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import "../app/globals.css";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid"; // Updated import path for Heroicons v2
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-// Sample core team members data
 const teamMembers = [
   {
-    image: "/images/projects/1.webp",
-    name: "Dr. Luke Bucci",
-    position: "VP, Research & Development (Biomedical Sciences)",
-    qualifications: "PhD, CCN, CNS",
+    image: "/images/team/Clement-Fernando-1.webp",
+    name: "Clement Fernando",
+    position: "Managing Director",
+    qualifications: "MSc (Eng), CPEng, IntPE(NZ), CMEngNZ, APEC Engineer",
   },
   {
-    image: "/images/projects/1.webp",
-    name: "Dr. Nima Alamdari",
-    position: "Chief Scientific Officer (Physiology)",
-    qualifications: "PhD",
+    image: "/images/team/Alin-Poanta-1.webp",
+    name: "Alin Poanta",
+    position: "Senior Associate - Lead Structural Engineer",
+    qualifications: "BE(Civil) CPEng, CMEngNZ, IntPE(NZ)",
   },
   {
-    image: "/images/projects/1.webp",
-    name: "Dr. Mastaneh Sharafi",
-    position: "Director, Scientific Affairs (Nutritional Sciences)",
-    qualifications: "PhD, RD",
-  },
-  {
-    image: "/images/projects/1.webp",
-    name: "Dr. Luke Bucci",
-    position: "VP, Research & Development (Biomedical Sciences)",
-    qualifications: "PhD, CCN, CNS",
-  },
-  {
-    image: "/images/projects/1.webp",
-    name: "Dr. Nima Alamdari",
-    position: "Chief Scientific Officer (Physiology)",
-    qualifications: "PhD",
-  },
-  {
-    image: "/images/projects/1.webp",
-    name: "Dr. Mastaneh Sharafi",
-    position: "Director, Scientific Affairs (Nutritional Sciences)",
-    qualifications: "PhD, RD",
-  },
-  {
-    image: "/images/projects/1.webp",
-    name: "Dr. Mastaneh Sharafi",
-    position: "Director, Scientific Affairs (Nutritional Sciences)",
-    qualifications: "PhD, RD",
-  },
-  {
-    image: "/images/projects/1.webp",
-    name: "Dr. Mastaneh Sharafi",
-    position: "Director, Scientific Affairs (Nutritional Sciences)",
-    qualifications: "PhD, RD",
-  },
-  {
-    image: "/images/projects/1.webp",
-    name: "Dr. Mastaneh Sharafi",
-    position: "Director, Scientific Affairs (Nutritional Sciences)",
-    qualifications: "PhD, RD",
+    image: "/images/team/Yi-Su-1.webp",
+    name: "Yi Su",
+    position: "Senior Associate - Principal Structural Engineer",
+    qualifications:
+      "BE(Hons), MEngSt(Hons), CPEng, CMEngNZ, IntPE(NZ)/APEC Engineer",
   },
 ];
 
-// Sample sub-team members data
 const subTeamMembers = [
   {
-    image: "/images/projects/2.webp",
+    image: "/images/team/Tom-Fox.webp",
+    name: "Tom Fox",
+    position: "Architectural Manager",
+    qualifications: "NDIP (Architectural), NDIP (Building Control Surveying)",
+  },
+  {
+    image: "/images/team/Joel-Bishop.webp",
     name: "Joel Bishop",
     position: "Planning Manager",
     qualifications:
       "Bachelor of Environmental Planning (University of Waikato)",
   },
   {
-    image: "/images/projects/2.webp",
+    image: "/images/team/Maurice-Bellantoni.webp",
     name: "Maurice Bellantoni",
     position: "Senior Architectural Designer",
     qualifications:
       "Bachelor & PhD in Architecture, Master in Urban Planning, Residential Design & Project Management",
   },
   {
-    image: "/images/projects/2.webp",
+    image: "/images/team/John-Kim-1.webp",
     name: "John Kim",
     position: "Geotechnical Manager",
     qualifications: "MEngNZ, MEngSt (University of Canterbury)",
   },
   {
-    image: "/images/projects/2.webp",
+    image: "/images/team/Janine-Barrett.webp",
     name: "Janine Barrett",
     position: "Group Manager: Finance & Administration (Hamilton)",
     qualifications:
       "Bachelor of Communications, Post Grad diploma in Management Studies",
   },
   {
-    image: "/images/projects/2.webp",
-    name: "Joel Bishop",
-    position: "Planning Manager",
+    image: "/images/team/Danyon-Fernando.webp",
+    name: "Danyon Fernando",
+    position: "Director of Operations",
     qualifications:
-      "Bachelor of Environmental Planning (University of Waikato)",
+      "Bachelor of Arts with Honours (Criminology) - Victoria University of Wellington",
   },
   {
-    image: "/images/projects/2.webp",
-    name: "Maurice Bellantoni",
-    position: "Senior Architectural Designer",
+    image: "/images/team/Vazin-Shareef.webp",
+    name: "Vazin Shareef",
+    position: "Marketing & IT Manager",
     qualifications:
-      "Bachelor & PhD in Architecture, Master in Urban Planning, Residential Design & Project Management",
+      "Bachelor of Commerce (BCom) - Victoria University of Wellington",
   },
   {
-    image: "/images/projects/2.webp",
-    name: "John Kim",
-    position: "Geotechnical Manager",
-    qualifications: "MEngNZ, MEngSt (University of Canterbury)",
+    image: "/images/team/Bethany-Rutter.webp",
+    name: "Bethany Rutter",
+    position: "Marketing Executive",
+    qualifications: "Bachelor of Applied Management (BAM)",
   },
   {
-    image: "/images/projects/2.webp",
-    name: "Janine Barrett",
-    position: "Group Manager: Finance & Administration (Hamilton)",
-    qualifications:
-      "Bachelor of Communications, Post Grad diploma in Management Studies",
+    image: "/images/team/Kasia-Irvine.webp",
+    name: "Kasia Irvine",
+    position: "Office Manager (Thames & Whitianga)",
+    qualifications: "",
   },
 ];
 
 const TeamPage = () => {
   const [currentMember, setCurrentMember] = useState(teamMembers[0]);
-  const [activeIndex, setActiveIndex] = useState(1); // Start from the first real image
+  const [activeIndex, setActiveIndex] = useState(1);
   const sliderRef = useRef(null);
   const totalSlides = teamMembers.length;
   const subTeamSliderRef = useRef(null);
+  const autoScrollIntervalRef = useRef(null);
 
   // Function to scroll to the active image
   const scrollToActiveImage = () => {
@@ -157,7 +126,6 @@ const TeamPage = () => {
   // Scroll to active image when activeIndex changes
   useEffect(() => {
     if (activeIndex === 0) {
-      // If we are at the first clone, jump to the last real slide
       setTimeout(() => {
         sliderRef.current.scrollTo({
           left:
@@ -167,7 +135,6 @@ const TeamPage = () => {
         setActiveIndex(totalSlides);
       }, 500);
     } else if (activeIndex === totalSlides + 1) {
-      // If we are at the last clone, jump to the first real slide
       setTimeout(() => {
         sliderRef.current.scrollTo({
           left: sliderRef.current.clientWidth,
@@ -177,7 +144,7 @@ const TeamPage = () => {
       }, 500);
     } else {
       scrollToActiveImage();
-      setCurrentMember(teamMembers[(activeIndex - 1) % totalSlides]); // Update current member based on active index
+      setCurrentMember(teamMembers[(activeIndex - 1) % totalSlides]);
     }
   }, [activeIndex]);
 
@@ -188,14 +155,43 @@ const TeamPage = () => {
       left: scrollAmount,
       behavior: "smooth",
     });
+    // Pause auto-scroll temporarily when manually navigating
+    pauseAutoScroll();
   };
+
+  // Function to auto-scroll the sub-team slider every few seconds
+  const autoScrollSubTeamSlider = () => {
+    autoScrollIntervalRef.current = setInterval(() => {
+      subTeamSliderRef.current.scrollBy({
+        left: 300,
+        behavior: "smooth",
+      });
+    }, 3000); // Scroll every 3 seconds
+  };
+
+  // Pause auto-scroll when manually controlled and restart after a delay
+  const pauseAutoScroll = () => {
+    clearInterval(autoScrollIntervalRef.current);
+    setTimeout(() => {
+      autoScrollSubTeamSlider();
+    }, 5000); // Restart auto-scroll after 5 seconds of inactivity
+  };
+
+  // Start the auto-scroll when the component mounts
+  useEffect(() => {
+    autoScrollSubTeamSlider();
+
+    return () => {
+      clearInterval(autoScrollIntervalRef.current); // Cleanup on component unmount
+    };
+  }, []);
 
   return (
     <>
       <Header />
       <div className="min-h-screen">
         <header className="pt-8 bg-white">
-          <div className="max-w-screen-xl mx-auto px-6 md:px-10 xl:px-16">
+          <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-10">
             <h1 className="text-3xl font-bold text-center text-customBlue">
               Our Core Team
             </h1>
@@ -203,17 +199,17 @@ const TeamPage = () => {
         </header>
 
         {/* Core Team Section */}
-        <section className="py-16">
-          <div className="max-w-screen-md mx-auto px-6 md:px-10 xl:px-16">
+        <section className="py-8 md:py-16">
+          <div className="max-w-screen-md mx-auto px-4 md:px-6 lg:px-10">
             {/* Horizontal Scrollable Slider */}
             <div
               ref={sliderRef}
-              className="relative flex gap-8 overflow-x-auto scrollbar-hide py-6"
+              className="relative flex gap-4 md:gap-7 overflow-x-auto scrollbar-hide py-4 md:py-6"
             >
               {/* Clone last slide at the beginning for circular effect */}
               <div
-                className={`carousel-image flex-shrink-0 w-[200px] h-[200px] rounded-full transition-transform duration-500 cursor-pointer ${
-                  activeIndex === 0 ? "scale-125" : "scale-90"
+                className={`carousel-image flex-shrink-0 flex-grow-0 flex-basis-[100%] sm:flex-basis-[80%] md:flex-basis-[50%] lg:flex-basis-[25%] h-[150px] sm:h-[180px] md:h-[200px] rounded-full transition-transform duration-500 cursor-pointer ${
+                  activeIndex === 0 ? "scale-110" : "scale-90"
                 }`}
               >
                 <Image
@@ -232,8 +228,8 @@ const TeamPage = () => {
                     setActiveIndex(index + 1);
                     setCurrentMember(member);
                   }}
-                  className={`carousel-image flex-shrink-0 w-[200px] h-[200px] rounded-full transition-transform duration-500 cursor-pointer ${
-                    index + 1 === activeIndex ? "scale-125" : "scale-90"
+                  className={`carousel-image flex-shrink-0 flex-grow-0 flex-basis-[100%] sm:flex-basis-[80%] md:flex-basis-[50%] lg:flex-basis-[25%] h-[150px] sm:h-[180px] md:h-[200px] rounded-full transition-transform duration-500 cursor-pointer ${
+                    index + 1 === activeIndex ? "scale-110" : "scale-90"
                   }`}
                 >
                   <Image
@@ -248,8 +244,8 @@ const TeamPage = () => {
 
               {/* Clone first slide at the end for circular effect */}
               <div
-                className={`carousel-image flex-shrink-0 w-[200px] h-[200px] rounded-full transition-transform duration-500 cursor-pointer ${
-                  activeIndex === totalSlides + 1 ? "scale-125" : "scale-90"
+                className={`carousel-image flex-shrink-0 flex-grow-0 flex-basis-[100%] sm:flex-basis-[80%] md:flex-basis-[50%] lg:flex-basis-[25%] h-[150px] sm:h-[180px] md:h-[200px] rounded-full transition-transform duration-500 cursor-pointer ${
+                  activeIndex === totalSlides + 1 ? "scale-110" : "scale-90"
                 }`}
               >
                 <Image
@@ -263,12 +259,14 @@ const TeamPage = () => {
             </div>
 
             {/* Team Member Details */}
-            <div className="mt-8 text-center">
-              <h3 className="text-2xl font-semibold text-customBlue mb-2">
+            <div className="mt-4 md:mt-6 text-center">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-customBlue mb-1 sm:mb-2">
                 {currentMember.name}
               </h3>
-              <p className="text-lg text-gray-600">{currentMember.position}</p>
-              <p className="text-md text-gray-500">
+              <p className="text-sm sm:text-md md:text-lg text-gray-600">
+                {currentMember.position}
+              </p>
+              <p className="text-xs sm:text-sm md:text-md text-gray-500">
                 {currentMember.qualifications}
               </p>
             </div>
@@ -276,43 +274,44 @@ const TeamPage = () => {
         </section>
 
         {/* Sub Team Display Section */}
-        <section className="relative">
-          <div className="max-w-screen-lg mx-auto px-4 md:px-6 xl:px-10">
+        <section className="relative py-8">
+          <div className="max-w-screen-lg mx-auto px-4 md:px-6 lg:px-10">
             {/* Left Arrow Button */}
             <button
               onClick={() => scrollSubTeamSlider("left")}
-              className="absolute left-20 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10 hover:bg-customYellow"
+              className="absolute left-5 md:left-10 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10 hover:bg-customYellow"
             >
-              <ChevronLeftIcon className="w-5 h-5 text-customBlue text-bold" />{" "}
-              {/* Heroicon Left Arrow */}
+              <ChevronLeftIcon className="w-5 h-5 text-customBlue" />{" "}
             </button>
 
             {/* Horizontal Scrollable Slider */}
             <div
               ref={subTeamSliderRef}
-              className="flex gap-6 overflow-x-auto scrollbar-hide py-4"
+              className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide py-4"
             >
               {subTeamMembers.map((member, index) => (
                 <div
                   key={index}
-                  className="flex flex-col items-center text-center min-w-[220px] p-4"
+                  className="flex flex-col items-center text-center min-w-full md:min-w-[220px] p-2 md:p-4"
                 >
                   {/* Team Member Image */}
-                  <div className="w-[100px] h-[100px] rounded-full overflow-hidden mb-4">
+                  <div className="w-[100px] h-[100px] md:w-[130px] md:h-[130px] rounded-full overflow-hidden mb-2 md:mb-4">
                     <Image
                       src={member.image}
                       alt={member.name}
-                      width={100}
-                      height={100}
+                      width={130}
+                      height={130}
                       className="object-cover w-full h-full rounded-full"
                     />
                   </div>
                   {/* Team Member Details */}
-                  <h3 className="text-lg font-semibold text-customBlue mb-1">
+                  <h3 className="text-md md:text-lg font-semibold text-customBlue mb-1">
                     {member.name}
                   </h3>
-                  <p className="text-sm text-gray-600">{member.position}</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-sm md:text-md text-gray-600">
+                    {member.position}
+                  </p>
+                  <p className="text-xs md:text-sm text-gray-500">
                     {member.qualifications}
                   </p>
                 </div>
@@ -322,38 +321,37 @@ const TeamPage = () => {
             {/* Right Arrow Button */}
             <button
               onClick={() => scrollSubTeamSlider("right")}
-              className="absolute right-20 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10 hover:bg-customYellow"
+              className="absolute right-5 md:right-10 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10 hover:bg-customYellow"
             >
-              <ChevronRightIcon className="w-5 h-5 text-customBlue text-bold" />{" "}
-              {/* Heroicon Right Arrow */}
+              <ChevronRightIcon className="w-5 h-5 text-customBlue" />{" "}
             </button>
           </div>
         </section>
 
         <section className="pt-10">
           <div className="max-w-screen-full mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Complete Professional Package Section */}
-              <div className="bg-customBlue text-center p-8 h-[350px] flex flex-col justify-center">
-                <h2 className="text-3xl font-bold text-white mb-4">
+              <div className="bg-customBlue text-center p-6 md:p-8 h-[300px] md:h-[350px] flex flex-col justify-center">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
                   Complete Professional Package
                 </h2>
-                <p className="text-lg text-white mb-6">
+                <p className="text-md md:text-lg text-white mb-4 md:mb-6">
                   Have a look at our services that we provide
                 </p>
                 <div className="flex justify-center">
-                  <button className="py-2 px-4 bg-customYellow text-white rounded-full hover:bg-customYellow hover:text-white transition duration-300">
+                  <button className="py-2 px-4 bg-customYellow text-white rounded-full hover:bg-customYellow transition duration-300">
                     View Services
                   </button>
                 </div>
               </div>
 
               {/* Worked With Us Lately Section */}
-              <div className="bg-customYellow p-8 h-[350px] text-center flex flex-col justify-center">
-                <h2 className="text-3xl font-bold text-white mb-4">
+              <div className="bg-customYellow p-6 md:p-8 h-[300px] md:h-[350px] text-center flex flex-col justify-center">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
                   Worked With Us Lately?
                 </h2>
-                <p className="text-lg text-white">
+                <p className="text-md md:text-lg text-white">
                   GDC would love to hear from you and your experience with GDC
                   Consultants Ltd. All feedback is appreciated and used to help
                   GDC Consultants Ltd to provide the best services to you in the

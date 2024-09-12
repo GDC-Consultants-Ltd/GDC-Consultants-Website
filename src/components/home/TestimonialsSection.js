@@ -1,9 +1,9 @@
 "use client"; // This directive ensures the component is treated as a client component
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules"; // Added Autoplay module
+import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -25,10 +25,44 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => {
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        root: null,
+        threshold: 0.2,
+      }
+    );
+
+    const currentSection = sectionRef.current;
+
+    if (currentSection) {
+      observer.observe(currentSection);
+    }
+
+    return () => {
+      if (currentSection) {
+        observer.unobserve(currentSection);
+      }
+    };
+  }, []);
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 h-full">
+    <div
+      ref={sectionRef}
+      className={`grid grid-cols-1 md:grid-cols-2 h-full transform transition-transform duration-500 ease-in-out ${
+        isVisible ? "animate-fade-in" : "opacity-0"
+      }`}
+    >
       {/* Left Side - Title and Content */}
-      <div className="bg-customYellow text-white px-6 py-6 md:px-10 lg:px-16 flex flex-col justify-center items-center md:items-start text-center md:text-left">
+      <div className="bg-customYellow text-white px-6 py-6 md:px-10 lg:px-16 flex flex-col justify-center items-center md:items-start text-center md:text-left animate-slide-left">
         <h2 className="text-xs md:text-sm uppercase tracking-widest font-semibold mb-2 md:mb-4">
           Read Testimonials
         </h2>
@@ -50,19 +84,19 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <SwiperSlide
               key={index}
-              className="p-4 md:p-6 lg:p-8 bg-transparent text-center flex flex-col gap-4"
+              className="p-4 md:p-6 lg:p-8 bg-transparent text-center flex flex-col gap-4 animate-slide-up"
             >
               <div className="flex flex-col items-center">
-                <p className="mb-4 text-white text-base md:text-lg leading-relaxed">
+                <p className="mb-4 text-white text-base md:text-lg leading-relaxed animate-fade-in">
                   {testimonial.message}
                 </p>
-                <div className="mt-2 md:mt-4 flex flex-col items-center">
+                <div className="mt-2 md:mt-4 flex flex-col items-center animate-scale-up">
                   <Image
-                    src={testimonial.image} // Path to the testimonial image
-                    alt={testimonial.author} // Alt text for accessibility
-                    width={80} // Adjust width as needed
-                    height={80} // Adjust height as needed
-                    className="w-16 h-16 md:w-20 md:h-20 rounded-full mx-auto object-cover" // Use object-cover to ensure the image covers the space
+                    src={testimonial.image}
+                    alt={testimonial.author}
+                    width={80}
+                    height={80}
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-full mx-auto object-cover"
                   />
                   <h4 className="font-semibold text-white text-base md:text-lg mt-2">
                     {testimonial.author}
