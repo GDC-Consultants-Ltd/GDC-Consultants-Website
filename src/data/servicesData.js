@@ -6,7 +6,7 @@ const services = {
     title: "3 Waters & Contamination",
     description:
       "Climate change is taking a toll on New Zealand’s aging three water infrastructure. There is now a vital need to renew and rebuild these systems to ensure that they continue to meet performance standards. Our mission at GDC Consultants is to provide sustainable, effective, and value-added engineering solutions for your 3 Waters project. We pride ourselves on being both experts in technical design guidance and pioneers of innovative solutions in the industry.​",
-    image: "/images/services/structural.webp",
+    image: "/images/services/waters-engineering-and-contamination.webp",
     sections: [
       {
         id: 1,
@@ -22,7 +22,7 @@ const services = {
           "Due diligence and contamination liability cost assessment",
           "Property portfolio risk analysis.",
         ],
-        image: "/images/services/structural.webp",
+        image: "/images/services/Environmental Engineering.webp",
       },
       {
         id: 2,
@@ -44,24 +44,24 @@ const services = {
           "Erosion protection design",
           "Regeneration of waterways.",
         ],
-        image: "/images/services/structural.webp",
+        image: "/images/services/8.-Contamination-Assessment.webp",
       },
     ],
     uniqueContent: (
-      <div className="mt-6 px-6 lg:px-15">
+      <div className="mt-10 px-4 md:px-6 lg:px-15">
         {/* First Unique Section */}
         <div
-          className="relative w-full h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md mb-10" // Added margin-bottom for spacing
-          style={{ backgroundImage: `url('/images/services/structural.webp')` }}
+          className="relative w-full h-64 md:h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md mb-6 md:mb-10 animate-slide-up transition-all duration-700 ease-in-out"
+          style={{ backgroundImage: `url('/images/services/image-50.webp')` }}
         >
           {/* Dark overlay for contrast */}
-          <div className="absolute inset-0 bg-black opacity-60 rounded-md"></div>
-          <div className="relative z-10 text-center text-white p-6">
-            <h2 className="text-3xl font-bold mb-4">
+          <div className="absolute inset-0 bg-black opacity-50 rounded-md"></div>
+          <div className="relative z-10 text-center text-white p-4 md:p-6 animate-fade-in">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2 md:mb-4">
               Stormwater Modelling and On-Site Carpark Stormwater Design for
               Claudelands Arena
             </h2>
-            <p className="mb-6">
+            <p className="text-sm md:text-base mb-4 md:mb-6">
               GDC Consultants are experts in delivering quality services. We
               have access to the right resources in all contaminated land
               disciplines including soil science, hydrogeology, geotechnical,
@@ -71,53 +71,57 @@ const services = {
         </div>
 
         {/* Animated Cards Section */}
-        <div className="mt-10 px-6 lg:px-10">
-          <h1 className="text-4xl text-customBlue font-bold text-center mb-8">
+        <div className="mt-8 md:mt-10 px-4 md:px-6 lg:px-10">
+          <h1 className="text-2xl md:text-4xl text-customBlue font-bold text-center mb-6 md:mb-8 animate-fade-in-up">
             3 Waters Engineering
           </h1>
-          <div className="flex flex-wrap gap-6 justify-center">
+          <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
             {[
               {
                 title: "Storm Water",
                 description:
                   "GDC Consultants can help with technical design plans, strategy development, cohesive catchment planning, and fit-for-purpose design solutions.",
-                image: "/images/services/structural.webp", // Replace with your actual image path
+                image: "/images/services/storm-water.jpg",
               },
               {
                 title: "Waste Water",
                 description:
                   "We are experts in wastewater network performance analysis. We can assist in choosing an affordable containment option and help identify the most cost-effective combination for improvement works.",
-                image: "/images/services/structural.webp", // Replace with your actual image path
+                image: "/images/services/waste-water.jpg",
               },
               {
                 title: "Water Supply",
                 description:
                   "We provide a wide variety of professional services for onsite water supply systems, including surface and groundwater supplies.",
-                image: "/images/services/structural.webp", // Replace with your actual image path
+                image: "/images/services/water-supply.png",
               },
             ].map((card, index) => (
               <div
                 key={index}
-                className="group relative w-80 h-96 rounded-lg overflow-hidden shadow-lg bg-white cursor-pointer transition-transform transform hover:scale-105"
+                className="group relative w-full md:w-80 rounded-lg overflow-hidden shadow-lg bg-white cursor-pointer transition-transform transform hover:scale-105 animate-scale-up duration-500 ease-in-out"
               >
                 {/* Image Section */}
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-48 md:h-96 animate-zoom-in transition-opacity duration-700 ease-in-out">
                   <Image
                     src={card.image}
                     alt={card.title}
-                    width={320} // Explicit width
-                    height={384} // Explicit height
-                    className="w-full h-full"
-                    style={{ objectFit: "cover" }} // Ensure the image covers the container without layout issues
+                    width={320}
+                    height={384}
+                    className="w-full h-full object-cover"
                   />
                   {/* Dark Overlay for Better Text Visibility */}
-                  <div className="absolute inset-0 bg-black opacity-60"></div>
+                  <div className="absolute inset-0 bg-black opacity-50"></div>
                 </div>
 
                 {/* Overlay Content */}
-                <div className="absolute inset-0 flex flex-col justify-center items-center p-4 text-white z-10">
-                  <h3 className="text-2xl font-bold mb-2">{card.title}</h3>
-                  <p className="text-white text-center">{card.description}</p>
+                <div className="absolute inset-0 flex flex-col justify-center items-center p-4 text-white z-10 animate-fade-in">
+                  <h3 className="text-lg md:text-2xl text-center font-bold mb-2">
+                    {card.title}
+                  </h3>
+                  {/* Description hidden on smaller screens */}
+                  <p className="hidden md:block text-sm md:text-base text-center">
+                    {card.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -131,7 +135,7 @@ const services = {
     title: "Architectural Designs",
     description:
       "GDC Consultants excel in delivering high-end, sustainable architecture solutions tailored to complex design requirements. Their services include concept design, construction documentation, project management, and site feasibility studies.",
-    image: "/images/services/architectural.webp",
+    image: "/images/services/architectural-designs-gdc-consultants.webp",
     sections: [
       {
         id: 1,
@@ -145,42 +149,46 @@ const services = {
         title: "Structural Plan and Design",
         description:
           "The substructure of your building project needs to be well-designed before the construction phase of its superstructure. During the schematic design phase, our experts make drawings and plans related to the foundation sections, floor plans of slabs, structural beams, slab reinforcement, doors, windows, and lintel, and other custom structural needs as per the requirements of the individual project.",
-        image: "/images/services/architectural.webp",
+        image: "/images/services/building-foundations.webp",
       },
       {
         id: 3,
         title: "MEP Engineering",
         description:
           "We can design safe and functional MEP drawings that perfectly cater to your requirements timeline. Our services include master designs of HVAC, electrical, plumbing, sewage, and other systems.",
-        image: "/images/services/architectural.webp",
+        image: "/images/services/plan_design_full.webp",
       },
       {
         id: 4,
         title: "Interior Plans",
         description:
           "We design safe and functional MEP drawings that perfectly cater to your requirements timeline. Our services include master designs of HVAC, electrical, plumbing, sewage, and other systems.",
-        image: "/images/services/architectural.webp",
+        image: "/images/services/image-25.webp",
       },
       {
         id: 5,
         title: "3D Modelling",
         description:
           "We use state-of-the-art techniques to provide our clients with a comprehensive 3D model of their building before construction starts. This ensures that clients are completely satisfied with the designs before they are implemented, and helps in saving a significant amount of time, energy, and cost that might have been wasted correcting designs during construction.",
-        image: "/images/services/architectural.webp",
+        image: "/images/services/Vertex_BD_005.webp",
       },
     ],
     uniqueContent: (
-      <div className="mt-6 px-6 lg:px-15">
+      <div className="mt-10 px-6 lg:px-15">
         {/* First Unique Section */}
         <div
-          className="relative w-full h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md"
-          style={{ backgroundImage: `url('/images/services/structural.webp')` }}
+          className="relative w-full h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md animate-fade-in-up transition-all duration-700 ease-in-out"
+          style={{
+            backgroundImage: `url('/images/services/mmexport1567995357055.webp')`,
+          }}
         >
           {/* Dark overlay for contrast */}
           <div className="absolute inset-0 bg-black opacity-60 rounded-md"></div>
-          <div className="relative z-10 text-center text-white p-6">
-            <h2 className="text-3xl font-bold mb-4">Landscaping</h2>
-            <p className="mb-6">
+          <div className="relative z-10 text-center text-white p-6 animate-slide-up">
+            <h2 className="text-3xl font-bold mb-4 animate-fade-in">
+              Landscaping
+            </h2>
+            <p className="mb-6 animate-fade-in">
               We take pride in creating beautiful surroundings for your property
               that meet your every need and want. We have a wide range of
               designs for backyard, patio, and paving options. We are also happy
@@ -221,7 +229,7 @@ const services = {
       },
     ],
     uniqueContent: (
-      <div className="mt-6">
+      <div className="mt-10">
         {/* Image section with flex layout for left text and right cards */}
         <div
           className="relative w-full h-96 flex items-center justify-center bg-cover bg-center shadow-md rounded-md"
@@ -246,7 +254,7 @@ const services = {
             </div>
 
             {/* Right Side: Cards */}
-            <div className="w-1/2 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-y-auto scrollbar-hide">
+            <div className="w-1/2 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-y-auto max-h-80 scrollbar-hide scrollable-section">
               {[
                 {
                   title: "Switchboard Design and Renovation",
@@ -286,7 +294,7 @@ const services = {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white bg-opacity-90 rounded-lg shadow-lg p-4 flex flex-col items-start transition-transform transform hover:scale-105"
+                  className="bg-white bg-opacity-70 rounded-lg shadow-lg p-4 flex flex-col items-start transition-transform transform hover:scale-105"
                 >
                   <h3 className="text-xl text-customBlue font-bold mb-2">
                     {item.title}
@@ -516,7 +524,7 @@ const services = {
       },
     ],
     uniqueContent: (
-      <div className="mt-6 px-6 lg:px-15">
+      <div className="mt-10 px-6 lg:px-15">
         {/* First Unique Section */}
         <div
           className="relative w-full h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md"
@@ -586,7 +594,7 @@ const services = {
       },
     ],
     uniqueContent: (
-      <div className="mt-6 px-6 lg:px-15">
+      <div className="mt-10 px-6 lg:px-15">
         {/* First Unique Section */}
         <div
           className="relative w-full h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md"
@@ -669,7 +677,7 @@ const services = {
       },
     ],
     uniqueContent: (
-      <div className="mt-6 px-6 lg:px-15">
+      <div className="mt-10 px-6 lg:px-15">
         {/* First Unique Section */}
         <div
           className="relative w-full h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md"
@@ -717,7 +725,7 @@ const services = {
       },
     ],
     uniqueContent: (
-      <div className="mt-6">
+      <div className="mt-10">
         {/* Image section with flex layout for left text and right cards */}
         <div
           className="relative w-full h-96 flex items-center justify-center bg-cover bg-center shadow-md rounded-md"
@@ -873,7 +881,7 @@ const services = {
       },
     ],
     uniqueContent: (
-      <div className="mt-6 px-6 lg:px-15">
+      <div className="mt-10 px-6 lg:px-15">
         {/* First Unique Section */}
         <div
           className="relative w-full h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md mb-10" // Added margin-bottom for spacing

@@ -13,7 +13,7 @@ module.exports = {
         customBlue: '#044E80',
         customYellow: '#FFB500',
         customGray: '#BBBBBB',
-        customGrayLightL: '#A6A6A6'
+        customGrayLight: '#A6A6A6'
       },
     },
   },
