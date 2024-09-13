@@ -101,16 +101,43 @@ const Header = () => {
                 label: "SERVICES",
                 dropdown: "services",
                 items: [
-                  { href: "/services/3-waters", label: "3 Waters & Contamination" },
-                  { href: "/services/architectural-designs", label: "Architectural Designs" },
-                  { href: "/services/electrical-engineering", label: "Electrical Engineering" },
-                  { href: "/services/project-management", label: "Project & Construction Management" },
-                  { href: "/services/geotechnical-engineering", label: "Geotechnical Engineering" },
-                  { href: "/services/infrastructure", label: "Infrastructure & Subdivision Engineering" },
-                  { href: "/services/research-development", label: "Research & Development" },
+                  {
+                    href: "/services/3-waters",
+                    label: "3 Waters & Contamination",
+                  },
+                  {
+                    href: "/services/architectural-designs",
+                    label: "Architectural Designs",
+                  },
+                  {
+                    href: "/services/electrical-engineering",
+                    label: "Electrical Engineering",
+                  },
+                  {
+                    href: "/services/project-management",
+                    label: "Project & Construction Management",
+                  },
+                  {
+                    href: "/services/geotechnical-engineering",
+                    label: "Geotechnical Engineering",
+                  },
+                  {
+                    href: "/services/infrastructure",
+                    label: "Infrastructure & Subdivision Engineering",
+                  },
+                  {
+                    href: "/services/research-development",
+                    label: "Research & Development",
+                  },
                   { href: "/services/road-transport", label: "Road Transport" },
-                  { href: "/services/seismic-engineering", label: "Seismic Engineering" },
-                  { href: "/services/structural-engineering", label: "Structural Engineering" },
+                  {
+                    href: "/services/seismic-engineering",
+                    label: "Seismic Engineering",
+                  },
+                  {
+                    href: "/services/structural-engineering",
+                    label: "Structural Engineering",
+                  },
                   { href: "/services/planning", label: "Planning" },
                   { href: "/services/surveying", label: "Surveying" },
                   { href: "/services/training", label: "Training" },
@@ -145,7 +172,8 @@ const Header = () => {
                 >
                   <button
                     className={`flex items-center text-xs sm:text-sm lg:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 cursor-pointer ${
-                      currentPath.startsWith(item.href) || currentPath === item.href
+                      currentPath.startsWith(item.href) ||
+                      currentPath === item.href
                         ? "text-customYellow"
                         : "text-customBlue"
                     }`}
@@ -177,7 +205,9 @@ const Header = () => {
                   <a
                     href={item.href}
                     className={`block lg:inline-block text-xs sm:text-sm lg:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 ${
-                      currentPath === item.href ? "text-customYellow" : "text-customBlue"
+                      currentPath === item.href
+                        ? "text-customYellow"
+                        : "text-customBlue"
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -188,14 +218,13 @@ const Header = () => {
             )}
           </ul>
 
-          {/* Locations Button */}
-          <a
+          <Link
             href="/locations"
             className="hidden lg:block bg-customYellow text-white text-xs sm:text-sm lg:text-base font-semibold px-3 py-1 lg:px-4 lg:py-2 rounded-md hover:bg-yellow-600"
             onClick={() => setIsMenuOpen(false)}
           >
             OUR LOCATIONS
-          </a>
+          </Link>
         </nav>
       </div>
     </header>
