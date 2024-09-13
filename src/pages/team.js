@@ -6,6 +6,7 @@ import "../app/globals.css";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SubContact from "@/components/SubContact";
 
 const teamMembers = [
   {
@@ -328,40 +329,7 @@ const TeamPage = () => {
           </div>
         </section>
 
-        <section className="pt-10">
-          <div className="max-w-screen-full mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Complete Professional Package Section */}
-              <div className="bg-customBlue text-center p-6 md:p-8 h-[300px] md:h-[350px] flex flex-col justify-center">
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Complete Professional Package
-                </h2>
-                <p className="text-md md:text-lg text-white mb-4 md:mb-6">
-                  Have a look at our services that we provide
-                </p>
-                <div className="flex justify-center">
-                  <button className="py-2 px-4 bg-customYellow text-white rounded-full hover:bg-customYellow transition duration-300">
-                    View Services
-                  </button>
-                </div>
-              </div>
-
-              {/* Worked With Us Lately Section */}
-              <div className="bg-customYellow p-6 md:p-8 h-[300px] md:h-[350px] text-center flex flex-col justify-center">
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Worked With Us Lately?
-                </h2>
-                <p className="text-md md:text-lg text-white">
-                  GDC would love to hear from you and your experience with GDC
-                  Consultants Ltd. All feedback is appreciated and used to help
-                  GDC Consultants Ltd to provide the best services to you in the
-                  future. Feel free to send us a message or contact us on +64 7
-                  838 0090.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <SubContact />
       </div>
       <Footer />
     </>
