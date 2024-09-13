@@ -79,7 +79,7 @@ const Header = () => {
               <Image
                 src="/images/logo.webp"
                 alt="GDC Consultants Ltd Logo"
-                width={80}
+                width={100}
                 height={40}
                 priority
                 className="h-auto w-auto cursor-pointer"
