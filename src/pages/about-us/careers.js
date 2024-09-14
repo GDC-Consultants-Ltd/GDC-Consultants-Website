@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import JoinOurTeam from "@/components/about/JoinOurTeam";
 import JobList from "@/components/about/JobList";
 import CareerForm from "@/components/about/CareerForm";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Careers = () => {
   return (
@@ -16,6 +17,7 @@ const Careers = () => {
       <JobList />
       <CareerForm />
       <Footer />
+      <ScrollToTop />
     </>
   );
 };

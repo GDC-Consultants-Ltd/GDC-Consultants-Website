@@ -1,11 +1,11 @@
-// pages/projects.js
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import "../app/globals.css";
+import "../../app/globals.css";
 import ProjectHeader from "@/components/projects/ProjectHeader";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GetInTouch from "@/components/GetInTouch";
+import ScrollToTop from "@/components/ScrollToTop";
 
 // Updated projects array with categories
 const projects = [
@@ -62,8 +62,8 @@ const projects = [
 const ProjectsPage = () => {
   const [currentProject, setCurrentProject] = useState(projects[0]);
   const [activeIndex, setActiveIndex] = useState(1); // Start from the first real image
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [filteredProjects, setFilteredProjects] = useState(projects);
+  const [selectedCategory, setSelectedCategory] = useState("All Projects"); // Set initial category to "All Projects"
+  const [filteredProjects, setFilteredProjects] = useState(projects); // Set initial filtered projects to all projects
   const sliderRef = useRef(null);
   const totalSlides = filteredProjects.length;
 
@@ -233,6 +233,7 @@ const ProjectsPage = () => {
 
       <GetInTouch />
       <Footer />
+      <ScrollToTop />
     </>
   );
 };

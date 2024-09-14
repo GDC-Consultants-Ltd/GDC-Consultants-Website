@@ -47,25 +47,31 @@ export default function Footer() {
 
           {/* COMPANY Section */}
           <div>
-            <h4 className="font-semibold mb-4 text-md tracking-wide">COMPANY</h4>
+            <h4 className="font-semibold mb-4 text-md tracking-wide">
+              COMPANY
+            </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="hover:text-customYellow tracking-wide">
-                  Our Services
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-customYellow tracking-wide">
+                <a
+                  href="/about-us/who-we-are"
+                  className="hover:text-customYellow tracking-wide"
+                >
                   Who We Are
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-customYellow tracking-wide">
+                <a
+                  href="/blogs"
+                  className="hover:text-customYellow tracking-wide"
+                >
                   Blog
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-customYellow tracking-wide">
+                <a
+                  href="/about-us/careers"
+                  className="hover:text-customYellow tracking-wide"
+                >
                   Careers
                 </a>
               </li>
@@ -79,17 +85,26 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="hover:text-customYellow tracking-wide">
+                <a
+                  href="/locations"
+                  className="hover:text-customYellow tracking-wide"
+                >
                   Contact Us
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-customYellow tracking-wide">
+                <a
+                  href="/locations"
+                  className="hover:text-customYellow tracking-wide"
+                >
                   Our Locations
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-customYellow tracking-wide">
+                <a
+                  href="/about-us/review"
+                  className="hover:text-customYellow tracking-wide"
+                >
                   Leave Us a Review
                 </a>
               </li>
@@ -103,12 +118,18 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="hover:text-customYellow tracking-wide">
+                <a
+                  href="/portfolio/all-projects"
+                  className="hover:text-customYellow tracking-wide"
+                >
                   All Projects
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-customYellow tracking-wide">
+                <a
+                  href="/portfolio/view-on-map"
+                  className="hover:text-customYellow tracking-wide"
+                >
                   Project Map
                 </a>
               </li>
@@ -119,10 +140,16 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4 text-md tracking-wide">FOLLOW</h4>
             <div className="flex justify-center md:justify-start space-x-4 text-lg">
-              <a href="#" className="hover:text-customYellow tracking-wide">
+              <a
+                href="https://www.facebook.com/profile.php?id=61565604038123"
+                className="hover:text-customYellow tracking-wide"
+              >
                 <FaFacebook />
               </a>
-              <a href="#" className="hover:text-customYellow tracking-wide">
+              <a
+                href="https://www.linkedin.com/company/104447018"
+                className="hover:text-customYellow tracking-wide"
+              >
                 <FaLinkedin />
               </a>
               <a href="#" className="hover:text-customYellow tracking-wide">

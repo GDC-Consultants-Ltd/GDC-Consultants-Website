@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import ContactSection from "@/components/locations/ContactSection";
 import "../app/globals.css";
 import MapSection from "@/components/locations/MapSection";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Locations = () => {
   return (
@@ -14,6 +15,7 @@ const Locations = () => {
       <ContactSection />
       <MapSection />
       <Footer />
+      <ScrollToTop />
     </>
   );
 };

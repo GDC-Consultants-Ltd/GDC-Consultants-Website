@@ -7,6 +7,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SubContact from "@/components/SubContact";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const teamMembers = [
   {
@@ -332,6 +333,7 @@ const TeamPage = () => {
         <SubContact />
       </div>
       <Footer />
+      <ScrollToTop />
     </>
   );
 };
