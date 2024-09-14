@@ -1,14 +1,14 @@
 import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 import Image from "next/image";
+import Link from "next/link"; // Add this line
 
 export default function Footer() {
-  // Get the current year
   const currentYear = new Date().getFullYear();
 
   return (
     <footer
       className="relative bg-cover bg-center text-white"
-      style={{ backgroundImage: "url('/images/GDC-OFFICE-EDIT-scaled.jpg')" }} // Ensure the path to the image is correct
+      style={{ backgroundImage: "url('/images/GDC-OFFICE-EDIT-scaled.jpg')" }}
     >
       {/* Dark Overlay for the Entire Footer */}
       <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -38,8 +38,8 @@ export default function Footer() {
             <Image
               src="/images/footer-logo.webp"
               alt="GDC Logo"
-              width={160} // Set desired width
-              height={40} // Set desired height
+              width={160}
+              height={40}
               className="h-10 mb-4 object-contain"
               style={{ objectFit: "contain" }}
             />
@@ -52,28 +52,28 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a
+                <Link
                   href="/about-us/who-we-are"
                   className="hover:text-customYellow tracking-wide"
                 >
                   Who We Are
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/blogs"
                   className="hover:text-customYellow tracking-wide"
                 >
                   Blog
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/about-us/careers"
                   className="hover:text-customYellow tracking-wide"
                 >
                   Careers
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -85,28 +85,28 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a
+                <Link
                   href="/locations"
                   className="hover:text-customYellow tracking-wide"
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/locations"
                   className="hover:text-customYellow tracking-wide"
                 >
                   Our Locations
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/about-us/review"
                   className="hover:text-customYellow tracking-wide"
                 >
                   Leave Us a Review
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -118,20 +118,20 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a
+                <Link
                   href="/portfolio/all-projects"
                   className="hover:text-customYellow tracking-wide"
                 >
                   All Projects
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/portfolio/view-on-map"
                   className="hover:text-customYellow tracking-wide"
                 >
                   Project Map
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
