@@ -6,6 +6,7 @@ import "../../app/globals.css";
 import Footer from "@/components/Footer";
 import ReviewHeader from "@/components/about/ReviewHeader";
 import ReviewForm from "@/components/about/ReviewForm";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Review = () => {
   return (
@@ -14,6 +15,7 @@ const Review = () => {
       <ReviewHeader />
       <ReviewForm />
       <Footer />
+      <ScrollToTop />
     </>
   );
 };

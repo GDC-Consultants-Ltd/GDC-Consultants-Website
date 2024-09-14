@@ -22,79 +22,81 @@ const services = [
   {
     title: "3 Waters & Contamination",
     slug: "3-waters",
-    icon: <GlobeAltIcon className="w-12 h-12" />, // Increased size
+    icon: <GlobeAltIcon className="w-12 h-12" />,
   },
   {
     title: "Architectural Designs",
     slug: "architectural-designs",
-    icon: <HomeModernIcon className="w-12 h-12" />, // Increased size
+    icon: <HomeModernIcon className="w-12 h-12" />,
   },
   {
     title: "Electrical Engineering",
     slug: "electrical-engineering",
-    icon: <Cog6ToothIcon className="w-12 h-12" />, // Increased size
+    icon: <Cog6ToothIcon className="w-12 h-12" />,
   },
   {
     title: "Project & Construction Management",
     slug: "project-management",
-    icon: <ClipboardDocumentListIcon className="w-12 h-12" />, // Increased size
+    icon: <ClipboardDocumentListIcon className="w-12 h-12" />,
   },
   {
     title: "Geotechnical Engineering",
     slug: "geotechnical-engineering",
-    icon: <ScaleIcon className="w-12 h-12" />, // Increased size
+    icon: <ScaleIcon className="w-12 h-12" />,
   },
   {
     title: "Infrastructure & Subdivision Engineering",
     slug: "infrastructure",
-    icon: <BriefcaseIcon className="w-12 h-12" />, // Increased size
+    icon: <BriefcaseIcon className="w-12 h-12" />,
   },
   {
     title: "Research & Development",
     slug: "research-development",
-    icon: <AcademicCapIcon className="w-12 h-12" />, // Increased size
+    icon: <AcademicCapIcon className="w-12 h-12" />,
   },
   {
     title: "Road Transport",
     slug: "road-transport",
-    icon: <TruckIcon className="w-12 h-12" />, // Increased size
+    icon: <TruckIcon className="w-12 h-12" />,
   },
   {
     title: "Seismic Engineering",
     slug: "seismic-engineering",
-    icon: <WrenchScrewdriverIcon className="w-12 h-12" />, // Increased size
+    icon: <WrenchScrewdriverIcon className="w-12 h-12" />,
   },
   {
     title: "Structural Engineering",
     slug: "structural-engineering",
-    icon: <BuildingOfficeIcon className="w-12 h-12" />, // Increased size
+    icon: <BuildingOfficeIcon className="w-12 h-12" />,
   },
   {
     title: "Planning",
     slug: "planning",
-    icon: <PresentationChartLineIcon className="w-12 h-12" />, // Increased size
+    icon: <PresentationChartLineIcon className="w-12 h-12" />,
   },
   {
     title: "Surveying",
     slug: "surveying",
-    icon: <MagnifyingGlassIcon className="w-12 h-12" />, // Increased size
+    icon: <MagnifyingGlassIcon className="w-12 h-12" />,
   },
   {
     title: "Training",
     slug: "training",
-    icon: <BookOpenIcon className="w-12 h-12" />, // Increased size
+    icon: <BookOpenIcon className="w-12 h-12" />,
   },
 ];
 
 const ServicesSection = () => {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [animationTriggered, setAnimationTriggered] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !animationTriggered) {
           setIsVisible(true);
+          setAnimationTriggered(true); // Ensures animations are triggered only once
         }
       },
       {
@@ -114,7 +116,7 @@ const ServicesSection = () => {
         observer.unobserve(currentSection);
       }
     };
-  }, []);
+  }, [animationTriggered]);
 
   return (
     <section ref={sectionRef} className="py-8 bg-gray-50">
@@ -134,9 +136,9 @@ const ServicesSection = () => {
         {services.map((service, index) => (
           <div
             key={index}
-            className={`relative bg-white shadow-md overflow-hidden transition duration-300 group flex flex-col items-center border-b-4 border-customBlue transform transition-transform duration-500 ease-in-out ${
+            className={`relative bg-white shadow-md overflow-hidden transition duration-300 group flex flex-col items-center border-b-4 border-customBlue transform ${
               isVisible ? "animate-slide-up" : "opacity-0"
-            }`}
+            } transition-transform duration-500 ease-in-out`}
           >
             {/* Sliding background effect */}
             <div className="absolute inset-0 bg-customBlue transition-transform duration-300 transform translate-y-full group-hover:translate-y-0"></div>

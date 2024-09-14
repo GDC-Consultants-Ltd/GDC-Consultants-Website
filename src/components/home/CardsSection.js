@@ -1,4 +1,3 @@
-// src/components/CardsSection.js
 "use client"; // Ensure this is treated as a client component in Next.js
 
 import React, { useEffect, useState, useRef } from "react";
@@ -16,6 +15,7 @@ const CardsSection = () => {
   const [experienceCount, setExperienceCount] = useState(0);
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [animationTriggered, setAnimationTriggered] = useState(false);
 
   const animateCount = (setCount, maxCount) => {
     let count = 0;
@@ -33,6 +33,8 @@ const CardsSection = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+        } else {
+          setIsVisible(false);
         }
       },
       {
@@ -55,13 +57,14 @@ const CardsSection = () => {
   }, []);
 
   useEffect(() => {
-    if (isVisible) {
+    if (isVisible && !animationTriggered) {
+      setAnimationTriggered(true);
       animateCount(setProjectsCount, 10000);
       animateCount(setLocationsCount, 13);
       animateCount(setServicesCount, 10);
       animateCount(setExperienceCount, 16);
     }
-  }, [isVisible]);
+  }, [isVisible, animationTriggered]);
 
   return (
     <section
@@ -77,6 +80,7 @@ const CardsSection = () => {
           }
           count={`${projectsCount.toLocaleString()}+`}
           label="Projects Completed"
+          isVisible={animationTriggered}
         />
         <Card
           color="bg-customYellow"
@@ -86,6 +90,7 @@ const CardsSection = () => {
           }
           count={locationsCount.toLocaleString()}
           label="Locations Serviced"
+          isVisible={animationTriggered}
         />
         <Card
           color="bg-customBlue"
@@ -95,6 +100,7 @@ const CardsSection = () => {
           }
           count={`${servicesCount.toLocaleString()}+`}
           label="Services Provided"
+          isVisible={animationTriggered}
         />
         <Card
           color="bg-customYellow"
@@ -104,17 +110,18 @@ const CardsSection = () => {
           }
           count={`${experienceCount.toLocaleString()}+`}
           label="Years of Experience"
+          isVisible={animationTriggered}
         />
       </div>
     </section>
   );
 };
 
-const Card = ({ color, gradient, icon, count, label }) => (
+const Card = ({ color, gradient, icon, count, label, isVisible }) => (
   <div
-    className={`relative ${color} text-white shadow-lg p-6 flex flex-col items-center justify-center space-y-2 h-56 md:h-64 overflow-hidden transform transition-transform duration-500 ease-in-out animate-slide-up hover:scale-105 ${
-      color === "bg-customBlue" ? "rounded-none lg:rounded-none" : ""
-    }`}
+    className={`relative ${color} text-white shadow-lg p-6 flex flex-col items-center justify-center space-y-2 h-56 md:h-64 overflow-hidden transform transition-transform duration-500 ease-in-out ${
+      isVisible ? "animate-slide-up hover:scale-105" : "opacity-0"
+    } ${color === "bg-customBlue" ? "rounded-none lg:rounded-none" : ""}`}
   >
     <div
       className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-60 clip-path-custom transition-opacity duration-500 ease-in-out`}

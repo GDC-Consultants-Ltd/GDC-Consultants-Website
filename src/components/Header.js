@@ -13,27 +13,46 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [currentPath, setCurrentPath] = useState("");
+  const [isMobileView, setIsMobileView] = useState(false);
   const dropdownRef = useRef(null);
   const timeoutRef = useRef(null);
+
+  // Detect if the current view is mobile or desktop
+  useEffect(() => {
+    const checkMobileView = () => {
+      setIsMobileView(window.innerWidth <= 1024); // Set breakpoint for mobile vs desktop
+    };
+
+    checkMobileView();
+    window.addEventListener("resize", checkMobileView);
+
+    return () => {
+      window.removeEventListener("resize", checkMobileView);
+    };
+  }, []);
 
   // useCallback to memoize handlers and prevent unnecessary re-renders
   const toggleMenu = useCallback(() => {
     setIsMenuOpen((prev) => !prev);
   }, []);
 
-  const handleDropdownMouseEnter = useCallback((dropdown) => {
-    // Cancel the hiding timeout if hovering back
+  // Desktop hover functions
+  const handleDesktopDropdownMouseEnter = useCallback((dropdown) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
     setActiveDropdown(dropdown);
   }, []);
 
-  const handleDropdownMouseLeave = useCallback(() => {
-    // Set a slight delay before closing the dropdown
+  const handleDesktopDropdownMouseLeave = useCallback(() => {
     timeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
-    }, 200); // Adjust the delay (200ms) to make it feel more natural
+    }, 200); // Delay for smooth closing
+  }, []);
+
+  // Mobile toggle function
+  const handleMobileDropdownToggle = useCallback((dropdown) => {
+    setActiveDropdown((prev) => (prev === dropdown ? null : dropdown));
   }, []);
 
   useEffect(() => {
@@ -52,7 +71,6 @@ const Header = () => {
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      // Clean up the event listener when the component unmounts
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
@@ -60,7 +78,7 @@ const Header = () => {
   return (
     <header className="w-full sticky top-0 z-50 bg-white shadow-md">
       {/* Navigation Bar */}
-      <div className="max-w-screen-full mx-auto bg-transparent">
+      <div className="max-w-screen-full mx-auto px-5 sm:px-8 md:px-10"> 
         <nav className="flex justify-between items-center py-3 px-4 lg:px-6">
           {/* Hamburger Menu Icon */}
           <div className="flex lg:hidden">
@@ -101,43 +119,16 @@ const Header = () => {
                 label: "SERVICES",
                 dropdown: "services",
                 items: [
-                  {
-                    href: "/services/3-waters",
-                    label: "3 Waters & Contamination",
-                  },
-                  {
-                    href: "/services/architectural-designs",
-                    label: "Architectural Designs",
-                  },
-                  {
-                    href: "/services/electrical-engineering",
-                    label: "Electrical Engineering",
-                  },
-                  {
-                    href: "/services/project-management",
-                    label: "Project & Construction Management",
-                  },
-                  {
-                    href: "/services/geotechnical-engineering",
-                    label: "Geotechnical Engineering",
-                  },
-                  {
-                    href: "/services/infrastructure",
-                    label: "Infrastructure & Subdivision Engineering",
-                  },
-                  {
-                    href: "/services/research-development",
-                    label: "Research & Development",
-                  },
+                  { href: "/services/3-waters", label: "3 Waters & Contamination" },
+                  { href: "/services/architectural-designs", label: "Architectural Designs" },
+                  { href: "/services/electrical-engineering", label: "Electrical Engineering" },
+                  { href: "/services/project-management", label: "Project & Construction Management" },
+                  { href: "/services/geotechnical-engineering", label: "Geotechnical Engineering" },
+                  { href: "/services/infrastructure", label: "Infrastructure & Subdivision Engineering" },
+                  { href: "/services/research-development", label: "Research & Development" },
                   { href: "/services/road-transport", label: "Road Transport" },
-                  {
-                    href: "/services/seismic-engineering",
-                    label: "Seismic Engineering",
-                  },
-                  {
-                    href: "/services/structural-engineering",
-                    label: "Structural Engineering",
-                  },
+                  { href: "/services/seismic-engineering", label: "Seismic Engineering" },
+                  { href: "/services/structural-engineering", label: "Structural Engineering" },
                   { href: "/services/planning", label: "Planning" },
                   { href: "/services/surveying", label: "Surveying" },
                   { href: "/services/training", label: "Training" },
@@ -147,7 +138,7 @@ const Header = () => {
                 label: "OUR PORTFOLIO",
                 dropdown: "portfolio",
                 items: [
-                  { href: "/projects", label: "All Projects" },
+                  { href: "/portfolio/all-projects", label: "All Projects" },
                   { href: "/portfolio/view-on-map", label: "View on Map" },
                 ],
               },
@@ -167,25 +158,40 @@ const Header = () => {
                 <li
                   key={item.label}
                   className="lg:inline-block relative"
-                  onMouseEnter={() => handleDropdownMouseEnter(item.dropdown)}
-                  onMouseLeave={handleDropdownMouseLeave}
+                  onMouseEnter={
+                    !isMobileView
+                      ? () => handleDesktopDropdownMouseEnter(item.dropdown)
+                      : undefined
+                  }
+                  onMouseLeave={
+                    !isMobileView ? handleDesktopDropdownMouseLeave : undefined
+                  }
                 >
                   <button
-                    className={`flex items-center text-xs sm:text-sm lg:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 cursor-pointer ${
-                      currentPath.startsWith(item.href) ||
-                      currentPath === item.href
+                    className={`flex items-center text-xs sm:text-sm font-semibold py-1 px-2 lg:py-2 lg:px-3 cursor-pointer ${
+                      currentPath.startsWith(item.href) || currentPath === item.href
                         ? "text-customYellow"
                         : "text-customBlue"
                     }`}
+                    onClick={() =>
+                      isMobileView
+                        ? handleMobileDropdownToggle(item.dropdown)
+                        : null
+                    }
                   >
                     {item.label}
                     <ChevronDownIcon className="w-3 h-3 ml-1" />
                   </button>
-                  {/* Services Dropdown */}
+                  {/* Dropdown Items */}
                   <ul
-                    className={`absolute left-0 mt-2 w-48 bg-white shadow-md rounded-md ${
+                    className={`${
                       activeDropdown === item.dropdown ? "block" : "hidden"
-                    }`}
+                    } lg:block lg:absolute left-0 mt-2 w-full lg:w-48 bg-white opacity-85 shadow-md rounded-md`}
+                    style={{
+                      display: activeDropdown === item.dropdown ? 'block' : 'none',
+                      maxHeight: isMobileView ? '16rem' : 'none',
+                      overflowY: isMobileView ? 'auto' : 'visible',
+                    }}
                   >
                     {item.items.map((subItem) => (
                       <li key={subItem.href}>
@@ -199,15 +205,14 @@ const Header = () => {
                       </li>
                     ))}
                   </ul>
+                  
                 </li>
               ) : (
                 <li key={item.href} className="lg:inline-block">
                   <a
                     href={item.href}
-                    className={`block lg:inline-block text-xs sm:text-sm lg:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 ${
-                      currentPath === item.href
-                        ? "text-customYellow"
-                        : "text-customBlue"
+                    className={`block lg:inline-block text-xs sm:text-sm font-semibold py-1 px-2 lg:py-2 lg:px-3 ${
+                      currentPath === item.href ? "text-customYellow" : "text-customBlue"
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -215,12 +220,23 @@ const Header = () => {
                   </a>
                 </li>
               )
-            )}
+            )}            
+          {/* Mobile version of the "OUR LOCATIONS" button */}
+          <li className="block lg:hidden">
+              <Link
+                href="/locations"
+                className="block text-customBlue text-xs sm:text-sm font-semibold px-2 py-1 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                OUR LOCATIONS
+              </Link>
+            </li>
           </ul>
 
+          {/* Desktop version of the "OUR LOCATIONS" button */}
           <Link
             href="/locations"
-            className="hidden lg:block bg-customYellow text-white text-xs sm:text-sm lg:text-base font-semibold px-3 py-1 lg:px-4 lg:py-2 rounded-md hover:bg-yellow-600"
+            className="hidden lg:block bg-customYellow text-white text-xs sm:text-sm font-semibold px-3 py-1 lg:px-4 lg:py-2 rounded-md hover:bg-yellow-600"
             onClick={() => setIsMenuOpen(false)}
           >
             OUR LOCATIONS
