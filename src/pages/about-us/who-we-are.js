@@ -8,6 +8,7 @@ import OurValues from "@/components/about/OurValues";
 import LogoSlider from "@/components/about/LogoSlider";
 import SubContact from "@/components/SubContact";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const WhoWeAre = () => {
   return (
@@ -18,6 +19,7 @@ const WhoWeAre = () => {
       <OurValues />
       <SubContact />
       <Footer />
+      <ScrollToTop />
     </>
   );
 };

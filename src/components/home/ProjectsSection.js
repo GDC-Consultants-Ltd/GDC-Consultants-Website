@@ -1,11 +1,10 @@
-// src/components/ProjectsSection.js
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 const projects = [
   {
-    title: "Baverstock , Hamilton, Subdivision",
+    title: "Baverstock, Hamilton, Subdivision",
     category: "3 Waters & Contamination",
     image: "/images/projects/1.webp",
   },
@@ -69,17 +68,19 @@ const projects = [
 const ProjectsSection = () => {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [animationTriggered, setAnimationTriggered] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !animationTriggered) {
           setIsVisible(true);
+          setAnimationTriggered(true); // Ensures animations are triggered only once
         }
       },
       {
         root: null,
-        threshold: 0.1, // Adjusted to trigger animation sooner
+        threshold: 0.1, // Trigger when 10% of the section is visible
       }
     );
 
@@ -94,7 +95,7 @@ const ProjectsSection = () => {
         observer.unobserve(currentSection);
       }
     };
-  }, []);
+  }, [animationTriggered]);
 
   return (
     <section ref={sectionRef} className="py-16 bg-[#F3F5F6]">
@@ -112,7 +113,7 @@ const ProjectsSection = () => {
         {projects.map((project, index) => (
           <div
             key={index}
-            className={`relative bg-white shadow-md rounded-lg overflow-hidden group transition-transform duration-500 ease-in-out transform ${
+            className={`relative bg-white shadow-md rounded-lg overflow-hidden group transform transition-transform duration-500 ease-in-out ${
               isVisible ? "animate-fade-up" : "opacity-0"
             }`}
           >
@@ -137,7 +138,7 @@ const ProjectsSection = () => {
       </div>
       <div className="flex justify-center mt-8">
         <Link
-          href="/projects"
+          href="/portfolio/all-projects"
           className="bg-customYellow text-white font-semibold px-6 py-3 rounded-md hover:bg-customBlue transition duration-300"
         >
           View All Projects

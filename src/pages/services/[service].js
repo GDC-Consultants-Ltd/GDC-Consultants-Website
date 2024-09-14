@@ -12,6 +12,7 @@ import GetInTouch from "../../components/GetInTouch";
 import ServiceDescription from "../../components/services/ServiceDescription";
 import ServiceSections from "../../components/services/ServiceSections";
 import services from "../../data/servicesData"; // Import the services data
+import ScrollToTop from "@/components/ScrollToTop";
 
 const ServicePage = () => {
   const router = useRouter();
@@ -66,6 +67,7 @@ const ServicePage = () => {
       {/* Get In Touch Component */}
       <GetInTouch />
       <Footer />
+      <ScrollToTop />
     </>
   );
 };
