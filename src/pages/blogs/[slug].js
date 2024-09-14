@@ -1,62 +1,63 @@
 // pages/blogs/[slug].js
-import { useRouter } from 'next/router';
-import Image from 'next/image';
-import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import ScrollToTop from '@/components/ScrollToTop';
-import '../../app/globals.css';
+import { useRouter } from "next/router";
+import Image from "next/image";
+import Link from "next/link";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
+import "../../app/globals.css";
 
 // Sample data for blog posts with categories
 const blogPosts = {
   coffee: {
-    title: 'Little Things Do Make A Difference',
+    title: "Little Things Do Make A Difference",
     content:
-      'Why do you want to motivate yourself? Actually, just answering that question fully can be one of the better ways to get your daily motivation.',
-    backgroundImage: '/images/projects/1.webp',
-    author: 'Kathryn Shelton',
-    authorImage: '/images/authors/kathryn.webp',
-    date: 'September 14, 2024',
-    category: 'GDC News',
+      "Why do you want to motivate yourself? Actually, just answering that question fully can be one of the better ways to get your daily motivation.",
+    backgroundImage: "/images/projects/1.webp",
+    author: "Kathryn Shelton",
+    authorImage: "/images/authors/kathryn.webp",
+    date: "September 14, 2024",
+    category: "GDC News",
   },
   // Add other blog data here...
 };
 
 const recentArticles = [
   {
-    title: 'Common Symbols And Their Meanings',
-    author: 'Susie Russell',
-    authorImage: '/images/authors/susie.webp',
-    image: '/images/projects/2.webp',
-    link: '/blogs/common-symbols',
+    title: "Common Symbols And Their Meanings",
+    author: "Susie Russell",
+    authorImage: "/images/authors/susie.webp",
+    image: "/images/projects/2.webp",
+    link: "/blogs/common-symbols",
   },
   {
-    title: 'Success Steps For Your Business',
-    author: 'Connor Parsons',
-    authorImage: '/images/authors/connor.webp',
-    image: '/images/projects/3.webp',
-    link: '/blogs/success-steps',
+    title: "Success Steps For Your Business",
+    author: "Connor Parsons",
+    authorImage: "/images/authors/connor.webp",
+    image: "/images/projects/3.webp",
+    link: "/blogs/success-steps",
   },
   {
-    title: 'The Strength Of Your Belief',
-    author: 'Jonathan Yates',
-    authorImage: '/images/authors/jonathan.webp',
-    image: '/images/projects/4.webp',
-    link: '/blogs/strength-belief',
+    title: "The Strength Of Your Belief",
+    author: "Jonathan Yates",
+    authorImage: "/images/authors/jonathan.webp",
+    image: "/images/projects/4.webp",
+    link: "/blogs/strength-belief",
   },
 ];
 
 // Sample data for recent comments
 const recentComments = [
   {
-    author: 'Dhaval Manjrawalla',
-    content: 'A Day in the Life with Rojesh Koshy – Operation Manager/Civil Engineer',
-    link: '/blogs/day-in-life-rojash',
+    author: "Dhaval Manjrawalla",
+    content:
+      "A Day in the Life with Rojesh Koshy – Operation Manager/Civil Engineer",
+    link: "/blogs/day-in-life-rojash",
   },
 ];
 
 // Define categories list
-const categories = ['GDC News', 'GDC Team', 'Uncategorized'];
+const categories = ["GDC News", "GDC Team", "Uncategorized"];
 
 const BlogPost = () => {
   const router = useRouter();
@@ -80,7 +81,9 @@ const BlogPost = () => {
                 key={index}
                 href={`#`} // Link to the appropriate category or filter page if available
                 className={`text-md font-medium hover:text-customYellow ${
-                  category === blog.category ? 'text-customBlue' : 'text-gray-700'
+                  category === blog.category
+                    ? "text-customBlue"
+                    : "text-gray-700"
                 }`}
               >
                 {category}
@@ -104,10 +107,12 @@ const BlogPost = () => {
             </div>
             <p className="text-gray-700 mb-4">{blog.content}</p>
             <div className="flex items-center mt-6">
-              <img
+              <Image
                 src={blog.authorImage}
                 alt={blog.author}
-                className="w-10 h-10 rounded-full"
+                width={40} // Set the width of the image
+                height={40} // Set the height of the image
+                className="rounded-full" // Add any additional classes like rounded corners
               />
               <span className="ml-3 text-gray-800">{blog.author}</span>
             </div>
@@ -116,7 +121,8 @@ const BlogPost = () => {
             <section className="mt-12">
               <h2 className="text-2xl font-bold mb-4">Leave a Reply</h2>
               <p className="text-gray-600 mb-4">
-                Your email address will not be published. Required fields are marked *
+                Your email address will not be published. Required fields are
+                marked *
               </p>
               <form className="space-y-4">
                 <div>
@@ -196,7 +202,7 @@ const BlogPost = () => {
                 {recentComments.map((comment, index) => (
                   <li key={index} className="text-gray-700">
                     <Link href={comment.link}>
-                      <span className="font-semibold">{comment.author}</span> on{' '}
+                      <span className="font-semibold">{comment.author}</span> on{" "}
                       {comment.content}
                     </Link>
                   </li>
