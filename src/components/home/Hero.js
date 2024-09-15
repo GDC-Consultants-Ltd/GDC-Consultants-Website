@@ -13,7 +13,7 @@ const Hero = () => {
         <div className="container mx-auto px-5 sm:px-8 md:px-10 py-8 sm:py-10 md:py-16 lg:py-20 text-white flex flex-col items-center md:items-start">
           {" "}
           {/* Adjust padding here */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight max-w-xl animate-fade-in-up transition-opacity duration-700 ease-in-out">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-center md:text-left mb-6 leading-snug max-w-3xl animate-fade-in-up transition-opacity duration-700 ease-in-out text-white">
             TRUSTED ADVISORS FOR EVERY STAGE OF YOUR PROJECT
           </h1>
           <p className="mb-6 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed animate-fade-in-up transition-opacity duration-700 ease-in-out animation-delay-200">
