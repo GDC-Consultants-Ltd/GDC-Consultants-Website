@@ -10,10 +10,13 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        customBlue: '#044E80',
-        customYellow: '#FFB500',
-        customGray: '#BBBBBB',
-        customGrayLight: '#A6A6A6'
+        customBlue: "#044E80",
+        customYellow: "#FFB500",
+        customGray: "#BBBBBB",
+        customGrayLight: "#A6A6A6",
+      },
+      fontFamily: {
+        sans: ['"Inter"', "sans-serif"],
       },
     },
   },

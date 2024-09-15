@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body>
+      <body class="font-sans">
         <Header />
         {children}
         <Footer />   
