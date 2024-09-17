@@ -21,7 +21,8 @@ export default function Footer() {
     try {
       // Replace with your HubSpot Portal ID and Form ID
       const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
-      const hubspotFormId = process.env.NEXT_PUBLIC_HUBSPOT_SUBSCRIBTION_FORM_ID;
+      const hubspotFormId =
+        process.env.NEXT_PUBLIC_HUBSPOT_SUBSCRIBTION_FORM_ID;
 
       // HubSpot Form Submission API endpoint
       const url = `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`;
@@ -193,18 +194,21 @@ export default function Footer() {
             <h4 className="font-semibold mb-4 text-md tracking-wide">FOLLOW</h4>
             <div className="flex justify-center md:justify-start space-x-4 text-lg">
               <a
-                href="https://www.facebook.com/profile.php?id=61565604038123"
+                href="https://www.facebook.com/GdcConsultantsLtd?mibextid=ZbWKwL"
                 className="hover:text-customYellow tracking-wide"
               >
                 <FaFacebook />
               </a>
               <a
-                href="https://www.linkedin.com/company/104447018"
+                href="https://www.linkedin.com/company/gdcconsultants/"
                 className="hover:text-customYellow tracking-wide"
               >
                 <FaLinkedin />
               </a>
-              <a href="#" className="hover:text-customYellow tracking-wide">
+              <a
+                href="https://www.instagram.com/gdc_consultants?igsh=NTc4MTIwNjQ2YQ=="
+                className="hover:text-customYellow tracking-wide"
+              >
                 <FaInstagram />
               </a>
             </div>
