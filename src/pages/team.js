@@ -164,11 +164,20 @@ const TeamPage = () => {
   // Function to auto-scroll the sub-team slider every few seconds
   const autoScrollSubTeamSlider = () => {
     autoScrollIntervalRef.current = setInterval(() => {
-      subTeamSliderRef.current.scrollBy({
-        left: 300,
-        behavior: "smooth",
-      });
-    }, 3000); // Scroll every 3 seconds
+      if (!subTeamSliderRef.current) return;
+
+      // Check the width of the scrollable content and reset if it's near the end
+      const maxScrollLeft =
+        subTeamSliderRef.current.scrollWidth -
+        subTeamSliderRef.current.clientWidth;
+
+      // Scroll to the right by a fixed amount
+      if (subTeamSliderRef.current.scrollLeft >= maxScrollLeft) {
+        subTeamSliderRef.current.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        subTeamSliderRef.current.scrollBy({ left: 300, behavior: "smooth" });
+      }
+    }, 2000); // Scroll every 3 seconds
   };
 
   // Pause auto-scroll when manually controlled and restart after a delay
@@ -278,23 +287,17 @@ const TeamPage = () => {
         {/* Sub Team Display Section */}
         <section className="relative py-8">
           <div className="max-w-screen-lg mx-auto px-4 md:px-6 lg:px-10">
-            {/* Left Arrow Button */}
-            <button
-              onClick={() => scrollSubTeamSlider("left")}
-              className="absolute left-5 md:left-10 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10 hover:bg-customYellow"
-            >
-              <ChevronLeftIcon className="w-5 h-5 text-customBlue" />{" "}
-            </button>
-
             {/* Horizontal Scrollable Slider */}
             <div
               ref={subTeamSliderRef}
               className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide py-4"
+              style={{ scrollSnapType: "x mandatory" }}
             >
               {subTeamMembers.map((member, index) => (
                 <div
                   key={index}
                   className="flex flex-col items-center text-center min-w-full md:min-w-[220px] p-2 md:p-4"
+                  style={{ scrollSnapAlign: "start" }}
                 >
                   {/* Team Member Image */}
                   <div className="w-[100px] h-[100px] md:w-[130px] md:h-[130px] rounded-full overflow-hidden mb-2 md:mb-4">
@@ -319,14 +322,6 @@ const TeamPage = () => {
                 </div>
               ))}
             </div>
-
-            {/* Right Arrow Button */}
-            <button
-              onClick={() => scrollSubTeamSlider("right")}
-              className="absolute right-5 md:right-10 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10 hover:bg-customYellow"
-            >
-              <ChevronRightIcon className="w-5 h-5 text-customBlue" />{" "}
-            </button>
           </div>
         </section>
 

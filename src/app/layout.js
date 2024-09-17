@@ -4,10 +4,10 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 
-export default function RootLayout({ children }) {
-  // Fetch the HubSpot portal ID from environment variables
-  const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
+// Fetch the HubSpot portal ID from environment variables
+const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
 
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
