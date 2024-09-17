@@ -117,13 +117,14 @@ const ProjectsSection = () => {
               isVisible ? "animate-fade-up" : "opacity-0"
             }`}
           >
-            <Image
-              src={project.image}
-              alt={project.title}
-              width={400}
-              height={192}
-              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-            />
+            <div className="relative w-full h-48"> {/* Container for responsive image layout */}
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill // New way to make images responsive in Next.js 13
+                className="object-cover group-hover:scale-105 transition-transform duration-300 rounded-lg"
+              />
+            </div>
 
             <div className="absolute bottom-0 left-0 right-0 p-3 bg-white bg-opacity-80 group-hover:bg-opacity-100 transition duration-300">
               <span className="text-xs font-semibold uppercase text-customBlue bg-customYellow/30 px-2 py-1 rounded-md">

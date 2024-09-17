@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import axios from "axios"; // Add axios for API requests
 
 export default function ReviewForm() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,8 @@ export default function ReviewForm() {
     feedback: "",
   });
 
+  const [message, setMessage] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -20,10 +23,45 @@ export default function ReviewForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic
-    console.log("Form submitted:", formData);
+
+    // HubSpot Form and Portal IDs
+    const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
+    const hubspotFormId = process.env.NEXT_PUBLIC_HUBSPOT_REVIEW_FORM_ID;
+
+    const url = `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`;
+
+    const payload = {
+      fields: [
+        { name: "firstname", value: formData.firstName },
+        { name: "lastname", value: formData.lastName },
+        { name: "email", value: formData.email },
+        { name: "job_number", value: formData.jobNumber }, // Ensure field names match HubSpot field names
+        { name: "message", value: formData.feedback }, // "message" must match the field name in HubSpot
+      ],
+    };
+
+    try {
+      await axios.post(url, payload, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setMessage("Thank you for your feedback!");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        jobNumber: "",
+        feedback: "",
+      });
+    } catch (error) {
+      console.error("Error submitting form to HubSpot:", error);
+      setMessage(
+        "There was an error submitting your feedback. Please try again."
+      );
+    }
   };
 
   return (
@@ -34,8 +72,8 @@ export default function ReviewForm() {
             src="/images/logo.webp"
             alt="Logo"
             className="mb-4 w-60"
-            width={240} // Tailwind w-60 corresponds to 240px
-            height={96} // Adjusted height; change this value as needed to maintain aspect ratio
+            width={240}
+            height={96}
           />
           <h1 className="text-2xl text-customBlue font-semibold">
             Share Your Experience
@@ -126,6 +164,7 @@ export default function ReviewForm() {
             Submit
           </button>
         </form>
+        {message && <p className="mt-4 text-green-600">{message}</p>}
       </div>
     </div>
   );
