@@ -25,7 +25,7 @@ const CardsSection = () => {
       if (count === maxCount) {
         clearInterval(interval);
       }
-    }, 10);
+    }, 0.5);
   };
 
   useEffect(() => {

@@ -42,10 +42,12 @@ const Hero = () => {
         <Image
           src="/images/GDC-OFFICE-EDIT-scaled.jpg"
           alt="Hero Background"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
+          fill // Replaces layout="fill"
           priority // Ensures the image loads quickly for better user experience
+          style={{
+            objectFit: "cover", // Replaces objectFit="cover"
+            objectPosition: "center", // Replaces objectPosition="center"
+          }}
         />
       </div>
     </section>

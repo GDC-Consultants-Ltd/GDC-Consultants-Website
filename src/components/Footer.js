@@ -1,9 +1,55 @@
+"use client";
+
 import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link"; // Add this line
+import { useState } from "react";
+import axios from "axios";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubscribe = async () => {
+    if (!email) {
+      setMessage("Please enter a valid email address.");
+      return;
+    }
+
+    try {
+      // Replace with your HubSpot Portal ID and Form ID
+      const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
+      const hubspotFormId = process.env.NEXT_PUBLIC_HUBSPOT_SUBSCRIBTION_FORM_ID;
+
+      // HubSpot Form Submission API endpoint
+      const url = `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`;
+
+      // HubSpot form submission payload
+      const payload = {
+        fields: [
+          {
+            name: "email",
+            value: email,
+          },
+        ],
+      };
+
+      // Submit the form data to HubSpot
+      await axios.post(url, payload, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      setMessage("Thank you for subscribing!");
+      setEmail(""); // Clear the email input after successful submission
+    } catch (error) {
+      console.error("Error submitting to HubSpot:", error);
+      setMessage("There was an error subscribing. Please try again.");
+    }
+  };
 
   return (
     <footer
@@ -23,11 +69,17 @@ export default function Footer() {
             type="email"
             placeholder="Enter your email address"
             className="p-3 rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none outline-none w-80 text-black mb-2 sm:mb-0"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <button className="bg-customBlue text-white p-3 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none tracking-wide">
+          <button
+            className="bg-customBlue text-white p-3 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none tracking-wide"
+            onClick={handleSubscribe}
+          >
             SUBSCRIBE
           </button>
         </div>
+        {message && <p className="text-white mt-2">{message}</p>}
       </div>
 
       {/* Main Footer Content */}

@@ -3,9 +3,11 @@ import "./globals.css"; // Ensure your global styles are imported
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import ChatBot from "@/components/ChatBot";
 
 export default function RootLayout({ children }) {
+  // Fetch the HubSpot portal ID from environment variables
+  const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
+
   return (
     <html lang="en">
       <head>
@@ -20,13 +22,22 @@ export default function RootLayout({ children }) {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        {/* HubSpot Chatbot Script */}
+        {hubspotPortalId && (
+          <script
+            type="text/javascript"
+            id="hs-script-loader"
+            async
+            defer
+            src={`//js.hs-scripts.com/${hubspotPortalId}.js`}
+          ></script>
+        )}
       </head>
-      <body class="font-sans">
+      <body className="font-sans">
         <Header />
         {children}
-        <Footer />   
-        <ScrollToTop />  
-        <ChatBot />   
+        <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );
