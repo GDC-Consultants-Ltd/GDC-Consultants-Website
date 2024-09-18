@@ -1,5 +1,11 @@
-// components/GetInTouch.js
-import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
+"use client"; // Ensure this is treated as a client component
+
+import { motion } from "framer-motion"; // Import Framer Motion
+import {
+  EnvelopeIcon,
+  MapPinIcon,
+  PhoneIcon,
+} from "@heroicons/react/24/outline";
 
 // Data array for dynamic rendering
 const contactDetails = [
@@ -26,41 +32,90 @@ const contactDetails = [
   },
 ];
 
+// Define animation variants
+const fadeInUpVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const scaleUpVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
 const GetInTouch = () => {
   return (
-    <div className="bg-gray-50 py-16 px-6 animate-fade-in-up transition-all duration-700 ease-in-out">
+    <motion.div
+      className="bg-gray-50 py-16 px-6"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.2 }}
+    >
       <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-3xl text-customYellow font-bold mb-4 animate-fade-in">
+        <motion.h2
+          className="text-3xl text-customYellow font-bold mb-4"
+          variants={fadeInUpVariants}
+        >
           From Concept to Creation
-        </h2>
-        <p className="text-sm text-customBlue mb-10 animate-fade-in">
+        </motion.h2>
+        <motion.p
+          className="text-sm text-customBlue mb-10"
+          variants={fadeInUpVariants}
+        >
           Our focus on quality and attention to detail ensure that every project
           we undertake is a success. Contact us to start building your project
           on a solid foundation.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        </motion.p>
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          variants={fadeInUpVariants}
+        >
           {contactDetails.map((detail) => (
-            <div
+            <motion.div
               key={detail.id}
-              className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center transition-transform transform hover:scale-105 animate-slide-up"
+              className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center transition-transform transform hover:scale-105"
+              initial="hidden"
+              whileInView="visible"
+              variants={scaleUpVariants}
+              viewport={{ once: false, amount: 0.2 }}
             >
-              <div className="w-20 h-20 bg-gradient-to-r from-customBlue to-blue-500 rounded-full flex items-center justify-center mb-4 animate-scale-up">
+              <motion.div
+                className="w-20 h-20 bg-gradient-to-r from-customBlue to-blue-500 rounded-full flex items-center justify-center mb-4"
+                variants={scaleUpVariants}
+              >
                 {detail.icon}
-              </div>
-              <h3 className="text-xl text-customBlue font-semibold mb-2 animate-fade-in">
+              </motion.div>
+              <motion.h3
+                className="text-xl text-customBlue font-semibold mb-2"
+                variants={fadeInUpVariants}
+              >
                 {detail.title}
-              </h3>
-              <p className="text-gray-600 mb-1 animate-fade-in">
+              </motion.h3>
+              <motion.p
+                className="text-gray-600 mb-1"
+                variants={fadeInUpVariants}
+              >
                 {detail.description}
-              </p>
-              <p className="text-customBlue font-semibold animate-fade-in">
+              </motion.p>
+              <motion.p
+                className="text-customBlue font-semibold"
+                variants={fadeInUpVariants}
+              >
                 {detail.contactInfo}
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

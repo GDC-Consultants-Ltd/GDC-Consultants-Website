@@ -7,6 +7,7 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
+import { motion } from "framer-motion"; // Import Framer Motion
 
 const BlogGallery = () => {
   const [blogs, setBlogs] = useState([]);
@@ -33,26 +34,33 @@ const BlogGallery = () => {
     loadBlogs();
   }, []);
 
-  // Intersection Observer to trigger animations when elements come into view
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("fade-in");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+  // Animation Variants
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
 
-    const items = sectionRef.current?.querySelectorAll(".animate-on-scroll");
-    items?.forEach((item) => observer.observe(item));
+  const slideInUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
 
-    return () => {
-      items?.forEach((item) => observer.unobserve(item));
-    };
-  }, []);
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
 
   // Handle cases when fetching fails or data is empty
   if (error) {
@@ -66,8 +74,14 @@ const BlogGallery = () => {
   return (
     <>
       <Header />
-      <div className="relative">
-        <div className="w-full h-96 relative">
+      <motion.div
+        className="relative"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        variants={fadeIn}
+      >
+        <motion.div className="w-full h-96 relative" variants={slideInUp}>
           <Image
             src="/images/projects/3.webp"
             fill
@@ -76,10 +90,16 @@ const BlogGallery = () => {
             className="object-cover transition-opacity duration-700 ease-in-out"
             alt="Background Image"
           />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+        </motion.div>
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"
+          variants={fadeIn}
+        ></motion.div>
 
-        <div className="absolute bottom-5 left-5 p-6 text-left">
+        <motion.div
+          className="absolute bottom-5 left-5 p-6 text-left"
+          variants={slideInLeft}
+        >
           <nav className="text-2xl text-white font-bold mb-2 flex items-center space-x-1">
             <Link href="/" className="hover:text-customYellow">
               Home
@@ -90,40 +110,50 @@ const BlogGallery = () => {
           <h1 className="text-white text-5xl font-bold leading-tight">
             Latest News & Updates
           </h1>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       <div className="px-10 py-10 min-h-screen">
         {blogs.length > 0 ? (
-          <section
+          <motion.section
             ref={sectionRef}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
+            variants={fadeIn}
           >
-            {blogs.map((blog, index) => (
-              <Link href={`/${blog.slug}`} key={index}>
-                <div
-                  key={index}
-                  className={`relative flex flex-col justify-between rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200 ${getRandomCardSize()}`}
-                  style={{ minHeight: "300px" }}
-                >
-                  <Image
-                    src={
-                      blog.featuredImage || // Correctly mapping the featured image URL
-                      "/images/GDC-OFFICE-EDIT-scaled.jpg"
-                    }
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-opacity duration-700 hover:opacity-90"
-                    alt={blog.featuredImageAltText || "Blog Post"}
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-20 flex items-end p-6 transition-opacity duration-500 hover:bg-opacity-40">
-                    <h3 className="text-xl font-semibold text-white">
-                      {blog.name}
-                    </h3>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </section>
+            {blogs.map((blog, index) => {
+              const cardSize = getRandomCardSize();
+              console.log(`Card Size for Blog ${index}:`, cardSize); // Debugging class assignment
+
+              return (
+                <Link href={`/${blog.slug}`} key={index}>
+                  <motion.div
+                    key={index}
+                    className={`relative flex flex-col justify-between rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200 ${cardSize}`}
+                    style={{ minHeight: "300px" }}
+                    variants={fadeIn}
+                  >
+                    <Image
+                      src={
+                        blog.featuredImage || // Correctly mapping the featured image URL
+                        "/images/GDC-OFFICE-EDIT-scaled.jpg"
+                      }
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-opacity duration-700 hover:opacity-90"
+                      alt={blog.featuredImageAltText || "Blog Post"}
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-20 flex items-end p-6 transition-opacity duration-500 hover:bg-opacity-40">
+                      <h3 className="text-xl font-semibold text-white">
+                        {blog.name}
+                      </h3>
+                    </div>
+                  </motion.div>
+                </Link>
+              );
+            })}
+          </motion.section>
         ) : (
           <p className="text-center text-gray-500">No blogs available.</p>
         )}

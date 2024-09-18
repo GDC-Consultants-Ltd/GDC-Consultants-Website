@@ -1,8 +1,11 @@
 // components/ContactSection.js
 
+"use client"; // Ensure this is treated as a client component
+
 import React, { useState } from "react";
 import { MapPinIcon, PhoneIcon, EnvelopeIcon } from "@heroicons/react/24/solid"; // Import Heroicons
 import axios from "axios";
+import { motion } from "framer-motion"; // Import Framer Motion
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -63,22 +66,60 @@ const ContactSection = () => {
     }
   };
 
+  // Animation Variants
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const slideInRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
-    <section
+    <motion.section
       className="relative bg-cover bg-center text-white py-12 px-4 md:px-16 lg:px-24"
       style={{ backgroundImage: `url('/images/contact.jpg')` }} // Replace with the correct path to your background image
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.2 }}
+      variants={fadeIn}
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-50"></div>
 
       {/* Title Section */}
-      <div className="relative z-10 text-center mb-8">
+      <motion.div
+        className="relative z-10 text-center mb-8"
+        variants={slideInLeft}
+      >
         <h2 className="text-3xl md:text-4xl font-bold">Send us a message</h2>
-      </div>
+      </motion.div>
 
-      <div className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <motion.div
+        className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+        variants={fadeIn}
+      >
         {/* Contact Information */}
-        <div className="space-y-6">
+        <motion.div className="space-y-6" variants={slideInLeft}>
           <div className="space-y-4">
             <div className="flex items-center">
               <div className="bg-customBlue p-3 rounded-full">
@@ -108,10 +149,13 @@ const ContactSection = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Contact Form */}
-        <div className="bg-white text-black p-6 rounded-md shadow-md relative z-10">
+        <motion.div
+          className="bg-white text-black p-6 rounded-md shadow-md relative z-10"
+          variants={slideInRight}
+        >
           <h3 className="text-xl text-customBlue font-semibold mb-4">
             Send Message
           </h3>
@@ -184,9 +228,9 @@ const ContactSection = () => {
               </button>
             </form>
           )}
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 };
 
