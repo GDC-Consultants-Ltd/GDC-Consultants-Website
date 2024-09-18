@@ -13,21 +13,21 @@ const AboutCardSection = () => {
       title: "We Are Industry Leaders",
       description:
         "GDC Consultants are a nationwide provider of innovative solutions in all areas of the engineering and architecture process chains. Our unique success story is predicated on our core values of innovation, competency, and strict coordination on client needs.",
-      image: "/images/about/2.png",
+      image: "/images/about/2.webp",
     },
     {
       id: 2,
       title: "Who We Are",
       description:
         "Through our expertise, competency, and continuous client support, we have earned the trust of our clients. By developing long lasting partnerships and consistently providing the best possible solutions and services, we are considered industry leaders. \nAt GDC Consultants, we believe in having strong values and priorities in everything we do. We take responsibility for the way our work affects society and the environment, and we are constantly aiming to give back to our community.",
-      image: "/images/about/1.png",
+      image: "/images/about/1.webp",
     },
     {
       id: 3,
       title: "We Provide Sustainable Solutions",
       description:
         "We understand the vital necessity of sustainability in everything we do. Our corporate practice is founded on ethical behavior, innovation, and ensuring the sustainability of our community and environment.",
-      image: "/images/about/3.png",
+      image: "/images/about/3.webp",
     },
   ];
 

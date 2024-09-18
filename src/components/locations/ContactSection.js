@@ -97,7 +97,7 @@ const ContactSection = () => {
   return (
     <motion.section
       className="relative bg-cover bg-center text-white py-12 px-4 md:px-16 lg:px-24"
-      style={{ backgroundImage: `url('/images/contact.jpg')` }} // Replace with the correct path to your background image
+      style={{ backgroundImage: `url('/images/contact.webp')` }} // Replace with the correct path to your background image
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.2 }}

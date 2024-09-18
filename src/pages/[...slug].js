@@ -127,7 +127,7 @@ const BlogPost = ({ blog, recentArticles }) => {
             </p>
             <div className="relative w-full h-96 mb-6">
               <Image
-                src={blog.featuredImage || "/images/projects/default.jpg"}
+                src={blog.featuredImage || "/images/default-blog.webp"}
                 fill
                 sizes="100vw"
                 className="object-cover rounded-lg"
@@ -189,9 +189,7 @@ const BlogPost = ({ blog, recentArticles }) => {
               >
                 <div className="w-20 h-20 relative flex-shrink-0">
                   <Image
-                    src={
-                      article.featuredImage || "/images/projects/default.jpg"
-                    }
+                    src={article.featuredImage || "/images/default-blog.webp"}
                     fill
                     sizes="100vw"
                     className="object-cover rounded-md"

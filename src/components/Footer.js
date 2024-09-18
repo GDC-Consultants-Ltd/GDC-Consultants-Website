@@ -55,7 +55,7 @@ export default function Footer() {
   return (
     <footer
       className="relative bg-cover bg-center text-white"
-      style={{ backgroundImage: "url('/images/GDC-OFFICE-EDIT-scaled.jpg')" }}
+      style={{ backgroundImage: "url('/images/GDC-OFFICE-EDIT-scaled.webp')" }}
     >
       {/* Dark Overlay for the Entire Footer */}
       <div className="absolute inset-0 bg-black opacity-50"></div>

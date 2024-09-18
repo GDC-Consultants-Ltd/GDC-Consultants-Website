@@ -81,7 +81,7 @@ const ProjectHeader = () => {
           variants={zoomIn}
         >
           <Image
-            src="/images/about/career.png"
+            src="/images/about/career.webp"
             alt="Our Projects"
             width={700}
             height={500}

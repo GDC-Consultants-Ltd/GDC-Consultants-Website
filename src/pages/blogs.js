@@ -124,7 +124,6 @@ const BlogGallery = () => {
           >
             {blogs.map((blog, index) => {
               const cardSize = getRandomCardSize();
-              console.log(`Card Size for Blog ${index}:`, cardSize); // Debugging class assignment
 
               return (
                 <Link href={`/${blog.slug}`} key={index}>
@@ -137,7 +136,7 @@ const BlogGallery = () => {
                     <Image
                       src={
                         blog.featuredImage || // Correctly mapping the featured image URL
-                        "/images/GDC-OFFICE-EDIT-scaled.jpg"
+                        "/images/GDC-OFFICE-EDIT-scaled.webp"
                       }
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
