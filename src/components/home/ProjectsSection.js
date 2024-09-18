@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion"; // Import Framer Motion
 
 const projects = [
+  // Project data remains the same
   {
     title: "Baverstock, Hamilton, Subdivision",
     category: "3 Waters & Contamination",
@@ -28,11 +30,7 @@ const projects = [
     category: "Planning & Environmental",
     image: "/images/projects/5.webp",
   },
-  {
-    title: "Dickens Street",
-    category: "",
-    image: "/images/projects/6.webp",
-  },
+  { title: "Dickens Street", category: "", image: "/images/projects/6.webp" },
   {
     title: "Menzies Building, Waikato Hospital",
     category: "Medical Sector",
@@ -97,9 +95,34 @@ const ProjectsSection = () => {
     };
   }, [animationTriggered]);
 
+  // Define animation variants for project cards
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
     <section ref={sectionRef} className="py-16 bg-[#F3F5F6]">
-      <div className="text-center mb-12 px-6 md:px-10 xl:px-16">
+      <motion.div
+        className="text-center mb-12 px-6 md:px-10 xl:px-16"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        variants={titleVariants}
+      >
         <h2 className="text-4xl text-customYellow uppercase font-bold mt-2">
           Explore Our Portfolio
         </h2>
@@ -108,20 +131,22 @@ const ProjectsSection = () => {
           completed across New Zealand. From large-scale commercial developments
           to smaller residential builds.
         </h3>
-      </div>
+      </motion.div>
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
         {projects.map((project, index) => (
-          <div
+          <motion.div
             key={index}
-            className={`relative bg-white shadow-md rounded-lg overflow-hidden group transform transition-transform duration-500 ease-in-out ${
-              isVisible ? "animate-fade-up" : "opacity-0"
-            }`}
+            className="relative bg-white shadow-md rounded-lg overflow-hidden group transform transition-transform duration-500 ease-in-out"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
+            variants={cardVariants}
           >
-            <div className="relative w-full h-48"> {/* Container for responsive image layout */}
+            <div className="relative w-full h-48">
               <Image
                 src={project.image}
                 alt={project.title}
-                fill // New way to make images responsive in Next.js 13
+                fill
                 className="object-cover group-hover:scale-105 transition-transform duration-300 rounded-lg"
               />
             </div>
@@ -134,7 +159,7 @@ const ProjectsSection = () => {
                 {project.title}
               </h4>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
       <div className="flex justify-center mt-8">

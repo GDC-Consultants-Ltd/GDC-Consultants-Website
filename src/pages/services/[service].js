@@ -7,7 +7,6 @@ import Header from "@/components/Header";
 import "../../app/globals.css";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Link from "next/link";
 import GetInTouch from "../../components/GetInTouch";
 import ServiceDescription from "../../components/services/ServiceDescription";
 import ServiceSections from "../../components/services/ServiceSections";
@@ -43,23 +42,21 @@ const ServicePage = () => {
 
         <div className="absolute bottom-5 left-5 p-4 sm:p-6 text-left">
           <nav className="text-lg sm:text-xl md:text-2xl text-white font-bold mb-2 flex items-center space-x-1">
-            <Link href="/" className="hover:text-customYellow">
-              Home
-            </Link>
-            <span>&gt;</span>
-            <span className="hover:text-customYellow">Services</span>
+            <span className="text-customYellow">Services</span>
           </nav>
-          <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-            {serviceData.title}
-          </h1>
         </div>
       </div>
 
       {/* Service Description Section */}
-      <ServiceDescription description={serviceData.description} />
+      <ServiceDescription
+        title={serviceData.title}
+        description={serviceData.description}
+      />
 
       {/* Dynamic Alternating Sections */}
-      {serviceData.sections && <ServiceSections sections={serviceData.sections} />}
+      {serviceData.sections && (
+        <ServiceSections sections={serviceData.sections} />
+      )}
 
       {/* Unique Content for Specific Service */}
       {serviceData.uniqueContent && serviceData.uniqueContent}

@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
+import { motion } from "framer-motion"; // Import Framer Motion
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -13,7 +14,7 @@ const testimonials = [
       "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
     author: "Jeff Freshman",
     role: "Guest",
-    image: "/images/testimonials/1.webp", // Correct path to avatar image
+    image: "/images/testimonials/1.webp",
   },
   {
     message:
@@ -54,15 +55,38 @@ const TestimonialsSection = () => {
     };
   }, []);
 
+  // Define animation variants
+  const fadeInVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.7, ease: "easeOut" },
+    },
+  };
+
+  const slideUpVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
-    <div
+    <motion.div
       ref={sectionRef}
-      className={`grid grid-cols-1 md:grid-cols-2 h-full transform transition-transform duration-500 ease-in-out ${
-        isVisible ? "animate-fade-in" : "opacity-0"
-      }`}
+      className="grid grid-cols-1 md:grid-cols-2 h-full transform transition-transform duration-500 ease-in-out"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.2 }}
     >
       {/* Left Side - Title and Content */}
-      <div className="bg-customYellow text-white px-6 py-6 md:px-10 lg:px-16 flex flex-col justify-center items-center md:items-start text-center md:text-left animate-slide-left">
+      <motion.div
+        className="bg-customYellow text-white px-6 py-6 md:px-10 lg:px-16 flex flex-col justify-center items-center md:items-start text-center md:text-left"
+        variants={fadeInVariants}
+      >
         <h2 className="text-xs md:text-sm uppercase tracking-widest font-semibold mb-2 md:mb-4">
           Read Testimonials
         </h2>
@@ -70,10 +94,13 @@ const TestimonialsSection = () => {
           It&apos;s always a joy to hear that the work we do has positive
           reviews
         </p>
-      </div>
+      </motion.div>
 
       {/* Right Side - Testimonial Carousel */}
-      <div className="bg-customBlue text-white p-4 md:p-6 lg:p-8 flex items-center justify-center">
+      <motion.div
+        className="bg-customBlue text-white p-4 md:p-6 lg:p-8 flex items-center justify-center"
+        variants={slideUpVariants}
+      >
         <Swiper
           modules={[Pagination, Autoplay]}
           spaceBetween={20}
@@ -84,13 +111,22 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <SwiperSlide
               key={index}
-              className="p-4 md:p-6 lg:p-8 bg-transparent text-center flex flex-col gap-4 animate-slide-up"
+              className="p-4 md:p-6 lg:p-8 bg-transparent text-center flex flex-col gap-4"
             >
-              <div className="flex flex-col items-center">
-                <p className="mb-4 text-white text-base md:text-lg leading-relaxed animate-fade-in">
+              <motion.div
+                className="flex flex-col items-center"
+                variants={slideUpVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+              >
+                <p className="mb-4 text-white text-base md:text-lg leading-relaxed">
                   {testimonial.message}
                 </p>
-                <div className="mt-2 md:mt-4 flex flex-col items-center animate-scale-up">
+                <motion.div
+                  className="mt-2 md:mt-4 flex flex-col items-center"
+                  variants={fadeInVariants}
+                >
                   <Image
                     src={testimonial.image}
                     alt={testimonial.author}
@@ -104,13 +140,13 @@ const TestimonialsSection = () => {
                   <p className="text-xs md:text-sm text-customYellow uppercase tracking-widest">
                     {testimonial.role}
                   </p>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

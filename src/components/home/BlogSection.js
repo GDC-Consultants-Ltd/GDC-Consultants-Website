@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion"; // Import Framer Motion
 import {
   CalendarIcon,
   UserIcon,
@@ -66,31 +67,62 @@ const BlogSection = () => {
     };
   }, []);
 
+  // Define animation variants
+  const fadeInUpVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  const scaleUpVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
-    <div
+    <motion.div
       ref={sectionRef}
-      className={`py-12 bg-gray-50 transform transition-transform duration-500 ease-in-out ${
-        isVisible ? "animate-fade-up" : "opacity-0"
-      }`}
+      className="py-12 bg-gray-50"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.2 }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="text-center mb-12 px-6 md:px-10 xl:px-16">
-          <h2 className="text-4xl text-customYellow uppercase font-bold mt-2 animate-slide-down">
+      <motion.div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        variants={fadeInUpVariants}
+      >
+        <motion.div
+          className="text-center mb-12 px-6 md:px-10 xl:px-16"
+          variants={fadeInUpVariants}
+        >
+          <h2 className="text-4xl text-customYellow uppercase font-bold mt-2">
             Latest News & Updates
           </h2>
-          <h3 className="text-md text-customBlue tracking-wide animate-fade-in">
+          <h3 className="text-md text-customBlue tracking-wide">
             Stay up-to-date with the latest news and insights from the
             construction industry by checking out our blog.
           </h3>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={fadeInUpVariants}
+        >
           {blogs.map((blog) => (
-            <div
+            <motion.div
               key={blog.id}
-              className={`bg-white shadow-lg rounded-lg overflow-hidden group hover:shadow-2xl transition duration-300 transform transition-transform duration-500 ease-in-out ${
-                isVisible ? "animate-scale-up" : "opacity-0"
-              }`}
+              className="bg-white shadow-lg rounded-lg overflow-hidden group hover:shadow-2xl transition duration-300"
+              variants={scaleUpVariants}
+              whileInView="visible"
+              initial="hidden"
+              viewport={{ once: false, amount: 0.2 }}
             >
               <Image
                 src={`/${blog.image}`}
@@ -128,11 +160,11 @@ const BlogSection = () => {
                   Read More
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };
 

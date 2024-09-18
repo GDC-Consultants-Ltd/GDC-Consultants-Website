@@ -1,4 +1,4 @@
-"use client"; // Ensure this is treated as a client component in Next.js
+"use client";
 
 import React, { useEffect, useState, useRef } from "react";
 import {
@@ -7,6 +7,7 @@ import {
   Cog6ToothIcon,
   CalendarIcon,
 } from "@heroicons/react/24/solid";
+import { motion } from "framer-motion"; // Import Framer Motion components
 
 const CardsSection = () => {
   const [projectsCount, setProjectsCount] = useState(0);
@@ -66,6 +67,16 @@ const CardsSection = () => {
     }
   }, [isVisible, animationTriggered]);
 
+  // Framer Motion animation variants
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut" },
+    },
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -80,7 +91,7 @@ const CardsSection = () => {
           }
           count={`${projectsCount.toLocaleString()}+`}
           label="Projects Completed"
-          isVisible={animationTriggered}
+          variants={cardVariants}
         />
         <Card
           color="bg-customYellow"
@@ -90,7 +101,7 @@ const CardsSection = () => {
           }
           count={locationsCount.toLocaleString()}
           label="Locations Serviced"
-          isVisible={animationTriggered}
+          variants={cardVariants}
         />
         <Card
           color="bg-customBlue"
@@ -100,7 +111,7 @@ const CardsSection = () => {
           }
           count={`${servicesCount.toLocaleString()}+`}
           label="Services Provided"
-          isVisible={animationTriggered}
+          variants={cardVariants}
         />
         <Card
           color="bg-customYellow"
@@ -110,32 +121,36 @@ const CardsSection = () => {
           }
           count={`${experienceCount.toLocaleString()}+`}
           label="Years of Experience"
-          isVisible={animationTriggered}
+          variants={cardVariants}
         />
       </div>
     </section>
   );
 };
 
-const Card = ({ color, gradient, icon, count, label, isVisible }) => (
-  <div
+const Card = ({ color, gradient, icon, count, label, variants }) => (
+  <motion.div
     className={`relative ${color} text-white shadow-lg p-6 flex flex-col items-center justify-center space-y-2 h-56 md:h-64 overflow-hidden transform transition-transform duration-500 ease-in-out ${
-      isVisible ? "animate-slide-up hover:scale-105" : "opacity-0"
-    } ${color === "bg-customBlue" ? "rounded-none lg:rounded-none" : ""}`}
+      color === "bg-customBlue" ? "rounded-none lg:rounded-none" : ""
+    }`}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: false, amount: 0.3 }}
+    variants={variants}
   >
     <div
       className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-60 clip-path-custom transition-opacity duration-500 ease-in-out`}
     ></div>
-    <div className="relative z-10 bg-customYellow rounded-full p-3 flex items-center justify-center animate-fade-in transition-transform duration-500 ease-in-out hover:scale-110">
+    <div className="relative z-10 bg-customYellow rounded-full p-3 flex items-center justify-center transition-transform duration-500 ease-in-out hover:scale-110">
       {icon}
     </div>
-    <div className="relative z-10 text-center animate-fade-in transition-opacity duration-500 ease-in-out">
+    <div className="relative z-10 text-center transition-opacity duration-500 ease-in-out">
       <p className="text-3xl md:text-4xl font-extrabold">{count}</p>
       <p className="text-base md:text-lg font-semibold uppercase tracking-wide">
         {label}
       </p>
     </div>
-  </div>
+  </motion.div>
 );
 
 export default CardsSection;
