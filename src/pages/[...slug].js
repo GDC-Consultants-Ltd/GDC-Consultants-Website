@@ -22,6 +22,8 @@ const BlogPost = ({ blog, recentArticles }) => {
     email: "",
     comment: "",
   });
+  const [message, setMessage] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchComments(); // Fetch comments when the component mounts
@@ -46,7 +48,6 @@ const BlogPost = ({ blog, recentArticles }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -71,11 +72,14 @@ const BlogPost = ({ blog, recentArticles }) => {
       );
 
       if (response.status === 200) {
-        console.log("Comment submitted successfully.");
+        setMessage("Comment submitted successfully.");
+        setError(null);
         fetchComments(); // Refresh comments after submission
         setFormData({ email: "", comment: "" }); // Clear form fields
       }
     } catch (error) {
+      setMessage(null);
+      setError("Error submitting comment. Please try again later.");
       console.error("Error submitting comment:", error);
     }
   };
@@ -135,9 +139,10 @@ const BlogPost = ({ blog, recentArticles }) => {
               />
             </div>
             <div
-              className="text-gray-700 mb-4"
+              className="text-gray-700 text-justify mb-4 leading-relaxed space-y-4"
               dangerouslySetInnerHTML={{ __html: blog.postBody }}
             />
+
             {/* Leave a Reply Section */}
             <section className="mt-12">
               <h2 className="text-2xl font-bold mb-4">Leave a Reply</h2>
@@ -145,6 +150,11 @@ const BlogPost = ({ blog, recentArticles }) => {
                 Your email address will not be published. Required fields are
                 marked *
               </p>
+
+              {/* Display Success or Error Message */}
+              {message && <p className="text-green-500 mb-4">{message}</p>}
+              {error && <p className="text-red-500 mb-4">{error}</p>}
+
               {/* Custom Form */}
               <form onSubmit={handleFormSubmit} className="space-y-4">
                 <div>

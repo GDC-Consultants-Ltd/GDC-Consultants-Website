@@ -4,6 +4,7 @@ import {
   InternshipsUniqueContent,
   LandscapingUniqueContent,
   PavementDesignUniqueContent,
+  PlanningUniqueContent,
   SeismicEngineeringUniqueContent,
   StructuralDesignUniqueContent,
   WatersUniqueContent,
@@ -13,7 +14,7 @@ const services = {
   "3-waters": {
     title: "3 Waters & Contamination",
     description:
-      "Climate change is taking a toll on New Zealand’s aging three water infrastructure. There is now a vital need to renew and rebuild these systems to ensure that they continue to meet performance standards. Our mission at GDC Consultants is to provide sustainable, effective, and value-added engineering solutions for your 3 Waters project. We pride ourselves on being both experts in technical design guidance and pioneers of innovative solutions in the industry.​",
+      "Climate change is taking a toll on New Zealand’s aging three water infrastructure. There is now a vital need to renew and rebuild these systems to ensure that they continue to meet performance standards.\nOur mission at GDC Consultants is to provide sustainable, effective, and value-added engineering solutions for your 3 Waters project. We pride ourselves on being both experts in technical design guidance and pioneers of innovative solutions in the industry.",
     image: "/images/services/waters-engineering-and-contamination.webp",
     sections: [
       {
@@ -128,7 +129,7 @@ const services = {
           "We are able to design, plan, execute, and implement the entire project",
           "We make sure to provide an upfront and reasonable estimate of the total cost of all entailed project work",
         ],
-        image: "/images/services/electrical.webp",
+        image: "/images/services/98a91fd4a88bda676a99bf92e10cd630.webp",
       },
     ],
     uniqueContent: <ElectricalEngineeringUniqueContent />,
@@ -137,7 +138,7 @@ const services = {
   "project-management": {
     title: "Project & Construction Management",
     description: "​",
-    image: "/images/services/Project & Construction Management.webp",
+    image: "/images/services/project-construction-management-gdc.webp",
     sections: [
       {
         id: 1,
@@ -161,7 +162,7 @@ const services = {
           "Cost estimate and value analysis",
           "Procedure and logistic assessment",
         ],
-        image: "/images/services/Project & Construction Management.webp",
+        image: "/images/services/pexels-fauxels-3184635-1.webp",
       },
       {
         id: 3,
@@ -181,7 +182,7 @@ const services = {
           "Contractor services",
           "Asset management",
         ],
-        image: "/images/services/Project & Construction Management.webp",
+        image: "/images/services/image-31.webp",
       },
     ],
   },
@@ -189,7 +190,7 @@ const services = {
   "geotechnical-engineering": {
     title: "Geotechnical Engineering",
     description: "​",
-    image: "/images/services/geotechnical.webp",
+    image: "/images/services/geotechnical-engineering-1.webp",
     sections: [
       {
         id: 1,
@@ -218,7 +219,7 @@ const services = {
           "Site improvement systems design",
           "Pile load test analysis",
         ],
-        image: "/images/services/geotechnical.webp",
+        image: "/images/services/6.-Geotechnical-Assessment-J000853.webp",
       },
       {
         id: 3,
@@ -231,7 +232,7 @@ const services = {
           "Large, medium and small scale subdivision",
           "Infrastructure and Public works (pipelines, pavements, roads)",
         ],
-        image: "/images/services/geotechnical.webp",
+        image: "/images/services/image-34.webp",
       },
     ],
   },
@@ -239,56 +240,56 @@ const services = {
   infrastructure: {
     title: "Infrastructure & Subdivision Engineerin",
     description: "",
-    image: "/images/services/Infrastructure & Subdivision Engineering.webp",
+    image: "/images/services/infrastructure-subdivision-gdc.webp",
     sections: [
       {
         id: 1,
         title: "Our Vision of Creating Liveable Communities",
         description:
           "GDC Consultants provide a wide range of infrastructure and subdivision engineering services, with a focus on land development and municipal infrastructure. \nWe offer a complete consultancy package, including feasibility checks, planning, design approvals, and construction. Throughout the entire process, we remain focused on project quality, performance, efficiency, and client satisfaction.",
-        image: "/images/services/Infrastructure & Subdivision Engineering.webp",
+        image: "/images/services/paul-hanaoka-303768-unsplash.webp",
       },
       {
         id: 2,
         title: "Master Infrastructure Planning Support",
         description:
           "Being a team of expert urban planners, environmental specialists, architects, and civil engineers, we are able to collaborate to provide infrastructure planning services for individual outline plans, neighborhood structure plans, and area structure plans.",
-        image: "/images/services/Infrastructure & Subdivision Engineering.webp",
+        image: "/images/services/1x-1-1536x1014.webp",
       },
       {
         id: 3,
         title: "Feasibility Studies",
         description:
           "GDC Consultants can help with evaluating the financial feasibility of a project by performing a comprehensive study of its design costs, maintenance and construction costs, servicing capacities, and any applicable council rates and fees.",
-        image: "/images/services/Infrastructure & Subdivision Engineering.webp",
+        image: "/images/services/pexels-canva-studio-3153199-1.webp",
       },
       {
         id: 4,
         title: "Low Impact Development",
         description:
           "Low Impact Development is a progressive approach to storm water management that utilizes rainfall as a resource to benefit and enhance the natural environment of your property and its surroundings. We have embraced LID at GDC, and we are able to design green roofs, rain gardens, absorbent landscapes, bio-swales, permeable pavements, and other innovative designs which encourage on-site retention and absorption.",
-        image: "/images/services/Infrastructure & Subdivision Engineering.webp",
+        image: "/images/services/low-impact.webp",
       },
       {
         id: 5,
         title: "Subdivision Design",
         description:
           "We are able to provide comprehensive deigns for all types of subdivision – small and large, public and private sector. We provide 3D surface modelling, detailed site grading and earth balance calculations, storm water management, sewer system design, report preparation, water distribution system designs, and much more.",
-        image: "/images/services/Infrastructure & Subdivision Engineering.webp",
+        image: "/images/services/subdivision-design.webp",
       },
       {
         id: 6,
         title: "Sedimentation and Erosion Control",
         description:
           "Side grading, dewatering, and the disturbance of exposed subsoils by wind and construction equipment are all significant potential issues for your project because they can result in sediments blocking storm sewers and water channels. \nWe are certified experts in preparing erosion and sediment control reports, recommending potential mitigation methods, and providing construction monitoring to ensure that these methods are properly implemented.",
-        image: "/images/services/Infrastructure & Subdivision Engineering.webp",
+        image: "/images/services/image-39.webp",
       },
       {
         id: 7,
         title: "Contract Administration",
         description:
           "We can provide you with comprehensive contract administration, including: preparation of documents such as tenders, contracts, and progress payments; inspection services throughout the construction phase; and progress monitoring to document and ensure compliance with standards.",
-        image: "/images/services/Infrastructure & Subdivision Engineering.webp",
+        image: "/images/services/ContractLaw.webp",
       },
     ],
   },
@@ -297,7 +298,7 @@ const services = {
     title: "Research & Development",
     description:
       "Process consultancy and R&D are both essential to any successful project. The need to ensure quality, follow a timeline, and facilitate collaboration between disciplines, all has to be balanced against the need for R&D.Research and Development is crucial to any project involving unusual design or construction challenges. We embrace these challenges, and pride ourselves on our ability to deliver innovative solutions every time. By keeping our skills updated, developing extensive expertise, and maintaining a high capacity for flexibility, we offer high-quality and innovative product development that can be completely customized to the needs of any particular client and their problems.",
-    image: "/images/services/Research & Development.webp",
+    image: "/images/services/research-and-development.webp",
     sections: [
       {
         id: 1,
@@ -323,14 +324,14 @@ const services = {
           "Micro simulation and analysis",
           "Trials",
         ],
-        image: "/images/services/Research & Development.webp",
+        image: "/images/services/Architects at a construction site looking at blueprints.webp",
       },
       {
         id: 3,
         title: "GDC Consultants - The Solution to All your Engineering R&D",
         description:
           "We possess the latest and best science and technology in a wide range of engineering disciplines – mechanical, electrical, petroleum, physical, chemical, civil, and software –all under one roof. \nSo that we can quickly and comprehensively understand the nature of each project, we work alongside our clients from the earliest possible stage. We typically undertake feasibility studies which employ the full range of our research and development and pilot engineering to deliver a practical and economic solution.",
-        image: "/images/services/Research & Development.webp",
+        image: "/images/services/R-and-D-ProcessConsulting_Header.jpg",
       },
       {
         id: 4,
@@ -345,7 +346,7 @@ const services = {
           "Full scale testing",
           "Product development.",
         ],
-        image: "/images/services/Research & Development.webp",
+        image: "/images/services/jason-goodman-bzqU01v-G54-unsplash-1.webp",
       },
     ],
     uniqueContent: <InternshipsUniqueContent />,
@@ -354,7 +355,7 @@ const services = {
   "road-transport": {
     title: "Road Transport",
     description: "​",
-    image: "/images/services/Road Transport.webp",
+    image: "/images/services/pexels-kampus-production-8636598-1.webp",
     sections: [
       {
         id: 1,
@@ -362,21 +363,21 @@ const services = {
           "GDC Consultants: Road Engineering & Design Services for Modern Infrastructure",
         description:
           "For our communities to progress and thrive economically, they must have the latest and most effective transportation infrastructure possible. Our industry-leading road engineering and design consultancy services provide a variety of transportation infrastructure solutions, from major highways, roads, and bridges to works on local transport networks. \nWe are constantly helping our country grow by connecting its people, services, and goods.We operate across several different infrastructure markets as both an employer and a design contractor. Our clients include government and local authorities, contractors, and private developers.",
-        image: "/images/services/Road Transport.webp",
+        image: "/images/services/image-42.webp",
       },
       {
         id: 2,
         title: "Road Safety Consultancy",
         description:
           "In addition to providing our own designs, we also offer advice and support to other roading designers by undertaking road safety audits. Our services can consider junction geometry, vehicle restraint, traffic signage, road markings, and other utility management features.",
-        image: "/images/services/Road Transport.webp",
+        image: "/images/services/image-43-1.webp",
       },
       {
         id: 3,
         title: "Smart Civil Engineering Services",
         description:
           "We are able to deliver and implement smart engineering designs for roads, pavements, and highways; including full smart motorways. \nGDC Consultants are specialists in BIM (Building Information Modelling), a digital system which allows us to make informed decisions throughout the project timeline, from design, to the creation of an execution plan, to the preparation and management of data, to construction. We are experts in modelling, data analytics, and clash detection.",
-        image: "/images/services/Road Transport.webp",
+        image: "/images/services/0.-Waihi-NZ.-ITA.webp",
       },
       {
         id: 4,
@@ -396,7 +397,7 @@ const services = {
           "Traffic signs",
           "Utility management",
         ],
-        image: "/images/services/Road Transport.webp",
+        image: "/images/services/jason-goodman-bzqU01v-G54-unsplash-1.webp",
       },
     ],
     uniqueContent: <PavementDesignUniqueContent />,
@@ -405,7 +406,7 @@ const services = {
   "seismic-engineering": {
     title: "Seismic Engineering",
     description: "​",
-    image: "/images/services/Seismic Engineering.webp",
+    image: "/images/services/Screenshot-2024-01-25-133840.webp",
     sections: [
       {
         id: 1,
@@ -437,21 +438,21 @@ const services = {
           "Seismic repair design",
           "Non-structural systems assessment",
         ],
-        image: "/images/services/Seismic Engineering.webp",
+        image: "/images/services/image-52.webp",
       },
       {
         id: 3,
         title: "Why you need GDC Consultants Seismic Engineering Services",
         description:
           "Effective seismic analysis and design requires a practical understanding of seismology and structure responses. Having investigated numerous major structures in the past, we have an in-depth understanding of the seismic behavior of a range of structures. This allows to achieve performance-based design engineering that achieves the desired seismic response. \nResearch Based Seismic Testing Capability \nWe are experts in seismic engineering and material science. From evaluating the performance of building elements to fatigue and fracture testing of individual structural works –we provide solutions that make structures safer, limit earthquake damage, and allow clients to safely and quickly return their buildings to regular service. We aim to minimize disruption to your operations throughout the seismic strengthening process.",
-        image: "/images/services/Seismic Engineering.webp",
+        image: "/images/services/mmexport1567995357055.webp",
       },
       {
         id: 4,
         title: "Our Seismic Engineering Assessments",
         description:
           "From our Seismic assessments, our expert engineers are able to develop Retrofit Design plans to make the building more resistant to seismic activity, ground motion or soil failure due to earthquakes. These are mainly structural improvements to the core of the building to increase strengthening and give a high NBS%",
-        image: "/images/services/Seismic Engineering.webp",
+        image: "/images/services/Cambridge-Museum-DSA-retrofit-J002258.webp",
       },
     ],
     uniqueContent: <SeismicEngineeringUniqueContent />,
@@ -461,7 +462,7 @@ const services = {
     title: "Structural Engineering",
     description:
       "At GDC Consultants, we match every structure with a redesign that is innovative and responsive to changing demands. From large corporate structures to distinctive home designs –we create a masterpiece every time. Stay on schedule and avoid expensive and time-consuming reworkings with GDC’s flexible structural engineering consulting services!​",
-    image: "/images/services/structural.webp",
+    image: "/images/services/structural-engineering.webp",
     sections: [
       {
         id: 1,
@@ -480,7 +481,7 @@ const services = {
           "Structural designs, rack supports, foundation drawings and main structural frames, platforms and access, architectural plans, and load foundation calculations.",
           "Structural engineering designs that include concrete and steel structures, piling and foundations, steel buildings, and related elements.",
         ],
-        image: "/images/services/structural.webp",
+        image: "/images/services/image-47-1.webp",
       },
     ],
   },
@@ -488,7 +489,7 @@ const services = {
   planning: {
     title: "Planning",
     description: "",
-    image: "/images/services/Planning.webp",
+    image: "/images/services/pexels-alena-darmel-7642124-scaled.webp",
     sections: [
       {
         id: 1,
@@ -511,7 +512,7 @@ const services = {
           "Assistance with plan change applications",
           "Consultation with affected parties",
         ],
-        image: "/images/services/Planning.webp",
+        image: "/images/services/2022-Guide-to-Resource-Management.jpeg",
       },
       {
         id: 3,
@@ -519,7 +520,7 @@ const services = {
         description:
           "Our planners have extensive experience in both the public and private sectors. \nOur previous private sector projects have ranged from multi-unit commercial developments to rural subdivisions, to holiday parks, to simple residential alterations. \nWe have also worked on papākainga and other projects for Iwi. \nOur previous projects for local and central government include:",
         points: ["Pedestrian/cycle walkways", "Dog pounds"],
-        image: "/images/services/Planning.webp",
+        image: "/images/services/businesspeople-team-collaboration-analyzing-monthl-2024-05-21-00-08-08-utc-1024x683.webp",
       },
       {
         id: 4,
@@ -533,7 +534,7 @@ const services = {
           "Landscape design",
           "A full range of architectural, structural, and engineering services",
         ],
-        image: "/images/services/Planning.webp",
+        image: "/images/services/pexels-thisisengineering-3862384-1536x1025.webp",
       },
       {
         id: 5,
@@ -548,15 +549,12 @@ const services = {
           "Napier",
           "Wellington",
         ],
-        image: "/images/services/Planning.webp",
+        image: "/images/services/iStock-1176054530.jpg.webp",
       },
     ],
     uniqueContent: (
       <div className="mt-10">
-        <CivilStructuralUniqueContent /> {/* First component */}
-        <div className="mt-6 px-6 lg:px-15">
-          <StructuralDesignUniqueContent /> {/* Second component */}
-        </div>
+        <PlanningUniqueContent/>
       </div>
     ),
   },
@@ -564,14 +562,14 @@ const services = {
   surveying: {
     title: "Surveying",
     description: "​",
-    image: "/images/services/survey.webp",
+    image: "/images/services/pexels-alena-darmel-7642124-scaled.webp",
     sections: [
       {
         id: 1,
         title: "Quantity Surveying",
         description:
           "Our Quantity Surveying services encompass a detailed range of activities. This involves meticulously estimating project costs by analysing materials, labor, and other resources. \nThe Surveyor team creates comprehensive bills of quantities, outline the quantities and costs of all project elements.  ",
-        image: "/images/services/survey.webp",
+        image: "/images/services/valerie-v-8CACa5kjqMM-unsplash-1536x946.webp",
       },
       {
         id: 2,
@@ -585,7 +583,7 @@ const services = {
         title: "Cadastral Surveying",
         description:
           "Our surveying services involve precise measurement, analysis, and mapping of land parcels. Our expertise lies in delineating property boundaries, preparing legal surveys, and ensuring compliance with land regulations. Through meticulous cadastral surveys, our team provides accurate records of land ownership, aiding in property transactions, land development, and overall land management. Our commitment is to deliver reliable cadastral surveying solutions to meet the specific needs of clients in land-related projects.",
-        image: "/images/services/survey.webp",
+        image: "/images/services/valerie-v-zSrksQgp4W0-unsplash-1-1536x1025.webp",
       },
     ],
   },
@@ -594,7 +592,7 @@ const services = {
     title: "Training",
     description:
       "Training and retaining fresh talent is vital for a company’s future success. At GDC, we believe in supporting young engineers and consider them an important resource. The experienced professionals at GDC Consultants share always giving advice which accelerates the professional development of young talent. We strongly believe that by developing our staff, we increase the value of the company as a whole.​",
-    image: "/images/services/Training.webp",
+    image: "/images/services/group photo madrid.webp",
     sections: [
       {
         id: 1,
@@ -609,13 +607,6 @@ const services = {
           "Member development through one-on-one coaching, career guidance, and performance management",
           "Leadership mentorship to prepare the bench strength of leaders for management responsibilities.",
         ],
-        image: "/images/services/Training.webp",
-      },
-      {
-        id: 2,
-        title: "Comprehensive Assessment",
-        description:
-          "We conduct comprehensive assessments to ensure all aspects of the water systems are optimized.",
         image: "/images/services/Training.webp",
       },
     ],
