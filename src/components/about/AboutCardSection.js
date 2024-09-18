@@ -1,7 +1,10 @@
 // components/about/AboutCardSection.js
 
+"use client"; // Ensure this is treated as a client component
+
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion"; // Import Framer Motion
 
 const AboutCardSection = () => {
   const teamMembers = [
@@ -28,22 +31,71 @@ const AboutCardSection = () => {
     },
   ];
 
+  // Animation Variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const zoomIn = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut", delay: 0.2 },
+    },
+  };
+
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const slideInRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut", delay: 0.4 },
+    },
+  };
+
   return (
-    <section className="px-6 py-12 bg-white text-center animate-fade-in">
-      <h2 className="text-lg uppercase font-semibold text-gray-500">
+    <motion.section
+      className="px-6 py-12 bg-white text-center"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.2 }}
+      variants={fadeInUp}
+    >
+      <motion.h2 className="text-lg uppercase font-semibold text-gray-500">
         About Us
-      </h2>
-      <h1 className="text-4xl text-customBlue font-bold mt-2 mb-4">
+      </motion.h2>
+      <motion.h1
+        className="text-4xl text-customBlue font-bold mt-2 mb-4"
+        variants={fadeInUp}
+      >
         GDC Consultants LTD
-      </h1>
-      <p className="text-xl text-gray-700 mb-8">
+      </motion.h1>
+      <motion.p className="text-xl text-gray-700 mb-8" variants={fadeInUp}>
         Chartered Professional Engineers & Architectural Designs
-      </p>
+      </motion.p>
 
       {/* Card Container */}
       <div className="flex flex-col md:flex-row justify-center items-center gap-6">
         {/* First Card */}
-        <div className="overflow-hidden md:w-[28%] animate-slide-in-left">
+        <motion.div
+          className="overflow-hidden md:w-[28%]"
+          variants={slideInLeft}
+        >
           <Image
             src={teamMembers[0].image}
             alt={teamMembers[0].title}
@@ -56,10 +108,13 @@ const AboutCardSection = () => {
             <p className="text-gray-600 mb-2">“Your vision. Our expertise.”</p>
             <p className="text-gray-600">{teamMembers[0].description}</p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Middle Card with Down Position */}
-        <div className="overflow-hidden md:w-[28%] md:mt-10 animate-zoom-in animation-delay-200">
+        <motion.div
+          className="overflow-hidden md:w-[28%] md:mt-10"
+          variants={zoomIn}
+        >
           <Image
             src={teamMembers[1].image}
             alt={teamMembers[1].title}
@@ -71,10 +126,13 @@ const AboutCardSection = () => {
             <h3 className="text-lg font-bold mb-2">{teamMembers[1].title}</h3>
             <p className="text-gray-600">{teamMembers[1].description}</p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Third Card */}
-        <div className="overflow-hidden md:w-[28%] animate-slide-in-right animation-delay-400">
+        <motion.div
+          className="overflow-hidden md:w-[28%]"
+          variants={slideInRight}
+        >
           <Image
             src={teamMembers[2].image}
             alt={teamMembers[2].title}
@@ -86,9 +144,9 @@ const AboutCardSection = () => {
             <h3 className="text-lg font-bold mb-2">{teamMembers[2].title}</h3>
             <p className="text-gray-600">{teamMembers[2].description}</p>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

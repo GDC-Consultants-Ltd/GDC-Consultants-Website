@@ -1,6 +1,9 @@
+"use client"; // Ensure this is treated as a client component
+
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import "../../app/globals.css";
+import { motion } from "framer-motion"; // Import Framer Motion
 import ProjectHeader from "@/components/projects/ProjectHeader";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -59,11 +62,30 @@ const projects = [
   },
 ];
 
+// Define animation variants
+const fadeInVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const scaleUpVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
 const ProjectsPage = () => {
   const [currentProject, setCurrentProject] = useState(projects[0]);
   const [activeIndex, setActiveIndex] = useState(1); // Start from the first real image
-  const [selectedCategory, setSelectedCategory] = useState("All Projects"); // Set initial category to "All Projects"
-  const [filteredProjects, setFilteredProjects] = useState(projects); // Set initial filtered projects to all projects
+  const [selectedCategory, setSelectedCategory] = useState("All Projects");
+  const [filteredProjects, setFilteredProjects] = useState(projects);
   const sliderRef = useRef(null);
   const totalSlides = filteredProjects.length;
 
@@ -94,7 +116,6 @@ const ProjectsPage = () => {
   // Scroll to active image when activeIndex changes
   useEffect(() => {
     if (activeIndex === 0) {
-      // If we are at the first clone, jump to the last real slide
       setTimeout(() => {
         sliderRef.current.scrollTo({
           left:
@@ -104,7 +125,6 @@ const ProjectsPage = () => {
         setActiveIndex(totalSlides);
       }, 500);
     } else if (activeIndex === totalSlides + 1) {
-      // If we are at the last clone, jump to the first real slide
       setTimeout(() => {
         sliderRef.current.scrollTo({
           left: sliderRef.current.clientWidth,
@@ -116,6 +136,17 @@ const ProjectsPage = () => {
       scrollToActiveImage();
     }
   }, [activeIndex]);
+
+  // Update currentProject based on activeIndex
+  useEffect(() => {
+    // Calculate the actual index of the project based on activeIndex
+    let projectIndex = activeIndex - 1; // Active index starts at 1 due to cloned slides
+    if (projectIndex < 0) projectIndex = totalSlides - 1; // Wrap around to last project
+    if (projectIndex >= totalSlides) projectIndex = 0; // Wrap around to first project
+
+    // Update the current project based on the calculated index
+    setCurrentProject(filteredProjects[projectIndex]);
+  }, [activeIndex, filteredProjects, totalSlides]);
 
   // Extract unique categories from projects
   const categories = [
@@ -142,9 +173,15 @@ const ProjectsPage = () => {
       <ProjectHeader />
 
       {/* Category Labels */}
-      <div className="flex flex-wrap justify-center py-6 m-4 animate-fade-in-up transition-all duration-500 ease-in-out">
+      <motion.div
+        className="flex flex-wrap justify-center py-6 m-4"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        variants={fadeInVariants}
+      >
         {categories.map((category) => (
-          <button
+          <motion.button
             key={category}
             onClick={() => filterProjects(category)}
             className={`px-4 py-2 rounded-full m-1 md:m-2 transition duration-300 ease-in-out transform hover:scale-105 ${
@@ -152,24 +189,29 @@ const ProjectsPage = () => {
                 ? "bg-customBlue text-white shadow-lg"
                 : "bg-gray-200 text-gray-700 hover:bg-customBlue hover:text-white"
             }`}
+            variants={fadeInVariants}
           >
             {category}
-          </button>
+          </motion.button>
         ))}
-      </div>
+      </motion.div>
 
       <section className="pb-10">
         <div className="max-w-screen-xl mx-auto px-6 md:px-10 xl:px-16">
           {/* Horizontal Scrollable Slider */}
-          <div
+          <motion.div
             ref={sliderRef}
             className="relative flex gap-8 overflow-x-auto scrollbar-hide py-6"
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInVariants}
           >
             {/* Clone last slide at the beginning for circular effect */}
-            <div
+            <motion.div
               className={`carousel-image flex-shrink-0 w-[500px] h-[350px] transition-transform duration-500 cursor-pointer ${
                 activeIndex === 0 ? "scale-110" : "scale-100"
               }`}
+              variants={scaleUpVariants}
             >
               <Image
                 src={
@@ -180,10 +222,10 @@ const ProjectsPage = () => {
                 height={350}
                 className="object-cover w-full h-full rounded-lg"
               />
-            </div>
+            </motion.div>
 
             {filteredProjects.map((project, index) => (
-              <div
+              <motion.div
                 key={index}
                 onClick={() => {
                   setActiveIndex(index + 1);
@@ -192,6 +234,7 @@ const ProjectsPage = () => {
                 className={`carousel-image flex-shrink-0 w-[500px] h-[350px] transition-transform duration-500 cursor-pointer ${
                   index + 1 === activeIndex ? "scale-110" : "scale-100"
                 }`}
+                variants={scaleUpVariants}
               >
                 <Image
                   src={project.image}
@@ -200,14 +243,15 @@ const ProjectsPage = () => {
                   height={350}
                   className="object-cover w-full h-full"
                 />
-              </div>
+              </motion.div>
             ))}
 
             {/* Clone first slide at the end for circular effect */}
-            <div
+            <motion.div
               className={`carousel-image flex-shrink-0 w-[500px] h-[350px] transition-transform duration-500 cursor-pointer ${
                 activeIndex === totalSlides + 1 ? "scale-110" : "scale-100"
               }`}
+              variants={scaleUpVariants}
             >
               <Image
                 src={filteredProjects[0]?.image || projects[0].image}
@@ -216,18 +260,23 @@ const ProjectsPage = () => {
                 height={350}
                 className="object-cover w-full h-full rounded-lg"
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Project Details */}
-          <div className="mt-8 text-center">
+          <motion.div
+            className="mt-8 text-center"
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInVariants}
+          >
             <h3 className="text-2xl font-semibold text-customBlue mb-2">
               {currentProject.title}
             </h3>
             <p className="text-lg text-customYellow">
               {currentProject.location}
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 

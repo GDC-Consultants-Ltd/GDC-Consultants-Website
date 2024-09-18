@@ -1,4 +1,4 @@
-"use client"; // Ensures this is a client-side component
+"use client"; // Ensures this is treated as a client-side component
 
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link"; // Import Link from Next.js
@@ -17,8 +17,10 @@ import {
   MagnifyingGlassIcon,
   BookOpenIcon,
 } from "@heroicons/react/24/solid";
+import { motion } from "framer-motion"; // Import Framer Motion
 
 const services = [
+  // Service data remains the same
   {
     title: "3 Waters & Contamination",
     slug: "3-waters",
@@ -118,9 +120,34 @@ const ServicesSection = () => {
     };
   }, [animationTriggered]);
 
+  // Define animation variants for Framer Motion
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
     <section ref={sectionRef} className="py-8 bg-gray-50">
-      <div className="text-center mb-8 px-4 md:px-8 xl:px-12">
+      <motion.div
+        className="text-center mb-8 px-4 md:px-8 xl:px-12"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        variants={titleVariants}
+      >
         <h2 className="text-3xl text-customYellow uppercase font-bold mt-2">
           Our Expertise and Services
         </h2>
@@ -130,15 +157,17 @@ const ServicesSection = () => {
           projects. Explore our services to see how we can help you reach your
           goals.
         </h3>
-      </div>
+      </motion.div>
 
       <div className="max-w-screen-xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 px-4 md:px-6 xl:px-10">
         {services.map((service, index) => (
-          <div
+          <motion.div
             key={index}
-            className={`relative bg-white shadow-md overflow-hidden transition duration-300 group flex flex-col items-center border-b-4 border-customBlue transform ${
-              isVisible ? "animate-slide-up" : "opacity-0"
-            } transition-transform duration-500 ease-in-out`}
+            className="relative bg-white shadow-md overflow-hidden transition duration-300 group flex flex-col items-center border-b-4 border-customBlue transform"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
+            variants={cardVariants}
           >
             {/* Sliding background effect */}
             <div className="absolute inset-0 bg-customBlue transition-transform duration-300 transform translate-y-full group-hover:translate-y-0"></div>
@@ -146,7 +175,7 @@ const ServicesSection = () => {
               <div className="bg-white rounded-full p-3 shadow-lg transition duration-300 group-hover:bg-customYellow group-hover:text-white animate-fade-in">
                 {React.cloneElement(service.icon, {
                   className:
-                    "w-12 h-12 text-customBlue group-hover:text-white animate-scale-up", // Increased size
+                    "w-12 h-12 text-customBlue group-hover:text-white animate-scale-up",
                 })}
               </div>
               <h4 className="text-base font-semibold mt-3 text-center text-customBlue group-hover:text-white animate-fade-in">
@@ -158,7 +187,7 @@ const ServicesSection = () => {
                 </a>
               </Link>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

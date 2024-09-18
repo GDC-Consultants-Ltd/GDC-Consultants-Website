@@ -1,5 +1,6 @@
 // components/ServiceSections.js
 import Image from "next/image";
+import { motion } from "framer-motion"; // Import motion from Framer Motion
 
 const ServiceSections = ({ sections }) => {
   const bgColors = [
@@ -8,41 +9,58 @@ const ServiceSections = ({ sections }) => {
     "bg-customYellow text-white",
   ];
 
+  // Define animation variants for motion components
+  const variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden space-y-12">
+      {" "}
+      {/* Added spacing between sections */}
       {sections.map((section, index) => (
-        <div
+        <motion.div
           key={section.id}
           className={`flex flex-col md:flex-row ${
             index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-          } items-stretch transition-all duration-500 ease-in-out animate-slide-up`}
+          } items-stretch transition-all duration-500 ease-in-out`}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }} // Trigger animation when 20% of the section is visible
+          variants={variants}
         >
           {/* Image Section */}
-          <div
-            className={`relative md:w-1/2 w-full h-[300px] md:h-auto flex-shrink-0 animate-zoom-in transition-opacity duration-700 ease-in-out`}
+          <motion.div
+            className={`relative md:w-1/2 w-full h-[300px] md:h-auto flex-shrink-0 p-2`}
+            initial={{ scale: 0.9 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <Image
               src={section.image}
               alt={section.title}
-              layout="fill" // Ensures the image covers the entire container
-              objectFit="cover" // Maintains the aspect ratio of the image
+              layout="fill"
+              objectFit="cover"
               className="transition-opacity duration-700 ease-in-out hover:opacity-90"
             />
-          </div>
+          </motion.div>
 
           {/* Text Section */}
-          <div
-            className={`md:w-1/2 w-full flex-grow p-6 sm:p-8 lg:p-10 flex items-center justify-center ${
+          <motion.div
+            className={`md:w-1/2 w-full flex-grow p-8 sm:p-10 lg:p-12 flex items-center justify-center ${
               bgColors[index % bgColors.length]
-            } transition-all duration-700 ease-in-out ${
-              index % 2 === 0 ? "animate-slide-right" : "animate-slide-left"
-            }`}
+            } transition-all duration-700 ease-in-out`}
+            variants={variants}
           >
-            <div className="w-full text-center md:text-left">
+            <div className="w-full text-center md:text-left space-y-4">
               <h2 className="text-2xl sm:text-3xl font-bold mb-4 animate-fade-in-up">
                 {section.title}
               </h2>
-              {/* Multi-paragraph Rendering */}
               {section.description.split("\n").map((line, i) => (
                 <p key={i} className="mb-4">
                   {line}
@@ -58,8 +76,8 @@ const ServiceSections = ({ sections }) => {
                 </ul>
               )}
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       ))}
     </div>
   );

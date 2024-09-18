@@ -1,23 +1,57 @@
 // components/about/ReviewHeader.js
 
-import React from 'react';
-import Image from 'next/image';
+"use client"; // Ensure this is treated as a client component
+
+import React from "react";
+import Image from "next/image";
+import { motion } from "framer-motion"; // Import Framer Motion
 
 const ReviewHeader = () => {
+  // Animation Variants
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.6, ease: "easeOut" } },
+  };
+
+  const slideInRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
-    <section className="px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center animate-fade-in">
+    <motion.section
+      className="px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.2 }}
+      variants={fadeIn}
+    >
       {/* Image Section */}
-      <div className="flex justify-center">
+      <motion.div className="flex justify-center" variants={slideInLeft}>
         <Image
           src="/images/about/review.png" // Replace with the actual path to your image
           alt="Feedback Illustration"
           width={800} // Adjust width according to your design needs
           height={250}
+          className="object-cover"
         />
-      </div>
+      </motion.div>
 
       {/* Text Section */}
-      <div className="text-left">
+      <motion.div className="text-left" variants={slideInRight}>
         <h2 className="text-lg uppercase font-semibold text-gray-500">
           Leave us a Review
         </h2>
@@ -28,8 +62,8 @@ const ReviewHeader = () => {
           Please provide your feedback for any job you have previously completed
           with us, and kindly include the job number for easy reference.
         </p>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 
