@@ -101,7 +101,7 @@ const Hero = () => {
         viewport={{ once: false, amount: 0.2 }}
       >
         <Image
-          src="/images/GDC-OFFICE-EDIT-scaled.jpg"
+          src="/images/GDC-OFFICE-EDIT-scaled.webp"
           alt="Hero Background"
           fill
           priority

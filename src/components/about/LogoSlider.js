@@ -7,17 +7,17 @@ import Image from "next/image";
 
 // Array of logo images
 const logos = [
-  "/images/logos/image-5.webp",
-  "/images/logos/image-6.webp",
-  "/images/logos/image-7.webp",
-  "/images/logos/image-8.webp",
-  "/images/logos/image-9.webp",
-  "/images/logos/image-10.webp",
-  "/images/logos/image-11.png",
-  "/images/logos/image-12.webp",
-  "/images/logos/images.webp",
-  "/images/logos/NZGS_logo1-300x80.webp",
-  "/images/logos/nzpi-300x120.webp",
+  "/images/logos/1.webp",
+  "/images/logos/2.webp",
+  "/images/logos/3.webp",
+  "/images/logos/4.webp",
+  "/images/logos/5.webp",
+  "/images/logos/6.webp",
+  "/images/logos/7.webp",
+  "/images/logos/8.webp",
+  "/images/logos/9.webp",
+  "/images/logos/10.webp",
+  "/images/logos/11.webp",
 ];
 
 const LogoSlider = () => {
@@ -99,10 +99,9 @@ const LogoSlider = () => {
             <Image
               src={logo}
               alt={`Logo ${index + 1}`}
-              className="h-20 w-30 object-contain mx-0.5"
-              width={150} // Adjusted width based on the w-40 class
-              height={80} // Adjusted height based on the h-20 class
-              layout="intrinsic" // This maintains the set width and height of the image
+              className="h-25 w-30 object-contain mx-0.5"
+              width={100} // Adjusted width based on the w-40 class
+              height={90} // Adjusted height based on the h-20 class
             />
           </div>
         ))}

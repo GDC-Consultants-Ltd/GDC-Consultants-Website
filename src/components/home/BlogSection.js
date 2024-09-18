@@ -7,39 +7,56 @@ import {
   CalendarIcon,
   UserIcon,
   ChatBubbleLeftEllipsisIcon,
-} from "@heroicons/react/24/outline";
-
-// Sample blog data
-const blogs = [
-  {
-    id: 1,
-    title: "Best for any industrial & business solution",
-    date: "Sept. 06, 2020",
-    author: "Admin",
-    comments: 3,
-    image: "images/services/architectural.webp",
-  },
-  {
-    id: 2,
-    title: "Best for any industrial & business solution",
-    date: "Sept. 06, 2020",
-    author: "Admin",
-    comments: 3,
-    image: "images/services/architectural.webp",
-  },
-  {
-    id: 3,
-    title: "Best for any industrial & business solution",
-    date: "Sept. 06, 2020",
-    author: "Admin",
-    comments: 3,
-    image: "images/services/architectural.webp",
-  },
-];
+} from "@heroicons/react/24/solid";
+import axios from "axios"; // Import Axios for fetching data
 
 const BlogSection = () => {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await axios.get("/api/hubspot-blogs");
+        const fetchedBlogs = response.data;
+
+        // Sort the blogs by date and slice to get the most recent 3 blogs
+        const sortedBlogs = fetchedBlogs
+          .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)) // Sort by date
+          .slice(0, 3); // Get the 3 most recent blogs
+
+        // Fetch comments for each blog
+        const blogsWithComments = await Promise.all(
+          sortedBlogs.map(async (blog) => {
+            try {
+              const commentsResponse = await axios.get(
+                `/api/get-comments?formId=4712e0e3-c31d-482b-be76-3882c5ed3d77&slug=${blog.slug}`
+              );
+              const comments = commentsResponse.data;
+              return { ...blog, commentsCount: comments.length };
+            } catch (error) {
+              console.error(
+                `Error fetching comments for blog ${blog.slug}:`,
+                error
+              );
+              return { ...blog, commentsCount: 0 }; // Default to 0 comments if fetch fails
+            }
+          })
+        );
+
+        setBlogs(blogsWithComments);
+        setLoading(false);
+      } catch (error) {
+        setError("Failed to fetch blogs");
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -86,6 +103,14 @@ const BlogSection = () => {
     },
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <motion.div
       ref={sectionRef}
@@ -125,8 +150,8 @@ const BlogSection = () => {
               viewport={{ once: false, amount: 0.2 }}
             >
               <Image
-                src={`/${blog.image}`}
-                alt={blog.title}
+                src={blog.featuredImage || "/images/default-blog.webp"} // Use a default image if none is provided
+                alt={blog.htmlTitle}
                 width={600}
                 height={300}
                 className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
@@ -137,24 +162,28 @@ const BlogSection = () => {
                 <div className="flex items-center text-sm text-gray-500 mb-2">
                   <span className="flex items-center mr-4">
                     <CalendarIcon className="w-5 h-5 text-customYellow mr-1" />
-                    {blog.date}
+                    {new Date(blog.publishDate).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
                   </span>
                   <span className="flex items-center mr-4">
                     <UserIcon className="w-5 h-5 text-customYellow mr-1" />
-                    {blog.author}
+                    {blog.authorName || "Admin"}
                   </span>
                   <span className="flex items-center">
                     <ChatBubbleLeftEllipsisIcon className="w-5 h-5 text-customYellow mr-1" />
-                    {blog.comments}
+                    {blog.commentsCount || 0}
                   </span>
                 </div>
 
                 <h4 className="text-lg font-semibold text-customBlue mb-4 group-hover:text-customYellow transition-colors duration-300">
-                  {blog.title}
+                  {blog.htmlTitle}
                 </h4>
 
                 <a
-                  href="#"
+                  href={blog.slug || "#"}
                   className="inline-block text-sm text-white bg-customBlue py-2 px-4 rounded-full hover:bg-customYellow transition-colors duration-300"
                 >
                   Read More

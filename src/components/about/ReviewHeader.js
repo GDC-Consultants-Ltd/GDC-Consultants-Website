@@ -42,7 +42,7 @@ const ReviewHeader = () => {
       {/* Image Section */}
       <motion.div className="flex justify-center" variants={slideInLeft}>
         <Image
-          src="/images/about/review.png" // Replace with the actual path to your image
+          src="/images/about/review.webp" // Replace with the actual path to your image
           alt="Feedback Illustration"
           width={800} // Adjust width according to your design needs
           height={250}

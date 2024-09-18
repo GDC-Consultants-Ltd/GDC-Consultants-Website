@@ -43,19 +43,19 @@ export const WatersUniqueContent = () => {
               title: "Storm Water",
               description:
                 "GDC Consultants can help with technical design plans, strategy development, cohesive catchment planning, and fit-for-purpose design solutions.",
-              image: "/images/services/storm-water.jpg",
+              image: "/images/services/storm-water.webp",
             },
             {
               title: "Waste Water",
               description:
                 "We are experts in wastewater network performance analysis. We can assist in choosing an affordable containment option and help identify the most cost-effective combination for improvement works.",
-              image: "/images/services/waste-water.jpg",
+              image: "/images/services/waste-water.webp",
             },
             {
               title: "Water Supply",
               description:
                 "We provide a wide variety of professional services for onsite water supply systems, including surface and groundwater supplies.",
-              image: "/images/services/water-supply.png",
+              image: "/images/services/water-supply.webp",
             },
           ].map((card, index) => (
             <div
