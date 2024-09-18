@@ -33,7 +33,7 @@ const BlogSection = () => {
           sortedBlogs.map(async (blog) => {
             try {
               const commentsResponse = await axios.get(
-                `/api/get-comments?formId=${process.env.HUBSPOT_COMMENT_FORM_ID}&slug=${blog.slug}`
+                `/api/get-comments?formId=${process.env.NEXT_PUBLIC_HUBSPOT_COMMENT_FORM_ID}&slug=${blog.slug}`
               );
               const comments = commentsResponse.data;
               return { ...blog, commentsCount: comments.length };
