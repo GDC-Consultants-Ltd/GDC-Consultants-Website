@@ -14,10 +14,20 @@ export const fetchPublishedBlogs = async () => {
       },
     });
 
+    // Check if the response contains results
+    if (!response.data || !response.data.results) {
+      throw new Error('Unexpected response format from HubSpot API.');
+    }
+
     console.log('Fetched Blogs:', response.data.results); // Log the fetched data for debugging
     return response.data.results;
   } catch (error) {
-    console.error('Error fetching blogs from HubSpot:', error);
-    return [];
+    // Log detailed error information
+    if (error.response) {
+      console.error('API Error Response:', error.response.data);
+    } else {
+      console.error('Error fetching blogs from HubSpot:', error.message || error);
+    }
+    throw new Error('Failed to fetch blogs from HubSpot');
   }
 };

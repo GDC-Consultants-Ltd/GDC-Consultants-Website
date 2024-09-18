@@ -1,22 +1,12 @@
-// pages/[...slug].js
 import { useRouter } from "next/router";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import "../app/globals.css";
-
-// Sample data for recent comments (replace with real data or dynamic fetching as needed)
-const recentComments = [
-  {
-    author: "Dhaval Manjrawalla",
-    content:
-      "A Day in the Life with Rojesh Koshy – Operation Manager/Civil Engineer",
-    link: "/blogs/day-in-life-rojash",
-  },
-];
 
 // Map categories using IDs for dynamic display
 const categoriesMap = {
@@ -27,6 +17,68 @@ const categoriesMap = {
 
 const BlogPost = ({ blog, recentArticles }) => {
   const router = useRouter();
+  const [comments, setComments] = useState([]); // State to store fetched comments
+  const [formData, setFormData] = useState({
+    email: "",
+    comment: "",
+  });
+
+  useEffect(() => {
+    fetchComments(); // Fetch comments when the component mounts
+  }, [blog.slug]);
+
+  // Fetch comments related to the current blog post
+  const fetchComments = async () => {
+    try {
+      const response = await fetch(
+        `/api/get-comments?formId=4712e0e3-c31d-482b-be76-3882c5ed3d77&slug=${blog.slug}`
+      );
+      const fetchedComments = await response.json();
+      setComments(fetchedComments);
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    }
+  };
+
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle form submission
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    // Prepare data to send to HubSpot
+    const data = {
+      fields: [
+        { name: "email", value: formData.email },
+        { name: "comment", value: formData.comment },
+        { name: "blog_post_slug", value: blog.slug }, // Pass the slug to identify the post
+      ],
+    };
+
+    try {
+      const response = await axios.post(
+        `https://api.hsforms.com/submissions/v3/integration/submit/6187835/4712e0e3-c31d-482b-be76-3882c5ed3d77`, // HubSpot form endpoint
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("Comment submitted successfully.");
+        fetchComments(); // Refresh comments after submission
+        setFormData({ email: "", comment: "" }); // Clear form fields
+      }
+    } catch (error) {
+      console.error("Error submitting comment:", error);
+    }
+  };
 
   if (router.isFallback) {
     return <div>Loading...</div>;
@@ -42,9 +94,6 @@ const BlogPost = ({ blog, recentArticles }) => {
     day: "2-digit",
     year: "numeric",
   });
-
-  // Get category name dynamically based on the categoryId from the API
-  const categoryName = categoriesMap[blog.categoryId] || "Uncategorized";
 
   return (
     <>
@@ -74,7 +123,7 @@ const BlogPost = ({ blog, recentArticles }) => {
           <article className="lg:col-span-2">
             <h1 className="text-4xl font-bold">{blog.htmlTitle}</h1>
             <p className="text-gray-600 flex items-center gap-2 py-3">
-              {blog.authorName} <span className="mx-1">•</span> {formattedDate}
+              GDC Admin <span className="mx-1">•</span> {formattedDate}
             </p>
             <div className="relative w-full h-96 mb-6">
               <Image
@@ -89,7 +138,6 @@ const BlogPost = ({ blog, recentArticles }) => {
               className="text-gray-700 mb-4"
               dangerouslySetInnerHTML={{ __html: blog.postBody }}
             />
-
             {/* Leave a Reply Section */}
             <section className="mt-12">
               <h2 className="text-2xl font-bold mb-4">Leave a Reply</h2>
@@ -97,51 +145,40 @@ const BlogPost = ({ blog, recentArticles }) => {
                 Your email address will not be published. Required fields are
                 marked *
               </p>
-              <form className="space-y-4">
+              {/* Custom Form */}
+              <form onSubmit={handleFormSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-gray-700 mb-1">Comment *</label>
+                  <label className="block text-gray-700">Comment*</label>
                   <textarea
-                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    rows="5"
+                    name="comment"
+                    value={formData.comment}
+                    onChange={handleInputChange}
                     required
+                    className="w-full p-2 border border-gray-300 rounded-md"
                   ></textarea>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div>
-                    <label className="block text-gray-700 mb-1">Name *</label>
-                    <input
-                      type="text"
-                      className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700 mb-1">Email *</label>
-                    <input
-                      type="email"
-                      className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700 mb-1">Website</label>
-                    <input
-                      type="url"
-                      className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
+                <div>
+                  <label className="block text-gray-700">Email*</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                  />
                 </div>
                 <button
                   type="submit"
                   className="px-4 py-2 bg-customBlue text-white rounded-md hover:bg-customYellow transition-colors"
                 >
-                  Post Comment
+                  Submit
                 </button>
               </form>
             </section>
           </article>
 
-          {/* Sidebar with Recent Articles and Recent Comments */}
+          {/* Sidebar with Recent Articles */}
           <aside className="space-y-6">
             <h2 className="text-xl font-bold">Recent articles</h2>
             {recentArticles.map((article, index) => (
@@ -174,14 +211,25 @@ const BlogPost = ({ blog, recentArticles }) => {
             <div>
               <h2 className="text-xl font-bold">Recent Comments</h2>
               <ul className="list-disc pl-5">
-                {recentComments.map((comment, index) => (
-                  <li key={index} className="text-gray-700">
-                    <Link href={comment.link}>
-                      <span className="font-semibold">{comment.author}</span> on{" "}
-                      {comment.content}
-                    </Link>
-                  </li>
-                ))}
+                {comments.length > 0 ? (
+                  comments.map((comment, index) => (
+                    <li key={index} className="text-gray-700">
+                      <p className="text-gray-700">{comment.comment}</p>
+                      <small>
+                        {new Date(comment.submittedOn).toLocaleDateString(
+                          "en-US",
+                          {
+                            month: "2-digit",
+                            day: "2-digit",
+                            year: "numeric",
+                          }
+                        )}
+                      </small>
+                    </li>
+                  ))
+                ) : (
+                  <p className="text-gray-500">No comments yet.</p>
+                )}
               </ul>
             </div>
           </aside>
