@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import "../../app/globals.css";
-import { motion } from "framer-motion"; // Import Framer Motion
 import ProjectHeader from "@/components/projects/ProjectHeader";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -14,6 +13,12 @@ import ScrollToTop from "@/components/ScrollToTop";
 const projects = [
   {
     title: "Claudelands Events Centre",
+    image: "/images/projects/1.webp",
+    location: "Hamilton",
+    category: "Events",
+  },
+  {
+    title: "Events Centre",
     image: "/images/projects/1.webp",
     location: "Hamilton",
     category: "Events",
@@ -61,25 +66,6 @@ const projects = [
     category: "Commercial",
   },
 ];
-
-// Define animation variants
-const fadeInVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
-
-const scaleUpVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
-};
 
 const ProjectsPage = () => {
   const [currentProject, setCurrentProject] = useState(projects[0]);
@@ -173,15 +159,9 @@ const ProjectsPage = () => {
       <ProjectHeader />
 
       {/* Category Labels */}
-      <motion.div
-        className="flex flex-wrap justify-center py-6 m-4"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }}
-        variants={fadeInVariants}
-      >
+      <div className="flex flex-wrap justify-center py-6 m-4">
         {categories.map((category) => (
-          <motion.button
+          <button
             key={category}
             onClick={() => filterProjects(category)}
             className={`px-4 py-2 rounded-full m-1 md:m-2 transition duration-300 ease-in-out transform hover:scale-105 ${
@@ -189,43 +169,36 @@ const ProjectsPage = () => {
                 ? "bg-customBlue text-white shadow-lg"
                 : "bg-gray-200 text-gray-700 hover:bg-customBlue hover:text-white"
             }`}
-            variants={fadeInVariants}
           >
             {category}
-          </motion.button>
+          </button>
         ))}
-      </motion.div>
+      </div>
 
       <section className="pb-10">
         <div className="max-w-screen-xl mx-auto px-6 md:px-10 xl:px-16">
           {/* Horizontal Scrollable Slider */}
-          <motion.div
+          <div
             ref={sliderRef}
             className="relative flex gap-8 overflow-x-auto scrollbar-hide py-6"
-            initial="hidden"
-            whileInView="visible"
-            variants={fadeInVariants}
           >
             {/* Clone last slide at the beginning for circular effect */}
-            <motion.div
+            <div
               className={`carousel-image flex-shrink-0 w-[500px] h-[350px] transition-transform duration-500 cursor-pointer ${
                 activeIndex === 0 ? "scale-110" : "scale-100"
               }`}
-              variants={scaleUpVariants}
             >
               <Image
-                src={
-                  filteredProjects[totalSlides - 1]?.image || projects[0].image
-                }
-                alt={filteredProjects[totalSlides - 1]?.title || ""}
+                src={projects[totalSlides - 1].image}
+                alt={projects[totalSlides - 1].title}
                 width={500}
                 height={350}
                 className="object-cover w-full h-full rounded-lg"
               />
-            </motion.div>
+            </div>
 
-            {filteredProjects.map((project, index) => (
-              <motion.div
+            {projects.map((project, index) => (
+              <div
                 key={index}
                 onClick={() => {
                   setActiveIndex(index + 1);
@@ -234,7 +207,6 @@ const ProjectsPage = () => {
                 className={`carousel-image flex-shrink-0 w-[500px] h-[350px] transition-transform duration-500 cursor-pointer ${
                   index + 1 === activeIndex ? "scale-110" : "scale-100"
                 }`}
-                variants={scaleUpVariants}
               >
                 <Image
                   src={project.image}
@@ -243,40 +215,34 @@ const ProjectsPage = () => {
                   height={350}
                   className="object-cover w-full h-full"
                 />
-              </motion.div>
+              </div>
             ))}
 
             {/* Clone first slide at the end for circular effect */}
-            <motion.div
+            <div
               className={`carousel-image flex-shrink-0 w-[500px] h-[350px] transition-transform duration-500 cursor-pointer ${
                 activeIndex === totalSlides + 1 ? "scale-110" : "scale-100"
               }`}
-              variants={scaleUpVariants}
             >
               <Image
-                src={filteredProjects[0]?.image || projects[0].image}
-                alt={filteredProjects[0]?.title || ""}
+                src={projects[0].image}
+                alt={projects[0].title}
                 width={500}
                 height={350}
-                className="object-cover w-full h-full rounded-lg"
+                className="object-cover w-full h-full"
               />
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Project Details */}
-          <motion.div
-            className="mt-8 text-center"
-            initial="hidden"
-            whileInView="visible"
-            variants={fadeInVariants}
-          >
+          <div className="mt-8 text-center">
             <h3 className="text-2xl font-semibold text-customBlue mb-2">
               {currentProject.title}
             </h3>
             <p className="text-lg text-customYellow">
               {currentProject.location}
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
