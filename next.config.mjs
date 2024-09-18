@@ -2,7 +2,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["6187835.fs1.hubspotusercontent-na1.net"], // Add your image domain here
+    domains: [
+      `${process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID}.fs1.hubspotusercontent-na1.net`, // Dynamically use the HubSpot portal ID from .env
+    ],
   },
 };
 

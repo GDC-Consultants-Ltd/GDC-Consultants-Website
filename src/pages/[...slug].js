@@ -61,7 +61,7 @@ const BlogPost = ({ blog, recentArticles }) => {
 
     try {
       const response = await axios.post(
-        `https://api.hsforms.com/submissions/v3/integration/submit/6187835/4712e0e3-c31d-482b-be76-3882c5ed3d77`, // HubSpot form endpoint
+        `https://api.hsforms.com/submissions/v3/integration/submit/${process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID}/${process.env.NEXT_PUBLIC_HUBSPOT_COMMENT_FORM_ID}`, // Use environment variables
         data,
         {
           headers: {
