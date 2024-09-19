@@ -145,7 +145,7 @@ export const ElectricalEngineeringUniqueContent = () => {
       {/* Image section with flex layout for left text and right cards */}
       <div
         ref={ref} // Attach the ref to the section to observe
-        className={`relative w-full h-96 flex items-center justify-center bg-cover bg-center shadow-md rounded-md transition-all duration-700 ease-in-out ${
+        className={`relative w-full h-96 flex flex-col md:flex-row items-center justify-center bg-cover bg-center shadow-md rounded-md transition-all duration-700 ease-in-out ${
           isVisible ? "animate-fade-in-up" : "opacity-0" // Apply animation only when visible
         }`}
         style={{
@@ -156,17 +156,17 @@ export const ElectricalEngineeringUniqueContent = () => {
         <div className="absolute inset-0 bg-black opacity-60 rounded-md"></div>
 
         {/* Flex container to position left text and right cards */}
-        <div className="relative z-10 flex w-full h-full p-6">
+        <div className="relative z-10 flex flex-col md:flex-row w-full h-full p-4 md:p-6">
           {/* Left Side: Text Content */}
           <div
-            className={`flex flex-col justify-center w-1/2 text-white pr-4 transition-opacity duration-500 ${
+            className={`flex flex-col justify-center w-full md:w-1/2 text-white pr-0 md:pr-4 transition-opacity duration-500 ${
               isVisible ? "animate-slide-up" : "opacity-0"
             }`}
           >
-            <h2 className="text-3xl font-bold mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2 md:mb-4">
               Electrical Engineering Services by GDC Consultants
             </h2>
-            <p className="mb-4">
+            <p className="text-sm md:text-base mb-2 md:mb-4">
               We take pride in creating beautiful surroundings for your property
               that meet your every need and want. We have a wide range of
               designs for backyard, patio, and paving options. We are also happy
@@ -176,7 +176,7 @@ export const ElectricalEngineeringUniqueContent = () => {
 
           {/* Right Side: Cards */}
           <div
-            className={`w-1/2 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-y-auto max-h-80 scrollbar-hide scrollable-section transition-transform duration-500 ${
+            className={`w-full md:w-1/2 grid grid-cols-1 gap-4 overflow-y-auto max-h-80 scrollbar-hide scrollable-section transition-transform duration-500 ${
               isVisible ? "animate-fade-in-up" : "opacity-0"
             }`}
           >
@@ -221,10 +221,12 @@ export const ElectricalEngineeringUniqueContent = () => {
                 key={index}
                 className="bg-white bg-opacity-70 rounded-lg shadow-lg p-4 flex flex-col items-start transition-transform transform hover:scale-105"
               >
-                <h3 className="text-xl text-customBlue font-bold mb-2">
+                <h3 className="text-lg md:text-xl text-customBlue font-bold mb-1 md:mb-2">
                   {item.title}
                 </h3>
-                <p className="text-customBlue">{item.description}</p>
+                <p className="text-xs md:text-sm text-customBlue">
+                  {item.description}
+                </p>
               </div>
             ))}
           </div>
@@ -282,11 +284,11 @@ export const PavementDesignUniqueContent = () => {
   const [ref, isVisible] = useInView({ threshold: 0.2 }); // Set the threshold as needed
 
   return (
-    <div className="mt-10 px-6 lg:px-15">
+    <div className="mt-10 px-4 md:px-6 lg:px-15">
       {/* First Unique Section */}
       <div
         ref={ref} // Attach the ref to the section to observe
-        className={`relative w-full h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md transition-all duration-700 ease-in-out ${
+        className={`relative w-full h-64 md:h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md transition-all duration-700 ease-in-out ${
           isVisible ? "animate-fade-in-up" : "opacity-0" // Apply animation only when visible
         }`}
         style={{
@@ -296,19 +298,19 @@ export const PavementDesignUniqueContent = () => {
         {/* Dark overlay for contrast */}
         <div className="absolute inset-0 bg-black opacity-60 rounded-md"></div>
         <div
-          className={`relative z-10 text-center text-white p-6 transition-opacity duration-500 ${
+          className={`relative z-10 text-center text-white p-4 md:p-6 transition-opacity duration-500 ${
             isVisible ? "animate-slide-up" : "opacity-0"
           }`}
         >
           <h2
-            className={`text-3xl font-bold mb-4 transition-opacity duration-500 ${
+            className={`text-2xl md:text-3xl font-bold mb-2 md:mb-4 transition-opacity duration-500 ${
               isVisible ? "animate-fade-in" : "opacity-0"
             }`}
           >
             Pavement Design & Engineering
           </h2>
           <p
-            className={`mb-6 transition-opacity duration-500 ${
+            className={`text-sm md:text-base mb-4 md:mb-6 transition-opacity duration-500 ${
               isVisible ? "animate-fade-in" : "opacity-0"
             }`}
           >

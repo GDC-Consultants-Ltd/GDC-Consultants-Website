@@ -1,14 +1,13 @@
 // components/ProjectHeader.js
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 const ProjectHeader = () => {
   return (
     <section className="bg-gray-100 w-full py-10 md:py-16 transition-all duration-500 ease-in-out">
       <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-0 px-4 md:px-8 lg:px-16">
         {/* Left Content Column */}
-        <div className="flex flex-col space-y-4 md:space-y-6 animate-fade-in-up">
+        <div className="flex flex-col space-y-4 md:space-y-6 animate-fade-in-up text-center md:text-left">
           <h2 className="text-4xl md:text-5xl font-bold text-customYellow leading-tight animate-slide-in-left">
             Our Projects
           </h2>

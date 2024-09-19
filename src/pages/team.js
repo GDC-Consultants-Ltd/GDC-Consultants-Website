@@ -177,7 +177,7 @@ const TeamPage = () => {
       } else {
         subTeamSliderRef.current.scrollBy({ left: 300, behavior: "smooth" });
       }
-    }, 2000); // Scroll every 3 seconds
+    }, 3000); // Scroll every 3 seconds
   };
 
   // Pause auto-scroll when manually controlled and restart after a delay

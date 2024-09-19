@@ -97,10 +97,10 @@ const BlogGallery = () => {
         ></motion.div>
 
         <motion.div
-          className="absolute bottom-5 left-5 p-6 text-left"
+          className="absolute bottom-5 left-5 p-6 text-center md:text-left"
           variants={slideInLeft}
         >
-          <nav className="text-2xl text-white font-bold mb-2 flex items-center space-x-1">
+          <nav className="text-2xl text-white font-bold mb-2 flex items-center justify-center md:justify-start space-x-1">
             <span className="hover:text-customYellow">Our Blog</span>
           </nav>
           <h1 className="text-white text-5xl font-bold leading-tight">

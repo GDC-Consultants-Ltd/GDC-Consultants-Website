@@ -96,7 +96,7 @@ const ContactSection = () => {
 
   return (
     <motion.section
-      className="relative bg-cover bg-center text-white py-12 px-4 md:px-16 lg:px-24"
+      className="relative bg-cover bg-center text-white py-12 px-4 md:px-16 lg:px-24 overflow-hidden" // Added overflow-hidden to contain animations
       style={{ backgroundImage: `url('/images/contact.webp')` }} // Replace with the correct path to your background image
       initial="hidden"
       whileInView="visible"
@@ -115,11 +115,14 @@ const ContactSection = () => {
       </motion.div>
 
       <motion.div
-        className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+        className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center overflow-hidden" // Ensure grid container doesn't overflow
         variants={fadeIn}
       >
         {/* Contact Information */}
-        <motion.div className="space-y-6" variants={slideInLeft}>
+        <motion.div
+          className="space-y-6 overflow-visible"
+          variants={slideInLeft}
+        >
           <div className="space-y-4">
             <div className="flex items-center">
               <div className="bg-customBlue p-3 rounded-full">
@@ -153,7 +156,7 @@ const ContactSection = () => {
 
         {/* Contact Form */}
         <motion.div
-          className="bg-white text-black p-6 rounded-md shadow-md relative z-10"
+          className="bg-white text-black p-6 rounded-md shadow-md relative z-10 overflow-visible" // Ensure form doesn't overflow
           variants={slideInRight}
         >
           <h3 className="text-xl text-customBlue font-semibold mb-4">

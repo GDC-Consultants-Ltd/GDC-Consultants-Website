@@ -2,7 +2,7 @@
 
 "use client"; // Ensure this is treated as a client component
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion"; // Import Framer Motion
 
 // Sample job data
@@ -46,16 +46,19 @@ const groupByCategory = (jobs) => {
 
 export default function JobList() {
   const [selectedLocation, setSelectedLocation] = useState("All Locations");
-  const groupedJobs = groupByCategory(jobs);
+  const [filteredGroupedJobs, setFilteredGroupedJobs] = useState(
+    groupByCategory(jobs)
+  );
 
-  // Filter jobs based on the selected location
-  const filteredJobs =
-    selectedLocation === "All Locations"
-      ? jobs
-      : jobs.filter((job) => job.location === selectedLocation);
+  // Update filtered jobs based on selected location
+  useEffect(() => {
+    const updatedFilteredJobs =
+      selectedLocation === "All Locations"
+        ? jobs
+        : jobs.filter((job) => job.location === selectedLocation);
 
-  // Regroup the filtered jobs by category
-  const filteredGroupedJobs = groupByCategory(filteredJobs);
+    setFilteredGroupedJobs(groupByCategory(updatedFilteredJobs));
+  }, [selectedLocation]);
 
   // Animation Variants
   const fadeInUp = {
@@ -80,8 +83,7 @@ export default function JobList() {
     <motion.div
       className="bg-gray-100"
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: false, amount: 0.2 }}
+      animate="visible"
       variants={fadeInUp}
     >
       <div className="max-w-6xl p-6 mx-auto rounded-md">
@@ -114,7 +116,9 @@ export default function JobList() {
             variants={fadeInUp}
           >
             <div className="border-b pb-2">
-              <h3 className="text-lg text-customBlue font-medium">{category}</h3>
+              <h3 className="text-lg text-customBlue font-medium">
+                {category}
+              </h3>
             </div>
             {filteredGroupedJobs[category].map((job, index) => (
               <motion.div

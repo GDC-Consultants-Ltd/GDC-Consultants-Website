@@ -3,7 +3,6 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion"; // Import Framer Motion
 
 const ProjectHeader = () => {
@@ -45,10 +44,10 @@ const ProjectHeader = () => {
       <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-5 md:gap-0 px-4 md:px-8 lg:px-16">
         {/* Left Content Column */}
         <motion.div
-          className="flex flex-col space-y-4 md:space-y-6"
+          className="flex flex-col space-y-4 md:space-y-6 text-center md:text-left" // Added responsive text alignment
           variants={fadeInUp}
         >
-          <nav className="text-lg md:text-2xl text-customBlue font-bold flex items-center space-x-2">
+          <nav className="text-lg md:text-2xl text-customBlue font-bold flex items-center justify-center md:justify-start space-x-2">
             <span className="text-customBlue">Careers</span>
           </nav>
           <motion.h3

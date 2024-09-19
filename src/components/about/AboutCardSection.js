@@ -3,7 +3,6 @@
 "use client"; // Ensure this is treated as a client component
 
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion"; // Import Framer Motion
 
 const AboutCardSection = () => {
@@ -35,15 +34,6 @@ const AboutCardSection = () => {
       opacity: 1,
       y: 0,
       transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
-  const zoomIn = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, ease: "easeOut", delay: 0.2 },
     },
   };
 
@@ -90,7 +80,7 @@ const AboutCardSection = () => {
         <img
           src="/images/about/who-we-are.jpeg" // Ensure this path is correct for your image
           alt="who we are"
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          className="w-full h-full object-contain md:object-cover transition-transform duration-300 hover:scale-105"
         />
       </div>
 
@@ -102,7 +92,9 @@ const AboutCardSection = () => {
           variants={slideInLeft}
         >
           <div className="p-4">
-            <h3 className="text-lg text-customBlue font-bold mb-2">{teamMembers[0].title}</h3>
+            <h3 className="text-lg text-customBlue font-bold mb-2">
+              {teamMembers[0].title}
+            </h3>
             <p className="text-gray-600 mb-2">“Your vision. Our expertise.”</p>
             <p className="text-gray-600">{teamMembers[0].description}</p>
           </div>
@@ -111,10 +103,12 @@ const AboutCardSection = () => {
         {/* Middle Card with Down Position */}
         <motion.div
           className="overflow-hidden md:w-[28%] md:mt-10"
-          variants={zoomIn}
+          variants={fadeInUp}
         >
           <div className="p-4">
-            <h3 className="text-lg text-customBlue font-bold mb-2">{teamMembers[1].title}</h3>
+            <h3 className="text-lg text-customBlue font-bold mb-2">
+              {teamMembers[1].title}
+            </h3>
             <p className="text-gray-600">{teamMembers[1].description}</p>
           </div>
         </motion.div>
@@ -125,7 +119,9 @@ const AboutCardSection = () => {
           variants={slideInRight}
         >
           <div className="p-4">
-            <h3 className="text-lg text-customBlue font-bold mb-2">{teamMembers[2].title}</h3>
+            <h3 className="text-lg text-customBlue font-bold mb-2">
+              {teamMembers[2].title}
+            </h3>
             <p className="text-gray-600">{teamMembers[2].description}</p>
           </div>
         </motion.div>

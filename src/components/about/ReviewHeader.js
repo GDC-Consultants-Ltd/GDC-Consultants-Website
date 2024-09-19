@@ -51,7 +51,7 @@ const ReviewHeader = () => {
       </motion.div>
 
       {/* Text Section */}
-      <motion.div className="text-left" variants={slideInRight}>
+      <motion.div className="text-center md:text-left" variants={slideInRight}>
         <h2 className="text-lg uppercase font-semibold text-gray-500">
           Leave us a Review
         </h2>
