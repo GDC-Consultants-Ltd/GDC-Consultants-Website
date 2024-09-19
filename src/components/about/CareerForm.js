@@ -141,7 +141,7 @@ export default function CareerForm() {
     <div className="max-w-xl mx-auto p-6 m-6 bg-white shadow-md rounded-md">
       <div className="flex flex-col items-center mb-6">
         <Image
-          src="/images/logo.webp"
+          src="/images/GDC LOGOS 2024 BLUE.png"
           alt="Logo"
           className="mb-4 w-60"
           width={240}
@@ -300,7 +300,10 @@ export default function CareerForm() {
               "Planning",
               "Admin",
             ].map((field) => (
-              <label key={field} className="inline-flex items-center mt-2 text-gray-700">
+              <label
+                key={field}
+                className="inline-flex items-center mt-2 text-gray-700"
+              >
                 <input
                   type="checkbox"
                   name="field_of_interest"
