@@ -1,0 +1,46 @@
+name: Merge and Deploy to Netlify
+
+on:
+  push:
+    branches:
+      - developer
+
+jobs:
+  merge-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "v20.17.0" # Specify your Node.js version
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build the Project
+        run: npm run build # Adjust if your build command is different
+
+      - name: Merge into Main
+        id: merge
+        if: github.ref == 'refs/heads/developer' # Ensures it's only running on the developer branch
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git fetch origin main
+          git checkout main
+          git merge developer --allow-unrelated-histories -m "Merge developer into main by GitHub Action"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy to Netlify
+        if: success() # Runs only if the previous steps were successful
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          npm install -g netlify-cli
+          netlify deploy --prod --dir=build # Adjust the directory to your build output

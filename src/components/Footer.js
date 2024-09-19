@@ -106,6 +106,14 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
+                  href="/services"
+                  className="hover:text-customYellow tracking-wide"
+                >
+                  Our Services
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/about-us/who-we-are"
                   className="hover:text-customYellow tracking-wide"
                 >
