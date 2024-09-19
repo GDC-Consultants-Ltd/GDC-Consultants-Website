@@ -1,5 +1,6 @@
 // components/SubContact.js
 
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
 const SubContact = () => {
@@ -39,7 +40,7 @@ const SubContact = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Complete Professional Package Section */}
           <div
-            className={`bg-customBlue text-center p-6 md:p-8 h-[300px] md:h-[350px] flex flex-col justify-center ${
+            className={`bg-customBlue rounded-lg text-center p-6 md:p-8 h-[300px] md:h-[350px] flex flex-col justify-center ${
               isVisible
                 ? "animate-slide-in-left transition duration-300 ease-in-out hover:scale-105"
                 : ""
@@ -52,15 +53,18 @@ const SubContact = () => {
               Have a look at our services that we provide
             </p>
             <div className="flex justify-center">
-              <button className="py-2 px-4 bg-customYellow text-white rounded-full hover:bg-yellow-500 transition-transform duration-300 ease-in-out hover:scale-105">
+              <Link
+                href="/services"
+                className="py-2 px-4 bg-customYellow text-white rounded-lg hover:bg-yellow-500 transition-transform duration-300 ease-in-out hover:scale-105"
+              >
                 View Services
-              </button>
+              </Link>
             </div>
           </div>
 
           {/* Worked With Us Lately Section */}
           <div
-            className={`bg-customYellow p-6 md:p-8 h-[300px] md:h-[350px] text-center flex flex-col justify-center ${
+            className={`bg-customYellow rounded-lg p-6 md:p-8 h-[300px] md:h-[350px] text-center flex flex-col justify-center ${
               isVisible
                 ? "animate-slide-in-right transition duration-300 ease-in-out hover:scale-105"
                 : ""

@@ -31,28 +31,44 @@ const MapSection = () => {
                 width={120} // Tailwind w-30 corresponds approximately to 120px
                 height={120} // Tailwind h-30 corresponds approximately to 120px
               />
-              <h3 className="text-lg font-semibold text-center">
+              <h3 className="text-xl text-customBlue font-semibold text-center">
                 {office.name}
               </h3>
-              <div className="flex items-center mt-2 text-gray-600">
-                <MapPinIcon className="h-5 w-5 text-customBlue" />
-                <div className="ml-2">
-                  <p className="font-medium">Our Address</p>
-                  <p>{office.address}</p>
+              {office.address && (
+                <div className="flex items-start mt-2 text-gray-600">
+                  <MapPinIcon className="h-5 w-5 text-customBlue" />
+                  <div className="ml-2">
+                    <p className="font-bold text-customBlue">Our Address</p>
+                    <p className="text-sm text-gray-700 mt-1">
+                      {office.address}
+                    </p>{" "}
+                    {/* Smaller text and padding */}
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center mt-2 text-gray-600">
+              )}
+
+              <div className="flex items-start mt-4 text-gray-600">
                 <EnvelopeIcon className="h-5 w-5 text-customBlue" />
                 <div className="ml-2">
-                  <p className="font-medium">Email Address</p>
-                  <p>{office.email}</p>
+                  <p className="font-bold text-customBlue">Email Address</p>
+                  <a
+                    href={`mailto:${office.email}`}
+                    className="text-sm text-gray-700 mt-1 block"
+                  >
+                    {office.email}
+                  </a>
                 </div>
               </div>
-              <div className="flex items-center mt-2 text-gray-600">
+              <div className="flex items-start mt-4 text-gray-600">
                 <PhoneIcon className="h-5 w-5 text-customBlue" />
                 <div className="ml-2">
-                  <p className="font-medium">Call us on</p>
-                  <p>{office.phone}</p>
+                  <p className="font-bold text-customBlue">Call us on</p>
+                  <a
+                    href={`tel:${office.phone}`}
+                    className="text-sm text-gray-700 mt-1 block"
+                  >
+                    {office.phone}
+                  </a>
                 </div>
               </div>
             </div>

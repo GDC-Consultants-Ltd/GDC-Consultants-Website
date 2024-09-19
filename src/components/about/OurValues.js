@@ -156,7 +156,7 @@ const OurValues = () => {
   };
 
   return (
-    <section ref={sectionRef}>
+    <section ref={sectionRef} className="overflow-hidden">
       <motion.div
         className="px-10 py-6"
         initial="hidden"
@@ -169,7 +169,7 @@ const OurValues = () => {
             className="flex flex-col items-center justify-center text-center p-6 bg-white"
             variants={slideInLeft}
           >
-            <h2 className="text-3xl font-bold mb-4">Our Vision</h2>
+            <h2 className="text-3xl text-customBlue font-bold mb-4">Our Vision</h2>
             <p className="text-gray-600 max-w-md">
               Our vision is to provide unmatched quality, competitive solutions,
               and customized approaches.
@@ -226,7 +226,7 @@ const OurValues = () => {
             className="flex flex-col items-center justify-center text-center p-6 bg-white"
             variants={slideInRight}
           >
-            <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
+            <h2 className="text-3xl text-customBlue font-bold mb-4">Our Mission</h2>
           </motion.div>
         </div>
       </motion.div>

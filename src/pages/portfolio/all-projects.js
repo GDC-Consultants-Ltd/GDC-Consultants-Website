@@ -24,10 +24,40 @@ const projects = [
     category: "Events",
   },
   {
-    title: "Maraenui Medical Centre",
-    image: "/images/projects/2.webp",
-    location: "Napier",
-    category: "Medical",
+    title: "Architectural design project",
+    image: "/images/projects/archi/1.png",
+    location: "Thames",
+    category: "Architectural",
+  },
+  {
+    title: "Architectural design project",
+    image: "/images/projects/archi/2.png",
+    location: "Thames",
+    category: "Architectural",
+  },
+  {
+    title: "Architectural design project",
+    image: "/images/projects/archi/3.png",
+    location: "Thames",
+    category: "Architectural",
+  },
+  {
+    title: "Architectural design project",
+    image: "/images/projects/archi/4.png",
+    location: "Thames",
+    category: "Architectural",
+  },
+  {
+    title: "Architectural design project",
+    image: "/images/projects/archi/5.png",
+    location: "Thames",
+    category: "Architectural",
+  },
+  {
+    title: "Architectural design project",
+    image: "/images/projects/archi/6.png",
+    location: "Thames",
+    category: "Architectural",
   },
   {
     title: "Museum",
@@ -84,9 +114,7 @@ const ProjectsPage = () => {
     // Center the active image
     const activeImage = images[activeIndex];
     const offsetLeft =
-      activeImage.offsetLeft -
-      slider.clientWidth / 2 +
-      activeImage.clientWidth / 2;
+      activeImage.offsetLeft - slider.clientWidth / 2 + activeImage.clientWidth / 2;
     slider.scrollTo({ left: offsetLeft, behavior: "smooth" });
   };
 
@@ -121,7 +149,7 @@ const ProjectsPage = () => {
     } else {
       scrollToActiveImage();
     }
-  }, [activeIndex]);
+  }, [activeIndex, totalSlides]);
 
   // Update currentProject based on activeIndex
   useEffect(() => {
@@ -150,7 +178,8 @@ const ProjectsPage = () => {
         projects.filter((project) => project.category === category)
       );
     }
-    setActiveIndex(1); // Reset slider to the first project in filtered list
+    // Reset slider to the first project in filtered list
+    setActiveIndex(1);
   };
 
   return (
@@ -189,15 +218,15 @@ const ProjectsPage = () => {
               }`}
             >
               <Image
-                src={projects[totalSlides - 1].image}
-                alt={projects[totalSlides - 1].title}
+                src={filteredProjects[totalSlides - 1]?.image} // Use filteredProjects
+                alt={filteredProjects[totalSlides - 1]?.title} // Use filteredProjects
                 width={500}
                 height={350}
                 className="object-cover w-full h-full rounded-lg"
               />
             </div>
 
-            {projects.map((project, index) => (
+            {filteredProjects.map((project, index) => (
               <div
                 key={index}
                 onClick={() => {
@@ -225,8 +254,8 @@ const ProjectsPage = () => {
               }`}
             >
               <Image
-                src={projects[0].image}
-                alt={projects[0].title}
+                src={filteredProjects[0]?.image} // Use filteredProjects
+                alt={filteredProjects[0]?.title} // Use filteredProjects
                 width={500}
                 height={350}
                 className="object-cover w-full h-full"
@@ -239,9 +268,7 @@ const ProjectsPage = () => {
             <h3 className="text-2xl font-semibold text-customBlue mb-2">
               {currentProject.title}
             </h3>
-            <p className="text-lg text-customYellow">
-              {currentProject.location}
-            </p>
+            <p className="text-lg text-customYellow">{currentProject.location}</p>
           </div>
         </div>
       </section>

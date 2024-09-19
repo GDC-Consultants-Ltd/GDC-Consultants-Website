@@ -78,7 +78,7 @@ const Header = () => {
   return (
     <header className="w-full sticky top-0 z-50 bg-white shadow-md">
       {/* Navigation Bar */}
-      <div className="max-w-screen-full mx-auto px-5 sm:px-8 md:px-10"> 
+      <div className="max-w-screen-full mx-auto px-5 sm:px-8 md:px-10">
         <nav className="flex justify-between items-center py-3 px-4 lg:px-6">
           {/* Hamburger Menu Icon */}
           <div className="flex lg:hidden">
@@ -119,16 +119,43 @@ const Header = () => {
                 label: "SERVICES",
                 dropdown: "services",
                 items: [
-                  { href: "/services/3-waters", label: "3 Waters & Contamination" },
-                  { href: "/services/architectural-designs", label: "Architectural Designs" },
-                  { href: "/services/electrical-engineering", label: "Electrical Engineering" },
-                  { href: "/services/project-management", label: "Project & Construction Management" },
-                  { href: "/services/geotechnical-engineering", label: "Geotechnical Engineering" },
-                  { href: "/services/infrastructure", label: "Infrastructure & Subdivision Engineering" },
-                  { href: "/services/research-development", label: "Research & Development" },
+                  {
+                    href: "/services/3-waters",
+                    label: "3 Waters & Contamination",
+                  },
+                  {
+                    href: "/services/architectural-designs",
+                    label: "Architectural Designs",
+                  },
+                  {
+                    href: "/services/electrical-engineering",
+                    label: "Electrical Engineering",
+                  },
+                  {
+                    href: "/services/project-management",
+                    label: "Project & Construction Management",
+                  },
+                  {
+                    href: "/services/geotechnical-engineering",
+                    label: "Geotechnical Engineering",
+                  },
+                  {
+                    href: "/services/infrastructure",
+                    label: "Infrastructure & Subdivision Engineering",
+                  },
+                  {
+                    href: "/services/research-development",
+                    label: "Research & Development",
+                  },
                   { href: "/services/road-transport", label: "Road Transport" },
-                  { href: "/services/seismic-engineering", label: "Seismic Engineering" },
-                  { href: "/services/structural-engineering", label: "Structural Engineering" },
+                  {
+                    href: "/services/seismic-engineering",
+                    label: "Seismic Engineering",
+                  },
+                  {
+                    href: "/services/structural-engineering",
+                    label: "Structural Engineering",
+                  },
                   { href: "/services/planning", label: "Planning" },
                   { href: "/services/surveying", label: "Surveying" },
                   { href: "/services/training", label: "Training" },
@@ -169,7 +196,8 @@ const Header = () => {
                 >
                   <button
                     className={`flex items-center text-xs sm:text-sm font-semibold py-1 px-2 lg:py-2 lg:px-3 cursor-pointer ${
-                      currentPath.startsWith(item.href) || currentPath === item.href
+                      currentPath.startsWith(item.href) ||
+                      currentPath === item.href
                         ? "text-customYellow"
                         : "text-customBlue"
                     }`}
@@ -186,18 +214,19 @@ const Header = () => {
                   <ul
                     className={`${
                       activeDropdown === item.dropdown ? "block" : "hidden"
-                    } lg:block lg:absolute left-0 mt-2 w-full lg:w-48 bg-white opacity-85 shadow-md rounded-md`}
+                    } lg:block lg:absolute left-0 mt-2 w-full lg:w-48 bg-white opacity-90 shadow-md rounded-md`}
                     style={{
-                      display: activeDropdown === item.dropdown ? 'block' : 'none',
-                      maxHeight: isMobileView ? '16rem' : 'none',
-                      overflowY: isMobileView ? 'auto' : 'visible',
+                      display:
+                        activeDropdown === item.dropdown ? "block" : "none",
+                      maxHeight: isMobileView ? "16rem" : "none",
+                      overflowY: isMobileView ? "auto" : "visible",
                     }}
                   >
                     {item.items.map((subItem) => (
                       <li key={subItem.href}>
                         <a
                           href={subItem.href}
-                          className="block px-3 py-2 text-xs text-customBlue hover:bg-customYellow hover:text-white"
+                          className="block px-3 py-2 text-xs text-customBlue hover:bg-customYellow hover:text-white hover:rounded-md transition-all duration-300" // Add `hover:rounded-md` here
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {subItem.label}
@@ -205,14 +234,15 @@ const Header = () => {
                       </li>
                     ))}
                   </ul>
-                  
                 </li>
               ) : (
                 <li key={item.href} className="lg:inline-block">
                   <a
                     href={item.href}
                     className={`block lg:inline-block text-xs sm:text-sm font-semibold py-1 px-2 lg:py-2 lg:px-3 ${
-                      currentPath === item.href ? "text-customYellow" : "text-customBlue"
+                      currentPath === item.href
+                        ? "text-customYellow"
+                        : "text-customBlue"
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -220,9 +250,9 @@ const Header = () => {
                   </a>
                 </li>
               )
-            )}            
-          {/* Mobile version of the "OUR LOCATIONS" button */}
-          <li className="block lg:hidden">
+            )}
+            {/* Mobile version of the "OUR LOCATIONS" button */}
+            <li className="block lg:hidden">
               <Link
                 href="/locations"
                 className="block text-customBlue text-xs sm:text-sm font-semibold px-2 py-1 transition-colors"

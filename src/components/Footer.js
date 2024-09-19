@@ -217,7 +217,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Footer Section with Transparent Background */}
-      <div className="relative z-10 bg-[#0E1B24] bg-opacity-80 text-gray-400 text-xs py-4 mx-auto backdrop-blur-sm">
+      <div className="relative z-10 bg-customBlue bg-opacity-80 text-gray-400 text-xs py-4 mx-auto backdrop-blur-sm">
         <div className="flex flex-col sm:flex-row items-center justify-between px-10 text-center sm:text-left">
           <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6">
             <a href="#" className="hover:text-white tracking-wide">
@@ -225,9 +225,6 @@ export default function Footer() {
             </a>
             <a href="#" className="hover:text-white tracking-wide">
               PRIVACY POLICY
-            </a>
-            <a href="#" className="hover:text-white tracking-wide">
-              SITEMAP
             </a>
           </div>
           <span className="tracking-wide mt-2 sm:mt-0">

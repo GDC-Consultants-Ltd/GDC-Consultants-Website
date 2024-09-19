@@ -9,16 +9,6 @@ const ProjectHeader = () => {
       <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-0 px-4 md:px-8 lg:px-16">
         {/* Left Content Column */}
         <div className="flex flex-col space-y-4 md:space-y-6 animate-fade-in-up">
-          <nav className="text-lg md:text-2xl text-customBlue font-bold flex items-center space-x-2">
-            <Link
-              href="/"
-              className="hover:text-customYellow transition duration-300 ease-in-out"
-            >
-              Home
-            </Link>
-            <span className="text-gray-500">&gt;</span>
-            <span className="text-customYellow">Projects</span>
-          </nav>
           <h2 className="text-4xl md:text-5xl font-bold text-customYellow leading-tight animate-slide-in-left">
             Our Projects
           </h2>
