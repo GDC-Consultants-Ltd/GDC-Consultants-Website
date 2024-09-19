@@ -31,4 +31,4 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
           npm install -g netlify-cli
-          netlify deploy --prod --dir=build # Adjust the directory to your build output
+          netlify deploy --prod --dir=.next # Adjust the directory to your build output
