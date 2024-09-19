@@ -2,7 +2,7 @@
 
 import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "next/link"; 
 import { useState } from "react";
 import axios from "axios";
 
