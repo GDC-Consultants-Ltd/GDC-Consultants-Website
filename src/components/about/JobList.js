@@ -95,7 +95,7 @@ export default function JobList() {
           </h2>
           <div className="relative">
             <select
-              className="bg-gray-100 border border-gray-300 rounded-md p-2"
+              className="bg-gray-100 text-customBlue border border-customBlue rounded-md p-2"
               value={selectedLocation}
               onChange={(e) => setSelectedLocation(e.target.value)}
             >
@@ -114,7 +114,7 @@ export default function JobList() {
             variants={fadeInUp}
           >
             <div className="border-b pb-2">
-              <h3 className="text-lg font-medium">{category}</h3>
+              <h3 className="text-lg text-customBlue font-medium">{category}</h3>
             </div>
             {filteredGroupedJobs[category].map((job, index) => (
               <motion.div

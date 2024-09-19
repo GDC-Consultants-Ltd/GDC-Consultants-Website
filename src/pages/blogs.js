@@ -101,10 +101,6 @@ const BlogGallery = () => {
           variants={slideInLeft}
         >
           <nav className="text-2xl text-white font-bold mb-2 flex items-center space-x-1">
-            <Link href="/" className="hover:text-customYellow">
-              Home
-            </Link>
-            <span>&gt;</span>
             <span className="hover:text-customYellow">Our Blog</span>
           </nav>
           <h1 className="text-white text-5xl font-bold leading-tight">

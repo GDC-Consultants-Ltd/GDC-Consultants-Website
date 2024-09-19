@@ -276,7 +276,7 @@ export default function CareerForm() {
               name="country"
               value={formData.country}
               onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+              className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-gray-700"
             >
               <option value="">--- Select country ---</option>
               <option value="Sri Lanka">Sri Lanka</option>
@@ -300,7 +300,7 @@ export default function CareerForm() {
               "Planning",
               "Admin",
             ].map((field) => (
-              <label key={field} className="inline-flex items-center mt-2">
+              <label key={field} className="inline-flex items-center mt-2 text-gray-700">
                 <input
                   type="checkbox"
                   name="field_of_interest"
@@ -346,7 +346,7 @@ export default function CareerForm() {
         </div>
 
         <div className="mb-4">
-          <label className="flex items-center">
+          <label className="flex items-center text-gray-700">
             <input
               type="checkbox"
               name="do_you_agree_to_our_contact_policy_"

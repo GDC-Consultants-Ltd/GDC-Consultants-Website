@@ -14,7 +14,7 @@ const officeLocations = [
   {
     id: 2,
     name: "Rotorua Office",
-    address: "3 Trout Pool Road, Okere Falls 3074, Rotorua",
+    address: "3H Trout Pool Road, Okere Falls 3074, Rotorua",
     email: "rotorua@gdcgroup.co.nz",
     phone: "+64 7 282 2173",
     mapSrc:
@@ -24,7 +24,7 @@ const officeLocations = [
   {
     id: 3,
     name: "Thames Office",
-    address: "541 Pollen Street, Thames 3500, New Zealand",
+    address: "541 Pollen Street, Thames",
     email: "thames@gdcgroup.co.nz",
     phone: "+64 7 869 0640",
     mapSrc:
@@ -34,7 +34,7 @@ const officeLocations = [
   {
     id: 4,
     name: "Wellington Office",
-    address: "109/74 Taranaki Street, Te Aro, Wellington 6011, New Zealand",
+    address: "Unit 109, 74 Taranaki Street, Wellington",
     email: "wellington@gdcgroup.co.nz",
     phone: "+64 4 282 0405",
     mapSrc:
@@ -45,7 +45,7 @@ const officeLocations = [
     id: 5,
     name: "Auckland Office",
     address:
-      "69 Ben Lomond Crescent, Pakuranga Heights, Auckland 2010, New Zealand",
+      "69 Ben Lomond Crescent, Pakuranga ​",
     email: "auckland@gdcgroup.co.nz",
     phone: "+64 9 281 2248",
     mapSrc:
@@ -55,7 +55,7 @@ const officeLocations = [
   {
     id: 6,
     name: "Napier Office",
-    address: "180 Dalton Street, Napier South, Napier 4110, New Zealand",
+    address: "Vautier House, Second floor , 180 Dalton Street, Napier 4110",
     email: "napier@gdcgroup.co.nz",
     phone: "+64 6 281 2270",
     mapSrc:
@@ -65,7 +65,7 @@ const officeLocations = [
   {
     id: 7,
     name: "Whitianga Office",
-    address: "21 Coghill Street, Whitianga 3510, New Zealand",
+    address: "21 Coghill Street, Whitianga​",
     email: "whitianga@gdcgroup.co.nz",
     phone: "+64 7 869 0640",
     mapSrc:
@@ -85,7 +85,7 @@ const officeLocations = [
   {
     id: 9,
     name: "Cambridge",
-    address: "Cambridge, New Zealand",
+    address: "",
     email: "cambridge@gdcgroup.co.nz",
     phone: "+64 7 838 0090",
     mapSrc:
@@ -95,7 +95,7 @@ const officeLocations = [
   {
     id: 10,
     name: "Raglan",
-    address: "Raglan, New Zealand",
+    address: "",
     email: "info@gdcgroup.co.nz",
     phone: "+64 7 838 0090",
     mapSrc:
@@ -105,7 +105,7 @@ const officeLocations = [
   {
     id: 11,
     name: "Palmerston North",
-    address: "Palmerston North, New Zealand",
+    address: "",
     email: "palmerston@gdcgroup.co.nz",
     phone: "+64 6 281 2270",
     mapSrc:
@@ -115,7 +115,7 @@ const officeLocations = [
   {
     id: 12,
     name: "Christchurch",
-    address: "Christchurch, New Zealand",
+    address: "",
     email: "christchurch@gdcgroup.co.nz",
     phone: "+64 7 3 666 0078",
     mapSrc:
@@ -125,7 +125,7 @@ const officeLocations = [
   {
     id: 13,
     name: "New Plymouth",
-    address: "New Plymouth, New Zealand",
+    address: "",
     email: "newplymouth@gdcgroup.co.nz",
     phone: "+64 6 281 2270",
     mapSrc:

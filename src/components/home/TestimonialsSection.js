@@ -3,10 +3,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Autoplay } from "swiper/modules"; // Removed Pagination module
 import { motion } from "framer-motion"; // Import Framer Motion
 import "swiper/css";
-import "swiper/css/pagination";
 
 const testimonials = [
   {
@@ -102,9 +101,8 @@ const TestimonialsSection = () => {
         variants={slideUpVariants}
       >
         <Swiper
-          modules={[Pagination, Autoplay]}
+          modules={[Autoplay]} // Removed Pagination module
           spaceBetween={20}
-          pagination={{ clickable: true }}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           className="w-full max-w-lg"
         >

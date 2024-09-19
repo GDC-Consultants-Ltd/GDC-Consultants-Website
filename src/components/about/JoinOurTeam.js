@@ -49,16 +49,7 @@ const ProjectHeader = () => {
           variants={fadeInUp}
         >
           <nav className="text-lg md:text-2xl text-customBlue font-bold flex items-center space-x-2">
-            <Link
-              href="/"
-              className="hover:text-customYellow transition duration-300 ease-in-out"
-            >
-              Home
-            </Link>
-            <span className="text-gray-500">&gt;</span>
-            <span className="text-customBlue">About Us</span>
-            <span className="text-gray-500">&gt;</span>
-            <span className="text-customYellow">Careers</span>
+            <span className="text-customBlue">Careers</span>
           </nav>
           <motion.h3
             className="text-4xl md:text-5xl font-bold text-customYellow leading-tight"
