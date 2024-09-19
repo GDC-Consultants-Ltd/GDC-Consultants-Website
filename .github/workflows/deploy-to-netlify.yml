@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Build the Project
-        run: npm run build # Adjust if your build command is different
+        run: npm run build # Ensure this matches your actual build command
 
       - name: Deploy to Netlify
         if: success() # Runs only if the build step is successful
@@ -31,4 +31,4 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
           npm install -g netlify-cli
-          netlify deploy --prod --dir=.next # Adjust the directory to your build output
+          netlify deploy --prod --dir=.next # Ensure this directory matches your build output
