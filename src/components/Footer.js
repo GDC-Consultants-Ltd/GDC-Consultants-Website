@@ -89,11 +89,11 @@ export default function Footer() {
           {/* Logo and Company Info Column */}
           <div className="flex flex-col items-center md:items-start">
             <Image
-              src="/images/footer-logo.webp"
+              src="/images/GDC logo 2024 white.png"
               alt="GDC Logo"
-              width={160}
-              height={40}
-              className="h-10 mb-4 object-contain"
+              width={200} // Increased width for better visibility
+              height={60} // Increased height to make the logo clearer
+              className="h-auto mb-4 object-contain" // Adjusted height to auto for better scaling
               style={{ objectFit: "contain" }}
             />
           </div>

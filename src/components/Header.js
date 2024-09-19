@@ -95,7 +95,7 @@ const Header = () => {
           <div className="flex-shrink-0">
             <Link href="/">
               <Image
-                src="/images/logo.webp"
+                src="/images/GDC LOGOS 2024 BLUE.png"
                 alt="GDC Consultants Ltd Logo"
                 width={100}
                 height={40}
