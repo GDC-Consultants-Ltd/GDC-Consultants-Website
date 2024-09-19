@@ -26,15 +26,20 @@ jobs:
 
       - name: Merge into Main
         id: merge
-        if: github.ref == 'refs/heads/developer' # Ensures it's only running on the developer branch
+        if: github.ref == 'refs/heads/developer'
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git fetch origin main
           git checkout main
-          git merge developer --allow-unrelated-histories -m "Merge developer into main by GitHub Action"
+          git merge developer --no-commit || git merge --abort
+          if [ $? -ne 0 ]; then
+            echo "Merge conflict occurred. Aborting merge."
+            exit 1
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     
 
       - name: Deploy to Netlify
         if: success() # Runs only if the previous steps were successful
