@@ -168,7 +168,7 @@ const BlogPost = ({ blog, recentArticles }) => {
                     value={formData.comment}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 border border-gray-300 rounded-md"
+                    className="w-full p-2 border border-gray-300 rounded-md text-black"
                   ></textarea>
                 </div>
                 <div>
@@ -179,7 +179,7 @@ const BlogPost = ({ blog, recentArticles }) => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 border border-gray-300 rounded-md"
+                    className="w-full p-2 border border-gray-300 rounded-md text-black"
                   />
                 </div>
                 <button
