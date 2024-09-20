@@ -115,7 +115,7 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-16 bg-[#F3F5F6]">
+    <section ref={sectionRef} className="py-16 bg-[#F3F5F6] overflow-hidden">
       <motion.div
         className="text-center mb-12 px-6 md:px-10 xl:px-16"
         initial="hidden"

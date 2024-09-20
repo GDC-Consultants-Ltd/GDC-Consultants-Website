@@ -36,7 +36,7 @@ const CertificationSection = () => {
   return (
     <motion.div
       ref={sectionRef}
-      className="relative flex items-center justify-center py-16 px-4 sm:px-6 md:px-8 lg:px-16 bg-white"
+      className="relative flex items-center justify-center py-16 px-4 sm:px-6 md:px-8 lg:px-16 bg-white overflow-hidden"
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={fadeInVariants}

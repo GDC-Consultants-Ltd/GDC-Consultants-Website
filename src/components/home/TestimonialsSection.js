@@ -76,7 +76,7 @@ const TestimonialsSection = () => {
   return (
     <motion.div
       ref={sectionRef}
-      className="grid grid-cols-1 md:grid-cols-2 h-full transform transition-transform duration-500 ease-in-out"
+      className="overflow-hidden grid grid-cols-1 md:grid-cols-2 h-full transform transition-transform duration-500 ease-in-out"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.2 }}

@@ -114,7 +114,7 @@ const BlogSection = () => {
   return (
     <motion.div
       ref={sectionRef}
-      className="py-12 bg-gray-50"
+      className="py-12 bg-gray-50 overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.2 }}

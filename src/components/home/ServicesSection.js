@@ -140,7 +140,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services" ref={sectionRef} className="py-8 bg-gray-50">
+    <section id="services" ref={sectionRef} className="py-8 bg-gray-50 overflow-hidden">
       <motion.div
         className="text-center mb-8 px-4 md:px-8 xl:px-12"
         initial="hidden"
