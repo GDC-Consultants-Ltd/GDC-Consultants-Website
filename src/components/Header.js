@@ -84,6 +84,10 @@ const Header = () => {
     };
   }, []);
 
+  const toTitleCase = (text) => {
+    return text.toLowerCase().replace(/(^\w|\s\w)/g, (match) => match.toUpperCase());
+  };
+
   return (
     <header className="w-full sticky top-0 z-50 bg-white shadow-md">
       {/* Navigation Bar */}
@@ -258,9 +262,9 @@ const Header = () => {
             style={{ zIndex: 100 }}
           >
             {[
-              { href: "/", label: "HOME" },
+              { href: "/", label: "Home" },
               {
-                label: "SERVICES",
+                label: "Services",
                 dropdown: "services",
                 items: [
                   {
@@ -309,7 +313,7 @@ const Header = () => {
                 ],
               },
               {
-                label: "OUR PORTFOLIO",
+                label: "Our Portfolio",
                 dropdown: "portfolio",
                 items: [
                   { href: "/portfolio/all-projects", label: "All Projects" },
@@ -317,7 +321,7 @@ const Header = () => {
                 ],
               },
               {
-                label: "ABOUT US",
+                label: "About Us",
                 dropdown: "aboutus",
                 items: [
                   { href: "/about-us/who-we-are", label: "Who We Are" },
@@ -325,8 +329,8 @@ const Header = () => {
                   { href: "/about-us/review", label: "Leave us a Review" },
                 ],
               },
-              { href: "/team", label: "OUR TEAM" },
-              { href: "/blogs", label: "BLOGS" },
+              { href: "/team", label: "Our Team" },
+              { href: "/blogs", label: "Blogs" },
             ].map((item) =>
               item.items ? (
                 <li key={item.label} className="relative">
