@@ -1,5 +1,3 @@
-// components/about/AboutCardSection.js
-
 "use client"; // Ensure this is treated as a client component
 
 import React from "react";
@@ -57,7 +55,7 @@ const AboutCardSection = () => {
 
   return (
     <motion.section
-      className="px-6 py-12 bg-white text-center"
+      className="px-6 py-12 bg-white text-center overflow-hidden" // Add overflow-hidden here
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.2 }}
@@ -85,13 +83,15 @@ const AboutCardSection = () => {
       </div>
 
       {/* Card Container */}
-      <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+      <div className="flex flex-col md:flex-row justify-center items-stretch gap-6 mt-8 md:mt-12 overflow-hidden">
+        {" "}
+        {/* Add overflow-hidden here */}
         {/* First Card */}
         <motion.div
-          className="overflow-hidden md:w-[28%]"
+          className="overflow-hidden md:w-1/3 flex flex-col relative" // Add relative position
           variants={slideInLeft}
         >
-          <div className="p-4">
+          <div className="p-4 bg-white rounded-lg shadow-md h-full">
             <h3 className="text-lg text-customBlue font-bold mb-2">
               {teamMembers[0].title}
             </h3>
@@ -99,26 +99,24 @@ const AboutCardSection = () => {
             <p className="text-gray-600">{teamMembers[0].description}</p>
           </div>
         </motion.div>
-
-        {/* Middle Card with Down Position */}
+        {/* Middle Card */}
         <motion.div
-          className="overflow-hidden md:w-[28%] md:mt-10"
+          className="overflow-hidden md:w-1/3 flex flex-col relative" // Add relative position
           variants={fadeInUp}
         >
-          <div className="p-4">
+          <div className="p-4 bg-white rounded-lg shadow-md h-full">
             <h3 className="text-lg text-customBlue font-bold mb-2">
               {teamMembers[1].title}
             </h3>
             <p className="text-gray-600">{teamMembers[1].description}</p>
           </div>
         </motion.div>
-
         {/* Third Card */}
         <motion.div
-          className="overflow-hidden md:w-[28%]"
+          className="overflow-hidden md:w-1/3 flex flex-col relative" // Add relative position
           variants={slideInRight}
         >
-          <div className="p-4">
+          <div className="p-4 bg-white rounded-lg shadow-md h-full">
             <h3 className="text-lg text-customBlue font-bold mb-2">
               {teamMembers[2].title}
             </h3>

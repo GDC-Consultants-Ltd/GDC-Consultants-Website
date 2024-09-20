@@ -1,5 +1,3 @@
-// components/about/ReviewHeader.js
-
 "use client"; // Ensure this is treated as a client component
 
 import React from "react";
@@ -33,14 +31,17 @@ const ReviewHeader = () => {
 
   return (
     <motion.section
-      className="px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+      className="px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center overflow-hidden" // Add overflow-hidden here
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.2 }}
       variants={fadeIn}
     >
       {/* Image Section */}
-      <motion.div className="flex justify-center" variants={slideInLeft}>
+      <motion.div
+        className="flex justify-center relative overflow-hidden" // Add relative and overflow-hidden here
+        variants={slideInLeft}
+      >
         <Image
           src="/images/about/review.webp" // Replace with the actual path to your image
           alt="Feedback Illustration"
@@ -51,7 +52,10 @@ const ReviewHeader = () => {
       </motion.div>
 
       {/* Text Section */}
-      <motion.div className="text-center md:text-left" variants={slideInRight}>
+      <motion.div
+        className="text-center md:text-left relative overflow-hidden" // Add relative and overflow-hidden here
+        variants={slideInRight}
+      >
         <h2 className="text-lg uppercase font-semibold text-gray-500">
           Leave us a Review
         </h2>
