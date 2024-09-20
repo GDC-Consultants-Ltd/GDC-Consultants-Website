@@ -76,7 +76,7 @@ const AboutCardSection = () => {
 
       <div className="w-full h-[450px] overflow-hidden rounded-lg">
         <img
-          src="/images/about/who-we-are.jpeg" // Ensure this path is correct for your image
+          src="/images/about/who-we-are.webp" // Ensure this path is correct for your image
           alt="who we are"
           className="w-full h-full object-contain md:object-cover transition-transform duration-300 hover:scale-105"
         />

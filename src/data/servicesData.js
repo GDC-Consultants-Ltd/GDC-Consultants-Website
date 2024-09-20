@@ -331,7 +331,7 @@ const services = {
         title: "GDC Consultants - The Solution to All your Engineering R&D",
         description:
           "We possess the latest and best science and technology in a wide range of engineering disciplines – mechanical, electrical, petroleum, physical, chemical, civil, and software –all under one roof. \nSo that we can quickly and comprehensively understand the nature of each project, we work alongside our clients from the earliest possible stage. We typically undertake feasibility studies which employ the full range of our research and development and pilot engineering to deliver a practical and economic solution.",
-        image: "/images/services/R-and-D-ProcessConsulting_Header.jpg",
+        image: "/images/services/R-and-D-ProcessConsulting_Header.webp",
       },
       {
         id: 4,
@@ -512,7 +512,7 @@ const services = {
           "Assistance with plan change applications",
           "Consultation with affected parties",
         ],
-        image: "/images/services/2022-Guide-to-Resource-Management.jpeg",
+        image: "/images/services/2022-Guide-to-Resource-Management.webp",
       },
       {
         id: 3,

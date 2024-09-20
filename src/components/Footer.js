@@ -89,7 +89,7 @@ export default function Footer() {
           {/* Logo and Company Info Column */}
           <div className="flex flex-col items-center md:items-start">
             <Image
-              src="/images/GDC logo 2024 white.png"
+              src="/images/GDC logo 2024 white.webp"
               alt="GDC Logo"
               width={200} // Increased width for better visibility
               height={60} // Increased height to make the logo clearer

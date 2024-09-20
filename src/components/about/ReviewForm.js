@@ -69,7 +69,7 @@ export default function ReviewForm() {
       <div className="max-w-xl mx-auto p-6">
         <div className="flex flex-col items-center mb-6">
           <Image
-            src="/images/GDC LOGOS 2024 BLUE.png"
+            src="/images/GDC LOGOS 2024 BLUE.webp"
             alt="Logo"
             className="mb-4 w-60"
             width={240}
