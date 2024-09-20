@@ -1,5 +1,3 @@
-// components/ReviewForm.js
-
 import { useState } from "react";
 import Image from "next/image";
 import axios from "axios"; // Add axios for API requests
@@ -9,6 +7,7 @@ export default function ReviewForm() {
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
     jobNumber: "",
     feedback: "",
   });
@@ -26,7 +25,6 @@ export default function ReviewForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // HubSpot Form and Portal IDs
     const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
     const hubspotFormId = process.env.NEXT_PUBLIC_HUBSPOT_REVIEW_FORM_ID;
 
@@ -37,8 +35,9 @@ export default function ReviewForm() {
         { name: "firstname", value: formData.firstName },
         { name: "lastname", value: formData.lastName },
         { name: "email", value: formData.email },
-        { name: "job_number", value: formData.jobNumber }, // Ensure field names match HubSpot field names
-        { name: "message", value: formData.feedback }, // "message" must match the field name in HubSpot
+        { name: "phone", value: formData.phone },
+        { name: "job_number", value: formData.jobNumber },
+        { name: "message", value: formData.feedback },
       ],
     };
 
@@ -53,6 +52,7 @@ export default function ReviewForm() {
         firstName: "",
         lastName: "",
         email: "",
+        phone: "",
         jobNumber: "",
         feedback: "",
       });
@@ -83,7 +83,7 @@ export default function ReviewForm() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">
-                First Name
+                First Name <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -91,7 +91,7 @@ export default function ReviewForm() {
                 placeholder="First Name"
                 value={formData.firstName}
                 onChange={handleChange}
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black" // Ensure text color is visible
                 required
               />
             </div>
@@ -105,24 +105,39 @@ export default function ReviewForm() {
                 placeholder="Last Name"
                 value={formData.lastName}
                 onChange={handleChange}
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black" // Ensure text color is visible
                 required
               />
             </div>
           </div>
 
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700">
+              Email <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="email@address.com"
+              value={formData.email}
+              onChange={handleChange}
+              className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black" // Ensure text color is visible
+              required
+            />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">
-                Email <span className="text-red-500">*</span>
+                Phone Number <span className="text-red-500">*</span>
               </label>
               <input
-                type="email"
-                name="email"
-                placeholder="email@address.com"
-                value={formData.email}
+                type="number"
+                name="phone"
+                placeholder="+xx xx xxx xxxx"
+                value={formData.phone}
                 onChange={handleChange}
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black" // Ensure text color is visible
                 required
               />
             </div>
@@ -136,7 +151,7 @@ export default function ReviewForm() {
                 placeholder="Job Number"
                 value={formData.jobNumber}
                 onChange={handleChange}
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black" // Ensure text color is visible
                 required
               />
             </div>
@@ -147,11 +162,12 @@ export default function ReviewForm() {
               Feedback <span className="text-red-500">*</span>
             </label>
             <textarea
+              type="text"
               name="feedback"
               placeholder="Your feedback..."
               value={formData.feedback}
               onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+              className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black" // Ensure text color is visible
               required
               rows="4"
             />

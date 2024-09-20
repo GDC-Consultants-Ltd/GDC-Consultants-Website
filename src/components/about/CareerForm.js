@@ -160,7 +160,7 @@ export default function CareerForm() {
             placeholder="First Name"
             value={formData.firstname}
             onChange={handleChange}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black"
             required
           />
         </div>
@@ -175,7 +175,7 @@ export default function CareerForm() {
             placeholder="Last Name"
             value={formData.lastname}
             onChange={handleChange}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black"
             required
           />
         </div>
@@ -190,7 +190,7 @@ export default function CareerForm() {
             placeholder="email@address.com"
             value={formData.email}
             onChange={handleChange}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black"
             required
           />
         </div>
@@ -205,7 +205,7 @@ export default function CareerForm() {
             placeholder="071 234 5678"
             value={formData.phone}
             onChange={handleChange}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black"
             required
           />
         </div>
@@ -220,7 +220,7 @@ export default function CareerForm() {
             placeholder="Street Address"
             value={formData.address}
             onChange={handleChange}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black"
           />
         </div>
 
@@ -232,7 +232,7 @@ export default function CareerForm() {
               placeholder="City"
               value={formData.city}
               onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+              className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black"
             />
           </div>
 
@@ -243,7 +243,7 @@ export default function CareerForm() {
               placeholder="State / Province / Region"
               value={formData.state}
               onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+              className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black"
             />
           </div>
         </div>
@@ -256,7 +256,7 @@ export default function CareerForm() {
               placeholder="Zip Code"
               value={formData.zip_code}
               onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+              className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black"
             />
           </div>
 
