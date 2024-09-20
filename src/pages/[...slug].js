@@ -125,7 +125,9 @@ const BlogPost = ({ blog, recentArticles }) => {
         <main className="max-w-7xl mx-auto py-12 grid grid-cols-1 lg:grid-cols-3 gap-8 px-6">
           {/* Main Blog Content */}
           <article className="lg:col-span-2">
-            <h1 className="text-4xl text-customBlue font-bold">{blog.htmlTitle}</h1>
+            <h1 className="text-4xl text-customBlue font-bold">
+              {blog.htmlTitle}
+            </h1>
             <p className="text-gray-600 flex items-center gap-2 py-3">
               GDC Admin <span className="mx-1">•</span> {formattedDate}
             </p>
@@ -145,7 +147,9 @@ const BlogPost = ({ blog, recentArticles }) => {
 
             {/* Leave a Reply Section */}
             <section className="mt-12">
-              <h2 className="text-2xl text-customBlue font-bold mb-4">Leave a Reply</h2>
+              <h2 className="text-2xl text-customBlue font-bold mb-4">
+                Leave a Reply
+              </h2>
               <p className="text-gray-600 mb-4">
                 Your email address will not be published. Required fields are
                 marked *
@@ -190,7 +194,9 @@ const BlogPost = ({ blog, recentArticles }) => {
 
           {/* Sidebar with Recent Articles */}
           <aside className="space-y-6">
-            <h2 className="text-xl text-customBlue font-bold">Recent articles</h2>
+            <h2 className="text-xl text-customBlue font-bold">
+              Recent articles
+            </h2>
             {recentArticles.map((article, index) => (
               <Link
                 href={`/${article.slug}`}
@@ -216,23 +222,38 @@ const BlogPost = ({ blog, recentArticles }) => {
             ))}
 
             {/* Recent Comments Section */}
-            <div>
-              <h2 className="text-xl text-customBlue font-bold">Recent Comments</h2>
-              <ul className="list-disc pl-5">
+            <div className="p-4">
+              <h2 className="text-xl text-customBlue font-bold mb-4">
+                Recent Comments
+              </h2>
+              <ul className="list-none space-y-4">
                 {comments.length > 0 ? (
                   comments.map((comment, index) => (
-                    <li key={index} className="text-gray-700">
-                      <p className="text-gray-700">{comment.comment}</p>
-                      <small>
-                        {new Date(comment.submittedOn).toLocaleDateString(
-                          "en-US",
-                          {
-                            month: "2-digit",
-                            day: "2-digit",
-                            year: "numeric",
-                          }
-                        )}
-                      </small>
+                    <li key={index} className="flex space-x-3">
+                      <img
+                        src="/images/comment-avatar.webp" 
+                        alt="Avatar"
+                        className="w-10 h-10 rounded-full"
+                      />
+                      <div>
+                        <div className="flex items-center space-x-2">
+                          <p className="text-sm font-semibold text-gray-800">
+                            {comment.name || "Anonymous"}
+                          </p>{" "}
+                          {/* Display name or default to 'Anonymous' */}
+                          <small className="text-xs text-gray-500">
+                            {new Date(comment.submittedOn).toLocaleDateString(
+                              "en-US",
+                              {
+                                month: "long",
+                                day: "numeric",
+                                year: "numeric",
+                              }
+                            )}
+                          </small>
+                        </div>
+                        <p className="mt-1 text-gray-700">{comment.comment}</p>
+                      </div>
                     </li>
                   ))
                 ) : (
