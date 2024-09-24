@@ -152,6 +152,8 @@ const Card = ({ color, gradient, icon, count, label, variants }) => (
     whileInView="visible"
     viewport={{ once: false, amount: 0.3 }}
     variants={variants}
+    whileHover={{ scale: 1.05, zIndex: 10 }} // Add scale and zIndex on hover
+    style={{ position: "relative", zIndex: 1 }} // Ensure default z-index is set
   >
     <div
       className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-60 clip-path-custom transition-opacity duration-500 ease-in-out`}
