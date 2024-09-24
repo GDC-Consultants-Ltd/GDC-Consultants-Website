@@ -1,4 +1,3 @@
-// components/LogoSlider.js
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -7,17 +6,17 @@ import Image from "next/image";
 
 // Array of logo images
 const logos = [
-  "/images/logos/1.webp",
-  "/images/logos/2.webp",
-  "/images/logos/3.webp",
-  "/images/logos/4.webp",
-  "/images/logos/5.webp",
-  "/images/logos/6.webp",
+  "/images/logos/1.png",
+  "/images/logos/2.jpg",
+  "/images/logos/3.jpg",
+  "/images/logos/4.png",
+  "/images/logos/5.svg",
+  "/images/logos/6.png",
   "/images/logos/7.webp",
-  "/images/logos/8.webp",
-  "/images/logos/9.webp",
-  "/images/logos/10.webp",
-  "/images/logos/11.webp",
+  "/images/logos/8.png",
+  "/images/logos/9.jpg",
+  "/images/logos/10.jpg",
+  "/images/logos/11.png",
 ];
 
 const LogoSlider = () => {
@@ -99,14 +98,14 @@ const LogoSlider = () => {
             <Image
               src={logo}
               alt={`Logo ${index + 1}`}
-              className="h-25 w-30 object-contain mx-0.5"
-              width={100} // Adjusted width based on the w-40 class
-              height={90} // Adjusted height based on the h-20 class
+              className="h-24 w-40 object-contain mx-0.5" // Ensures logos are contained and uniformly sized
+              width={200} // Set a uniform width
+              height={100} // Set a uniform height
+              quality={100} // Improves image clarity
             />
           </div>
         ))}
       </Slider>
-      ;
     </div>
   );
 };

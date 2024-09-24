@@ -1,8 +1,7 @@
 "use client"; // Ensure this is treated as a client component in Next.js
 
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { BuildingOfficeIcon } from "@heroicons/react/24/solid"; // Replace with the correct icon you want to use
 import { motion, useInView } from "framer-motion"; // Import Framer Motion
 
 const CertificationSection = () => {
@@ -41,31 +40,32 @@ const CertificationSection = () => {
       animate={isInView ? "visible" : "hidden"}
       variants={fadeInVariants}
     >
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 items-stretch max-w-6xl mx-auto">
         {/* Left Side with Image */}
         <motion.div
-          className="flex justify-center md:justify-end"
+          className="flex justify-center items-center max-h-[400px] w-full md:w-auto" // Set max height and constrain width
           variants={slideRightVariants}
         >
           <Image
-            src="/images/certification.webp"
+            src="/images/logos/1.png"
             alt="Sample Image"
-            width={600}
-            height={400}
-            className="object-cover w-full max-h-[400px] h-auto rounded shadow-md"
+            width={500}
+            height={850}
+            className="object-contain max-h-[350px] w-auto" // Adjust max height and maintain aspect ratio
+            layout="intrinsic"
             priority
           />
         </motion.div>
 
         {/* Content Section */}
         <motion.div
-          className="relative text-center md:text-left bg-white p-6 flex flex-col justify-center"
+          className="relative text-justify bg-white p-6 flex flex-col justify-center h-full" // Matches height to align with image
           variants={slideLeftVariants}
         >
           <h3 className="text-2xl text-center sm:text-3xl md:text-3xl lg:text-4xl text-customYellow uppercase font-bold mt-2 mb-4">
             ISO 9001 Certified Firm
           </h3>
-          <h4 className="text-sm text-center sm:text-base md:text-lg lg:text-lg text-customBlue leading-relaxed">
+          <h4 className="text-sm text-justify sm:text-base md:text-lg lg:text-lg text-customBlue leading-relaxed">
             As an ISO 9001:2015 Certified firm, GDC Consultants Ltd works
             closely with local and central Government Agencies. This is
             important to ensure our policies and guidelines are always up to
