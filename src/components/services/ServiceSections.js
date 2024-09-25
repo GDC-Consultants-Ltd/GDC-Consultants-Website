@@ -5,8 +5,8 @@ import { motion } from "framer-motion"; // Import motion from Framer Motion
 const ServiceSections = ({ sections }) => {
   const bgColors = [
     "bg-white text-customBlue",
-    "bg-customBlue text-white",
-    "bg-customYellow text-white",
+    "bg-customLightBlue text-customBlue",
+    // "bg-customYellow text-white",
   ];
 
   // Define animation variants for motion components

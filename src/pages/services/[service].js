@@ -39,12 +39,6 @@ const ServicePage = () => {
         </div>
         {/* Modified gradient overlay for better image clarity */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent"></div>
-
-        <div className="absolute bottom-5 left-5 p-4 sm:p-6 text-left">
-          <nav className="text-lg sm:text-xl md:text-2xl text-white font-bold mb-2 flex items-center space-x-1">
-            <span className="text-customYellow">Services</span>
-          </nav>
-        </div>
       </div>
 
       {/* Service Description Section */}

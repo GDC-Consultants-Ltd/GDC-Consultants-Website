@@ -35,15 +35,15 @@ const CertificationSection = () => {
   return (
     <motion.div
       ref={sectionRef}
-      className="relative flex items-center justify-center py-16 px-4 sm:px-6 md:px-8 lg:px-16 bg-white overflow-hidden"
+      className="relative flex items-center justify-center py-16 px-4 sm:px-6 md:px-8 lg:px-16 bg-white overflow-hidden min-h-screen"
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={fadeInVariants}
     >
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 items-stretch max-w-6xl mx-auto">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 items-center max-w-6xl mx-auto">
         {/* Left Side with Image */}
         <motion.div
-          className="flex justify-center items-center max-h-[400px] w-full md:w-auto" // Set max height and constrain width
+          className="flex justify-center items-center max-h-[400px] w-full md:w-auto"
           variants={slideRightVariants}
         >
           <Image
@@ -51,7 +51,7 @@ const CertificationSection = () => {
             alt="Sample Image"
             width={500}
             height={850}
-            className="object-contain max-h-[350px] w-auto" // Adjust max height and maintain aspect ratio
+            className="object-contain max-h-[350px] w-auto"
             layout="intrinsic"
             priority
           />
@@ -59,7 +59,7 @@ const CertificationSection = () => {
 
         {/* Content Section */}
         <motion.div
-          className="relative text-justify bg-white p-6 flex flex-col justify-center h-full" // Matches height to align with image
+          className="relative text-justify bg-white p-6 flex flex-col justify-center items-center h-full"
           variants={slideLeftVariants}
         >
           <h3 className="text-2xl text-center sm:text-3xl md:text-3xl lg:text-4xl text-customYellow uppercase font-bold mt-2 mb-4">
