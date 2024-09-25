@@ -463,7 +463,7 @@ export default function Footer() {
 
       {/* Terms and Conditions Modal */}
       {isTermsModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex text-justify items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white w-11/12 max-w-3xl p-6 rounded shadow-lg relative">
             <button
               className="absolute top-4 right-4 text-black font-bold"
@@ -499,7 +499,7 @@ export default function Footer() {
               <p className="text-gray-800">
                 You agree to use the Website only for lawful purposes and in a
                 manner that does not infringe the rights of, restrict, or
-                inhibit anyone else's use and enjoyment of the Website.
+                inhibit anyone else&apos;s use and enjoyment of the Website.
               </p>
               <p className="text-gray-800">
                 You agree not to disrupt the operation of the Website or
@@ -521,19 +521,19 @@ export default function Footer() {
                 The trademarks, logos, and service marks displayed on the
                 Website are the property of GDC Consultants Ltd. or third
                 parties. You are not permitted to use these marks without our
-                prior written permission or the respective third-party owner’s
-                permission.
+                prior written permission or the respective third-party
+                owner&apos;s permission.
               </p>
 
               <h3 className="mt-4 font-semibold text-lg text-customBlue">
                 3. Disclaimer of Warranties
               </h3>
               <p className="text-gray-800">
-                The Website is provided on an "as-is" and "as-available" basis
-                without any warranties of any kind, whether express or implied,
-                including but not limited to implied warranties of
-                merchantability, fitness for a particular purpose, or
-                non-infringement.
+                The Website is provided on an &quot;as-is&quot; and
+                &quot;as-available&quot; basis without any warranties of any
+                kind, whether express or implied, including but not limited to
+                implied warranties of merchantability, fitness for a particular
+                purpose, or non-infringement.
               </p>
               <p className="text-gray-800">
                 While we strive to ensure that the information on our Website is
@@ -581,11 +581,11 @@ export default function Footer() {
               </h3>
               <p className="text-gray-800">
                 If you submit or post any content, comments, or materials on the
-                Website ("User Content"), you grant us a non-exclusive,
-                royalty-free, perpetual, irrevocable, and fully sublicensable
-                right to use, reproduce, modify, adapt, publish, translate,
-                create derivative works from, distribute, and display such User
-                Content in any media.
+                Website (&quot;User Content&quot;), you grant us a
+                non-exclusive, royalty-free, perpetual, irrevocable, and fully
+                sublicensable right to use, reproduce, modify, adapt, publish,
+                translate, create derivative works from, distribute, and display
+                such User Content in any media.
               </p>
               <p className="text-gray-800">
                 You are solely responsible for any User Content you post and you
@@ -610,6 +610,7 @@ export default function Footer() {
                 . Please review it to understand how we collect, use, and
                 protect your personal data.
               </p>
+
               <h3 className="mt-4 font-semibold text-lg text-customBlue">
                 8. Termination
               </h3>
