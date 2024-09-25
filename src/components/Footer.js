@@ -277,11 +277,12 @@ export default function Footer() {
             </h2>
             <div className="overflow-y-auto max-h-96 pr-4 scrollbar-hide">
               <p className="text-gray-800">
-                At GDC Consultants Ltd. ("we," "us," "our"), we are committed to
-                protecting your privacy and ensuring that your personal
-                information is handled in a safe and responsible manner. This
-                privacy policy explains how we collect, use, and protect the
-                personal data you provide to us through our website (
+                At GDC Consultants Ltd. (&quot;we,&quot; &quot;us,&quot;
+                &quot;our&quot;), we are committed to protecting your privacy
+                and ensuring that your personal information is handled in a safe
+                and responsible manner. This privacy policy explains how we
+                collect, use, and protect the personal data you provide to us
+                through our website (
                 <a
                   href="https://www.gdcgroup.co.nz"
                   className="text-customBlue underline"
@@ -481,11 +482,12 @@ export default function Footer() {
                   href="https://www.gdcgroup.co.nz"
                   className="text-customBlue underline"
                 >
-                  www.gdcgroup.co.nz&nbsp;
+                  www.gdcgroup.co.nz
                 </a>
-                (the "Website"). These terms and conditions ("Terms") govern
-                your access to and use of the Website operated by GDC
-                Consultants Ltd. ("we," "us," "our"). By accessing or using the
+                &nbsp;(the &quot;Website&quot;). These terms and conditions
+                (&quot;Terms&quot;) govern your access to and use of the Website
+                operated by GDC Consultants Ltd. (&quot;we,&quot;
+                &quot;us,&quot; &quot;our&quot;). By accessing or using the
                 Website, you agree to comply with and be bound by these Terms.
                 If you do not agree to these Terms, please do not use our
                 Website.
@@ -608,7 +610,6 @@ export default function Footer() {
                 . Please review it to understand how we collect, use, and
                 protect your personal data.
               </p>
-
               <h3 className="mt-4 font-semibold text-lg text-customBlue">
                 8. Termination
               </h3>
