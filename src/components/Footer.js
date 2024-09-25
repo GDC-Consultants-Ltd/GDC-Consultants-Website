@@ -463,7 +463,7 @@ export default function Footer() {
 
       {/* Terms and Conditions Modal */}
       {isTermsModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex text-justify items-center justify-center z-50">
           <div className="bg-white w-11/12 max-w-3xl p-6 rounded shadow-lg relative">
             <button
               className="absolute top-4 right-4 text-black font-bold"
