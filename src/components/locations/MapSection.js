@@ -8,6 +8,10 @@ import Image from "next/image";
 const MapSection = () => {
   return (
     <section className="py-12 px-4 md:px-16 lg:px-24 bg-gray-100">
+      <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-customBlue text-center mb-8 relative">
+        All Offices
+        <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 w-24 h-1 bg-customYellow mt-2"></div>
+      </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
         {officeLocations.map((office) => (
           <div

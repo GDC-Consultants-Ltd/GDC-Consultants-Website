@@ -85,7 +85,9 @@ const Header = () => {
   }, []);
 
   const toTitleCase = (text) => {
-    return text.toLowerCase().replace(/(^\w|\s\w)/g, (match) => match.toUpperCase());
+    return text
+      .toLowerCase()
+      .replace(/(^\w|\s\w)/g, (match) => match.toUpperCase());
   };
 
   return (
@@ -123,7 +125,7 @@ const Header = () => {
           </div>
 
           {/* Desktop Menu Items */}
-          <ul className="hidden lg:flex lg:space-x-4 lg:items-center">
+          <ul className="hidden lg:flex lg:space-x-3 lg:items-center">
             {[
               { href: "/", label: "HOME" },
               {
@@ -252,6 +254,30 @@ const Header = () => {
                 </li>
               )
             )}
+
+            {/* Adding the CALL NOW and OUR LOCATIONS buttons */}
+            <li>
+              <div className="bg-customYellow px-3 py-1 lg:px-4 lg:py-2 rounded-md hover:bg-yellow-600">
+                <Link
+                  href="tel:+6478380090"
+                  className="text-white text-xs sm:text-sm font-semibold"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  CALL NOW
+                </Link>
+              </div>
+            </li>
+            <li>
+              <div className="bg-customYellow px-3 py-1 lg:px-4 lg:py-2 rounded-md hover:bg-yellow-600">
+                <Link
+                  href="/locations"
+                  className="text-white text-xs sm:text-sm font-semibold"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  OUR LOCATIONS
+                </Link>
+              </div>
+            </li>
           </ul>
 
           {/* Mobile Menu Items */}
@@ -331,6 +357,8 @@ const Header = () => {
               },
               { href: "/team", label: "Our Team" },
               { href: "/blogs", label: "Blogs" },
+              { href: "tel:+6478380090", label: "Call Now" },
+              { href: "/locations", label: "Our Locations" },
             ].map((item) =>
               item.items ? (
                 <li key={item.label} className="relative">
@@ -397,15 +425,6 @@ const Header = () => {
               )
             )}
           </ul>
-
-          {/* Desktop version of the "OUR LOCATIONS" button */}
-          <Link
-            href="/locations"
-            className="hidden lg:block bg-customYellow text-white text-xs sm:text-sm font-semibold px-3 py-1 lg:px-4 lg:py-2 rounded-md hover:bg-yellow-600"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            OUR LOCATIONS
-          </Link>
         </nav>
       </div>
     </header>

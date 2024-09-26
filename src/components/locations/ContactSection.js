@@ -116,7 +116,12 @@ const ContactSection = () => {
               </div>
               <div className="ml-4 text-customBlue">
                 <p className="font-semibold">Phone</p>
-                <p>+64 7 838 0090</p>
+                <a
+                  href="tel:+6478380090"
+                  className="text-customBlue hover:underline"
+                >
+                  +64 7 838 0090
+                </a>
               </div>
             </div>
             <div className="flex items-start">
@@ -125,7 +130,12 @@ const ContactSection = () => {
               </div>
               <div className="ml-4 text-customBlue">
                 <p className="font-semibold">Email</p>
-                <p>hamilton@gdcgroup.co.nz</p>
+                <a
+                  href="mailto:hamilton@gdcgroup.co.nz"
+                  className="text-customBlue hover:underline"
+                >
+                  hamilton@gdcgroup.co.nz
+                </a>
               </div>
             </div>
           </div>
