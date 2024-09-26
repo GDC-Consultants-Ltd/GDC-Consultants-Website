@@ -81,7 +81,7 @@ const ContactSection = () => {
 
   return (
     <motion.section
-      className="relative flex flex-col lg:flex-row lg:gap-8 bg-white text-black py-6 px-4 md:px-8 lg:px-16 overflow-hidden"
+      className="relative flex flex-col lg:flex-row bg-white text-black py-6 px-4 md:px-8 lg:px-16 overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.2 }}
@@ -140,14 +140,17 @@ const ContactSection = () => {
 
       {/* Center Map Column */}
       <motion.div
-        className="flex-1 relative flex justify-center items-center max-w-[400px] min-h-[300px] md:min-h-[450px] lg:min-h-[500px] mt-8 lg:mt-0 mx-auto" // Center with flex and mx-auto
+        className="flex-1 relative flex justify-center items-center max-w-full min-h-[300px] sm:min-h-[400px] md:min-h-[450px] mx-auto"
+        style={{ width: "100%", height: "auto" }} // Ensure it takes full width and adjusts height automatically
         variants={fadeIn}
       >
         <Image
           src="/images/contact-map.png" // Ensure the correct path is used
           alt="Map"
-          layout="fill"
-          objectFit="cover"
+          layout="responsive"
+          width={700} // You can set this as per the aspect ratio of the image
+          height={500} // This should be adjusted for proper aspect ratio
+          objectFit="contain"
         />
       </motion.div>
 
