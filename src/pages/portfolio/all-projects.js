@@ -9,103 +9,153 @@ import Footer from "@/components/Footer";
 import GetInTouch from "@/components/GetInTouch";
 import ScrollToTop from "@/components/ScrollToTop";
 
-// Updated projects array with categories
-const projects = [
+// Updated projects array with categories inside main array
+const projectsData = [
   {
-    title: "Claudelands Events Centre",
-    image: "/images/projects/1.webp",
-    location: "Hamilton",
-    category: "Events",
+    category: "Structural",
+    projects: [
+      {
+        title: "Structural Project 1",
+        image: "/images/projects/1.webp",
+        sector: "sector 1",
+      },
+    ],
   },
   {
-    title: "Events Centre",
-    image: "/images/projects/1.webp",
-    location: "Hamilton",
-    category: "Events",
-  },
-  {
-    title: "Architectural design project",
-    image: "/images/projects/archi/1.png",
-    location: "Thames",
     category: "Architectural",
+    projects: [
+      {
+        title: "Architectural Design Project",
+        image: "/images/projects/archi/1.png",
+        sector: "Thames",
+      },
+      {
+        title: "Architectural Design Project",
+        image: "/images/projects/archi/2.png",
+        sector: "Thames",
+      },
+      {
+        title: "Architectural Design Project",
+        image: "/images/projects/archi/3.png",
+        sector: "Thames",
+      },
+      {
+        title: "Architectural Design Project",
+        image: "/images/projects/archi/4.png",
+        sector: "Thames",
+      },
+      {
+        title: "Architectural Design Project",
+        image: "/images/projects/archi/5.png",
+        sector: "Thames",
+      },
+      {
+        title: "Architectural Design Project",
+        image: "/images/projects/archi/6.png",
+        sector: "Thames",
+      },
+      {
+        title: "Architectural Design Project",
+        image: "/images/projects/archi/7.png",
+        sector: "Thames",
+      },
+      {
+        title: "Architectural Design Project",
+        image: "/images/projects/archi/8.png",
+        sector: "Thames",
+      },
+    ],
   },
   {
-    title: "Architectural design project",
-    image: "/images/projects/archi/2.png",
-    location: "Thames",
-    category: "Architectural",
+    category: "Geotech",
+    projects: [],
   },
   {
-    title: "Architectural design project",
-    image: "/images/projects/archi/3.png",
-    location: "Thames",
-    category: "Architectural",
+    category: "Environmental + Planning",
+    projects: [
+      {
+        title: "Environmental Project",
+        image: "/images/projects/2.webp",
+        sector: "sector 2",
+      },
+    ],
   },
   {
-    title: "Architectural design project",
-    image: "/images/projects/archi/4.png",
-    location: "Thames",
-    category: "Architectural",
+    category: "Roading",
+    projects: [],
   },
   {
-    title: "Architectural design project",
-    image: "/images/projects/archi/5.png",
-    location: "Thames",
-    category: "Architectural",
-  },
-  {
-    title: "Architectural design project",
-    image: "/images/projects/archi/6.png",
-    location: "Thames",
-    category: "Architectural",
-  },
-  {
-    title: "Museum",
-    image: "/images/projects/1.webp",
-    location: "Rotorua - Seismic",
-    category: "Cultural",
-  },
-  {
-    title: "Fairy Springs Motel",
-    image: "/images/projects/2.webp",
-    location: "Rotorua",
-    category: "Hospitality",
-  },
-  {
-    title: "Apartments",
-    image: "/images/projects/2.webp",
-    location: "Structural",
     category: "Residential",
+    projects: [
+      {
+        title: "Residential Project",
+        image: "/images/projects/3.webp",
+        sector: "sector 3",
+      },
+    ],
   },
   {
-    title: "Waikato University",
-    image: "/images/projects/2.webp",
-    location: "Educational",
-    category: "Educational",
-  },
-  {
-    title: "Subdivision Baverstock",
-    image: "/images/projects/2.webp",
-    location: "Subdivision",
-    category: "Residential",
-  },
-  {
-    title: "Holiday Park and Commercial Centre in the Coromandel",
-    image: "/images/projects/2.webp",
-    location: "Planning",
     category: "Commercial",
+    projects: [
+      {
+        title: "Commercial Project",
+        image: "/images/projects/4.webp",
+        sector: "sector 4",
+      },
+    ],
+  },
+  {
+    category: "Seismic",
+    projects: [],
   },
 ];
 
 const ProjectsPage = () => {
-  const [currentProject, setCurrentProject] = useState(projects[0]);
-  const [activeIndex, setActiveIndex] = useState(1); // Start from the first real image
+  const [currentProject, setCurrentProject] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All Projects");
-  const [filteredProjects, setFilteredProjects] = useState(projects);
+  const [filteredProjects, setFilteredProjects] = useState([]);
   const sliderRef = useRef(null);
-  const totalSlides = filteredProjects.length;
 
-  // Function to scroll to the active image
+  // Extract unique categories from projectsData
+  const categories = [
+    "All Projects",
+    ...projectsData.map((category) => category.category),
+  ];
+
+  // Filter projects based on selected category
+  const filterProjects = (category) => {
+    setSelectedCategory(category);
+    if (category === "All Projects") {
+      // Merge all projects from all categories
+      setFilteredProjects(
+        projectsData.flatMap((category) => category.projects)
+      );
+    } else {
+      const categoryData = projectsData.find(
+        (item) => item.category === category
+      );
+      setFilteredProjects(categoryData ? categoryData.projects : []);
+    }
+    // Reset slider to the first project in filtered list
+    setActiveIndex(0);
+  };
+
+  // Automatically transition to the next image
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % filteredProjects.length);
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [filteredProjects.length]);
+
+  useEffect(() => {
+    // Set the current project based on active index
+    setCurrentProject(filteredProjects[activeIndex]);
+  }, [activeIndex, filteredProjects]);
+
+  // Scroll to active image when activeIndex changes
   const scrollToActiveImage = () => {
     if (!sliderRef.current) return;
     const slider = sliderRef.current;
@@ -114,73 +164,24 @@ const ProjectsPage = () => {
     // Center the active image
     const activeImage = images[activeIndex];
     const offsetLeft =
-      activeImage.offsetLeft - slider.clientWidth / 2 + activeImage.clientWidth / 2;
+      activeImage.offsetLeft -
+      slider.clientWidth / 2 +
+      activeImage.clientWidth / 2;
     slider.scrollTo({ left: offsetLeft, behavior: "smooth" });
   };
 
-  // Automatically transition to the next image
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => prevIndex + 1);
-    }, 3000); // Change every 3 seconds
+    scrollToActiveImage();
+  }, [activeIndex]);
 
-    return () => clearInterval(interval);
+  // Initialize with all projects displayed on page load
+  useEffect(() => {
+    // Merge all projects from all categories to display initially
+    const allProjects = projectsData.flatMap((category) => category.projects);
+    setFilteredProjects(allProjects);
+    setCurrentProject(allProjects[0] || null); // Set the first project as the current one, if available
+    setActiveIndex(0);
   }, []);
-
-  // Scroll to active image when activeIndex changes
-  useEffect(() => {
-    if (activeIndex === 0) {
-      setTimeout(() => {
-        sliderRef.current.scrollTo({
-          left:
-            sliderRef.current.scrollWidth - sliderRef.current.clientWidth * 2,
-          behavior: "auto",
-        });
-        setActiveIndex(totalSlides);
-      }, 500);
-    } else if (activeIndex === totalSlides + 1) {
-      setTimeout(() => {
-        sliderRef.current.scrollTo({
-          left: sliderRef.current.clientWidth,
-          behavior: "auto",
-        });
-        setActiveIndex(1);
-      }, 500);
-    } else {
-      scrollToActiveImage();
-    }
-  }, [activeIndex, totalSlides]);
-
-  // Update currentProject based on activeIndex
-  useEffect(() => {
-    // Calculate the actual index of the project based on activeIndex
-    let projectIndex = activeIndex - 1; // Active index starts at 1 due to cloned slides
-    if (projectIndex < 0) projectIndex = totalSlides - 1; // Wrap around to last project
-    if (projectIndex >= totalSlides) projectIndex = 0; // Wrap around to first project
-
-    // Update the current project based on the calculated index
-    setCurrentProject(filteredProjects[projectIndex]);
-  }, [activeIndex, filteredProjects, totalSlides]);
-
-  // Extract unique categories from projects
-  const categories = [
-    "All Projects",
-    ...new Set(projects.map((project) => project.category)),
-  ];
-
-  // Filter projects based on selected category
-  const filterProjects = (category) => {
-    setSelectedCategory(category);
-    if (category === "All Projects") {
-      setFilteredProjects(projects);
-    } else {
-      setFilteredProjects(
-        projects.filter((project) => project.category === category)
-      );
-    }
-    // Reset slider to the first project in filtered list
-    setActiveIndex(1);
-  };
 
   return (
     <>
@@ -206,70 +207,50 @@ const ProjectsPage = () => {
 
       <section className="pb-10">
         <div className="max-w-screen-xl mx-auto px-6 md:px-10 xl:px-16">
-          {/* Horizontal Scrollable Slider */}
-          <div
-            ref={sliderRef}
-            className="relative flex gap-8 overflow-x-auto scrollbar-hide py-6"
-          >
-            {/* Clone last slide at the beginning for circular effect */}
-            <div
-              className={`carousel-image flex-shrink-0 w-[500px] h-[350px] transition-transform duration-500 cursor-pointer ${
-                activeIndex === 0 ? "scale-110" : "scale-100"
-              }`}
-            >
-              <Image
-                src={filteredProjects[totalSlides - 1]?.image} // Use filteredProjects
-                alt={filteredProjects[totalSlides - 1]?.title} // Use filteredProjects
-                width={500}
-                height={350}
-                className="object-cover w-full h-full rounded-lg"
-              />
-            </div>
-
-            {filteredProjects.map((project, index) => (
+          {filteredProjects.length > 0 ? (
+            <>
+              {/* Horizontal Scrollable Slider */}
               <div
-                key={index}
-                onClick={() => {
-                  setActiveIndex(index + 1);
-                  setCurrentProject(project);
-                }}
-                className={`carousel-image flex-shrink-0 w-[500px] h-[350px] transition-transform duration-500 cursor-pointer ${
-                  index + 1 === activeIndex ? "scale-110" : "scale-100"
-                }`}
+                ref={sliderRef}
+                className="relative flex gap-8 overflow-x-auto scrollbar-hide py-6"
               >
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  width={500}
-                  height={350}
-                  className="object-cover w-full h-full"
-                />
+                {filteredProjects.map((project, index) => (
+                  <div
+                    key={index}
+                    onClick={() => {
+                      setActiveIndex(index);
+                      setCurrentProject(project);
+                    }}
+                    className={`carousel-image flex-shrink-0 w-[500px] h-[350px] transition-transform duration-500 cursor-pointer ${
+                      index === activeIndex ? "scale-110" : "scale-100"
+                    }`}
+                  >
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={500}
+                      height={350}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
 
-            {/* Clone first slide at the end for circular effect */}
-            <div
-              className={`carousel-image flex-shrink-0 w-[500px] h-[350px] transition-transform duration-500 cursor-pointer ${
-                activeIndex === totalSlides + 1 ? "scale-110" : "scale-100"
-              }`}
-            >
-              <Image
-                src={filteredProjects[0]?.image} // Use filteredProjects
-                alt={filteredProjects[0]?.title} // Use filteredProjects
-                width={500}
-                height={350}
-                className="object-cover w-full h-full"
-              />
-            </div>
-          </div>
-
-          {/* Project Details */}
-          <div className="mt-8 text-center">
-            <h3 className="text-2xl font-semibold text-customBlue mb-2">
-              {currentProject.title}
-            </h3>
-            <p className="text-lg text-customYellow">{currentProject.location}</p>
-          </div>
+              {/* Project Details */}
+              <div className="mt-8 text-center">
+                <h3 className="text-2xl font-semibold text-customBlue mb-2">
+                  {currentProject?.title}
+                </h3>
+                <p className="text-lg text-customYellow">
+                  {currentProject?.sector}
+                </p>
+              </div>
+            </>
+          ) : (
+            <p className="text-center text-lg text-gray-600 py-20">
+              No projects available in this category.
+            </p>
+          )}
         </div>
       </section>
 

@@ -10,6 +10,7 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
+    phone: "",
     email: "",
     message: "",
   });
@@ -30,7 +31,7 @@ const ContactSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { firstname, lastname, email, message } = formData;
+    const { firstname, lastname, phone, email, message } = formData;
 
     try {
       // Replace with your HubSpot Form and Portal IDs
@@ -45,6 +46,7 @@ const ContactSection = () => {
         fields: [
           { name: "firstname", value: firstname },
           { name: "lastname", value: lastname },
+          { name: "phone", value: phone },
           { name: "email", value: email },
           { name: "message", value: message },
         ],
@@ -58,7 +60,13 @@ const ContactSection = () => {
       });
 
       setSubmitted(true);
-      setFormData({ firstname: "", lastname: "", email: "", message: "" });
+      setFormData({
+        firstname: "",
+        lastname: "",
+        phone: "",
+        email: "",
+        message: "",
+      });
     } catch (error) {
       setError("There was an error submitting the form. Please try again.");
       console.error("Error submitting to HubSpot:", error);
@@ -85,10 +93,10 @@ const ContactSection = () => {
     >
       {/* Left Content Column */}
       <motion.div
-        className="flex-1 flex items-center justify-center"
+        className="flex-1 flex items-center justify-center py-6"
         variants={fadeIn}
       >
-        <div className="text-left max-w-sm">
+        <div className="text-left max-w-sm -mt-20">
           <h1 className="text-lg font-bold mb-4 text-customBlue">
             Head Office
           </h1>
@@ -124,7 +132,11 @@ const ContactSection = () => {
         </div>
       </motion.div>
 
-      <motion.div className="flex-1 relative overflow-hidden" variants={fadeIn}>
+      {/* Center Map Column */}
+      <motion.div
+        className="flex-1 relative overflow-hidden min-h-[450px] flex-grow" // Set min height and flex-grow
+        variants={fadeIn}
+      >
         <Image
           src="/images/contact-map.png" // Replace with the correct path to your map image
           alt="Map"
@@ -146,30 +158,49 @@ const ContactSection = () => {
           <p className="text-green-600">Thank you for your message!</p>
         ) : (
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                First Name
-              </label>
-              <input
-                type="text"
-                name="firstname"
-                placeholder="First Name"
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                value={formData.firstname}
-                onChange={handleChange}
-                required
-              />
+            <div className="flex gap-4 mb-4">
+              {" "}
+              {/* Flex container with a gap between inputs */}
+              <div className="flex-1">
+                <label className="block text-sm font-medium text-gray-700">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  name="firstname"
+                  placeholder="First Name"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  value={formData.firstname}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="flex-1">
+                <label className="block text-sm font-medium text-gray-700">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  name="lastname"
+                  placeholder="Last Name"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  value={formData.lastname}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
+
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">
-                Last Name
+                Mobile Number
               </label>
               <input
-                type="text"
-                name="lastname"
-                placeholder="Last Name"
+                type="number"
+                name="phone"
+                placeholder="Mobile Number"
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                value={formData.lastname}
+                value={formData.phone}
                 onChange={handleChange}
                 required
               />
