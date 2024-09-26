@@ -230,11 +230,17 @@ const BlogPost = ({ blog, recentArticles }) => {
                 {comments.length > 0 ? (
                   comments.map((comment, index) => (
                     <li key={index} className="flex space-x-3">
-                      <img
-                        src="/images/comment-avatar.webp" 
+                      {/* <Image
+                        src="/images/comment-avatar.webp" // Ensure the path is correct
                         alt="Avatar"
-                        className="w-10 h-10 rounded-full"
-                      />
+                        width={80} // Set the desired width
+                        height={80} // Set the desired height
+                        objectFit="cover" // Ensures the image fills the dimensions without distortion
+                        objectPosition="center" // Centers the image within its bounding box
+                        className="rounded-full" // Keeps the avatar shape rounded
+                        priority // Optional: speeds up image loading, useful for critical images like avatars
+                      /> */}
+
                       <div>
                         <div className="flex items-center space-x-2">
                           <p className="text-sm font-semibold text-gray-800">

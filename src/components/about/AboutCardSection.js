@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion"; // Import Framer Motion
+import Image from "next/image"; // Import Image from Next.js
 
 const AboutCardSection = () => {
   const teamMembers = [
@@ -55,7 +56,7 @@ const AboutCardSection = () => {
 
   return (
     <motion.section
-      className="px-6 py-12 bg-white text-center overflow-hidden" // Add overflow-hidden here
+      className="px-6 py-12 bg-white text-center overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.2 }}
@@ -74,21 +75,23 @@ const AboutCardSection = () => {
         Chartered Professional Engineers & Architectural Designs
       </motion.p>
 
-      <div className="w-full h-[450px] overflow-hidden rounded-lg">
-        <img
+      <div className="w-full rounded-lg overflow-hidden">
+        <Image
           src="/images/about/who-we-are.webp" // Ensure this path is correct for your image
           alt="who we are"
-          className="w-full h-full object-contain md:object-cover transition-transform duration-300 hover:scale-105"
+          layout="responsive" // Ensures the image is responsive
+          width={800} // Adjust to your image's aspect ratio
+          height={450} // Adjust to your image's aspect ratio
+          objectFit="contain" // Maintains the 'object-contain' effect
+          className="transition-transform duration-300 hover:scale-105"
         />
       </div>
 
       {/* Card Container */}
       <div className="flex flex-col md:flex-row justify-center items-stretch gap-6 mt-8 md:mt-12 overflow-hidden">
-        {" "}
-        {/* Add overflow-hidden here */}
         {/* First Card */}
         <motion.div
-          className="overflow-hidden md:w-1/3 flex flex-col relative" // Add relative position
+          className="overflow-hidden md:w-1/3 flex flex-col relative"
           variants={slideInLeft}
         >
           <div className="p-4 bg-white rounded-lg shadow-md h-full">
@@ -101,7 +104,7 @@ const AboutCardSection = () => {
         </motion.div>
         {/* Middle Card */}
         <motion.div
-          className="overflow-hidden md:w-1/3 flex flex-col relative" // Add relative position
+          className="overflow-hidden md:w-1/3 flex flex-col relative"
           variants={fadeInUp}
         >
           <div className="p-4 bg-white rounded-lg shadow-md h-full">
@@ -113,7 +116,7 @@ const AboutCardSection = () => {
         </motion.div>
         {/* Third Card */}
         <motion.div
-          className="overflow-hidden md:w-1/3 flex flex-col relative" // Add relative position
+          className="overflow-hidden md:w-1/3 flex flex-col relative"
           variants={slideInRight}
         >
           <div className="p-4 bg-white rounded-lg shadow-md h-full">

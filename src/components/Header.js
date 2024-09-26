@@ -219,7 +219,7 @@ const Header = () => {
                   <ul
                     className={`${
                       activeDropdown === item.dropdown ? "block" : "hidden"
-                    } absolute left-0 mt-2 w-48 bg-white opacity-90 shadow-md rounded-md`}
+                    } absolute left-0 mt-6 w-48 bg-white opacity-90 shadow-md rounded-md`}
                   >
                     {item.items.map((subItem) => (
                       <li key={subItem.href}>

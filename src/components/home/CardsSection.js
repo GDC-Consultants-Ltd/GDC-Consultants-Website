@@ -8,6 +8,7 @@ import {
   CalendarIcon,
 } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion"; // Import Framer Motion components
+import Link from "next/link"; // Import Link from Next.js
 
 const CardsSection = () => {
   const [counts, setCounts] = useState({
@@ -119,6 +120,7 @@ const CardsSection = () => {
       ),
       count: `${counts.services.toLocaleString()}+`,
       label: "Services Provided",
+      link: "/services", // Add a link property to specify the route
     },
     {
       color: "bg-customYellow",
@@ -137,9 +139,16 @@ const CardsSection = () => {
       className="relative z-10 mt-4 md:mt-8 lg:mt-[-100px] xl:mt-[-150px] px-4 sm:px-6 lg:px-0 py-10 overflow-hidden"
     >
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 gap-4">
-        {cardData.map((card, index) => (
-          <Card key={index} {...card} variants={cardVariants} />
-        ))}
+        {cardData.map((card, index) =>
+          // Check if the card has a link property and wrap with Link if it does
+          card.link ? (
+            <Link key={index} href={card.link}>
+              <Card {...card} variants={cardVariants} />
+            </Link>
+          ) : (
+            <Card key={index} {...card} variants={cardVariants} />
+          )
+        )}
       </div>
     </section>
   );
