@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { MapPinIcon, PhoneIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
-import { motion } from "framer-motion"; // Import Framer Motion
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 const ContactSection = () => {
@@ -34,14 +34,11 @@ const ContactSection = () => {
     const { firstname, lastname, phone, email, message } = formData;
 
     try {
-      // Replace with your HubSpot Form and Portal IDs
       const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
       const hubspotFormId = process.env.NEXT_PUBLIC_HUBSPOT_CONTACT_FORM_ID;
 
-      // HubSpot Form Submission API endpoint
       const url = `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`;
 
-      // HubSpot form submission payload
       const payload = {
         fields: [
           { name: "firstname", value: firstname },
@@ -52,7 +49,6 @@ const ContactSection = () => {
         ],
       };
 
-      // Submit the form data to HubSpot
       await axios.post(url, payload, {
         headers: {
           "Content-Type": "application/json",
@@ -85,7 +81,7 @@ const ContactSection = () => {
 
   return (
     <motion.section
-      className="relative flex flex-col md:flex-row bg-white text-black py-12 px-4 md:px-16 overflow-hidden"
+      className="relative flex flex-col lg:flex-row lg:gap-8 bg-white text-black py-6 px-4 md:px-8 lg:px-16 overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.2 }}
@@ -93,14 +89,14 @@ const ContactSection = () => {
     >
       {/* Left Content Column */}
       <motion.div
-        className="flex-1 flex items-center justify-center py-6"
+        className="flex-1 flex items-center justify-center py-6 md:py-0"
         variants={fadeIn}
       >
-        <div className="text-left max-w-sm -mt-20">
-          <h1 className="text-lg font-bold mb-4 text-customBlue">
+        <div className="text-left max-w-sm -mt-20 md:mt-0">
+          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-customBlue">
             Head Office
           </h1>
-          <div className="space-y-3">
+          <div className="space-y-4">
             <div className="flex items-start">
               <div className="bg-customBlue p-3 rounded-full">
                 <MapPinIcon className="h-6 w-6 text-white" />
@@ -144,33 +140,30 @@ const ContactSection = () => {
 
       {/* Center Map Column */}
       <motion.div
-        className="flex-1 relative overflow-hidden min-h-[450px] flex-grow" // Set min height and flex-grow
+        className="flex-1 relative flex justify-center items-center max-w-[400px] min-h-[300px] md:min-h-[450px] lg:min-h-[500px] mt-8 lg:mt-0 mx-auto" // Center with flex and mx-auto
         variants={fadeIn}
       >
         <Image
-          src="/images/contact-map.png" // Replace with the correct path to your map image
+          src="/images/contact-map.png" // Ensure the correct path is used
           alt="Map"
-          layout="fill" // Ensures the image covers the container
-          objectFit="cover" // Similar to 'object-cover' in CSS
-          className="rounded-md shadow-md" // Keeping the styling consistent
+          layout="fill"
+          objectFit="cover"
         />
       </motion.div>
 
       {/* Right Form Column */}
       <motion.div
-        className="flex-1 p-6 bg-white shadow-md rounded-md"
+        className="flex-1 p-6 bg-white shadow-md rounded-md mt-8 lg:mt-0"
         variants={fadeIn}
       >
-        <h3 className="text-xl text-customBlue font-semibold mb-4">
+        <h3 className="text-lg md:text-xl lg:text-2xl text-customBlue font-semibold mb-4">
           Send Message
         </h3>
         {submitted ? (
           <p className="text-green-600">Thank you for your message!</p>
         ) : (
           <form onSubmit={handleSubmit}>
-            <div className="flex gap-4 mb-4">
-              {" "}
-              {/* Flex container with a gap between inputs */}
+            <div className="flex flex-col md:flex-row gap-4 mb-4">
               <div className="flex-1">
                 <label className="block text-sm font-medium text-gray-700">
                   First Name
@@ -206,7 +199,7 @@ const ContactSection = () => {
                 Mobile Number
               </label>
               <input
-                type="number"
+                type="tel"
                 name="phone"
                 placeholder="Mobile Number"
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
