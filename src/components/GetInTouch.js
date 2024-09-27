@@ -1,11 +1,8 @@
 "use client"; // Ensure this is treated as a client component
 
+import React from "react";
 import { motion } from "framer-motion"; // Import Framer Motion
-import {
-  EnvelopeIcon,
-  MapPinIcon,
-  PhoneIcon,
-} from "@heroicons/react/24/outline";
+import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
 
 // Data array for dynamic rendering
 const contactDetails = [
@@ -14,21 +11,24 @@ const contactDetails = [
     title: "CONTACT US",
     description: "Our friendly team is here to help.",
     contactInfo: "hamilton@gdcgroup.co.nz",
-    icon: <EnvelopeIcon className="w-10 h-10 text-white" />,
+    link: "mailto:hamilton@gdcgroup.co.nz",
+    icon: <EnvelopeIcon/>, 
   },
   {
     id: 2,
     title: "OFFICE",
     description: "Come say hello at our office HQ.",
     contactInfo: "89 Church Road, Pukete, Hamilton 3200",
-    icon: <MapPinIcon className="w-10 h-10 text-white" />,
+    link: "https://www.google.com/maps?q=89+Church+Road,+Pukete,+Hamilton+3200",
+    icon: <MapPinIcon/>, 
   },
   {
     id: 3,
     title: "PHONE",
     description: "Mon-Fri from 8am to 5pm",
     contactInfo: "+64 7 838 0090",
-    icon: <PhoneIcon className="w-10 h-10 text-white" />,
+    link: "tel:+6478380090",
+    icon: <PhoneIcon/>, 
   },
 ];
 
@@ -42,12 +42,10 @@ const fadeInUpVariants = {
   },
 };
 
-const scaleUpVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" },
+const cardHoverVariants = {
+  hover: {
+    scale: 1.05,
+    transition: { duration: 0.3, ease: "easeOut" },
   },
 };
 
@@ -81,36 +79,48 @@ const GetInTouch = () => {
           {contactDetails.map((detail) => (
             <motion.div
               key={detail.id}
-              className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center transition-transform transform hover:scale-105"
+              className="relative bg-white p-6 rounded-lg shadow-md flex flex-col items-center overflow-hidden group transition-all duration-300 border-b-4 border-customBlue"
               initial="hidden"
               whileInView="visible"
-              variants={scaleUpVariants}
               viewport={{ once: false, amount: 0.2 }}
+              whileHover="hover"
+              variants={cardHoverVariants}
             >
+              {/* Sliding Background Effect */}
               <motion.div
-                className="w-20 h-20 bg-gradient-to-r from-customBlue to-blue-500 rounded-full flex items-center justify-center mb-4"
-                variants={scaleUpVariants}
+                className="absolute inset-0 bg-customBlue transition-transform duration-300 transform translate-y-full group-hover:translate-y-0"
+              ></motion.div>
+
+              {/* Icon with Initial Blue Background, Padding, and Hover Effect */}
+              <motion.div
+                className="relative w-20 h-20 bg-customBlue rounded-full flex items-center justify-center mb-4 z-10 transition-colors duration-300 group-hover:bg-customYellow p-3"
               >
-                {detail.icon}
+                {React.cloneElement(detail.icon, {
+                  className: "w-10 h-10 text-white transition-colors duration-300 group-hover:text-white",
+                })}
               </motion.div>
+
               <motion.h3
-                className="text-xl text-customBlue font-semibold mb-2"
+                className="text-xl font-semibold mb-2 text-customBlue z-10 relative group-hover:text-white"
                 variants={fadeInUpVariants}
               >
                 {detail.title}
               </motion.h3>
               <motion.p
-                className="text-gray-600 mb-1"
+                className="text-gray-600 mb-1 z-10 relative group-hover:text-white"
                 variants={fadeInUpVariants}
               >
                 {detail.description}
               </motion.p>
-              <motion.p
-                className="text-customBlue font-semibold"
+              <motion.a
+                href={detail.link}
+                className="text-customBlue font-semibold z-10 relative group-hover:text-white"
                 variants={fadeInUpVariants}
+                target="_blank" // Opens link in a new tab for address link
+                rel="noopener noreferrer" // Security measure for external links
               >
                 {detail.contactInfo}
-              </motion.p>
+              </motion.a>
             </motion.div>
           ))}
         </motion.div>

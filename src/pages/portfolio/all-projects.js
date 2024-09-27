@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 import GetInTouch from "@/components/GetInTouch";
 import ScrollToTop from "@/components/ScrollToTop";
 
-// Updated projects array with categories inside main array
+// Updated projects array with categories and sectors inside main array
 const projectsData = [
   {
     category: "Structural",
@@ -17,7 +17,8 @@ const projectsData = [
       {
         title: "Structural Project 1",
         image: "/images/projects/1.webp",
-        sector: "sector 1",
+        location: "location 1",
+        sector: "Heritage",
       },
     ],
   },
@@ -27,42 +28,20 @@ const projectsData = [
       {
         title: "Architectural Design Project",
         image: "/images/projects/archi/1.png",
-        sector: "Thames",
+        location: "Thames",
+        sector: "Accommodation",
       },
       {
         title: "Architectural Design Project",
         image: "/images/projects/archi/2.png",
-        sector: "Thames",
+        location: "Thames",
+        sector: "Heritage",
       },
       {
         title: "Architectural Design Project",
         image: "/images/projects/archi/3.png",
-        sector: "Thames",
-      },
-      {
-        title: "Architectural Design Project",
-        image: "/images/projects/archi/4.png",
-        sector: "Thames",
-      },
-      {
-        title: "Architectural Design Project",
-        image: "/images/projects/archi/5.png",
-        sector: "Thames",
-      },
-      {
-        title: "Architectural Design Project",
-        image: "/images/projects/archi/6.png",
-        sector: "Thames",
-      },
-      {
-        title: "Architectural Design Project",
-        image: "/images/projects/archi/7.png",
-        sector: "Thames",
-      },
-      {
-        title: "Architectural Design Project",
-        image: "/images/projects/archi/8.png",
-        sector: "Thames",
+        location: "Thames",
+        sector: "Educational",
       },
     ],
   },
@@ -76,7 +55,8 @@ const projectsData = [
       {
         title: "Environmental Project",
         image: "/images/projects/2.webp",
-        sector: "sector 2",
+        location: "location 2",
+        sector: "Cultural",
       },
     ],
   },
@@ -90,7 +70,8 @@ const projectsData = [
       {
         title: "Residential Project",
         image: "/images/projects/3.webp",
-        sector: "sector 3",
+        location: "location 3",
+        sector: "Medical",
       },
     ],
   },
@@ -100,7 +81,8 @@ const projectsData = [
       {
         title: "Commercial Project",
         image: "/images/projects/4.webp",
-        sector: "sector 4",
+        location: "location 4",
+        sector: "Council",
       },
     ],
   },
@@ -114,31 +96,57 @@ const ProjectsPage = () => {
   const [currentProject, setCurrentProject] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All Projects");
+  const [selectedSector, setSelectedSector] = useState("All Sectors");
   const [filteredProjects, setFilteredProjects] = useState([]);
   const sliderRef = useRef(null);
 
-  // Extract unique categories from projectsData
+  // Extract unique categories and sectors from projectsData
   const categories = [
     "All Projects",
-    ...projectsData.map((category) => category.category),
+    ...projectsData.map((item) => item.category),
+  ];
+  const sectors = [
+    "All Sectors",
+    ...new Set(
+      projectsData
+        .flatMap((item) => item.projects.map((project) => project.sector))
+        .filter(Boolean)
+    ),
   ];
 
-  // Filter projects based on selected category
-  const filterProjects = (category) => {
-    setSelectedCategory(category);
-    if (category === "All Projects") {
-      // Merge all projects from all categories
-      setFilteredProjects(
-        projectsData.flatMap((category) => category.projects)
+  // Filter projects based on selected category and sector
+  const filterProjects = (category, sector) => {
+    let filtered = projectsData.flatMap((item) => item.projects);
+
+    if (category !== "All Projects") {
+      filtered = filtered.filter((project) =>
+        projectsData
+          .find((cat) => cat.category === category)
+          ?.projects.includes(project)
       );
-    } else {
-      const categoryData = projectsData.find(
-        (item) => item.category === category
-      );
-      setFilteredProjects(categoryData ? categoryData.projects : []);
     }
-    // Reset slider to the first project in filtered list
-    setActiveIndex(0);
+
+    if (sector !== "All Sectors") {
+      filtered = filtered.filter((project) => project.sector === sector);
+    }
+
+    setFilteredProjects(filtered);
+    setCurrentProject(filtered[0] || null); // Set the first project as the current one, if available
+    setActiveIndex(0); // Reset slider to the first project
+  };
+
+  // Handle category selection
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    setSelectedSector("All Sectors"); // Reset sectors when filtering by category
+    filterProjects(category, "All Sectors");
+  };
+
+  // Handle sector selection
+  const handleSectorClick = (sector) => {
+    setSelectedSector(sector);
+    setSelectedCategory("All Projects"); // Reset categories when filtering by sector
+    filterProjects("All Projects", sector);
   };
 
   // Automatically transition to the next image
@@ -176,11 +184,7 @@ const ProjectsPage = () => {
 
   // Initialize with all projects displayed on page load
   useEffect(() => {
-    // Merge all projects from all categories to display initially
-    const allProjects = projectsData.flatMap((category) => category.projects);
-    setFilteredProjects(allProjects);
-    setCurrentProject(allProjects[0] || null); // Set the first project as the current one, if available
-    setActiveIndex(0);
+    filterProjects("All Projects", "All Sectors");
   }, []);
 
   return (
@@ -188,12 +192,12 @@ const ProjectsPage = () => {
       <Header />
       <ProjectHeader />
 
-      {/* Category Labels */}
-      <div className="flex flex-wrap justify-center py-6 m-4">
+      {/* First set of labels for categories */}
+      <div className="flex flex-wrap justify-center pt-6 m-4">
         {categories.map((category) => (
           <button
             key={category}
-            onClick={() => filterProjects(category)}
+            onClick={() => handleCategoryClick(category)}
             className={`px-4 py-2 rounded-full m-1 md:m-2 transition duration-300 ease-in-out transform hover:scale-105 ${
               selectedCategory === category
                 ? "bg-customBlue text-white shadow-lg"
@@ -205,6 +209,24 @@ const ProjectsPage = () => {
         ))}
       </div>
 
+      {/* Second set of labels for sectors */}
+      <div className="flex flex-wrap justify-center pt-2 m-4">
+        {sectors.map((sector) => (
+          <button
+            key={sector}
+            onClick={() => handleSectorClick(sector)}
+            className={`px-4 py-2 rounded-full m-1 md:m-2 transition duration-300 ease-in-out transform hover:scale-105 ${
+              selectedSector === sector
+                ? "bg-yellow-500 text-white shadow-lg"
+                : "bg-gray-200 text-gray-700 hover:bg-yellow-500 hover:text-white"
+            }`}
+          >
+            {sector}
+          </button>
+        ))}
+      </div>
+
+      {/* Display Projects Section */}
       <section className="pb-10">
         <div className="max-w-screen-xl mx-auto px-6 md:px-10 xl:px-16">
           {filteredProjects.length > 0 ? (
@@ -242,13 +264,13 @@ const ProjectsPage = () => {
                   {currentProject?.title}
                 </h3>
                 <p className="text-lg text-customYellow">
-                  {currentProject?.sector}
+                  {currentProject?.location}
                 </p>
               </div>
             </>
           ) : (
             <p className="text-center text-lg text-gray-600 py-20">
-              No projects available in this category.
+              No projects available in this category or sector.
             </p>
           )}
         </div>
