@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import { motion } from "framer-motion"; // Import Framer Motion
+import Head from "next/head";
 
 const BlogGallery = () => {
   const [blogs, setBlogs] = useState([]);
@@ -73,6 +74,16 @@ const BlogGallery = () => {
 
   return (
     <>
+      <Head>
+        <title>Our Blog | GDC Consultants - Latest News & Updates</title>
+        <meta
+          name="description"
+          content="Stay updated with the latest news, insights, and updates from GDC Consultants. Explore our blog for expert articles on architecture, engineering, and project management across New Zealand."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="canonical" href="https://www.gdcgroup.co.nz/blogs" />
+      </Head>
       <Header />
       <motion.div
         className="relative"
@@ -101,7 +112,7 @@ const BlogGallery = () => {
           variants={slideInLeft}
         >
           <nav className="text-2xl text-white font-bold mb-2 flex items-center justify-center md:justify-start space-x-1">
-            <span className="hover:text-customYellow">Our Blog</span>
+            <h1 className="hover:text-customYellow">Our Blog</h1>
           </nav>
           <h1 className="text-white text-5xl font-bold leading-tight">
             Latest News & Updates

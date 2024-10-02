@@ -9,10 +9,26 @@ import LogoSlider from "@/components/about/LogoSlider";
 import SubContact from "@/components/SubContact";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import Head from "next/head";
 
 const WhoWeAre = () => {
   return (
     <>
+      <Head>
+        <title>
+          Elevate your projects with our Development Engineering Consultants
+        </title>
+        <meta
+          name="description"
+          content="Discover expert Development Engineering Consultants dedicated to delivering innovative solutions. Our team ensures quality and efficiency in every project. "
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Canonical URL */}
+        <link
+          rel="canonical"
+          href="https://www.gdcgroup.co.nz/about-us/who-we-are"
+        />
+      </Head>
       <Header />
       <AboutCardSection />
       <LogoSlider />

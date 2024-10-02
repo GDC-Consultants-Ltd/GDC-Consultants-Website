@@ -12,6 +12,7 @@ import ServiceDescription from "../../components/services/ServiceDescription";
 import ServiceSections from "../../components/services/ServiceSections";
 import services from "../../data/servicesData"; // Import the services data
 import ScrollToTop from "@/components/ScrollToTop";
+import Head from "next/head";
 
 const ServicePage = () => {
   const router = useRouter();
@@ -25,6 +26,34 @@ const ServicePage = () => {
 
   return (
     <>
+      {/* Dynamic SEO Head */}
+      <Head>
+        <title>{serviceData.metaTitle}</title>
+        <meta name="description" content={serviceData.metaDescription} />
+        <meta
+          property="og:title"
+          content={`${serviceData.metaTitle} | GDC Consultants`}
+        />
+        <meta property="og:description" content={serviceData.metaDescription} />
+        <meta property="og:image" content={serviceData.image} />
+        <meta
+          property="og:url"
+          content={`https://www.gdcgroup.co.nz/services/${service}`}
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content={`${serviceData.title} | GDC Consultants`}
+        />
+        <meta name="twitter:description" content={serviceData.metaDescription} />
+        <meta name="twitter:image" content={serviceData.image} />
+        <link
+          rel="canonical"
+          href={`https://www.gdcgroup.co.nz/services/${service}`}
+        />
+      </Head>
+
       <Header />
       <div className="relative">
         <div className="w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] relative">

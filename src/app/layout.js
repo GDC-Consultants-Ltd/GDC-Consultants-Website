@@ -11,17 +11,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Add meta tags and link tags directly within this head section */}
-        <title>
-          GDC Consultants: Innovative Solutions & Expert Guidance - GDC
-          Consultants LTD
-        </title>
+        {/* Primary Meta Tags */}
+        <title>GDC Consultants: Your Engineering Partner for Success</title>
         <meta
           name="description"
-          content="GDC Consultants provides innovative solutions and expert guidance in architectural and engineering design."
+          content="GDC Consultants provides innovative solutions and expert guidance in architectural and engineering design. Serving New Zealand with a commitment to excellence."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="canonical" href="https://www.gdcgroup.co.nz" />
+
         {/* HubSpot Chatbot Script */}
         {hubspotPortalId && (
           <script

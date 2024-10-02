@@ -56,12 +56,12 @@ const ReviewHeader = () => {
         className="text-center md:text-left relative overflow-hidden" // Add relative and overflow-hidden here
         variants={slideInRight}
       >
-        <h2 className="text-lg uppercase font-semibold text-gray-500">
+        <h1 className="text-lg uppercase font-semibold text-gray-500">
           Leave us a Review
-        </h2>
-        <h1 className="text-4xl text-customBlue font-bold mt-2 mb-4">
-          Share Your Experience With Us
         </h1>
+        <h2 className="text-4xl text-customBlue font-bold mt-2 mb-4">
+          Share Your Experience With Us
+        </h2>
         <p className="text-xl text-gray-700 mb-8">
           Please provide your feedback for any job you have previously completed
           with us, and kindly include the job number for easy reference.

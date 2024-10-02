@@ -62,9 +62,9 @@ const AboutCardSection = () => {
       viewport={{ once: false, amount: 0.2 }}
       variants={fadeInUp}
     >
-      <motion.h2 className="text-lg uppercase font-semibold text-gray-500">
+      <motion.h1 className="text-lg uppercase font-semibold text-gray-500">
         About Us
-      </motion.h2>
+      </motion.h1>
       <motion.h1
         className="text-4xl text-customBlue font-bold mt-2 mb-4"
         variants={fadeInUp}
