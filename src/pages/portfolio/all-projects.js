@@ -122,7 +122,7 @@ const ProjectsPage = () => {
 
         <link
           rel="canonical"
-          href="https://www.gdcgroup.co.nz/portfolio/all-projects"
+          href="https://gdcgroup.netlify.app/portfolio/all-projects"
         />
       </Head>
 

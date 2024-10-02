@@ -26,7 +26,7 @@ const WhoWeAre = () => {
         {/* Canonical URL */}
         <link
           rel="canonical"
-          href="https://www.gdcgroup.co.nz/about-us/who-we-are"
+          href="https://gdcgroup.netlify.app/about-us/who-we-are"
         />
       </Head>
       <Header />

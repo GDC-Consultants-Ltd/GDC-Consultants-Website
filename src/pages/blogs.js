@@ -82,7 +82,7 @@ const BlogGallery = () => {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="canonical" href="https://www.gdcgroup.co.nz/blogs" />
+        <link rel="canonical" href="https://gdcgroup.netlify.app/blogs" />
       </Head>
       <Header />
       <motion.div

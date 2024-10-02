@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="canonical" href="https://www.gdcgroup.co.nz" />
+        <link rel="canonical" href="https://gdcgroup.netlify.app" />
 
         {/* HubSpot Chatbot Script */}
         {hubspotPortalId && (

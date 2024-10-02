@@ -23,7 +23,7 @@ const Careers = () => {
 
         <link
           rel="canonical"
-          href="https://www.gdcgroup.co.nz/about-us/careers"
+          href="https://gdcgroup.netlify.app/about-us/careers"
         />
       </Head>
       <Header />

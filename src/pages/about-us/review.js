@@ -22,7 +22,7 @@ const Review = () => {
 
         <link
           rel="canonical"
-          href="https://www.gdcgroup.co.nz/about-us/review"
+          href="https://gdcgroup.netlify.app/about-us/review"
         />
       </Head>
       <Header />

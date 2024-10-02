@@ -115,7 +115,7 @@ const BlogPost = ({ blog, recentArticles }) => {
 
         <link
           rel="canonical"
-          href={`https://www.gdcgroup.co.nz/blog/${blog.slug}`}
+          href={`https://gdcgroup.netlify.app/blog/${blog.slug}`}
         />
       </Head>
       <Header />

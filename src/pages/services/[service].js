@@ -38,7 +38,7 @@ const ServicePage = () => {
         <meta property="og:image" content={serviceData.image} />
         <meta
           property="og:url"
-          content={`https://www.gdcgroup.co.nz/services/${service}`}
+          content={`https://gdcgroup.netlify.app/services/${service}`}
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -50,7 +50,7 @@ const ServicePage = () => {
         <meta name="twitter:image" content={serviceData.image} />
         <link
           rel="canonical"
-          href={`https://www.gdcgroup.co.nz/services/${service}`}
+          href={`https://gdcgroup.netlify.app/services/${service}`}
         />
       </Head>
 

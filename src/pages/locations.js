@@ -20,7 +20,7 @@ const Locations = () => {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="canonical" href="https://www.gdcgroup.co.nz/locations" />
+        <link rel="canonical" href="https://gdcgroup.netlify.app/locations" />
       </Head>
       <Header />
       <ContactSection />
