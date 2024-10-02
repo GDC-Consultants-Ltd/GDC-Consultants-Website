@@ -3,7 +3,6 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion"; // Import Framer Motion
-import Image from "next/image";
 
 const Hero = () => {
   const router = useRouter();
@@ -100,14 +99,9 @@ const Hero = () => {
         initial="hidden"
         viewport={{ once: false, amount: 0.2 }}
       >
-        {/* Use Next.js Image for static images */}
-        <Image
+        <video
           className="w-full h-full object-cover"
-          src="/video/Hero.gif" // Use a static image here for optimization
-          alt="Background"
-          layout="fill"
-          objectFit="cover"
-          priority // Ensure it loads quickly
+          src="/video/Video-v2.mp4" 
           autoPlay
           loop
           muted
