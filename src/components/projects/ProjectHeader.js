@@ -8,12 +8,12 @@ const ProjectHeader = () => {
       <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-0 px-4 md:px-8 lg:px-16">
         {/* Left Content Column */}
         <div className="flex flex-col space-y-4 md:space-y-6 animate-fade-in-up text-center md:text-left">
-          <h2 className="text-4xl md:text-5xl font-bold text-customYellow leading-tight animate-slide-in-left">
+          <h1 className="text-4xl md:text-5xl font-bold text-customYellow leading-tight animate-slide-in-left">
             Our Projects
-          </h2>
-          <h3 className="text-xl md:text-2xl text-customBlue font-semibold animate-slide-in-right">
+          </h1>
+          <h2 className="text-xl md:text-2xl text-customBlue font-semibold animate-slide-in-right">
             Building a Better Future, Today
-          </h3>
+          </h2>
           <p className="text-base md:text-lg text-gray-600 leading-relaxed animate-fade-in-up">
             Our projects page showcases how we’re making a difference in the
             communities we serve. From sustainable building practices to using

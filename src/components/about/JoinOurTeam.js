@@ -48,14 +48,14 @@ const ProjectHeader = () => {
           variants={fadeInUp}
         >
           <nav className="text-lg md:text-2xl text-customBlue font-bold flex items-center justify-center md:justify-start space-x-2">
-            <span className="text-customBlue">Careers</span>
+            <h1 className="text-customBlue">Careers</h1>
           </nav>
-          <motion.h3
+          <motion.h1
             className="text-4xl md:text-5xl font-bold text-customYellow leading-tight"
             variants={slideInLeft}
           >
             Career Opportunities for Graduates and Internships
-          </motion.h3>
+          </motion.h1>
           <motion.p
             className="text-base md:text-lg text-gray-600 leading-relaxed"
             variants={fadeInUp}

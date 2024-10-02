@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SubContact from "@/components/SubContact";
 import ScrollToTop from "@/components/ScrollToTop";
+import Head from "next/head";
 
 const teamMembers = [
   {
@@ -199,6 +200,16 @@ const TeamPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Meet Our Team | GDC Consultants - Leadership & Experts</title>
+        <meta
+          name="description"
+          content="Get to know the experienced leadership and expert team members at GDC Consultants. We are industry leaders in architecture, engineering, and project management across New Zealand."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="canonical" href="https://www.gdcgroup.co.nz/team" />
+      </Head>
       <Header />
       <div className="min-h-screen">
         <header className="pt-8 bg-white">

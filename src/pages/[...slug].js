@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import "../app/globals.css";
+import Head from "next/head";
 
 // Map categories using IDs for dynamic display
 const categoriesMap = {
@@ -101,6 +102,22 @@ const BlogPost = ({ blog, recentArticles }) => {
 
   return (
     <>
+      <Head>
+        <title>{blog.htmlTitle} | GDC Consultants Blog</title>
+        <meta
+          name="description"
+          content={
+            blog.metaDescription ||
+            "Read the latest blog post from GDC Consultants about architecture, engineering, and project management."
+          }
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link
+          rel="canonical"
+          href={`https://www.gdcgroup.co.nz/blog/${blog.slug}`}
+        />
+      </Head>
       <Header />
       <div className="bg-gray-50 min-h-screen">
         {/* Categories section */}

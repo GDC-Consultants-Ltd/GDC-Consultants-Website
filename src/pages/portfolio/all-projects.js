@@ -11,6 +11,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 // Import projects data from the JSON file
 import projectsData from "@/data/projectsData.json"; // Adjust the path based on your file structure
+import Head from "next/head";
 
 const ProjectsPage = () => {
   const [currentProject, setCurrentProject] = useState(null);
@@ -92,7 +93,9 @@ const ProjectsPage = () => {
     // Center the active image
     const activeImage = images[activeIndex];
     const offsetLeft =
-      activeImage.offsetLeft - slider.clientWidth / 2 + activeImage.clientWidth / 2;
+      activeImage.offsetLeft -
+      slider.clientWidth / 2 +
+      activeImage.clientWidth / 2;
     slider.scrollTo({ left: offsetLeft, behavior: "smooth" });
   };
 
@@ -107,6 +110,22 @@ const ProjectsPage = () => {
 
   return (
     <>
+      <Head>
+        <title>
+          Innovative Engineering Projects: Pushing the Boundaries of Technology
+        </title>
+        <meta
+          name="description"
+          content="Discover cutting-edge engineering solutions with GDC Consultant. Our innovative projects and expert consultancy services drive success in every endeavor."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link
+          rel="canonical"
+          href="https://www.gdcgroup.co.nz/portfolio/all-projects"
+        />
+      </Head>
+
       <Header />
       <ProjectHeader />
 
