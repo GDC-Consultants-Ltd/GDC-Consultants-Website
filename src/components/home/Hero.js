@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion"; // Import Framer Motion
+import Image from "next/image";
 
 const Hero = () => {
   const router = useRouter();
@@ -39,7 +39,7 @@ const Hero = () => {
   return (
     <section className="relative h-[400px] sm:h-[400px] md:h-[500px] lg:h-[580px] overflow-hidden">
       <motion.div
-        className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-center md:text-left z-0 transition-all duration-700 ease-in-out"
+        className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-center md:text-left z-0 transition-all duration-700 ease-in-out"
         whileInView="visible"
         initial="hidden"
         variants={backgroundVariants}
@@ -92,7 +92,7 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* Ensuring the image is fully covered and responsive */}
+      {/* Adding video background */}
       <motion.div
         className="absolute inset-0 z-[-1]"
         variants={backgroundVariants}
@@ -100,15 +100,18 @@ const Hero = () => {
         initial="hidden"
         viewport={{ once: false, amount: 0.2 }}
       >
+        {/* Use Next.js Image for static images */}
         <Image
-          src="/images/GDC-OFFICE-EDIT-scaled.webp"
-          alt="Hero Background"
-          fill
-          priority
-          style={{
-            objectFit: "cover",
-            objectPosition: "center",
-          }}
+          className="w-full h-full object-cover"
+          src="/video/Hero.gif" // Use a static image here for optimization
+          alt="Background"
+          layout="fill"
+          objectFit="cover"
+          priority // Ensure it loads quickly
+          autoPlay
+          loop
+          muted
+          playsInline
         />
       </motion.div>
     </section>

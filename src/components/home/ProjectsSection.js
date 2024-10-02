@@ -30,7 +30,11 @@ const projects = [
     category: "Planning & Environmental",
     image: "/images/projects/5.webp",
   },
-  { title: "Dickens Street", category: "", image: "/images/projects/6.webp" },
+  {
+    title: "Dickens Street",
+    category: "Architecture & Structural",
+    image: "/images/projects/6.webp",
+  },
   {
     title: "Menzies Building, Waikato Hospital",
     category: "Medical Sector",

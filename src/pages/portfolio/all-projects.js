@@ -9,88 +9,8 @@ import Footer from "@/components/Footer";
 import GetInTouch from "@/components/GetInTouch";
 import ScrollToTop from "@/components/ScrollToTop";
 
-// Updated projects array with categories and sectors inside main array
-const projectsData = [
-  {
-    category: "Structural",
-    projects: [
-      {
-        title: "Structural Project 1",
-        image: "/images/projects/1.webp",
-        location: "location 1",
-        sector: "Heritage",
-      },
-    ],
-  },
-  {
-    category: "Architectural",
-    projects: [
-      {
-        title: "Architectural Design Project",
-        image: "/images/projects/archi/1.png",
-        location: "Thames",
-        sector: "Accommodation",
-      },
-      {
-        title: "Architectural Design Project",
-        image: "/images/projects/archi/2.png",
-        location: "Thames",
-        sector: "Heritage",
-      },
-      {
-        title: "Architectural Design Project",
-        image: "/images/projects/archi/3.png",
-        location: "Thames",
-        sector: "Educational",
-      },
-    ],
-  },
-  {
-    category: "Geotech",
-    projects: [],
-  },
-  {
-    category: "Environmental + Planning",
-    projects: [
-      {
-        title: "Environmental Project",
-        image: "/images/projects/2.webp",
-        location: "location 2",
-        sector: "Cultural",
-      },
-    ],
-  },
-  {
-    category: "Roading",
-    projects: [],
-  },
-  {
-    category: "Residential",
-    projects: [
-      {
-        title: "Residential Project",
-        image: "/images/projects/3.webp",
-        location: "location 3",
-        sector: "Medical",
-      },
-    ],
-  },
-  {
-    category: "Commercial",
-    projects: [
-      {
-        title: "Commercial Project",
-        image: "/images/projects/4.webp",
-        location: "location 4",
-        sector: "Council",
-      },
-    ],
-  },
-  {
-    category: "Seismic",
-    projects: [],
-  },
-];
+// Import projects data from the JSON file
+import projectsData from "@/data/projectsData.json"; // Adjust the path based on your file structure
 
 const ProjectsPage = () => {
   const [currentProject, setCurrentProject] = useState(null);
@@ -172,9 +92,7 @@ const ProjectsPage = () => {
     // Center the active image
     const activeImage = images[activeIndex];
     const offsetLeft =
-      activeImage.offsetLeft -
-      slider.clientWidth / 2 +
-      activeImage.clientWidth / 2;
+      activeImage.offsetLeft - slider.clientWidth / 2 + activeImage.clientWidth / 2;
     slider.scrollTo({ left: offsetLeft, behavior: "smooth" });
   };
 

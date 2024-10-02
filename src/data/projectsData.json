@@ -1,0 +1,177 @@
+[
+  {
+    "category": "Structural",
+    "projects": [
+      {
+        "title": "Structural Project 1",
+        "image": "/images/projects/1.webp",
+        "location": "location 1",
+        "sector": "Heritage"
+      }
+    ]
+  },
+  {
+    "category": "Architectural",
+    "projects": [
+      {
+        "title": "Architectural Design Project",
+        "image": "/images/projects/archi/1.png",
+        "location": "Thames",
+        "sector": "Accommodation"
+      },
+      {
+        "title": "Architectural Design Project",
+        "image": "/images/projects/archi/2.png",
+        "location": "Thames",
+        "sector": "Heritage"
+      },
+      {
+        "title": "Architectural Design Project",
+        "image": "/images/projects/archi/3.png",
+        "location": "Thames",
+        "sector": "Educational"
+      },
+      {
+        "title": "Architectural Design Project",
+        "image": "/images/projects/archi/4.png",
+        "location": "Thames",
+        "sector": "Accommodation"
+      },
+      {
+        "title": "Architectural Design Project",
+        "image": "/images/projects/archi/5.png",
+        "location": "Thames",
+        "sector": "Heritage"
+      },
+      {
+        "title": "Architectural Design Project",
+        "image": "/images/projects/archi/6.png",
+        "location": "Thames",
+        "sector": "Educational"
+      },
+      {
+        "title": "Architectural Design Project",
+        "image": "/images/projects/archi/7.png",
+        "location": "Thames",
+        "sector": "Accommodation"
+      },
+      {
+        "title": "Architectural Design Project",
+        "image": "/images/projects/archi/8.png",
+        "location": "Thames",
+        "sector": "Heritage"
+      },
+      {
+        "title": "Thames office building",
+        "image": "/images/projects/archi/9.jpg",
+        "location": "Thames",
+        "sector": ""
+      },
+      {
+        "title": "Thames office building",
+        "image": "/images/projects/archi/10.jpg",
+        "location": "Thames",
+        "sector": ""
+      },
+      {
+        "title": "Thames office building",
+        "image": "/images/projects/archi/11.jpg",
+        "location": "Thames",
+        "sector": ""
+      },
+      {
+        "title": "Thames office building",
+        "image": "/images/projects/archi/12.jpg",
+        "location": "Thames",
+        "sector": ""
+      },
+      {
+        "title": "Thames office building",
+        "image": "/images/projects/archi/13.jpg",
+        "location": "Thames",
+        "sector": ""
+      },
+      {
+        "title": "Thames office building",
+        "image": "/images/projects/archi/14.jpg",
+        "location": "Thames",
+        "sector": ""
+      },
+      {
+        "title": "Thames office building",
+        "image": "/images/projects/archi/15.jpg",
+        "location": "Thames",
+        "sector": ""
+      },
+      {
+        "title": "Thames office building",
+        "image": "/images/projects/archi/16.jpg",
+        "location": "Thames",
+        "sector": ""
+      },
+      {
+        "title": "Thames office building",
+        "image": "/images/projects/archi/17.jpg",
+        "location": "Thames",
+        "sector": ""
+      },
+      {
+        "title": "Thames office building",
+        "image": "/images/projects/archi/18.jpg",
+        "location": "Thames",
+        "sector": ""
+      },
+      {
+        "title": "Thames office building",
+        "image": "/images/projects/archi/19.jpg",
+        "location": "Thames",
+        "sector": ""
+      }
+    ]
+  },
+  {
+    "category": "Geotech",
+    "projects": []
+  },
+  {
+    "category": "Environmental + Planning",
+    "projects": [
+      {
+        "title": "Environmental Project",
+        "image": "/images/projects/2.webp",
+        "location": "location 2",
+        "sector": "Cultural"
+      }
+    ]
+  },
+  {
+    "category": "Roading",
+    "projects": []
+  },
+  {
+    "category": "Residential",
+    "projects": [
+      {
+        "title": "Residential Project",
+        "image": "/images/projects/3.webp",
+        "location": "location 3",
+        "sector": "Medical"
+      }
+    ]
+  },
+  {
+    "category": "Commercial",
+    "projects": [
+      {
+        "title": "Commercial Project",
+        "image": "/images/projects/4.webp",
+        "location": "location 4",
+        "sector": "Council"
+      }
+    ]
+  },
+  {
+    "category": "Seismic",
+    "projects": []
+  }
+]
