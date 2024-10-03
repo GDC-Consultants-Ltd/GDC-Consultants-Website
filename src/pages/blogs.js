@@ -83,6 +83,18 @@ const BlogGallery = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <link rel="canonical" href="https://gdcgroup.netlify.app/blogs" />
+
+        {/* hreflang tags */}
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/blogs"
+          hreflang="en-nz"
+        />
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/blogs"
+          hreflang="en"
+        />
       </Head>
       <Header />
       <motion.div

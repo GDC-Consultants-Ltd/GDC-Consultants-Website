@@ -25,10 +25,22 @@ const Careers = () => {
           rel="canonical"
           href="https://gdcgroup.netlify.app/about-us/careers"
         />
+
+        {/* hreflang tags */}
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/about-us/careers"
+          hreflang="en-nz"
+        />
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/about-us/careers"
+          hreflang="en"
+        />
       </Head>
       <Header />
       <JoinOurTeam />
-      <JobList />
+      {/* <JobList /> */}
       <CareerForm />
       <Footer />
       <ScrollToTop />

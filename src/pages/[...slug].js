@@ -233,7 +233,7 @@ const BlogPost = ({ blog, recentArticles }) => {
                   <h3 className="text-lg font-semibold text-gray-900">
                     {article.name}
                   </h3>
-                  <p className="text-sm text-gray-500">{article.authorName}</p>
+                  <p className="text-sm text-gray-500">Bethany Rutter</p>
                 </div>
               </Link>
             ))}

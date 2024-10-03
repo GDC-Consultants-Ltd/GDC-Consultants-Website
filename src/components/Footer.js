@@ -211,27 +211,54 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* FOLLOW Section */}
+          {/* Logos Section */}
           <div>
             <h4 className="font-semibold mb-4 text-md tracking-wide">FOLLOW</h4>
-            <div className="flex justify-center md:justify-start space-x-4 text-lg">
+            <div className="flex flex-col justify-center md:justify-start space-y-4 text-lg">
               <a
-                href="https://www.facebook.com/GdcConsultantsLtd?mibextid=ZbWKwL"
+                href="https://gdcproperties.co.nz/"
                 className="hover:text-customYellow tracking-wide"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <FaFacebook />
+                <Image
+                  src="/images/GDC Recruitment logo.webp"
+                  alt="GDC Properties logo"
+                  width={200}
+                  height={60}
+                  className="h-auto mb-4 object-contain"
+                  style={{ objectFit: "contain" }}
+                />
               </a>
               <a
-                href="https://www.linkedin.com/company/gdcconsultants/"
+                href="https://www.gdcrecruit.com/"
                 className="hover:text-customYellow tracking-wide"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <FaLinkedin />
+                <Image
+                  src="/images/GDC Recruitment logo.webp"
+                  alt="GDC Recruitment logo"
+                  width={200}
+                  height={60}
+                  className="h-auto mb-4 object-contain"
+                  style={{ objectFit: "contain" }}
+                />
               </a>
               <a
-                href="https://www.instagram.com/gdc_consultants?igsh=NTc4MTIwNjQ2YQ=="
+                href="https://gdc-digital-solutions.netlify.app/"
                 className="hover:text-customYellow tracking-wide"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <FaInstagram />
+                <Image
+                  src="/images/Digital Solution Logo.png"
+                  alt="GDC DS logo"
+                  width={200}
+                  height={60}
+                  className="h-auto mb-4 object-contain"
+                  style={{ objectFit: "contain" }}
+                />
               </a>
             </div>
           </div>

@@ -28,6 +28,18 @@ const WhoWeAre = () => {
           rel="canonical"
           href="https://gdcgroup.netlify.app/about-us/who-we-are"
         />
+
+        {/* hreflang tags */}
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/about-us/who-we-are"
+          hreflang="en-nz"
+        />
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/about-us/who-we-are"
+          hreflang="en"
+        />
       </Head>
       <Header />
       <AboutCardSection />

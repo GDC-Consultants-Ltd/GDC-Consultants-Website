@@ -124,6 +124,18 @@ const ProjectsPage = () => {
           rel="canonical"
           href="https://gdcgroup.netlify.app/portfolio/all-projects"
         />
+
+        {/* hreflang tags */}
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/portfolio/all-projects"
+          hreflang="en-nz"
+        />
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/portfolio/all-projects"
+          hreflang="en"
+        />
       </Head>
 
       <Header />

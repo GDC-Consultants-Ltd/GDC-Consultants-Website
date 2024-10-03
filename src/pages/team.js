@@ -209,6 +209,18 @@ const TeamPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <link rel="canonical" href="https://gdcgroup.netlify.app/team" />
+
+        {/* hreflang tags */}
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/team"
+          hreflang="en-nz"
+        />
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/team"
+          hreflang="en"
+        />
       </Head>
       <Header />
       <div className="min-h-screen">
