@@ -1,13 +1,3 @@
-import {
-  ElectricalEngineeringUniqueContent,
-  InternshipsUniqueContent,
-  LandscapingUniqueContent,
-  PavementDesignUniqueContent,
-  PlanningUniqueContent,
-  SeismicEngineeringUniqueContent,
-  WatersUniqueContent,
-} from "../components/services/UniqueContent";
-
 const services = {
   "3-waters": {
     metaTitle:
@@ -58,7 +48,7 @@ const services = {
         image: "/images/services/8.-Contamination-Assessment.webp",
       },
     ],
-    uniqueContent: <WatersUniqueContent />,
+    uniqueContent: "watersUniqueContent",
   },
 
   "architectural-designs": {
@@ -106,7 +96,7 @@ const services = {
         image: "/images/services/Vertex_BD_005.webp",
       },
     ],
-    uniqueContent: <LandscapingUniqueContent />,
+    uniqueContent: "landscapingUniqueContent",
   },
 
   "electrical-engineering": {
@@ -140,7 +130,7 @@ const services = {
         image: "/images/services/98a91fd4a88bda676a99bf92e10cd630.webp",
       },
     ],
-    uniqueContent: <ElectricalEngineeringUniqueContent />,
+    uniqueContent: "electricalEngineeringUniqueContent",
   },
 
   "project-management": {
@@ -370,7 +360,7 @@ const services = {
         image: "/images/services/jason-goodman-bzqU01v-G54-unsplash-1.webp",
       },
     ],
-    uniqueContent: <InternshipsUniqueContent />,
+    uniqueContent: "internshipsUniqueContent",
   },
 
   "road-transport": {
@@ -424,7 +414,7 @@ const services = {
         image: "/images/services/jason-goodman-bzqU01v-G54-unsplash-1.webp",
       },
     ],
-    uniqueContent: <PavementDesignUniqueContent />,
+    uniqueContent: "pavementDesignUniqueContent",
   },
 
   "seismic-engineering": {
@@ -482,7 +472,7 @@ const services = {
         image: "/images/services/Cambridge-Museum-DSA-retrofit-J002258.webp",
       },
     ],
-    uniqueContent: <SeismicEngineeringUniqueContent />,
+    uniqueContent: "seismicEngineeringUniqueContent",
   },
 
   "structural-engineering": {
@@ -589,11 +579,7 @@ const services = {
         image: "/images/services/iStock-1176054530.jpg.webp",
       },
     ],
-    uniqueContent: (
-      <div className="mt-10">
-        <PlanningUniqueContent />
-      </div>
-    ),
+    uniqueContent: "PlanningUniqueContent",
   },
 
   surveying: {

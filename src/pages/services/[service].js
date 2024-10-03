@@ -8,6 +8,7 @@ import ServiceSections from "../../components/services/ServiceSections";
 import services from "../../data/servicesData"; // Import the services data
 import ScrollToTop from "@/components/ScrollToTop";
 import Head from "next/head";
+import { ElectricalEngineeringUniqueContent, InternshipsUniqueContent, LandscapingUniqueContent, PavementDesignUniqueContent, PlanningUniqueContent, SeismicEngineeringUniqueContent, WatersUniqueContent } from "@/components/services/UniqueContent";
 
 // Static generation for services pages
 export async function getStaticPaths() {
@@ -80,8 +81,14 @@ const ServicePage = ({ serviceData }) => {
       )}
 
       {/* Unique Content for Specific Service */}
-      {serviceData.uniqueContent && serviceData.uniqueContent}
-
+      {/* {serviceData.uniqueContent && serviceData.uniqueContent} */}
+      {serviceData.uniqueContent === "watersUniqueContent" && <WatersUniqueContent />}
+      {serviceData.uniqueContent === "landscapingUniqueContent" && <LandscapingUniqueContent />}
+      {serviceData.uniqueContent === "electricalEngineeringUniqueContent" && <ElectricalEngineeringUniqueContent />}
+      {serviceData.uniqueContent === "internshipsUniqueContent" && <InternshipsUniqueContent />}
+      {serviceData.uniqueContent === "pavementDesignUniqueContent" && <PavementDesignUniqueContent />}
+      {serviceData.uniqueContent === "seismicEngineeringUniqueContent" && <SeismicEngineeringUniqueContent />}
+      {serviceData.uniqueContent === "PlanningUniqueContent" && <PlanningUniqueContent />}
       {/* Get In Touch Component */}
       <GetInTouch />
       <Footer />
