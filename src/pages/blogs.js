@@ -84,16 +84,16 @@ const BlogGallery = () => {
 
         <link rel="canonical" href="https://gdcgroup.netlify.app/blogs" />
 
-        {/* hreflang tags */}
+        {/* hrefLang tags */}
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/blogs"
-          hreflang="en-nz"
+          hrefLang="en-nz"
         />
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/blogs"
-          hreflang="en"
+          hrefLang="en"
         />
       </Head>
       <Header />

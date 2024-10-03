@@ -125,16 +125,16 @@ const ProjectsPage = () => {
           href="https://gdcgroup.netlify.app/portfolio/all-projects"
         />
 
-        {/* hreflang tags */}
+        {/* hrefLang tags */}
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/portfolio/all-projects"
-          hreflang="en-nz"
+          hrefLang="en-nz"
         />
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/portfolio/all-projects"
-          hreflang="en"
+          hrefLang="en"
         />
       </Head>
 

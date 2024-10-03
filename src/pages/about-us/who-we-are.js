@@ -29,16 +29,16 @@ const WhoWeAre = () => {
           href="https://gdcgroup.netlify.app/about-us/who-we-are"
         />
 
-        {/* hreflang tags */}
+        {/* hrefLang tags */}
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/about-us/who-we-are"
-          hreflang="en-nz"
+          hrefLang="en-nz"
         />
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/about-us/who-we-are"
-          hreflang="en"
+          hrefLang="en"
         />
       </Head>
       <Header />

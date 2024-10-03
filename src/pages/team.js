@@ -210,16 +210,16 @@ const TeamPage = () => {
 
         <link rel="canonical" href="https://gdcgroup.netlify.app/team" />
 
-        {/* hreflang tags */}
+        {/* hrefLang tags */}
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/team"
-          hreflang="en-nz"
+          hrefLang="en-nz"
         />
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/team"
-          hreflang="en"
+          hrefLang="en"
         />
       </Head>
       <Header />

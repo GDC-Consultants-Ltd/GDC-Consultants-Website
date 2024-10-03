@@ -25,16 +25,16 @@ const Review = () => {
           href="https://gdcgroup.netlify.app/about-us/review"
         />
 
-        {/* hreflang tags */}
+        {/* hrefLang tags */}
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/about-us/review"
-          hreflang="en-nz"
+          hrefLang="en-nz"
         />
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/about-us/review"
-          hreflang="en"
+          hrefLang="en"
         />
       </Head>
       <Header />

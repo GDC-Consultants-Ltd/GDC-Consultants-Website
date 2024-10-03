@@ -22,16 +22,16 @@ const Locations = () => {
 
         <link rel="canonical" href="https://gdcgroup.netlify.app/locations" />
 
-        {/* hreflang tags */}
+        {/* hrefLang tags */}
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/locations"
-          hreflang="en-nz"
+          hrefLang="en-nz"
         />
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/locations"
-          hreflang="en"
+          hrefLang="en"
         />
       </Head>
       <Header />

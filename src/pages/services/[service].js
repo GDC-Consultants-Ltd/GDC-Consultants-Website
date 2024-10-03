@@ -47,9 +47,9 @@ const ServicePage = ({ serviceData }) => {
           href={`https://gdcgroup.netlify.app/services/${serviceData.slug}`}
         />
 
-        {/* hreflang tags for different languages/regions */}
-        <link rel="alternate" href={`https://gdcgroup.netlify.app/services/${serviceData.slug}`} hreflang="en-nz" />
-        <link rel="alternate" href={`https://gdcgroup.netlify.app/services/${serviceData.slug}`} hreflang="en" />
+        {/* hrefLang tags for different languages/regions */}
+        <link rel="alternate" href={`https://gdcgroup.netlify.app/services/${serviceData.slug}`} hrefLang="en-nz" />
+        <link rel="alternate" href={`https://gdcgroup.netlify.app/services/${serviceData.slug}`} hrefLang="en" />
       </Head>
 
       <Header />

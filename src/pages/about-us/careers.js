@@ -26,16 +26,16 @@ const Careers = () => {
           href="https://gdcgroup.netlify.app/about-us/careers"
         />
 
-        {/* hreflang tags */}
+        {/* hrefLang tags */}
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/about-us/careers"
-          hreflang="en-nz"
+          hrefLang="en-nz"
         />
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/about-us/careers"
-          hreflang="en"
+          hrefLang="en"
         />
       </Head>
       <Header />
