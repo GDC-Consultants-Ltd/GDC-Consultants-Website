@@ -21,6 +21,18 @@ const Locations = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <link rel="canonical" href="https://gdcgroup.netlify.app/locations" />
+
+        {/* hreflang tags */}
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/locations"
+          hreflang="en-nz"
+        />
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/locations"
+          hreflang="en"
+        />
       </Head>
       <Header />
       <ContactSection />

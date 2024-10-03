@@ -5,7 +5,6 @@ import {
   Bars3Icon,
   XMarkIcon,
   ChevronDownIcon,
-  ChevronUpIcon,
   PlusIcon,
   MinusIcon,
 } from "@heroicons/react/24/outline";
@@ -83,12 +82,6 @@ const Header = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  const toTitleCase = (text) => {
-    return text
-      .toLowerCase()
-      .replace(/(^\w|\s\w)/g, (match) => match.toUpperCase());
-  };
 
   return (
     <header className="w-full sticky top-0 z-50 bg-white shadow-md">
@@ -214,22 +207,32 @@ const Header = () => {
                   <ul
                     className={`${
                       activeDropdown === item.dropdown ? "block" : "hidden"
-                    } absolute left-0 mt-6 w-48 bg-white opacity-90 shadow-md rounded-md`}
+                    } absolute left-0 mt-6 ${
+                      item.dropdown === "services" ? "w-[600px]" : "w-[200px]"
+                    } bg-white opacity-90 shadow-lg rounded-lg p-6`}
                   >
-                    {item.items.map((subItem) => (
-                      <li key={subItem.href}>
-                        <Link
-                          href={subItem.href}
-                          className={`block px-3 py-2 text-xs ${
-                            currentPath === subItem.href
-                              ? "text-customYellow"
-                              : "text-customBlue"
-                          } hover:bg-customYellow hover:text-white hover:rounded-md transition-all duration-300`}
-                        >
-                          {subItem.label}
-                        </Link>
-                      </li>
-                    ))}
+                    <div
+                      className={`grid ${
+                        item.dropdown === "services"
+                          ? "grid-cols-2"
+                          : "grid-cols-1"
+                      }`}
+                    >
+                      {item.items.map((subItem, index) => (
+                        <li key={subItem.href} className="whitespace-nowrap">
+                          <Link
+                            href={subItem.href}
+                            className={`block px-2 py-2 text-sm font-semibold ${
+                              currentPath === subItem.href
+                                ? "text-customYellow"
+                                : "text-customBlue"
+                            } hover:text-customYellow hover:rounded-md transition-all duration-300`}
+                          >
+                            {subItem.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </div>
                   </ul>
                 </li>
               ) : (

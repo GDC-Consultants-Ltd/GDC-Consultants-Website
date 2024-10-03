@@ -170,7 +170,8 @@ const BlogSection = () => {
                   </span>
                   <span className="flex items-center mr-4">
                     <UserIcon className="w-5 h-5 text-customYellow mr-1" />
-                    {blog.authorName || "Admin"}
+                    {/* {blog.authorName || "Admin"} */}
+                    Bethany Rutter
                   </span>
                   <span className="flex items-center">
                     <ChatBubbleLeftEllipsisIcon className="w-5 h-5 text-customYellow mr-1" />

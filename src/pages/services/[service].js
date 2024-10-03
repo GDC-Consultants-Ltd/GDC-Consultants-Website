@@ -1,11 +1,6 @@
-// pages/services/[service].js
-
-"use client";
-
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import "../../app/globals.css";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import GetInTouch from "../../components/GetInTouch";
 import ServiceDescription from "../../components/services/ServiceDescription";
@@ -14,12 +9,29 @@ import services from "../../data/servicesData"; // Import the services data
 import ScrollToTop from "@/components/ScrollToTop";
 import Head from "next/head";
 
-const ServicePage = () => {
-  const router = useRouter();
-  const { service } = router.query;
+// Static generation for services pages
+export async function getStaticPaths() {
+  const paths = Object.keys(services).map((slug) => ({
+    params: { service: slug },
+  }));
 
-  const serviceData = services[service]; // Fetch service data based on slug
+  return {
+    paths,
+    fallback: false, // Show 404 if service is not found
+  };
+}
 
+export async function getStaticProps({ params }) {
+  const serviceData = services[params.service] || null;
+
+  return {
+    props: {
+      serviceData,
+    },
+  };
+}
+
+const ServicePage = ({ serviceData }) => {
   if (!serviceData) {
     return <p>Service not found.</p>; // Fallback for unknown service
   }
@@ -30,28 +42,14 @@ const ServicePage = () => {
       <Head>
         <title>{serviceData.metaTitle}</title>
         <meta name="description" content={serviceData.metaDescription} />
-        <meta
-          property="og:title"
-          content={`${serviceData.metaTitle} | GDC Consultants`}
-        />
-        <meta property="og:description" content={serviceData.metaDescription} />
-        <meta property="og:image" content={serviceData.image} />
-        <meta
-          property="og:url"
-          content={`https://gdcgroup.netlify.app/services/${service}`}
-        />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content={`${serviceData.title} | GDC Consultants`}
-        />
-        <meta name="twitter:description" content={serviceData.metaDescription} />
-        <meta name="twitter:image" content={serviceData.image} />
         <link
           rel="canonical"
-          href={`https://gdcgroup.netlify.app/services/${service}`}
+          href={`https://gdcgroup.netlify.app/services/${serviceData.slug}`}
         />
+
+        {/* hreflang tags for different languages/regions */}
+        <link rel="alternate" href={`https://gdcgroup.netlify.app/services/${serviceData.slug}`} hreflang="en-nz" />
+        <link rel="alternate" href={`https://gdcgroup.netlify.app/services/${serviceData.slug}`} hreflang="en" />
       </Head>
 
       <Header />

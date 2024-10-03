@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link"; // Import Link from Next.js
+import Head from "next/head"; // Import Head for adding title tags
 import {
   BriefcaseIcon,
   Cog6ToothIcon,
@@ -144,6 +145,13 @@ const Services = () => {
 
   return (
     <>
+      <Head>
+        <title>Our Services | GDC Consultants</title>
+        <meta
+          name="description"
+          content="Explore the wide range of services offered by GDC Consultants, including engineering, project management, and more."
+        />
+      </Head>
       <Header />
       <section id="services" ref={sectionRef} className="py-8 bg-gray-50">
         <motion.div

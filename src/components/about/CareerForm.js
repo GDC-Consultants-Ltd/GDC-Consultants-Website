@@ -138,7 +138,7 @@ export default function CareerForm() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 m-6 bg-white shadow-md rounded-md">
+    <div className="max-w-xl mx-auto p-6 m-6 bg-white shadow-xl rounded-md">
       <div className="flex flex-col items-center mb-6">
         <Image
           src="/images/GDC LOGOS 2024 BLUE.webp"
@@ -357,11 +357,11 @@ export default function CareerForm() {
               onChange={handleChange}
               className="mr-2"
             />
-            Do you agree to our{" "}
+            Do you agree to our&nbsp;
             <a href="#" className="text-blue-500 underline">
               contact policy
             </a>
-            ?
+            &nbsp;?
           </label>
         </div>
 

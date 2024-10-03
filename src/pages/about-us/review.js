@@ -24,6 +24,18 @@ const Review = () => {
           rel="canonical"
           href="https://gdcgroup.netlify.app/about-us/review"
         />
+
+        {/* hreflang tags */}
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/about-us/review"
+          hreflang="en-nz"
+        />
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/about-us/review"
+          hreflang="en"
+        />
       </Head>
       <Header />
       <ReviewHeader />
