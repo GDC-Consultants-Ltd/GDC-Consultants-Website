@@ -150,8 +150,8 @@ const ProjectsPage = () => {
             className={`px-4 py-2 rounded-full m-1 md:m-2 transition duration-300 ease-in-out transform hover:scale-105 ${
               selectedCategory === category
                 ? sectorCategories.includes(category)
-                  ? "bg-customYellow text-white shadow-lg" // Highlight in yellow for sector categories
-                  : "bg-customBlue text-white shadow-lg" // Highlight in blue for non-sector categories
+                  ? "bg-customYellow text-white shadow-lg"
+                  : "bg-customBlue text-white shadow-lg"
                 : "bg-gray-200 text-gray-700 hover:bg-customBlue hover:text-white"
             }`}
           >
