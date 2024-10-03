@@ -17,22 +17,24 @@ const ProjectsPage = () => {
   const [currentProject, setCurrentProject] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All Projects");
-  const [selectedSector, setSelectedSector] = useState("All Sectors");
+  const [selectedSector, setSelectedSector] = useState(null); // Set this to null initially
   const [filteredProjects, setFilteredProjects] = useState([]);
   const sliderRef = useRef(null);
+
+  // List of sector categories that need to be styled with customYellow when active
+  const sectorCategories = [
+    "Heritage",
+    "Accommodation",
+    "Educational",
+    "Cultural",
+    "Medical",
+    "Council",
+  ];
 
   // Extract unique categories and sectors from projectsData
   const categories = [
     "All Projects",
     ...projectsData.map((item) => item.category),
-  ];
-  const sectors = [
-    "All Sectors",
-    ...new Set(
-      projectsData
-        .flatMap((item) => item.projects.map((project) => project.sector))
-        .filter(Boolean)
-    ),
   ];
 
   // Filter projects based on selected category and sector
@@ -47,7 +49,7 @@ const ProjectsPage = () => {
       );
     }
 
-    if (sector !== "All Sectors") {
+    if (sector) {
       filtered = filtered.filter((project) => project.sector === sector);
     }
 
@@ -59,15 +61,13 @@ const ProjectsPage = () => {
   // Handle category selection
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    setSelectedSector("All Sectors"); // Reset sectors when filtering by category
-    filterProjects(category, "All Sectors");
+    filterProjects(category, selectedSector); // Now we filter with the currently selected sector
   };
 
   // Handle sector selection
   const handleSectorClick = (sector) => {
     setSelectedSector(sector);
-    setSelectedCategory("All Projects"); // Reset categories when filtering by sector
-    filterProjects("All Projects", sector);
+    filterProjects(selectedCategory, sector); // Now we filter with the currently selected category
   };
 
   // Automatically transition to the next image
@@ -105,7 +105,7 @@ const ProjectsPage = () => {
 
   // Initialize with all projects displayed on page load
   useEffect(() => {
-    filterProjects("All Projects", "All Sectors");
+    filterProjects("All Projects", null); // We filter with "All Projects" and no sector initially
   }, []);
 
   return (
@@ -149,28 +149,13 @@ const ProjectsPage = () => {
             onClick={() => handleCategoryClick(category)}
             className={`px-4 py-2 rounded-full m-1 md:m-2 transition duration-300 ease-in-out transform hover:scale-105 ${
               selectedCategory === category
-                ? "bg-customBlue text-white shadow-lg"
+                ? sectorCategories.includes(category)
+                  ? "bg-customYellow text-white shadow-lg" // Highlight in yellow for sector categories
+                  : "bg-customBlue text-white shadow-lg" // Highlight in blue for non-sector categories
                 : "bg-gray-200 text-gray-700 hover:bg-customBlue hover:text-white"
             }`}
           >
             {category}
-          </button>
-        ))}
-      </div>
-
-      {/* Second set of labels for sectors */}
-      <div className="flex flex-wrap justify-center pt-2 m-4">
-        {sectors.map((sector) => (
-          <button
-            key={sector}
-            onClick={() => handleSectorClick(sector)}
-            className={`px-4 py-2 rounded-full m-1 md:m-2 transition duration-300 ease-in-out transform hover:scale-105 ${
-              selectedSector === sector
-                ? "bg-yellow-500 text-white shadow-lg"
-                : "bg-gray-200 text-gray-700 hover:bg-yellow-500 hover:text-white"
-            }`}
-          >
-            {sector}
           </button>
         ))}
       </div>
@@ -219,7 +204,7 @@ const ProjectsPage = () => {
             </>
           ) : (
             <p className="text-center text-lg text-gray-600 py-20">
-              No projects available in this category or sector.
+              No projects available in this category.
             </p>
           )}
         </div>
