@@ -129,7 +129,7 @@ const CardsSection = () => {
         <CalendarIcon className="w-10 h-10 md:w-12 md:h-12 text-customBlue transition-transform duration-500 ease-in-out hover:scale-110" />
       ),
       count: `${counts.experience.toLocaleString()}+`,
-      label: "Years of Experience",
+      label: "Years in Operation",
     },
   ];
 
