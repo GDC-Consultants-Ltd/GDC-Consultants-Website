@@ -279,10 +279,13 @@ export default function CareerForm() {
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-gray-700"
             >
               <option value="">--- Select country ---</option>
-              <option value="Sri Lanka">Sri Lanka</option>
-              <option value="India">India</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Australia">Australia</option>
+              <option value="UK">UK</option>
               <option value="USA">USA</option>
-              {/* Add more options as needed */}
+              <option value="Canada">Canada</option>
+              <option value="Singapore">Singapore</option>
+              <option value="Sri Lanka">Sri Lanka</option>
             </select>
           </div>
         </div>
