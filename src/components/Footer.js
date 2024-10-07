@@ -213,7 +213,9 @@ export default function Footer() {
 
           {/* Logos Section */}
           <div className="flex flex-col items-center md:items-start">
-            <h4 className="font-semibold text-md tracking-wide">EXPLORE OTHERS</h4>{" "}
+            <h4 className="font-semibold text-md tracking-wide">
+              EXPLORE OTHERS
+            </h4>{" "}
             {/* Added space-y-1 */}
             <a
               href="https://gdcproperties.co.nz/"
@@ -222,9 +224,9 @@ export default function Footer() {
               rel="noopener noreferrer"
             >
               <Image
-                src="/images/Digital Solution Logo.png"
+                src="/images/footer logos/properties logo 2024.png"
                 alt="GDC Properties logo"
-                width={200}
+                width={150}
                 height={60}
                 className="h-auto object-contain"
                 style={{ objectFit: "contain" }}
@@ -237,9 +239,9 @@ export default function Footer() {
               rel="noopener noreferrer"
             >
               <Image
-                src="/images/Digital Solution Logo.png"
+                src="/images/footer logos/recruitment logo 2024.png"
                 alt="GDC Recruitment logo"
-                width={200}
+                width={150}
                 height={60}
                 className="h-auto object-contain"
                 style={{ objectFit: "contain" }}

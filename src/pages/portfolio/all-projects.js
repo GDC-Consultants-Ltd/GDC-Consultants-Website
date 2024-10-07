@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
@@ -197,8 +197,8 @@ const ProjectsPage = () => {
                 <h3 className="text-2xl font-semibold text-customBlue mb-2">
                   {currentProject?.title}
                 </h3>
-                <p className="text-lg text-customYellow">
-                  {currentProject?.location}
+                <p className="text-md max-w-xl mx-auto text-customYellow text-center">
+                  {currentProject?.description}
                 </p>
               </div>
             </>

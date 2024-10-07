@@ -1,76 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion"; // Import Framer Motion
-
-const projects = [
-  // Project data remains the same
-  {
-    title: "Baverstock, Hamilton, Subdivision",
-    category: "3 Waters & Contamination",
-    image: "/images/projects/1.webp",
-  },
-  {
-    title: "Lake Rotakauri Walkway",
-    category: "Planning & Environmental",
-    image: "/images/projects/2.webp",
-  },
-  {
-    title: "Waipa District Council",
-    category: "Council Buildings",
-    image: "/images/projects/3.webp",
-  },
-  {
-    title: "Cambridge Family Health Medical Centre",
-    category: "Other Assets",
-    image: "/images/projects/4.webp",
-  },
-  {
-    title: "Tuakau Playground",
-    category: "Planning & Environmental",
-    image: "/images/projects/5.webp",
-  },
-  {
-    title: "Dickens Street",
-    category: "Architecture & Structural",
-    image: "/images/projects/6.webp",
-  },
-  {
-    title: "Menzies Building, Waikato Hospital",
-    category: "Medical Sector",
-    image: "/images/projects/7.webp",
-  },
-  {
-    title: "Hockin Building, Waikato Hospital",
-    category: "Medical Sector",
-    image: "/images/projects/8.webp",
-  },
-  {
-    title: "Waiora Building, Waikato Hospital",
-    category: "Medical Sector",
-    image: "/images/projects/9.webp",
-  },
-  {
-    title: "Cambridge Town Hall",
-    category: "Heritage",
-    image: "/images/projects/10.webp",
-  },
-  {
-    title: "Cambridge Clock Tower",
-    category: "Heritage",
-    image: "/images/projects/11.webp",
-  },
-  {
-    title: "Cambridge Museum",
-    category: "Heritage",
-    image: "/images/projects/12.webp",
-  },
-];
+import { motion } from "framer-motion";
+import projectsData from "@/data/projectsData.json";
 
 const ProjectsSection = () => {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [animationTriggered, setAnimationTriggered] = useState(false);
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    // Flatten and filter the JSON data to include only projects with category and title
+    const allProjects = projectsData.flatMap((category) =>
+      category.projects
+        .filter((project) => project.title && category.category) // Ensure projects have title and category
+        .map((project) => ({
+          ...project,
+          category: category.category,
+        }))
+    );
+
+    // Shuffle and select 12 random projects
+    const shuffledProjects = allProjects.sort(() => 0.5 - Math.random());
+    const selectedProjects = shuffledProjects.slice(0, 12);
+
+    setProjects(selectedProjects);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -123,8 +79,7 @@ const ProjectsSection = () => {
       <motion.div
         className="text-center mb-12 px-6 md:px-10 xl:px-16"
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }}
+        animate={isVisible ? "visible" : "hidden"}
         variants={titleVariants}
       >
         <h2 className="text-4xl text-customYellow uppercase font-bold mt-2">
@@ -142,8 +97,7 @@ const ProjectsSection = () => {
             key={index}
             className="relative bg-white shadow-md rounded-lg overflow-hidden group transform transition-transform duration-500 ease-in-out"
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
+            animate={isVisible ? "visible" : "hidden"}
             variants={cardVariants}
           >
             <div className="relative w-full h-48">

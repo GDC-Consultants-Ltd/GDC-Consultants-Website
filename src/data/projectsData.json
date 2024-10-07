@@ -3,9 +3,74 @@
     "category": "Structural",
     "projects": [
       {
-        "title": "Structural Project 1",
-        "image": "/images/projects/1.webp",
-        "location": "location 1"
+        "title": "University of Waikato",
+        "image": "/images/projects-new/content.jpg",
+        "description": ""
+      },
+      {
+        "title": "Borman Road Preschool",
+        "image": "/images/projects-new/content (3).jpg",
+        "description": ""
+      },
+      {
+        "title": "Fairy Springs Motel",
+        "image": "/images/projects-new/content (4).jpg",
+        "description": ""
+      },
+      {
+        "title": "Borman Road Dairy",
+        "image": "/images/projects-new/content (7).jpg",
+        "description": ""
+      },
+      {
+        "title": "Rotorua Museum",
+        "image": "/images/projects-new/content (8).jpg",
+        "description": ""
+      },
+      {
+        "title": "Mclean Park",
+        "image": "/images/projects-new/content (9).jpg",
+        "description": ""
+      },
+      {
+        "title": "Mclean Park",
+        "image": "/images/projects-new/content (10).jpg",
+        "description": ""
+      },
+      {
+        "title": "Storey Avenue Pre School",
+        "image": "/images/projects-new/content (11).jpg",
+        "description": ""
+      },
+      {
+        "title": "Hastings Sports Centre",
+        "image": "/images/projects-new/content (12).jpg",
+        "description": ""
+      },
+      {
+        "title": "Cambrige Water Tower",
+        "image": "/images/projects-new/content (13).jpg",
+        "description": ""
+      },
+      {
+        "title": "Cambrige Water Tower",
+        "image": "/images/projects-new/content (14).jpg",
+        "description": ""
+      },
+      {
+        "title": "J001900 - 104 LAtham Street Napier Pump Station",
+        "image": "/images/projects-new/content (15).jpg",
+        "description": ""
+      },
+      {
+        "title": "J000581 - Masonic Hotel",
+        "image": "/images/projects-new/content (16).jpg",
+        "description": ""
+      },
+      {
+        "title": "Apartments",
+        "image": "/images/projects-new/image-54.webp",
+        "description": ""
       }
     ]
   },
@@ -15,62 +80,129 @@
       {
         "title": "Architectural Design Project",
         "image": "/images/projects/archi/1.png",
-        "location": "Thames"
+        "description": ""
       },
       {
         "title": "Architectural Design Project",
         "image": "/images/projects/archi/2.png",
-        "location": "Thames"
+        "description": ""
       },
       {
         "title": "Architectural Design Project",
         "image": "/images/projects/archi/3.png",
-        "location": "Thames"
+        "description": ""
       },
       {
         "title": "Architectural Design Project",
         "image": "/images/projects/archi/4.png",
-        "location": "Thames"
+        "description": ""
       },
       {
         "title": "Architectural Design Project",
         "image": "/images/projects/archi/5.png",
-        "location": "Thames"
+        "description": ""
       },
       {
         "title": "Architectural Design Project",
         "image": "/images/projects/archi/6.png",
-        "location": "Thames"
+        "description": ""
       },
       {
         "title": "Architectural Design Project",
         "image": "/images/projects/archi/7.png",
-        "location": "Thames"
+        "description": ""
       },
       {
         "title": "Architectural Design Project",
         "image": "/images/projects/archi/8.png",
-        "location": "Thames"
+        "description": ""
+      },
+      {
+        "title": "J004097 - 134 Riverlea Rd",
+        "image": "/images/projects-new/content (26).jpg",
+        "description": ""
+      },
+      {
+        "title": "J004097 - 134 Riverlea Rd",
+        "image": "/images/projects-new/content (27).jpg",
+        "description": ""
+      },
+      {
+        "title": "J004273 - Ngaruwahia - Public Pool",
+        "image": "/images/projects-new/content (28).jpg",
+        "description": ""
+      },
+      {
+        "title": "J004405 - Woodlands Estate - Stage 1",
+        "image": "/images/projects-new/content (29).jpg",
+        "description": ""
+      },
+      {
+        "title": "Karewa Place",
+        "image": "/images/projects-new/content (30).jpg",
+        "description": ""
+      },
+      {
+        "title": "Ohaupo Road Motels - not made yet",
+        "image": "/images/projects-new/content (31).jpg",
+        "description": ""
+      },
+      {
+        "title": "Dickens Street",
+        "image": "/images/projects/6.webp",
+        "description": "Proposed Renovations"
       }
     ]
   },
   {
     "category": "Geotech",
-    "projects": []
+    "projects": [
+      {
+        "title": "Contamination Assessment",
+        "image": "/images/projects-new/content (1).jpg",
+        "description": ""
+      }
+    ]
   },
   {
     "category": "Environmental + Planning",
     "projects": [
       {
-        "title": "Environmental Project",
-        "image": "/images/projects/2.webp",
-        "location": "location 2"
+        "title": "Subdivision Baverstock",
+        "image": "/images/projects-new/image-56.webp",
+        "description": ""
+      },
+      {
+        "title": "Baverstock Subdivision",
+        "image": "/images/projects-new/content (24).jpg",
+        "description": ""
+      },
+      {
+        "title": "Rotakauri Walkway",
+        "image": "/images/projects-new/content (32).jpg",
+        "description": ""
+      },
+      {
+        "title": "Tuakau Playground",
+        "image": "/images/projects/5.webp",
+        "description": "Concept Plan for proposed Playground and Sports Field"
+      },
+      {
+        "title": "Holiday Park and Commercial Centre in the Coromandel",
+        "image": "/images/projects-new/Screenshot-2024-01-19-093510.webp",
+        "description": "Concept Plan for proposed Playground and Sports Field"
       }
     ]
   },
   {
     "category": "Roading",
-    "projects": []
+    "projects": [
+      {
+        "title": "Blue Bridge Kawerau",
+        "image": "/images/projects-new/content (23).jpg",
+        "description": ""
+      }
+    ]
   },
   {
     "category": "Residential",
@@ -78,7 +210,7 @@
       {
         "title": "Residential Project",
         "image": "/images/projects/3.webp",
-        "location": "location 3"
+        "description": ""
       }
     ]
   },
@@ -88,31 +220,97 @@
       {
         "title": "Commercial Project",
         "image": "/images/projects/4.webp",
-        "location": "location 4"
+        "description": ""
       }
     ]
   },
   {
     "category": "Seismic",
-    "projects": []
+    "projects": [
+      {
+        "title": "University of Waikato",
+        "image": "/images/projects-new/content.jpg",
+        "description": ""
+      },
+      {
+        "title": "La Grand Botique",
+        "image": "/images/projects-new/content (2).jpg",
+        "description": ""
+      },
+      {
+        "title": "Rotorua Museum",
+        "image": "/images/projects-new/content (8).jpg",
+        "description": ""
+      },
+      {
+        "title": "J000581 - Masonic Hotel",
+        "image": "/images/projects-new/content (16).jpg",
+        "description": ""
+      },
+      {
+        "title": "9 Locke Street Wairoa DSA",
+        "image": "/images/projects-new/content (19).jpg",
+        "description": ""
+      },
+      {
+        "title": "72 Lucknow Street Wairoa",
+        "image": "/images/projects-new/content (20).jpg",
+        "description": ""
+      },
+      {
+        "title": "91 Queen Street Wairoa",
+        "image": "/images/projects-new/content (21).jpg",
+        "description": ""
+      },
+      {
+        "title": "Waihi Museum 54 Kenny Street Waihi",
+        "image": "/images/projects-new/content (22).jpg",
+        "description": ""
+      },
+      {
+        "title": "Cambridge Town Hall",
+        "image": "/images/projects-new/content (33).jpg",
+        "description": ""
+      },
+      {
+        "title": "123 Kapiti Road, Paraparaumu, Wellington (IEP REPORT)",
+        "image": "/images/projects-new/content (34).jpg",
+        "description": ""
+      },
+      {
+        "title": "Waipa District Council",
+        "image": "/images/projects/3.webp",
+        "description": ""
+      },
+      {
+        "title": "Cambridge Family Health Medical Centre",
+        "image": "/images/projects/4.webp",
+        "description": "Seismic retrofit design and detailed seismic assessment"
+      }
+    ]
   },
   {
     "category": "Heritage",
     "projects": [
       {
-        "title": "Architectural Design Project",
-        "image": "/images/projects/archi/2.png",
-        "location": "Thames"
+        "title": "J003583 - Ngaruawahia Town Hall",
+        "image": "/images/projects-new/content (25).jpg",
+        "description": ""
       },
       {
-        "title": "Architectural Design Project",
-        "image": "/images/projects/archi/5.png",
-        "location": "Thames"
+        "title": "Cambridge Town Hall",
+        "image": "/images/projects-new/content (33).jpg",
+        "description": "We performed a detailed Seismic Assessment on the Cambridge Town Hall for Waipa District Council, Identifying it as a high-risk building and suggesting some alterations which greatly improved the safety and integrity of the site."
       },
       {
-        "title": "Architectural Design Project",
-        "image": "/images/projects/archi/8.png",
-        "location": "Thames"
+        "title": "Cambridge Clock Tower",
+        "image": "/images/projects/11.webp",
+        "description": "The Cambridge Clock Tower is a significant heritage building and community symbol. However, it also presents a potential threat to life and property during an earthquake, with the previous clock tower having been damaged by an earthquake in 1933. We conducted an initial Seismic Assessment which enabled the Waipa District Council to identify and mitigate this risk, protecting the people of Cambridge and the heritage of the district."
+      },
+      {
+        "title": "Cambridge Museum",
+        "image": "/images/projects/12.webp",
+        "description": "Constructed in 1909, the current museum and former court house is a beautiful part of  Cambridge’s heritage. We performed an initial Seismic Assessment for Waipa District Council and were able to identify specific risks like a brick chimney likely to collapse in an earthquake."
       }
     ]
   },
@@ -120,19 +318,24 @@
     "category": "Accommodation",
     "projects": [
       {
-        "title": "Architectural Design Project",
-        "image": "/images/projects/archi/1.png",
-        "location": "Thames"
+        "title": "Fairy Springs Motel",
+        "image": "/images/projects-new/content (4).jpg",
+        "description": ""
       },
       {
-        "title": "Architectural Design Project",
-        "image": "/images/projects/archi/4.png",
-        "location": "Thames"
+        "title": "Apartment Building in Hamilton",
+        "image": "/images/projects-new/content (6).jpg",
+        "description": ""
       },
       {
-        "title": "Architectural Design Project",
-        "image": "/images/projects/archi/7.png",
-        "location": "Thames"
+        "title": "Hotel Auckland",
+        "image": "/images/projects-new/content (17).jpg",
+        "description": ""
+      },
+      {
+        "title": "Te Rapa Motel",
+        "image": "/images/projects-new/content (18).jpg",
+        "description": ""
       }
     ]
   },
@@ -140,14 +343,9 @@
     "category": "Educational",
     "projects": [
       {
-        "title": "Architectural Design Project",
-        "image": "/images/projects/archi/3.png",
-        "location": "Thames"
-      },
-      {
-        "title": "Architectural Design Project",
-        "image": "/images/projects/archi/6.png",
-        "location": "Thames"
+        "title": "University of Waikato",
+        "image": "/images/projects-new/content.jpg",
+        "description": ""
       }
     ]
   },
@@ -157,7 +355,7 @@
       {
         "title": "Environmental Project",
         "image": "/images/projects/2.webp",
-        "location": "location 2"
+        "description": ""
       }
     ]
   },
@@ -165,9 +363,24 @@
     "category": "Medical",
     "projects": [
       {
-        "title": "Residential Project",
-        "image": "/images/projects/3.webp",
-        "location": "location 3"
+        "title": "Menzies Building, Waikato Hospital",
+        "image": "/images/projects/7.webp",
+        "description": ""
+      },
+      {
+        "title": "Hockin Building, Waikato Hospital",
+        "image": "/images/projects/8.webp",
+        "description": ""
+      },
+      {
+        "title": "Waiora Building, Waikato Hospital",
+        "image": "/images/projects/9.webp",
+        "description": "We performed extensive works at Waikato Hospital, including comprehensive structural repairs of a major service tunnel and the Wairoa building, as well as the construction of a new vehicle ramp. This was a large and complex job, and we were able to complete it in a timely and cost-effective manner without significant interruption to the hospital."
+      },
+      {
+        "title": "Maraenui Medical Centre",
+        "image": "/images/projects-new/image-51-1.webp",
+        "description": "We performed extensive works at Waikato Hospital, including comprehensive structural repairs of a major service tunnel and the Wairoa building, as well as the construction of a new vehicle ramp. This was a large and complex job, and we were able to complete it in a timely and cost-effective manner without significant interruption to the hospital."
       }
     ]
   },
@@ -175,9 +388,19 @@
     "category": "Council",
     "projects": [
       {
-        "title": "Commercial Project",
-        "image": "/images/projects/4.webp",
-        "location": "location 4"
+        "title": "J004273 - Ngaruwahia - Public Pool",
+        "image": "/images/projects-new/content (28).jpg",
+        "description": ""
+      },
+      {
+        "title": "Rotakauri Walkway",
+        "image": "/images/projects-new/content (32).jpg",
+        "description": ""
+      },
+      {
+        "title": "Cambridge Town Hall",
+        "image": "/images/projects-new/content (33).jpg",
+        "description": ""
       }
     ]
   }

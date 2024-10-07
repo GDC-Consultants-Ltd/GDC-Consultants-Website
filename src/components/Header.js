@@ -94,10 +94,10 @@ const Header = () => {
               <Image
                 src="/images/GDC LOGOS 2024 BLUE.webp"
                 alt="GDC Consultants Ltd Logo"
-                width={100}
-                height={40}
+                width={500} // Set a higher intrinsic width
+                height={200} // Set a higher intrinsic height
                 priority
-                className="h-auto w-auto cursor-pointer"
+                className="w-[150px] h-auto md:w-[150px] lg:w-[200px] cursor-pointer"
               />
             </Link>
           </div>
@@ -193,7 +193,7 @@ const Header = () => {
                   }
                 >
                   <button
-                    className="flex items-center text-xs sm:text-sm font-semibold py-1 px-2 lg:py-2 lg:px-3 cursor-pointer text-customBlue"
+                    className="flex items-center text-sm sm:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 cursor-pointer text-customBlue" // Increased font size here
                     onClick={() =>
                       isMobileView
                         ? handleMobileDropdownToggle(item.dropdown)
@@ -208,8 +208,8 @@ const Header = () => {
                     className={`${
                       activeDropdown === item.dropdown ? "block" : "hidden"
                     } absolute left-0 mt-6 ${
-                      item.dropdown === "services" ? "w-[600px]" : "w-[200px]"
-                    } bg-white opacity-90 shadow-lg rounded-lg p-6`}
+                      item.dropdown === "services" ? "w-[700px]" : "w-[200px]"
+                    } bg-white opacity-90 shadow-lg rounded-lg p-3`}
                   >
                     <div
                       className={`grid ${
@@ -222,7 +222,7 @@ const Header = () => {
                         <li key={subItem.href} className="whitespace-nowrap">
                           <Link
                             href={subItem.href}
-                            className={`block px-2 py-2 text-sm font-semibold ${
+                            className={`block px-2 py-2 text-sm sm:text-base font-semibold ${
                               currentPath === subItem.href
                                 ? "text-customYellow"
                                 : "text-customBlue"
@@ -239,7 +239,7 @@ const Header = () => {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`text-xs sm:text-sm font-semibold py-1 px-2 lg:py-2 lg:px-3 ${
+                    className={`text-sm sm:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 ${
                       currentPath === item.href
                         ? "text-customYellow"
                         : "text-customBlue"

@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import SubContact from "@/components/SubContact";
 import ScrollToTop from "@/components/ScrollToTop";
 import Head from "next/head";
+import { motion } from "framer-motion";
 
 const teamMembers = [
   {
@@ -234,82 +235,61 @@ const TeamPage = () => {
 
         {/* Core Team Section */}
         <section className="py-8 md:py-16">
-          <div className="max-w-screen-md mx-auto px-4 md:px-6 lg:px-10">
-            {/* Horizontal Scrollable Slider */}
-            <div
-              ref={sliderRef}
-              className="relative flex gap-4 md:gap-7 overflow-x-auto scrollbar-hide py-4 md:py-6"
-            >
-              {/* Clone last slide at the beginning for circular effect */}
-              <div
-                className={`carousel-image flex-shrink-0 flex-grow-0 flex-basis-[100%] sm:flex-basis-[80%] md:flex-basis-[50%] lg:flex-basis-[25%] h-[150px] sm:h-[180px] md:h-[200px] rounded-full transition-transform duration-500 cursor-pointer ${
-                  activeIndex === 0 ? "scale-110" : "scale-90"
-                }`}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="max-w-screen-lg mx-auto px-4 md:px-6 lg:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {teamMembers.slice(0, 3).map((member, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                className="relative group overflow-hidden shadow-md cursor-pointer rounded-lg"
               >
                 <Image
-                  src={teamMembers[totalSlides - 1].image}
-                  alt={teamMembers[totalSlides - 1].name}
-                  width={200}
-                  height={200}
-                  className="object-cover w-full h-full rounded-full"
+                  src={member.image}
+                  alt={member.name}
+                  width={400}
+                  height={400}
+                  className="object-cover w-full h-[450px] transition-transform duration-500"
                 />
-              </div>
-
-              {teamMembers.map((member, index) => (
-                <div
-                  key={index}
-                  onClick={() => {
-                    setActiveIndex(index + 1);
-                    setCurrentMember(member);
-                  }}
-                  className={`carousel-image flex-shrink-0 flex-grow-0 flex-basis-[100%] sm:flex-basis-[80%] md:flex-basis-[50%] lg:flex-basis-[25%] h-[150px] sm:h-[180px] md:h-[200px] rounded-full transition-transform duration-500 cursor-pointer ${
-                    index + 1 === activeIndex ? "scale-110" : "scale-90"
-                  }`}
-                >
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    width={200}
-                    height={200}
-                    className="object-cover w-full h-full rounded-full"
-                  />
+                {/* Initial Name and Position */}
+                <div className="absolute bottom-6 left-6 z-10 transition-opacity duration-300 group-hover:opacity-0">
+                  <h4 className="text-white text-xl font-bold">
+                    {member.name}
+                  </h4>
+                  <p className="text-customYellow text-sm">{member.position}</p>
                 </div>
-              ))}
 
-              {/* Clone first slide at the end for circular effect */}
-              <div
-                className={`carousel-image flex-shrink-0 flex-grow-0 flex-basis-[100%] sm:flex-basis-[80%] md:flex-basis-[50%] lg:flex-basis-[25%] h-[150px] sm:h-[180px] md:h-[200px] rounded-full transition-transform duration-500 cursor-pointer ${
-                  activeIndex === totalSlides + 1 ? "scale-110" : "scale-90"
-                }`}
-              >
-                <Image
-                  src={teamMembers[0].image}
-                  alt={teamMembers[0].name}
-                  width={200}
-                  height={200}
-                  className="object-cover w-full h-full rounded-full"
-                />
-              </div>
-            </div>
-
-            {/* Team Member Details */}
-            <div className="mt-4 md:mt-6 text-center">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-customBlue mb-1 sm:mb-2">
-                {currentMember.name}
-              </h3>
-              <p className="text-sm sm:text-md md:text-lg text-gray-600">
-                {currentMember.position}
-              </p>
-              <p className="text-xs sm:text-sm md:text-md text-gray-500">
-                {currentMember.qualifications}
-              </p>
-            </div>
-          </div>
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
+                {/* Hover Content */}
+                <motion.div
+                  className="absolute inset-0 bg-customYellow bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="text-white text-center px-4">
+                    <h3 className="text-2xl font-bold">{member.name}</h3>
+                    <h5 className="text-md">{member.position}</h5>
+                    <p className="text-sm mt-2">{member.qualifications}</p>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
         </section>
 
         {/* Sub Team Display Section */}
         <section className="relative py-8">
-          <div className="max-w-screen-lg mx-auto px-4 md:px-6 lg:px-10">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-10"
+          >
             {/* Horizontal Scrollable Slider */}
             <div
               ref={subTeamSliderRef}
@@ -317,35 +297,52 @@ const TeamPage = () => {
               style={{ scrollSnapType: "x mandatory" }}
             >
               {subTeamMembers.map((member, index) => (
-                <div
+                <motion.div
                   key={index}
-                  className="flex flex-col items-center text-center min-w-full md:min-w-[220px] p-2 md:p-4"
+                  whileHover={{ scale: 1.05 }}
+                  className="relative group overflow-hidden cursor-pointer min-w-full md:min-w-[220px] flex-shrink-0"
                   style={{ scrollSnapAlign: "start" }}
                 >
                   {/* Team Member Image */}
-                  <div className="w-[100px] h-[100px] md:w-[130px] md:h-[130px] rounded-full overflow-hidden mb-2 md:mb-4">
+                  <div className="w-full h-[200px] md:h-[250px] overflow-hidden">
                     <Image
                       src={member.image}
                       alt={member.name}
-                      width={130}
-                      height={130}
-                      className="object-cover w-full h-full rounded-full"
+                      width={250}
+                      height={250}
+                      className="object-cover w-full h-full rounded-lg transition-transform duration-500"
                     />
                   </div>
-                  {/* Team Member Details */}
-                  <h3 className="text-md md:text-lg font-semibold text-customBlue mb-1">
-                    {member.name}
-                  </h3>
-                  <p className="text-sm md:text-md text-gray-600">
-                    {member.position}
-                  </p>
-                  <p className="text-xs md:text-sm text-gray-500">
-                    {member.qualifications}
-                  </p>
-                </div>
+                  {/* Square Section for Name and Position */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-customBlue bg-opacity-70 p-2 flex flex-col justify-center items-center transition-opacity duration-300 group-hover:opacity-0">
+                    <h4 className="text-white text-center text-md md:text-lg font-bold">
+                      {member.name}
+                    </h4>
+                    <p className="text-customYellow text-center text-xs md:text-sm">
+                      {member.position}
+                    </p>
+                  </div>
+                  {/* Hover Content */}
+                  <motion.div
+                    className="absolute inset-0 bg-customYellow bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="text-white text-center px-4">
+                      <h4 className="text-lg md:text-xl font-bold">
+                        {member.name}
+                      </h4>
+                      <p className="text-sm md:text-md">{member.position}</p>
+                      <p className="text-xs md:text-sm mt-2">
+                        {member.qualifications}
+                      </p>
+                    </div>
+                  </motion.div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </section>
 
         <SubContact />

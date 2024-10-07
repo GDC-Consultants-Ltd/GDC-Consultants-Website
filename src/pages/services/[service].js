@@ -76,9 +76,16 @@ const ServicePage = ({ serviceData }) => {
       />
 
       {/* Dynamic Alternating Sections */}
-      {serviceData.sections && (
-        <ServiceSections sections={serviceData.sections} />
-      )}
+      {serviceData.sections.map((section, index) => (
+        <ServiceSections
+          key={section.id}
+          index={index} // Pass the index here to determine the layout
+          title={section.title}
+          description={section.description}
+          points={section.points}
+          image={section.image}
+        />
+      ))}
 
       {/* Unique Content for Specific Service */}
       {/* {serviceData.uniqueContent && serviceData.uniqueContent} */}
