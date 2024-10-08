@@ -40,12 +40,12 @@ const ServiceSections = ({ sections }) => {
           {sections.map((section) => (
             <li
               key={section.id}
-              className={`cursor-pointer p-2 text-sm lg:text-md rounded-md flex items-center text-gray-800 transition-all duration-300 ${
+              className={`cursor-pointer p-2 text-sm lg:text-md rounded-md flex items-center text-customBlue transition-all duration-300 ${
                 activeSection === section.id ? "font-semibold" : ""
-              } hover:scale-105`} // Hover animation
+              } hover:text-customYellow hover:scale-105`} // Hover animation
               onClick={() => handleSectionClick(section.id)}
             >
-              <FaMinus className="mr-2 text-gray-500" /> {/* Icon added */}
+              <FaMinus className="mr-2 text-customBlue" /> {/* Icon added */}
               {section.title}
             </li>
           ))}
@@ -68,7 +68,7 @@ const ServiceSections = ({ sections }) => {
             </div>
             {/* Content Row */}
             <div className="w-full px-4 lg:px-6 flex flex-col">
-              <h3 className="text-xl lg:text-2xl font-semibold mb-4 text-gray-900 text-center">
+              <h3 className="text-xl lg:text-2xl font-semibold mb-4 text-customBlue text-center">
                 {activeContent.title}
               </h3>
               <p className="text-gray-700 mb-4 text-justify">

@@ -183,7 +183,7 @@ const Header = () => {
               item.items ? (
                 <li
                   key={item.label}
-                  className="relative"
+                  className="relative text-center" // Center-align the text
                   onMouseEnter={() =>
                     !isMobileView &&
                     handleDesktopDropdownMouseEnter(item.dropdown)
@@ -193,7 +193,7 @@ const Header = () => {
                   }
                 >
                   <button
-                    className="flex items-center text-sm sm:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 cursor-pointer text-customBlue" // Increased font size here
+                    className="flex items-center justify-center text-sm sm:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 cursor-pointer text-customBlue" // Center-align the button
                     onClick={() =>
                       isMobileView
                         ? handleMobileDropdownToggle(item.dropdown)
@@ -222,7 +222,7 @@ const Header = () => {
                         <li key={subItem.href} className="whitespace-nowrap">
                           <Link
                             href={subItem.href}
-                            className={`block px-2 py-2 text-sm sm:text-base font-semibold ${
+                            className={`block text-center px-2 py-2 text-sm sm:text-base font-semibold ${
                               currentPath === subItem.href
                                 ? "text-customYellow"
                                 : "text-customBlue"
@@ -236,10 +236,12 @@ const Header = () => {
                   </ul>
                 </li>
               ) : (
-                <li key={item.href}>
+                <li key={item.href} className="text-center">
+                  {" "}
+                  {/* Center-align the text */}
                   <Link
                     href={item.href}
-                    className={`text-sm sm:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 ${
+                    className={`block text-center text-sm sm:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 ${
                       currentPath === item.href
                         ? "text-customYellow"
                         : "text-customBlue"
@@ -392,11 +394,11 @@ const Header = () => {
           </ul>
 
           {/* Desktop version of the "OUR LOCATIONS" button */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center lg:space-x-4">
             {/* CALL NOW Button */}
             <Link
               href="tel:+6478380090"
-              className="hidden lg:block bg-customYellow text-white text-xs sm:text-sm font-semibold px-3 py-1 lg:px-4 lg:py-2 rounded-md hover:bg-yellow-600"
+              className="hidden text-center lg:flex justify-center items-center bg-customYellow text-white text-xs sm:text-sm font-semibold px-3 py-1 lg:px-4 lg:py-2 rounded-md hover:bg-yellow-600"
               onClick={() => setIsMenuOpen(false)}
             >
               CALL NOW
@@ -405,7 +407,7 @@ const Header = () => {
             {/* OUR LOCATIONS Button */}
             <Link
               href="/locations"
-              className="hidden lg:block bg-customYellow text-white text-xs sm:text-sm font-semibold px-3 py-1 lg:px-4 lg:py-2 rounded-md hover:bg-yellow-600"
+              className="hidden text-center lg:flex justify-center items-center bg-customYellow text-white text-xs sm:text-sm font-semibold px-3 py-1 lg:px-4 lg:py-2 rounded-md hover:bg-yellow-600"
               onClick={() => setIsMenuOpen(false)}
             >
               OUR LOCATIONS

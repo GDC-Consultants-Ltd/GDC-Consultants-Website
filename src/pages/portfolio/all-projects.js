@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import "../../app/globals.css";
@@ -8,20 +6,18 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GetInTouch from "@/components/GetInTouch";
 import ScrollToTop from "@/components/ScrollToTop";
-
-// Import projects data from the JSON file
 import projectsData from "@/data/projectsData.json"; // Adjust the path based on your file structure
 import Head from "next/head";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
 const ProjectsPage = () => {
   const [currentProject, setCurrentProject] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All Projects");
-  const [selectedSector, setSelectedSector] = useState(null); // Set this to null initially
+  const [selectedSector, setSelectedSector] = useState(null);
   const [filteredProjects, setFilteredProjects] = useState([]);
   const sliderRef = useRef(null);
 
-  // List of sector categories that need to be styled with customYellow when active
   const sectorCategories = [
     "Heritage",
     "Accommodation",
@@ -31,13 +27,11 @@ const ProjectsPage = () => {
     "Council",
   ];
 
-  // Extract unique categories and sectors from projectsData
   const categories = [
     "All Projects",
     ...projectsData.map((item) => item.category),
   ];
 
-  // Filter projects based on selected category and sector
   const filterProjects = (category, sector) => {
     let filtered = projectsData.flatMap((item) => item.projects);
 
@@ -54,48 +48,42 @@ const ProjectsPage = () => {
     }
 
     setFilteredProjects(filtered);
-    setCurrentProject(filtered[0] || null); // Set the first project as the current one, if available
-    setActiveIndex(0); // Reset slider to the first project
+    setCurrentProject(filtered[0] || null);
+    setActiveIndex(0);
   };
 
-  // Handle category selection
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    filterProjects(category, selectedSector); // Now we filter with the currently selected sector
+    filterProjects(category, selectedSector);
   };
 
-  // Handle sector selection
   const handleSectorClick = (sector) => {
     setSelectedSector(sector);
-    filterProjects(selectedCategory, sector); // Now we filter with the currently selected category
+    filterProjects(selectedCategory, sector);
   };
 
-  // Automatically transition to the next image
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % filteredProjects.length);
-    }, 3000); // Change every 3 seconds
+      if (filteredProjects.length > 1) {
+        setActiveIndex((prevIndex) => (prevIndex + 1) % filteredProjects.length);
+      }
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [filteredProjects.length]);
 
   useEffect(() => {
-    // Set the current project based on active index
     setCurrentProject(filteredProjects[activeIndex]);
   }, [activeIndex, filteredProjects]);
 
-  // Scroll to active image when activeIndex changes
   const scrollToActiveImage = () => {
     if (!sliderRef.current) return;
     const slider = sliderRef.current;
     const images = slider.getElementsByClassName("carousel-image");
 
-    // Center the active image
     const activeImage = images[activeIndex];
     const offsetLeft =
-      activeImage.offsetLeft -
-      slider.clientWidth / 2 +
-      activeImage.clientWidth / 2;
+      activeImage.offsetLeft - slider.clientWidth / 2 + activeImage.clientWidth / 2;
     slider.scrollTo({ left: offsetLeft, behavior: "smooth" });
   };
 
@@ -103,10 +91,19 @@ const ProjectsPage = () => {
     scrollToActiveImage();
   }, [activeIndex]);
 
-  // Initialize with all projects displayed on page load
   useEffect(() => {
-    filterProjects("All Projects", null); // We filter with "All Projects" and no sector initially
+    filterProjects("All Projects", null);
   }, []);
+
+  const handleNext = () => {
+    setActiveIndex((prevIndex) => (prevIndex + 1) % filteredProjects.length);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex(
+      (prevIndex) => (prevIndex - 1 + filteredProjects.length) % filteredProjects.length
+    );
+  };
 
   return (
     <>
@@ -141,7 +138,6 @@ const ProjectsPage = () => {
       <Header />
       <ProjectHeader />
 
-      {/* First set of labels for categories */}
       <div className="flex flex-wrap justify-center pt-6 m-4">
         {categories.map((category) => (
           <button
@@ -160,36 +156,63 @@ const ProjectsPage = () => {
         ))}
       </div>
 
-      {/* Display Projects Section */}
       <section className="pb-10">
         <div className="max-w-screen-xl mx-auto px-6 md:px-10 xl:px-16">
           {filteredProjects.length > 0 ? (
             <>
-              {/* Horizontal Scrollable Slider */}
               <div
-                ref={sliderRef}
-                className="relative flex gap-8 overflow-x-auto scrollbar-hide py-6"
+                className={`relative flex items-center ${
+                  filteredProjects.length === 1 ? "justify-center" : ""
+                }`}
               >
-                {filteredProjects.map((project, index) => (
-                  <div
-                    key={index}
-                    onClick={() => {
-                      setActiveIndex(index);
-                      setCurrentProject(project);
-                    }}
-                    className={`carousel-image flex-shrink-0 w-[500px] h-[350px] transition-transform duration-500 cursor-pointer ${
-                      index === activeIndex ? "scale-110" : "scale-100"
-                    }`}
+                {/* Left Arrow */}
+                {filteredProjects.length > 1 && (
+                  <button
+                    className="absolute left-0 z-10 p-2 bg-white rounded-full shadow-md hover:bg-gray-200"
+                    onClick={handlePrev}
                   >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      width={500}
-                      height={350}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                ))}
+                    <ChevronLeftIcon className="h-6 w-6 text-customBlue" />
+                  </button>
+                )}
+
+                {/* Horizontal Scrollable Slider */}
+                <div
+                  ref={sliderRef}
+                  className={`relative flex gap-8 overflow-x-auto scrollbar-hide py-6 ${
+                    filteredProjects.length === 1 ? "justify-center" : "mx-10"
+                  }`}
+                >
+                  {filteredProjects.map((project, index) => (
+                    <div
+                      key={index}
+                      onClick={() => {
+                        setActiveIndex(index);
+                        setCurrentProject(project);
+                      }}
+                      className={`carousel-image flex-shrink-0 w-[500px] h-[350px] transition-transform duration-500 cursor-pointer ${
+                        index === activeIndex ? "scale-110" : "scale-100"
+                      }`}
+                    >
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        width={500}
+                        height={350}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Right Arrow */}
+                {filteredProjects.length > 1 && (
+                  <button
+                    className="absolute right-0 z-10 p-2 bg-white rounded-full shadow-md hover:bg-gray-200"
+                    onClick={handleNext}
+                  >
+                    <ChevronRightIcon className="h-6 w-6 text-customBlue" />
+                  </button>
+                )}
               </div>
 
               {/* Project Details */}
