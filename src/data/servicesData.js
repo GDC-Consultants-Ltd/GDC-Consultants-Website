@@ -245,7 +245,7 @@ const services = {
     metaTitle: "Accurate Commercial Building Valuation: GDC Insights",
     metaDescription:
       "Discover expert insights on commercial building valuation, subdivision costs in NZ, and engineering consultancy services with GDC Consultant.",
-    title: "Infrastructure & Subdivision Engineerin",
+    title: "Infrastructure & Subdivision Engineering",
     description: "",
     image: "/images/services/infrastructure-subdivision-gdc.webp",
     sections: [

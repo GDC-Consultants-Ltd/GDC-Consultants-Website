@@ -21,6 +21,7 @@ const BlogSection = () => {
     const fetchBlogs = async () => {
       try {
         const response = await axios.get("/api/hubspot-blogs");
+        console.log(response);
         const fetchedBlogs = response.data;
 
         // Sort the blogs by date and slice to get the most recent 3 blogs
@@ -180,7 +181,7 @@ const BlogSection = () => {
                 </div>
 
                 <h4 className="text-lg font-semibold text-customBlue mb-4 group-hover:text-customYellow transition-colors duration-300">
-                  {blog.htmlTitle}
+                  {blog.name}
                 </h4>
 
                 <a

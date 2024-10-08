@@ -143,7 +143,7 @@ const BlogPost = ({ blog, recentArticles }) => {
           {/* Main Blog Content */}
           <article className="lg:col-span-2">
             <h1 className="text-4xl text-customBlue font-bold">
-              {blog.htmlTitle}
+              {blog.name}
             </h1>
             <p className="text-gray-600 flex items-center gap-2 py-3">
               GDC Admin <span className="mx-1">•</span> {formattedDate}

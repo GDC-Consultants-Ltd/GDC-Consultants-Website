@@ -17,7 +17,7 @@ export default function CareerForm() {
     country: "",
     field_of_interest: [],
     resume: null,
-    do_you_agree_to_our_contact_policy_: false,
+    // do_you_agree_to_our_contact_policy_: false,
   });
 
   const [error, setError] = useState("");
@@ -91,10 +91,10 @@ export default function CareerForm() {
           name: "resume",
           value: fileUrls.join(", "), // Include the HubSpot File URLs here
         },
-        {
-          name: "do_you_agree_to_our_contact_policy_",
-          value: formData.do_you_agree_to_our_contact_policy_,
-        },
+        // {
+        //   name: "do_you_agree_to_our_contact_policy_",
+        //   value: formData.do_you_agree_to_our_contact_policy_,
+        // },
       ],
     };
 
@@ -124,7 +124,7 @@ export default function CareerForm() {
         country: "",
         field_of_interest: [],
         resume: null,
-        do_you_agree_to_our_contact_policy_: false,
+        // do_you_agree_to_our_contact_policy_: false,
       });
     } catch (error) {
       setError(
@@ -351,7 +351,7 @@ export default function CareerForm() {
           </div>
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="flex items-center text-gray-700">
             <input
               type="checkbox"
@@ -366,7 +366,7 @@ export default function CareerForm() {
             </a>
             &nbsp;?
           </label>
-        </div>
+        </div> */}
 
         <button
           type="submit"
