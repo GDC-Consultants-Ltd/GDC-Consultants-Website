@@ -10,20 +10,23 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image"; // Importing Image from next/image for optimization
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [currentPath, setCurrentPath] = useState("");
   const [isMobileView, setIsMobileView] = useState(false);
-  const [isMoreOpen, setIsMoreOpen] = useState(false); // To handle "More" submenu items
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
   const dropdownRef = useRef(null);
   const timeoutRef = useRef(null);
+
+  const router = useRouter(); // Initialize useRouter
 
   // Detect if the current view is mobile or desktop
   useEffect(() => {
     const checkMobileView = () => {
-      setIsMobileView(window.innerWidth <= 1024); // Set breakpoint for mobile vs desktop
+      setIsMobileView(window.innerWidth <= 1024);
     };
 
     checkMobileView();
@@ -33,6 +36,20 @@ const Header = () => {
       window.removeEventListener("resize", checkMobileView);
     };
   }, []);
+
+  // Close menu on route change
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setIsMenuOpen(false); // Close the menu when the route changes
+      setActiveDropdown(null); // Close any active dropdown
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [router.events]);
 
   // Toggle menu on mobile
   const toggleMenu = useCallback(() => {
@@ -104,11 +121,8 @@ const Header = () => {
 
           {/* Hamburger Menu Icon for Mobile on the Right */}
           <div className="flex lg:hidden ml-auto">
-            <button
-              onClick={toggleMenu}
-              aria-label="Toggle Menu"
-              className="transition-transform duration-300 transform hover:scale-110"
-            >
+            {/* Mobile Menu Toggle Button */}
+            <button onClick={toggleMenu} className="lg:hidden">
               {isMenuOpen ? (
                 <XMarkIcon className="w-6 h-6 text-black transition-transform duration-300" />
               ) : (
@@ -259,8 +273,10 @@ const Header = () => {
           {/* Mobile Menu Items */}
           <ul
             className={`absolute top-full left-0 w-full bg-white shadow-md lg:hidden transition-all duration-300 ease-in-out ${
-              isMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
-            } overflow-hidden`}
+              isMenuOpen
+                ? "max-h-[75vh] opacity-100 overflow-y-auto"
+                : "max-h-0 opacity-0"
+            }`}
             style={{ zIndex: 100 }}
           >
             {[
@@ -297,10 +313,7 @@ const Header = () => {
                     href: "/services/research-development",
                     label: "Research & Development",
                   },
-                  {
-                    href: "/services/road-transport",
-                    label: "Road Transport",
-                  },
+                  { href: "/services/road-transport", label: "Road Transport" },
                   {
                     href: "/services/seismic-engineering",
                     label: "Seismic Engineering",
