@@ -10,18 +10,17 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image"; // Importing Image from next/image for optimization
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const [currentPath, setCurrentPath] = useState("");
   const [isMobileView, setIsMobileView] = useState(false);
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const dropdownRef = useRef(null);
   const timeoutRef = useRef(null);
-
-  const router = useRouter(); // Initialize useRouter
+  
+  const pathname = usePathname(); // Get the current pathname
 
   // Detect if the current view is mobile or desktop
   useEffect(() => {
@@ -37,19 +36,11 @@ const Header = () => {
     };
   }, []);
 
-  // Close menu on route change
+  // Close menu when pathname changes
   useEffect(() => {
-    const handleRouteChange = () => {
-      setIsMenuOpen(false); // Close the menu when the route changes
-      setActiveDropdown(null); // Close any active dropdown
-    };
-
-    router.events.on("routeChangeStart", handleRouteChange);
-
-    return () => {
-      router.events.off("routeChangeStart", handleRouteChange);
-    };
-  }, [router.events]);
+    setIsMenuOpen(false); // Close the menu when the pathname changes
+    setActiveDropdown(null); // Close any active dropdown
+  }, [pathname]);
 
   // Toggle menu on mobile
   const toggleMenu = useCallback(() => {
@@ -80,13 +71,8 @@ const Header = () => {
     }, 200); // Delay for smooth closing
   }, []);
 
+  // Handle clicks outside the dropdown to close it
   useEffect(() => {
-    // Set the current path for highlighting menu items based on the current route
-    if (typeof window !== "undefined") {
-      setCurrentPath(window.location.pathname);
-    }
-
-    // Handle clicks outside the dropdown to close it
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setActiveDropdown(null);
@@ -241,7 +227,7 @@ const Header = () => {
                           <Link
                             href={subItem.href}
                             className={`block px-2 py-2 text-sm sm:text-base font-semibold ${
-                              currentPath === subItem.href
+                              pathname === subItem.href
                                 ? "text-customYellow"
                                 : "text-customBlue"
                             } hover:text-customYellow hover:rounded-md transition-all duration-300`}
@@ -258,7 +244,7 @@ const Header = () => {
                   <Link
                     href={item.href}
                     className={`block text-center text-sm sm:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 ${
-                      currentPath === item.href
+                      pathname === item.href
                         ? "text-customYellow"
                         : "text-customBlue"
                     }`}
@@ -369,7 +355,7 @@ const Header = () => {
                           <Link
                             href={subItem.href}
                             className={`block py-2 px-11 ${
-                              currentPath === subItem.href
+                              pathname === subItem.href
                                 ? "text-customYellow"
                                 : "text-gray-700"
                             } hover:text-customBlue transition-all duration-300`}
@@ -395,7 +381,7 @@ const Header = () => {
                   <Link
                     href={item.href}
                     className={`block py-2 px-11 font-light ${
-                      currentPath === item.href
+                      pathname === item.href
                         ? "text-customYellow"
                         : "text-gray-800"
                     } hover:text-customBlue transition-all duration-300`}
