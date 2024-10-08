@@ -212,11 +212,10 @@ export default function Footer() {
           </div>
 
           {/* Logos Section */}
-          <div className="flex flex-col items-center md:items-start">
+          {/* <div className="flex flex-col items-center md:items-start">
             <h4 className="font-semibold text-md tracking-wide">
               EXPLORE OTHERS
             </h4>{" "}
-            {/* Added space-y-1 */}
             <a
               href="https://gdcproperties.co.nz/"
               className="hover:text-customYellow tracking-wide"
@@ -262,7 +261,7 @@ export default function Footer() {
                 style={{ objectFit: "contain" }}
               />
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
 

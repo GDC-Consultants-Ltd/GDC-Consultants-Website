@@ -300,21 +300,23 @@ const TeamPage = () => {
                 <motion.div
                   key={index}
                   whileHover={{ scale: 1.05 }}
-                  className="relative group overflow-hidden cursor-pointer min-w-full md:min-w-[220px] flex-shrink-0"
+                  className="relative group overflow-hidden cursor-pointer w-full md:w-[220px] flex-shrink-0"
                   style={{ scrollSnapAlign: "start" }}
                 >
                   {/* Team Member Image */}
-                  <div className="w-full h-[200px] md:h-[250px] overflow-hidden">
+                  <div className="w-full h-auto aspect-w-4 aspect-h-3 overflow-hidden">
                     <Image
                       src={member.image}
                       alt={member.name}
-                      width={250}
-                      height={250}
+                      width={300}
+                      height={300}
                       className="object-cover w-full h-full rounded-lg transition-transform duration-500"
+                      style={{ objectFit: "cover" }}
                     />
                   </div>
+
                   {/* Square Section for Name and Position */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-customBlue bg-opacity-70 p-2 flex flex-col justify-center items-center transition-opacity duration-300 group-hover:opacity-0">
+                  <div className="absolute bottom-0 left-0 right-0 w-full bg-customBlue bg-opacity-70 p-2 flex flex-col justify-center items-center">
                     <h4 className="text-white text-center text-md md:text-lg font-bold">
                       {member.name}
                     </h4>
@@ -322,6 +324,7 @@ const TeamPage = () => {
                       {member.position}
                     </p>
                   </div>
+
                   {/* Hover Content */}
                   <motion.div
                     className="absolute inset-0 bg-customYellow bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg"
@@ -329,7 +332,7 @@ const TeamPage = () => {
                     whileHover={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="text-white text-center px-4">
+                    <div className="text-white text-center px-4 w-full">
                       <h4 className="text-lg md:text-xl font-bold">
                         {member.name}
                       </h4>

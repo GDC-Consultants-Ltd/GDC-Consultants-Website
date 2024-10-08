@@ -1,59 +1,95 @@
-import Image from "next/image";
+"use client";
 
-const ServiceSections = ({ index, title, description, points, image }) => {
-  // Determine if the index is even or odd
-  const isEven = index % 2 === 0;
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { FaMinus, FaRegCircle } from "react-icons/fa"; // Importing icons from react-icons
+
+const ServiceSections = ({ sections }) => {
+  // State to keep track of the selected section, initialized conditionally
+  const [activeSection, setActiveSection] = useState(
+    sections && sections.length > 0 ? sections[0].id : null
+  );
+
+  useEffect(() => {
+    // Update the active section if the sections prop changes
+    if (sections && sections.length > 0) {
+      setActiveSection(sections[0].id);
+    }
+  }, [sections]);
+
+  // Function to handle section change
+  const handleSectionClick = (id) => {
+    setActiveSection(id);
+  };
+
+  // Find the currently active section content
+  const activeContent = sections?.find(
+    (section) => section.id === activeSection
+  );
+
+  // Check if there are no sections available
+  if (!sections || sections.length === 0) {
+    return <p>No sections available.</p>;
+  }
 
   return (
-    <div className="px-4 lg:px-20">
-      <div
-        className={`relative flex flex-col ${
-          isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-        } items-center mb-10 bg-gradient-to-r from-customLightBlue via-wh to-white shadow-l shadow-lg rounded-full overflow-hidden`}
-        style={{
-          borderRadius: "150px", // Rounded corners for the card
-        }}
-      >
-        <div className="lg:w-1/2 flex justify-center items-center p-6">
-          <div
-            className="relative w-44 h-44 lg:w-60 lg:h-60 rounded-full overflow-hidden shadow-md"
-            style={{
-              marginLeft: isEven ? "0" : "auto", // Align image based on even or odd index
-            }}
-          >
-            <Image
-              src={image}
-              alt={title}
-              layout="fill"
-              objectFit="cover"
-              className="object-cover"
-              style={{
-                borderRadius: "150px", // Ensure the image inside matches the rounded shape
-              }}
-            />
+    <div className="flex flex-col lg:flex-row px-4 lg:px-20 py-6">
+      {/* Left side: list of section titles */}
+      <div className="lg:w-1/4 p-4 overflow-auto max-h-[500px]">
+        <ul className="space-y-4">
+          {sections.map((section) => (
+            <li
+              key={section.id}
+              className={`cursor-pointer p-2 text-sm lg:text-md rounded-md flex items-center text-gray-800 transition-all duration-300 ${
+                activeSection === section.id ? "font-semibold" : ""
+              } hover:scale-105`} // Hover animation
+              onClick={() => handleSectionClick(section.id)}
+            >
+              <FaMinus className="mr-2 text-gray-500" /> {/* Icon added */}
+              {section.title}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Right side: section content */}
+      <div className="lg:w-3/4 relative bg-white overflow-hidden mt-6 lg:mt-0">
+        {activeContent && (
+          <div className="flex flex-col items-center">
+            {/* Image as background cover */}
+            <div className="relative w-full h-48 sm:h-64 lg:h-96 mb-6">
+              <Image
+                src={activeContent.image}
+                alt={activeContent.title}
+                layout="fill"
+                objectFit="cover"
+                className="object-cover"
+              />
+            </div>
+            {/* Content Row */}
+            <div className="w-full px-4 lg:px-6 flex flex-col">
+              <h3 className="text-xl lg:text-2xl font-semibold mb-4 text-gray-900 text-center">
+                {activeContent.title}
+              </h3>
+              <p className="text-gray-700 mb-4 text-justify">
+                {activeContent.description}
+              </p>
+              {activeContent.points && (
+                <ul className="mb-4">
+                  {activeContent.points.map((point, idx) => (
+                    <li
+                      key={idx}
+                      className="text-gray-700 mb-2 flex items-start"
+                    >
+                      <FaRegCircle className="text-gray-600 mr-2 mt-1" /> {/* Custom Icon */}
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
-        </div>
-        <div
-          className="px-10 max-h-[250px] overflow-auto scrollbar-hide"
-          style={{
-            borderRadius: "20px", // Rounded shape inside the card
-          }}
-        >
-          {/* Wrapper div for padding and preventing content from getting cropped */}
-          <div className="p-4 lg:p-6">
-            <h3 className="text-2xl font-semibold mb-4 text-gray-900">{title}</h3>
-            <p className="text-gray-700 mb-4">{description}</p>
-            {points && (
-              <ul className="list-disc pl-5 mb-4">
-                {points.map((point, idx) => (
-                  <li key={idx} className="text-gray-700 mb-2">
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -11,21 +11,28 @@ const ProjectsSection = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    // Flatten and filter the JSON data to include only projects with category and title
-    const allProjects = projectsData.flatMap((category) =>
-      category.projects
-        .filter((project) => project.title && category.category) // Ensure projects have title and category
-        .map((project) => ({
-          ...project,
+    // Set to keep track of unique titles
+    const uniqueTitles = new Set();
+    const uniqueProjects = [];
+
+    projectsData.forEach((category) => {
+      // Filter projects with unique titles only
+      const availableProjects = category.projects.filter(
+        (project) => !uniqueTitles.has(project.title)
+      );
+
+      // If there are any available projects in the category, take the first one
+      if (availableProjects.length > 0) {
+        const selectedProject = availableProjects[0];
+        uniqueTitles.add(selectedProject.title);
+        uniqueProjects.push({
+          ...selectedProject,
           category: category.category,
-        }))
-    );
+        });
+      }
+    });
 
-    // Shuffle and select 12 random projects
-    const shuffledProjects = allProjects.sort(() => 0.5 - Math.random());
-    const selectedProjects = shuffledProjects.slice(0, 12);
-
-    setProjects(selectedProjects);
+    setProjects(uniqueProjects);
   }, []);
 
   useEffect(() => {
