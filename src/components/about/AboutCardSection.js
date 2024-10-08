@@ -72,7 +72,7 @@ const AboutCardSection = () => {
         GDC Consultants LTD
       </motion.h1>
       <motion.p className="text-xl text-gray-700 mb-8" variants={fadeInUp}>
-        Chartered Professional Engineers & Architectural Designs
+        Chartered Professional Engineers & Architectural Designers
       </motion.p>
 
       <div className="w-full rounded-lg overflow-hidden">

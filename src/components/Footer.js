@@ -1,6 +1,5 @@
 "use client";
 
-import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -99,9 +98,9 @@ export default function Footer() {
 
       {/* Main Footer Content */}
       <div className="relative z-10 mx-auto bg-customBlue bg-opacity-80 p-10 backdrop-blur-sm shadow-lg mt-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 text-center md:text-left">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Company Info Column */}
-          <div className="flex flex-col items-center md:items-start">
+          <div className="flex flex-col items-start">
             <Image
               src="/images/GDC logo 2024 white.webp"
               alt="GDC Logo"
@@ -113,7 +112,7 @@ export default function Footer() {
           </div>
 
           {/* COMPANY Section */}
-          <div>
+          <div className="flex flex-col items-start">
             <h4 className="font-semibold mb-4 text-md tracking-wide">
               COMPANY
             </h4>
@@ -154,7 +153,7 @@ export default function Footer() {
           </div>
 
           {/* GET IN TOUCH Section */}
-          <div>
+          <div className="flex flex-col items-start">
             <h4 className="font-semibold mb-4 text-md tracking-wide">
               GET IN TOUCH
             </h4>
@@ -187,7 +186,7 @@ export default function Footer() {
           </div>
 
           {/* PORTFOLIO Section */}
-          <div>
+          <div className="flex flex-col items-start">
             <h4 className="font-semibold mb-4 text-md tracking-wide">
               PORTFOLIO
             </h4>
@@ -200,72 +199,12 @@ export default function Footer() {
                   All Projects
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/portfolio/view-on-map"
-                  className="hover:text-customYellow tracking-wide"
-                >
-                  Project Map
-                </Link>
-              </li>
             </ul>
           </div>
-
-          {/* Logos Section */}
-          {/* <div className="flex flex-col items-center md:items-start">
-            <h4 className="font-semibold text-md tracking-wide">
-              EXPLORE OTHERS
-            </h4>{" "}
-            <a
-              href="https://gdcproperties.co.nz/"
-              className="hover:text-customYellow tracking-wide"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src="/images/footer logos/properties logo 2024.png"
-                alt="GDC Properties logo"
-                width={150}
-                height={60}
-                className="h-auto object-contain"
-                style={{ objectFit: "contain" }}
-              />
-            </a>
-            <a
-              href="https://www.gdcrecruit.com/"
-              className="hover:text-customYellow tracking-wide"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src="/images/footer logos/recruitment logo 2024.png"
-                alt="GDC Recruitment logo"
-                width={150}
-                height={60}
-                className="h-auto object-contain"
-                style={{ objectFit: "contain" }}
-              />
-            </a>
-            <a
-              href="https://gdc-digital-solutions.netlify.app/"
-              className="hover:text-customYellow tracking-wide"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src="/images/Digital Solution Logo.png"
-                alt="GDC DS logo"
-                width={200}
-                height={60}
-                className="h-auto object-contain"
-                style={{ objectFit: "contain" }}
-              />
-            </a>
-          </div> */}
         </div>
       </div>
 
-      {/* Bottom Footer Section with Transparent Background */}
+      {/* Bottom Footer Section */}
       <div className="relative z-10 bg-customBlue bg-opacity-80 text-gray-400 text-xs py-4 mx-auto backdrop-blur-sm">
         <div className="flex flex-col sm:flex-row items-center justify-between px-10 text-center sm:text-left">
           <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6">
@@ -283,7 +222,7 @@ export default function Footer() {
             </button>
           </div>
           <span className="tracking-wide mt-2 sm:mt-0">
-            © {currentYear} GDC Consultants LTD. All Rights Reserved.
+            © {currentYear} GDC Digital Solutions. All Rights Reserved.
           </span>
         </div>
       </div>

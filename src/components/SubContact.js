@@ -77,7 +77,7 @@ const SubContact = () => {
               GDC would love to hear from you and your experience with GDC
               Consultants Ltd. All feedback is appreciated and used to help GDC
               Consultants Ltd to provide the best services to you in the future.
-              Feel free to send us a message or contact us on +64 7 838 0090.
+              Feel free to send us a message or contact us on 07 838 0090.
             </p>
           </div>
         </div>

@@ -1,16 +1,14 @@
-// pages/team.js
-
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import "../app/globals.css";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SubContact from "@/components/SubContact";
 import ScrollToTop from "@/components/ScrollToTop";
 import Head from "next/head";
-import { motion } from "framer-motion";
 
+// Define the teamMembers array outside the TeamPage component
 const teamMembers = [
   {
     image: "/images/team/Clement-Fernando-1.webp",
@@ -33,6 +31,7 @@ const teamMembers = [
   },
 ];
 
+// Define the subTeamMembers array outside the TeamPage component
 const subTeamMembers = [
   {
     image: "/images/team/Tom-Fox.webp",
@@ -44,8 +43,7 @@ const subTeamMembers = [
     image: "/images/team/Joel-Bishop.webp",
     name: "Joel Bishop",
     position: "Planning Manager",
-    qualifications:
-      "Bachelor of Environmental Planning (University of Waikato)",
+    qualifications: "Bachelor of Environmental Planning (University of Waikato)",
   },
   {
     image: "/images/team/Maurice-Bellantoni.webp",
@@ -78,8 +76,7 @@ const subTeamMembers = [
     image: "/images/team/Vazin-Shareef.webp",
     name: "Vazin Shareef",
     position: "Marketing & IT Manager",
-    qualifications:
-      "Bachelor of Commerce (BCom) - Victoria University of Wellington",
+    qualifications: "Bachelor of Commerce (BCom) - Victoria University of Wellington",
   },
   {
     image: "/images/team/Bethany-Rutter.webp",
@@ -96,8 +93,11 @@ const subTeamMembers = [
 ];
 
 const TeamPage = () => {
+  // State definitions
   const [currentMember, setCurrentMember] = useState(teamMembers[0]);
   const [activeIndex, setActiveIndex] = useState(1);
+  const [activeCardIndex, setActiveCardIndex] = useState(null);
+  
   const sliderRef = useRef(null);
   const totalSlides = teamMembers.length;
   const subTeamSliderRef = useRef(null);
@@ -112,9 +112,7 @@ const TeamPage = () => {
     // Center the active image
     const activeImage = images[activeIndex];
     const offsetLeft =
-      activeImage.offsetLeft -
-      slider.clientWidth / 2 +
-      activeImage.clientWidth / 2;
+      activeImage.offsetLeft - slider.clientWidth / 2 + activeImage.clientWidth / 2;
     slider.scrollTo({ left: offsetLeft, behavior: "smooth" });
   };
 
@@ -132,8 +130,7 @@ const TeamPage = () => {
     if (activeIndex === 0) {
       setTimeout(() => {
         sliderRef.current.scrollTo({
-          left:
-            sliderRef.current.scrollWidth - sliderRef.current.clientWidth * 2,
+          left: sliderRef.current.scrollWidth - sliderRef.current.clientWidth * 2,
           behavior: "auto",
         });
         setActiveIndex(totalSlides);
@@ -159,7 +156,6 @@ const TeamPage = () => {
       left: scrollAmount,
       behavior: "smooth",
     });
-    // Pause auto-scroll temporarily when manually navigating
     pauseAutoScroll();
   };
 
@@ -168,12 +164,10 @@ const TeamPage = () => {
     autoScrollIntervalRef.current = setInterval(() => {
       if (!subTeamSliderRef.current) return;
 
-      // Check the width of the scrollable content and reset if it's near the end
       const maxScrollLeft =
         subTeamSliderRef.current.scrollWidth -
         subTeamSliderRef.current.clientWidth;
 
-      // Scroll to the right by a fixed amount
       if (subTeamSliderRef.current.scrollLeft >= maxScrollLeft) {
         subTeamSliderRef.current.scrollTo({ left: 0, behavior: "smooth" });
       } else {
@@ -182,7 +176,6 @@ const TeamPage = () => {
     }, 3000); // Scroll every 3 seconds
   };
 
-  // Pause auto-scroll when manually controlled and restart after a delay
   const pauseAutoScroll = () => {
     clearInterval(autoScrollIntervalRef.current);
     setTimeout(() => {
@@ -190,14 +183,16 @@ const TeamPage = () => {
     }, 5000); // Restart auto-scroll after 5 seconds of inactivity
   };
 
-  // Start the auto-scroll when the component mounts
   useEffect(() => {
     autoScrollSubTeamSlider();
-
     return () => {
-      clearInterval(autoScrollIntervalRef.current); // Cleanup on component unmount
+      clearInterval(autoScrollIntervalRef.current);
     };
   }, []);
+
+  const toggleCard = (index) => {
+    setActiveCardIndex(activeCardIndex === index ? null : index);
+  };
 
   return (
     <>
@@ -208,20 +203,9 @@ const TeamPage = () => {
           content="Get to know the experienced leadership and expert team members at GDC Consultants. We are industry leaders in architecture, engineering, and project management across New Zealand."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
         <link rel="canonical" href="https://gdcgroup.netlify.app/team" />
-
-        {/* hrefLang tags */}
-        <link
-          rel="alternate"
-          href="https://gdcgroup.netlify.app/team"
-          hrefLang="en-nz"
-        />
-        <link
-          rel="alternate"
-          href="https://gdcgroup.netlify.app/team"
-          hrefLang="en"
-        />
+        <link rel="alternate" href="https://gdcgroup.netlify.app/team" hrefLang="en-nz" />
+        <link rel="alternate" href="https://gdcgroup.netlify.app/team" hrefLang="en" />
       </Head>
       <Header />
       <div className="min-h-screen">
@@ -254,17 +238,11 @@ const TeamPage = () => {
                   height={400}
                   className="object-cover w-full h-[450px] transition-transform duration-500"
                 />
-                {/* Initial Name and Position */}
                 <div className="absolute bottom-6 left-6 z-10 transition-opacity duration-300 group-hover:opacity-0">
-                  <h4 className="text-white text-xl font-bold">
-                    {member.name}
-                  </h4>
+                  <h4 className="text-white text-xl font-bold">{member.name}</h4>
                   <p className="text-customYellow text-sm">{member.position}</p>
                 </div>
-
-                {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
-                {/* Hover Content */}
                 <motion.div
                   className="absolute inset-0 bg-customYellow bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg"
                   initial={{ opacity: 0 }}
@@ -290,7 +268,6 @@ const TeamPage = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-10"
           >
-            {/* Horizontal Scrollable Slider */}
             <div
               ref={subTeamSliderRef}
               className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide py-4"
@@ -299,11 +276,11 @@ const TeamPage = () => {
               {subTeamMembers.map((member, index) => (
                 <motion.div
                   key={index}
+                  onClick={() => toggleCard(index)}
                   whileHover={{ scale: 1.05 }}
                   className="relative group overflow-hidden cursor-pointer w-full md:w-[220px] flex-shrink-0"
                   style={{ scrollSnapAlign: "start" }}
                 >
-                  {/* Team Member Image */}
                   <div className="w-full h-auto aspect-w-4 aspect-h-3 overflow-hidden">
                     <Image
                       src={member.image}
@@ -311,35 +288,25 @@ const TeamPage = () => {
                       width={300}
                       height={300}
                       className="object-cover w-full h-full rounded-lg transition-transform duration-500"
-                      style={{ objectFit: "cover" }}
                     />
                   </div>
-
-                  {/* Square Section for Name and Position */}
-                  <div className="absolute bottom-0 left-0 right-0 w-full bg-customBlue bg-opacity-70 p-2 flex flex-col justify-center items-center">
-                    <h4 className="text-white text-center text-md md:text-lg font-bold">
-                      {member.name}
-                    </h4>
-                    <p className="text-customYellow text-center text-xs md:text-sm">
-                      {member.position}
-                    </p>
+                  <div
+                    className={`absolute bottom-0 left-0 right-0 w-full bg-customBlue bg-opacity-70 p-2 flex flex-col justify-center items-center transition-opacity duration-300 ${
+                      activeCardIndex === index ? "opacity-100" : "opacity-100 group-hover:opacity-0"
+                    }`}
+                  >
+                    <h4 className="text-white text-center text-md md:text-lg font-bold">{member.name}</h4>
+                    <p className="text-customYellow text-center text-xs md:text-sm">{member.position}</p>
                   </div>
-
-                  {/* Hover Content */}
                   <motion.div
-                    className="absolute inset-0 bg-customYellow bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
+                    className={`absolute inset-0 bg-customYellow bg-opacity-70 flex items-center justify-center rounded-lg transition-opacity duration-300 ${
+                      activeCardIndex === index ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                    }`}
                   >
                     <div className="text-white text-center px-4 w-full">
-                      <h4 className="text-lg md:text-xl font-bold">
-                        {member.name}
-                      </h4>
+                      <h4 className="text-lg md:text-xl font-bold">{member.name}</h4>
                       <p className="text-sm md:text-md">{member.position}</p>
-                      <p className="text-xs md:text-sm mt-2">
-                        {member.qualifications}
-                      </p>
+                      <p className="text-xs md:text-sm mt-2">{member.qualifications}</p>
                     </div>
                   </motion.div>
                 </motion.div>
