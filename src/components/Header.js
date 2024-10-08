@@ -183,7 +183,7 @@ const Header = () => {
               item.items ? (
                 <li
                   key={item.label}
-                  className="relative text-center" // Center-align the text
+                  className="relative text-center"
                   onMouseEnter={() =>
                     !isMobileView &&
                     handleDesktopDropdownMouseEnter(item.dropdown)
@@ -193,7 +193,7 @@ const Header = () => {
                   }
                 >
                   <button
-                    className="flex items-center justify-center text-sm sm:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 cursor-pointer text-customBlue" // Center-align the button
+                    className="flex items-center justify-center text-sm sm:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 cursor-pointer text-customBlue"
                     onClick={() =>
                       isMobileView
                         ? handleMobileDropdownToggle(item.dropdown)
@@ -219,10 +219,14 @@ const Header = () => {
                       }`}
                     >
                       {item.items.map((subItem, index) => (
-                        <li key={subItem.href} className="whitespace-nowrap">
+                        <li
+                          key={subItem.href}
+                          className="whitespace-nowrap text-left"
+                        >
+                          {/* Make sure the text is left-aligned */}
                           <Link
                             href={subItem.href}
-                            className={`block text-center px-2 py-2 text-sm sm:text-base font-semibold ${
+                            className={`block px-2 py-2 text-sm sm:text-base font-semibold ${
                               currentPath === subItem.href
                                 ? "text-customYellow"
                                 : "text-customBlue"
@@ -237,8 +241,6 @@ const Header = () => {
                 </li>
               ) : (
                 <li key={item.href} className="text-center">
-                  {" "}
-                  {/* Center-align the text */}
                   <Link
                     href={item.href}
                     className={`block text-center text-sm sm:text-base font-semibold py-1 px-2 lg:py-2 lg:px-3 ${

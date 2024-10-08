@@ -8,7 +8,7 @@ import SubContact from "@/components/SubContact";
 import ScrollToTop from "@/components/ScrollToTop";
 import Head from "next/head";
 
-// Define the teamMembers array outside the TeamPage component
+// Define the teamMembers array
 const teamMembers = [
   {
     image: "/images/team/Clement-Fernando-1.webp",
@@ -31,7 +31,7 @@ const teamMembers = [
   },
 ];
 
-// Define the subTeamMembers array outside the TeamPage component
+// Define the subTeamMembers array
 const subTeamMembers = [
   {
     image: "/images/team/Tom-Fox.webp",
@@ -43,7 +43,8 @@ const subTeamMembers = [
     image: "/images/team/Joel-Bishop.webp",
     name: "Joel Bishop",
     position: "Planning Manager",
-    qualifications: "Bachelor of Environmental Planning (University of Waikato)",
+    qualifications:
+      "Bachelor of Environmental Planning (University of Waikato)",
   },
   {
     image: "/images/team/Maurice-Bellantoni.webp",
@@ -76,7 +77,8 @@ const subTeamMembers = [
     image: "/images/team/Vazin-Shareef.webp",
     name: "Vazin Shareef",
     position: "Marketing & IT Manager",
-    qualifications: "Bachelor of Commerce (BCom) - Victoria University of Wellington",
+    qualifications:
+      "Bachelor of Commerce (BCom) - Victoria University of Wellington",
   },
   {
     image: "/images/team/Bethany-Rutter.webp",
@@ -94,60 +96,10 @@ const subTeamMembers = [
 
 const TeamPage = () => {
   // State definitions
-  const [currentMember, setCurrentMember] = useState(teamMembers[0]);
-  const [activeIndex, setActiveIndex] = useState(1);
-  const [activeCardIndex, setActiveCardIndex] = useState(null);
-  
-  const sliderRef = useRef(null);
-  const totalSlides = teamMembers.length;
+  const [activeCoreIndex, setActiveCoreIndex] = useState(null);
+  const [activeSubIndex, setActiveSubIndex] = useState(null);
   const subTeamSliderRef = useRef(null);
   const autoScrollIntervalRef = useRef(null);
-
-  // Function to scroll to the active image
-  const scrollToActiveImage = () => {
-    if (!sliderRef.current) return;
-    const slider = sliderRef.current;
-    const images = slider.getElementsByClassName("carousel-image");
-
-    // Center the active image
-    const activeImage = images[activeIndex];
-    const offsetLeft =
-      activeImage.offsetLeft - slider.clientWidth / 2 + activeImage.clientWidth / 2;
-    slider.scrollTo({ left: offsetLeft, behavior: "smooth" });
-  };
-
-  // Automatically transition to the next image
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex % totalSlides) + 1);
-    }, 3000); // Change every 3 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Scroll to active image when activeIndex changes
-  useEffect(() => {
-    if (activeIndex === 0) {
-      setTimeout(() => {
-        sliderRef.current.scrollTo({
-          left: sliderRef.current.scrollWidth - sliderRef.current.clientWidth * 2,
-          behavior: "auto",
-        });
-        setActiveIndex(totalSlides);
-      }, 500);
-    } else if (activeIndex === totalSlides + 1) {
-      setTimeout(() => {
-        sliderRef.current.scrollTo({
-          left: sliderRef.current.clientWidth,
-          behavior: "auto",
-        });
-        setActiveIndex(1);
-      }, 500);
-    } else {
-      scrollToActiveImage();
-      setCurrentMember(teamMembers[(activeIndex - 1) % totalSlides]);
-    }
-  }, [activeIndex]);
 
   // Function to scroll the sub-team slider
   const scrollSubTeamSlider = (direction) => {
@@ -190,8 +142,12 @@ const TeamPage = () => {
     };
   }, []);
 
-  const toggleCard = (index) => {
-    setActiveCardIndex(activeCardIndex === index ? null : index);
+  const toggleCoreCard = (index) => {
+    setActiveCoreIndex(activeCoreIndex === index ? null : index);
+  };
+
+  const toggleSubCard = (index) => {
+    setActiveSubIndex(activeSubIndex === index ? null : index);
   };
 
   return (
@@ -204,8 +160,16 @@ const TeamPage = () => {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href="https://gdcgroup.netlify.app/team" />
-        <link rel="alternate" href="https://gdcgroup.netlify.app/team" hrefLang="en-nz" />
-        <link rel="alternate" href="https://gdcgroup.netlify.app/team" hrefLang="en" />
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/team"
+          hrefLang="en-nz"
+        />
+        <link
+          rel="alternate"
+          href="https://gdcgroup.netlify.app/team"
+          hrefLang="en"
+        />
       </Head>
       <Header />
       <div className="min-h-screen">
@@ -225,11 +189,14 @@ const TeamPage = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="max-w-screen-lg mx-auto px-4 md:px-6 lg:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {teamMembers.slice(0, 3).map((member, index) => (
+            {teamMembers.map((member, index) => (
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.05 }}
                 className="relative group overflow-hidden shadow-md cursor-pointer rounded-lg"
+                onClick={() => toggleCoreCard(index)} // For mobile
+                onMouseEnter={() => setActiveCoreIndex(index)} // For desktop hover
+                onMouseLeave={() => setActiveCoreIndex(null)} // For desktop hover leave
               >
                 <Image
                   src={member.image}
@@ -238,16 +205,20 @@ const TeamPage = () => {
                   height={400}
                   className="object-cover w-full h-[450px] transition-transform duration-500"
                 />
-                <div className="absolute bottom-6 left-6 z-10 transition-opacity duration-300 group-hover:opacity-0">
-                  <h4 className="text-white text-xl font-bold">{member.name}</h4>
+                <div
+                  className={`absolute bottom-6 left-6 z-10 transition-opacity duration-300 ${
+                    activeCoreIndex === index ? "opacity-0" : "opacity-100"
+                  }`}
+                >
+                  <h4 className="text-white text-xl font-bold">
+                    {member.name}
+                  </h4>
                   <p className="text-customYellow text-sm">{member.position}</p>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
                 <motion.div
-                  className="absolute inset-0 bg-customYellow bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
+                  className={`absolute inset-0 bg-customYellow bg-opacity-70 flex items-center justify-center rounded-lg transition-opacity duration-300 ${
+                    activeCoreIndex === index ? "opacity-100" : "opacity-0"
+                  }`}
                 >
                   <div className="text-white text-center px-4">
                     <h3 className="text-2xl font-bold">{member.name}</h3>
@@ -276,7 +247,7 @@ const TeamPage = () => {
               {subTeamMembers.map((member, index) => (
                 <motion.div
                   key={index}
-                  onClick={() => toggleCard(index)}
+                  onClick={() => toggleSubCard(index)}
                   whileHover={{ scale: 1.05 }}
                   className="relative group overflow-hidden cursor-pointer w-full md:w-[220px] flex-shrink-0"
                   style={{ scrollSnapAlign: "start" }}
@@ -292,21 +263,33 @@ const TeamPage = () => {
                   </div>
                   <div
                     className={`absolute bottom-0 left-0 right-0 w-full bg-customBlue bg-opacity-70 p-2 flex flex-col justify-center items-center transition-opacity duration-300 ${
-                      activeCardIndex === index ? "opacity-100" : "opacity-100 group-hover:opacity-0"
+                      activeSubIndex === index
+                        ? "opacity-100"
+                        : "opacity-100 group-hover:opacity-0"
                     }`}
                   >
-                    <h4 className="text-white text-center text-md md:text-lg font-bold">{member.name}</h4>
-                    <p className="text-customYellow text-center text-xs md:text-sm">{member.position}</p>
+                    <h4 className="text-white text-center text-md md:text-lg font-bold">
+                      {member.name}
+                    </h4>
+                    <p className="text-customYellow text-center text-xs md:text-sm">
+                      {member.position}
+                    </p>
                   </div>
                   <motion.div
                     className={`absolute inset-0 bg-customYellow bg-opacity-70 flex items-center justify-center rounded-lg transition-opacity duration-300 ${
-                      activeCardIndex === index ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                      activeSubIndex === index
+                        ? "opacity-100"
+                        : "opacity-0 group-hover:opacity-100"
                     }`}
                   >
                     <div className="text-white text-center px-4 w-full">
-                      <h4 className="text-lg md:text-xl font-bold">{member.name}</h4>
+                      <h4 className="text-lg md:text-xl font-bold">
+                        {member.name}
+                      </h4>
                       <p className="text-sm md:text-md">{member.position}</p>
-                      <p className="text-xs md:text-sm mt-2">{member.qualifications}</p>
+                      <p className="text-xs md:text-sm mt-2">
+                        {member.qualifications}
+                      </p>
                     </div>
                   </motion.div>
                 </motion.div>
