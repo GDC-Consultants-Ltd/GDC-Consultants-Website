@@ -121,7 +121,7 @@ const BlogPost = ({ blog, recentArticles }) => {
       <Header />
       <div className="bg-gray-50 min-h-screen">
         {/* Categories section */}
-        <div className="max-w-7xl mx-auto px-6 pt-6">
+        {/* <div className="max-w-7xl mx-auto px-6 pt-6">
           <nav className="flex space-x-10">
             {Object.entries(categoriesMap).map(([id, name]) => (
               <Link
@@ -137,7 +137,7 @@ const BlogPost = ({ blog, recentArticles }) => {
               </Link>
             ))}
           </nav>
-        </div>
+        </div> */}
 
         <main className="max-w-7xl mx-auto py-12 grid grid-cols-1 lg:grid-cols-3 gap-8 px-6">
           {/* Main Blog Content */}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -98,7 +99,7 @@ export default function Footer() {
 
       {/* Main Footer Content */}
       <div className="relative z-10 mx-auto bg-customBlue bg-opacity-80 p-10 backdrop-blur-sm shadow-lg mt-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Logo and Company Info Column */}
           <div className="flex flex-col items-start">
             <Image
@@ -200,6 +201,40 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
+          </div>
+
+          {/* FOLLOW Section */}
+          <div className="flex flex-col items-start">
+            <h4 className="font-semibold mb-4 text-md tracking-wide">FOLLOW US</h4>
+            <div className="flex space-x-4">
+              {/* Facebook Icon */}
+              <a
+                href="https://www.facebook.com/GdcConsultantsLtd/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-customYellow transition-colors duration-300"
+              >
+                <FaFacebookF size={24} />
+              </a>
+              {/* LinkedIn Icon */}
+              <a
+                href="https://nz.linkedin.com/company/gdcconsultants"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-customYellow transition-colors duration-300"
+              >
+                <FaLinkedinIn size={24} />
+              </a>
+              {/* Instagram Icon */}
+              <a
+                href="https://www.instagram.com/gdc_consultants/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-customYellow transition-colors duration-300"
+              >
+                <FaInstagram size={24} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
