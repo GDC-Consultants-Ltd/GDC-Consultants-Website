@@ -306,14 +306,14 @@ const services = {
     metaDescription:
       "Process consultancy and R&D are both essential to any successful project. The need to ensure quality, follow a timeline, and facilitate collaboration between disciplines, all has to be balanced against the need for R&D.Research and Development is crucial to any project involving unusual design or construction challenges. We embrace these challenges, and pride ourselves on our ability to deliver innovative solutions every time. By keeping our skills updated, developing extensive expertise, and maintaining a high capacity for flexibility, we offer high-quality and innovative product development that can be completely customized to the needs of any particular client and their problems",
     title: "Research & Development",
-    description:
-      "Process consultancy and R&D are both essential to any successful project. The need to ensure quality, follow a timeline, and facilitate collaboration between disciplines, all has to be balanced against the need for R&D.Research and Development is crucial to any project involving unusual design or construction challenges. We embrace these challenges, and pride ourselves on our ability to deliver innovative solutions every time. By keeping our skills updated, developing extensive expertise, and maintaining a high capacity for flexibility, we offer high-quality and innovative product development that can be completely customized to the needs of any particular client and their problems.",
+    description: "",
     image: "/images/services/research-and-development.webp",
     sections: [
       {
         id: 1,
         title: "Key Benefits of Contracting GDC",
-        description: "",
+        description:
+          "Process consultancy and R&D are both essential to any successful project. The need to ensure quality, follow a timeline, and facilitate collaboration between disciplines, all has to be balanced against the need for R&D.Research and Development is crucial to any project involving unusual design or construction challenges. We embrace these challenges, and pride ourselves on our ability to deliver innovative solutions every time. By keeping our skills updated, developing extensive expertise, and maintaining a high capacity for flexibility, we offer high-quality and innovative product development that can be completely customized to the needs of any particular client and their problems.",
         points: [
           "Access to the latest planning and construction technology",
           "Wider operational experience",
@@ -487,7 +487,8 @@ const services = {
     sections: [
       {
         id: 1,
-        title: "",
+        title:
+          "Expert Structural Engineering for Safe and Cost-Effective Designs",
         description:
           "Having an expert structural team like ours onboard is crucial for the success of any multi-discipline engineering project. We cater to a wide range of industrial designs for small and large construction projects. We offer our services to owners and operators in both conventional and emerging industries. \nWe believe that design and construction should go hand-in-hand! This means that our structural engineering designs are always based not just on the applicable codes and standards, but also the latest and best design principles and ideas – making them both functional and aesthetic spaces. \nGDC’s structural engineering designs are created with a focus on safety, ease of installation, and constructability. We are experienced in designing optimal-modularized building systems, which lower costs, enhance safety, and help to limit field-work. \nWe are consistently ranked amongst the top consulting engineering companies in New Zealand – so you can be sure that we will provide cost-effective designs every time.",
         image: "/images/services/structural.webp",

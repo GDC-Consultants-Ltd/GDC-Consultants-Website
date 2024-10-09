@@ -67,11 +67,9 @@ const CertificationSection = () => {
           </h3>
           <h4 className="text-sm text-justify sm:text-base md:text-lg lg:text-lg text-customBlue leading-relaxed">
             As an ISO 9001:2015 Certified firm, GDC Consultants Ltd works
-            closely with local and central Government Agencies. This is
-            important to ensure our policies and guidelines are always up to
-            date with the national and regional standards. We have built close
-            relationships with a range of regional and city councils to work on
-            a number of projects throughout New Zealand.
+            closely with local and central Government Agencies in New Zealand.
+            This is important to ensure our policies and guidelines are always
+            up to date with the national and regional standards.
           </h4>
         </motion.div>
       </div>

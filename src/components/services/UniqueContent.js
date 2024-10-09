@@ -219,7 +219,7 @@ export const ElectricalEngineeringUniqueContent = () => {
             ].map((item, index) => (
               <div
                 key={index}
-                className="bg-white bg-opacity-70 rounded-lg shadow-lg p-4 flex flex-col items-start transition-transform transform hover:scale-105"
+                className="bg-white bg-opacity-70 rounded-lg shadow-lg p-4 flex flex-col items-start transition-transform transform hover:scale-95"
               >
                 <h3 className="text-lg md:text-xl text-customBlue font-bold mb-1 md:mb-2">
                   {item.title}
@@ -525,7 +525,7 @@ export const PlanningUniqueContent = () => {
         </div>
 
         {/* Cards */}
-        <div className="mt-10 px-6 lg:px-10">
+        {/* <div className="mt-10 px-6 lg:px-10">
           <h1 className="text-4xl text-customBlue font-bold text-center mb-8">
             Recent Planning Projects
           </h1>
@@ -552,7 +552,7 @@ export const PlanningUniqueContent = () => {
                 key={index}
                 className="group relative w-full rounded-lg overflow-hidden shadow-lg bg-white cursor-pointer transition-transform transform hover:scale-105 animate-scale-up duration-500 ease-in-out"
               >
-                {/* Image Section */}
+                
                 <div className="relative w-full h-full">
                   <Image
                     src={card.image}
@@ -561,11 +561,11 @@ export const PlanningUniqueContent = () => {
                     height={384} // Adjust these values to fit your design
                     className="w-full h-full object-cover"
                   />
-                  {/* Dark Gradient Overlay for Better Text Visibility */}
+                 
                   <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-70 transition-opacity duration-300"></div>
                 </div>
 
-                {/* Overlay Content */}
+                
                 <div className="absolute inset-0 flex flex-col justify-center items-center p-4 text-white z-10 animate-fade-in">
                   <h3 className="text-lg md:text-2xl text-center font-bold mb-2 drop-shadow-lg">
                     {card.title}
@@ -574,7 +574,7 @@ export const PlanningUniqueContent = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

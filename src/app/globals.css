@@ -19,6 +19,19 @@ body {
   background: var(--background);
 }
 
+/* globals.css */
+html, body {
+  touch-action: manipulation;
+  -webkit-user-select: none; /* Prevents text selection */
+  -webkit-touch-callout: none; /* Disables callout actions like opening phone dialer */
+  -webkit-tap-highlight-color: transparent; /* Removes the grey highlight on touch */
+}
+
+/* Disable tap highlight color */
+a, button {
+  -webkit-tap-highlight-color: transparent; /* Removes the tap highlight */
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

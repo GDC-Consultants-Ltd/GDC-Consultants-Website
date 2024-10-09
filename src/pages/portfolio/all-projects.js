@@ -65,7 +65,9 @@ const ProjectsPage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (filteredProjects.length > 1) {
-        setActiveIndex((prevIndex) => (prevIndex + 1) % filteredProjects.length);
+        setActiveIndex(
+          (prevIndex) => (prevIndex + 1) % filteredProjects.length
+        );
       }
     }, 3000);
 
@@ -83,7 +85,9 @@ const ProjectsPage = () => {
 
     const activeImage = images[activeIndex];
     const offsetLeft =
-      activeImage.offsetLeft - slider.clientWidth / 2 + activeImage.clientWidth / 2;
+      activeImage.offsetLeft -
+      slider.clientWidth / 2 +
+      activeImage.clientWidth / 2;
     slider.scrollTo({ left: offsetLeft, behavior: "smooth" });
   };
 
@@ -101,7 +105,8 @@ const ProjectsPage = () => {
 
   const handlePrev = () => {
     setActiveIndex(
-      (prevIndex) => (prevIndex - 1 + filteredProjects.length) % filteredProjects.length
+      (prevIndex) =>
+        (prevIndex - 1 + filteredProjects.length) % filteredProjects.length
     );
   };
 
@@ -227,7 +232,7 @@ const ProjectsPage = () => {
             </>
           ) : (
             <p className="text-center text-lg text-gray-600 py-20">
-              No projects available in this category.
+              Projects coming soon.
             </p>
           )}
         </div>

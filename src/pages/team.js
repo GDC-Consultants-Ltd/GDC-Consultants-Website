@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import SubContact from "@/components/SubContact";
 import ScrollToTop from "@/components/ScrollToTop";
 import Head from "next/head";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 // Define the teamMembers array
 const teamMembers = [
@@ -117,8 +118,7 @@ const TeamPage = () => {
       if (!subTeamSliderRef.current) return;
 
       const maxScrollLeft =
-        subTeamSliderRef.current.scrollWidth -
-        subTeamSliderRef.current.clientWidth;
+        subTeamSliderRef.current.scrollWidth - subTeamSliderRef.current.clientWidth;
 
       if (subTeamSliderRef.current.scrollLeft >= maxScrollLeft) {
         subTeamSliderRef.current.scrollTo({ left: 0, behavior: "smooth" });
@@ -142,12 +142,32 @@ const TeamPage = () => {
     };
   }, []);
 
-  const toggleCoreCard = (index) => {
+  // Prevent double-tap behavior and default action on touch
+  useEffect(() => {
+    const handleTouchStart = (e) => {
+      if (e.touches.length > 1) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("touchstart", handleTouchStart, { passive: false });
+
+    return () => {
+      document.removeEventListener("touchstart", handleTouchStart);
+    };
+  }, []);
+
+  const toggleOverlay = (index) => {
     setActiveCoreIndex(activeCoreIndex === index ? null : index);
   };
 
-  const toggleSubCard = (index) => {
-    setActiveSubIndex(activeSubIndex === index ? null : index);
+  const handleTouchEvent = (e, index) => {
+    // Prevent the default behavior and stop the event propagation
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Toggle the overlay when touched
+    toggleOverlay(index);
   };
 
   return (
@@ -160,16 +180,8 @@ const TeamPage = () => {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href="https://gdcgroup.netlify.app/team" />
-        <link
-          rel="alternate"
-          href="https://gdcgroup.netlify.app/team"
-          hrefLang="en-nz"
-        />
-        <link
-          rel="alternate"
-          href="https://gdcgroup.netlify.app/team"
-          hrefLang="en"
-        />
+        <link rel="alternate" href="https://gdcgroup.netlify.app/team" hrefLang="en-nz" />
+        <link rel="alternate" href="https://gdcgroup.netlify.app/team" hrefLang="en" />
       </Head>
       <Header />
       <div className="min-h-screen">
@@ -194,9 +206,9 @@ const TeamPage = () => {
                 key={index}
                 whileHover={{ scale: 1.05 }}
                 className="relative group overflow-hidden shadow-md cursor-pointer rounded-lg"
-                onClick={() => toggleCoreCard(index)} // For mobile
-                onMouseEnter={() => setActiveCoreIndex(index)} // For desktop hover
-                onMouseLeave={() => setActiveCoreIndex(null)} // For desktop hover leave
+                onMouseEnter={() => toggleOverlay(index)} // For desktop hover
+                onMouseLeave={() => toggleOverlay(null)} // For desktop hover leave
+                onTouchStart={(e) => handleTouchEvent(e, index)} // For touch devices
               >
                 <Image
                   src={member.image}
@@ -210,9 +222,7 @@ const TeamPage = () => {
                     activeCoreIndex === index ? "opacity-0" : "opacity-100"
                   }`}
                 >
-                  <h4 className="text-white text-xl font-bold">
-                    {member.name}
-                  </h4>
+                  <h4 className="text-white text-xl font-bold">{member.name}</h4>
                   <p className="text-customYellow text-sm">{member.position}</p>
                 </div>
                 <motion.div
@@ -231,69 +241,77 @@ const TeamPage = () => {
           </motion.div>
         </section>
 
-        {/* Sub Team Display Section */}
+        {/* Sub Team Section */}
         <section className="relative py-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-10"
+            className="max-w-screen-lg mx-auto px-4 md:px-6 lg:px-10"
           >
-            <div
-              ref={subTeamSliderRef}
-              className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide py-4"
-              style={{ scrollSnapType: "x mandatory" }}
-            >
-              {subTeamMembers.map((member, index) => (
-                <motion.div
-                  key={index}
-                  onClick={() => toggleSubCard(index)}
-                  whileHover={{ scale: 1.05 }}
-                  className="relative group overflow-hidden cursor-pointer w-full md:w-[220px] flex-shrink-0"
-                  style={{ scrollSnapAlign: "start" }}
-                >
-                  <div className="w-full h-auto aspect-w-4 aspect-h-3 overflow-hidden">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      width={300}
-                      height={300}
-                      className="object-cover w-full h-full rounded-lg transition-transform duration-500"
-                    />
-                  </div>
-                  <div
-                    className={`absolute bottom-0 left-0 right-0 w-full bg-customBlue bg-opacity-70 p-2 flex flex-col justify-center items-center transition-opacity duration-300 ${
-                      activeSubIndex === index
-                        ? "opacity-100"
-                        : "opacity-100 group-hover:opacity-0"
-                    }`}
-                  >
-                    <h4 className="text-white text-center text-md md:text-lg font-bold">
-                      {member.name}
-                    </h4>
-                    <p className="text-customYellow text-center text-xs md:text-sm">
-                      {member.position}
-                    </p>
-                  </div>
+            <div className="relative">
+              {/* Left Arrow */}
+              <button
+                onClick={() => scrollSubTeamSlider("left")}
+                className="absolute -left-10 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2"
+              >
+                <FiChevronLeft className="h-6 w-6 text-customGray" />
+              </button>
+
+              {/* Right Arrow */}
+              <button
+                onClick={() => scrollSubTeamSlider("right")}
+                className="absolute -right-10 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2"
+              >
+                <FiChevronRight className="h-6 w-6 text-customGray" />
+              </button>
+
+              <div
+                ref={subTeamSliderRef}
+                className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide py-4"
+                style={{ scrollSnapType: "x mandatory" }}
+              >
+                {subTeamMembers.map((member, index) => (
                   <motion.div
-                    className={`absolute inset-0 bg-customYellow bg-opacity-70 flex items-center justify-center rounded-lg transition-opacity duration-300 ${
-                      activeSubIndex === index
-                        ? "opacity-100"
-                        : "opacity-0 group-hover:opacity-100"
-                    }`}
+                    key={index}
+                    onMouseEnter={() => toggleOverlay(index)} // For desktop hover
+                    onMouseLeave={() => toggleOverlay(null)} // For desktop hover leave
+                    onTouchStart={(e) => handleTouchEvent(e, index)} // For touch devices
+                    whileHover={{ scale: 1.05 }}
+                    className="relative group overflow-hidden cursor-pointer w-full md:w-[220px] flex-shrink-0"
+                    style={{ scrollSnapAlign: "start" }}
                   >
-                    <div className="text-white text-center px-4 w-full">
-                      <h4 className="text-lg md:text-xl font-bold">
-                        {member.name}
-                      </h4>
-                      <p className="text-sm md:text-md">{member.position}</p>
-                      <p className="text-xs md:text-sm mt-2">
-                        {member.qualifications}
-                      </p>
+                    <div className="w-full h-auto aspect-w-4 aspect-h-3 overflow-hidden">
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        width={300}
+                        height={300}
+                        className="object-cover w-full h-full rounded-lg transition-transform duration-500"
+                      />
                     </div>
+                    <div
+                      className={`absolute bottom-0 left-0 right-0 w-full bg-customBlue bg-opacity-70 p-2 flex flex-col justify-center items-center transition-opacity duration-300 ${
+                        activeSubIndex === index ? "opacity-100" : "opacity-100 group-hover:opacity-0"
+                      }`}
+                    >
+                      <h4 className="text-white text-center text-md md:text-lg font-bold">{member.name}</h4>
+                      <p className="text-customYellow text-center text-xs md:text-sm">{member.position}</p>
+                    </div>
+                    <motion.div
+                      className={`absolute inset-0 bg-customYellow bg-opacity-70 flex items-center justify-center rounded-lg transition-opacity duration-300 ${
+                        activeSubIndex === index ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                      }`}
+                    >
+                      <div className="text-white text-center px-4 w-full">
+                        <h4 className="text-lg md:text-xl font-bold">{member.name}</h4>
+                        <p className="text-sm md:text-md">{member.position}</p>
+                        <p className="text-xs md:text-sm mt-2">{member.qualifications}</p>
+                      </div>
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              ))}
+                ))}
+              </div>
             </div>
           </motion.div>
         </section>
@@ -307,3 +325,5 @@ const TeamPage = () => {
 };
 
 export default TeamPage;
+
+

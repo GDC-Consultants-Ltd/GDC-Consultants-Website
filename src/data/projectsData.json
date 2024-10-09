@@ -201,13 +201,7 @@
   },
   {
     "category": "Residential",
-    "projects": [
-      {
-        "title": "Residential Project",
-        "image": "/images/projects/3.webp",
-        "description": ""
-      }
-    ]
+    "projects": []
   },
   {
     "category": "Commercial",
@@ -346,13 +340,7 @@
   },
   {
     "category": "Cultural",
-    "projects": [
-      {
-        "title": "Environmental Project",
-        "image": "/images/projects/2.webp",
-        "description": ""
-      }
-    ]
+    "projects": []
   },
   {
     "category": "Medical",
@@ -395,6 +383,11 @@
       {
         "title": "Cambridge Town Hall",
         "image": "/images/projects-new/content (33).jpg",
+        "description": ""
+      },
+      {
+        "title": "Waipa District Council Building",
+        "image": "/images/projects/3.webp",
         "description": ""
       }
     ]

@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
           name="description"
           content="GDC Consultants provides innovative solutions and expert guidance in architectural and engineering design. Serving New Zealand with a commitment to excellence."
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="canonical" href="https://gdcgroup.netlify.app" />
 
