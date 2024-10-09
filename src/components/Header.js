@@ -261,7 +261,7 @@ const Header = () => {
             className={`absolute top-full left-0 w-full bg-white shadow-md lg:hidden transition-all duration-300 ease-in-out ${
               isMenuOpen
                 ? "max-h-[75vh] opacity-100 overflow-y-auto"
-                : "max-h-0 opacity-0"
+                : "max-h-0 hidden"
             }`}
             style={{ zIndex: 100 }}
           >
