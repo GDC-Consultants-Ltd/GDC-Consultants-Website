@@ -28,7 +28,7 @@ const BlogPost = ({ blog, recentArticles }) => {
 
   useEffect(() => {
     fetchComments(); // Fetch comments when the component mounts
-  }, [blog.slug]);
+  }, [blog.slug, fetchComments]); // Add fetchComments as a dependency  
 
   // Fetch comments related to the current blog post
   const fetchComments = async () => {
