@@ -152,7 +152,7 @@ const ServicesSection = () => {
           Our Expertise and Services
         </h2>
         <h3 className="text-sm text-customBlue tracking-wide">
-          At GDC Consultants, we offer a wide range of specialized consulting
+          At GDC Consultants, we offer a wide range of specialised consulting
           services to help our clients successfully complete their construction
           projects. Explore our services to see how we can help you reach your
           goals.

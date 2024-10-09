@@ -7,7 +7,7 @@ const services = {
     title: "3 Waters & Contamination",
     description:
       "Climate change is taking a toll on New Zealand’s aging three water infrastructure. There is now a vital need to renew and rebuild these systems to ensure that they continue to meet performance standards.\nOur mission at GDC Consultants is to provide sustainable, effective, and value-added engineering solutions for your 3 Waters project. We pride ourselves on being both experts in technical design guidance and pioneers of innovative solutions in the industry.",
-    image: "/images/services/waters-engineering-and-contamination.webp",
+    image: "/images/services/1/3 Waters and Contamination 2.png",
     sections: [
       {
         id: 1,
@@ -23,7 +23,7 @@ const services = {
           "Due diligence and contamination liability cost assessment",
           "Property portfolio risk analysis.",
         ],
-        image: "/images/services/Environmental Engineering.webp",
+        image: "/images/services/1/3 Waters and Contamination 4.png",
       },
       {
         id: 2,
@@ -45,7 +45,7 @@ const services = {
           "Erosion protection design",
           "Regeneration of waterways.",
         ],
-        image: "/images/services/8.-Contamination-Assessment.webp",
+        image: "/images/services/1/3 Waters and Contamination.png",
       },
     ],
     uniqueContent: "watersUniqueContent",
@@ -58,21 +58,21 @@ const services = {
     title: "Architectural Designs",
     description:
       "GDC Consultants excel in delivering high-end, sustainable architecture solutions tailored to complex design requirements. Their services include concept design, construction documentation, project management, and site feasibility studies.",
-    image: "/images/services/architectural-designs-gdc-consultants.webp",
+    image: "/images/services/8/Architectural Designs 1.png",
     sections: [
       {
         id: 1,
         title: "Pursuit of Architectural Excellence",
         description:
           "We are experts in developing comprehensive and sustainable architecture solutions. Equipped with a deep understanding of New Zealand’s local intricacies, expertise, and experience, we plan and design high-end architecture while providing long-lasting, sustainable, and impactful solutions to unique and complex design requirements. The architectural services that GDC Consultants typically provide include concept design and development, preparation of construction documents, and construction administration. We also provide additional services such as architectural programming, project management, and site feasibility checks.",
-        image: "/images/services/architectural.webp",
+        image: "/images/services/8/Architectural Designs 2.png",
       },
       {
         id: 2,
         title: "Structural Plan and Design",
         description:
           "The substructure of your building project needs to be well-designed before the construction phase of its superstructure. During the schematic design phase, our experts make drawings and plans related to the foundation sections, floor plans of slabs, structural beams, slab reinforcement, doors, windows, and lintel, and other custom structural needs as per the requirements of the individual project.",
-        image: "/images/services/building-foundations.webp",
+        image: "/images/services/8/Architectural Designs 3.png",
       },
       {
         id: 3,
@@ -105,7 +105,7 @@ const services = {
       "Discover expert electrical engineering services in New Zealand with GDC Consultant. We provide innovative solutions tailored to your project needs",
     title: "Electrical Engineering",
     description: "",
-    image: "/images/services/electrical.webp",
+    image: "/images/services/2/Electrical Engineering 1.png",
     sections: [
       {
         id: 1,
@@ -113,7 +113,7 @@ const services = {
           "GDC Consultants : New Zealand’s Top Electrical Engineering Specialists",
         description:
           "GDC Consultants are industry leaders in electrical engineering. Our clients know us for providing high-quality designs, innovative electrical engineering solutions, and comprehensive control systems. Our extensive experience in the industrial engineering sector enables us to execute projects with a high level of professionalism, attention to detail, and integrity.",
-        image: "/images/services/electrical.webp",
+        image: "/images/services/2/Electrical Engineering 3.png",
       },
       {
         id: 2,
@@ -127,7 +127,7 @@ const services = {
           "We are able to design, plan, execute, and implement the entire project",
           "We make sure to provide an upfront and reasonable estimate of the total cost of all entailed project work",
         ],
-        image: "/images/services/98a91fd4a88bda676a99bf92e10cd630.webp",
+        image: "/images/services/2/Electrical Engineering 2.png",
       },
     ],
     uniqueContent: "electricalEngineeringUniqueContent",
@@ -139,7 +139,7 @@ const services = {
       "Elevate your civil construction projects with GDC Consultant. We provide exceptional project management and engineering consultancy services in Wellington, NZ",
     title: "Project & Construction Management",
     description: "​",
-    image: "/images/services/project-construction-management-gdc.webp",
+    image: "/images/services/9/Construction Management 1.png",
     sections: [
       {
         id: 1,
@@ -163,7 +163,7 @@ const services = {
           "Cost estimate and value analysis",
           "Procedure and logistic assessment",
         ],
-        image: "/images/services/pexels-fauxels-3184635-1.webp",
+        image: "/images/services/9/Construction Management 2.png",
       },
       {
         id: 3,
@@ -183,7 +183,7 @@ const services = {
           "Contractor services",
           "Asset management",
         ],
-        image: "/images/services/image-31.webp",
+        image: "/images/services/9/Construction Management 3.png",
       },
     ],
   },
@@ -194,14 +194,14 @@ const services = {
       "Discover expert geotechnical engineering consultancy services at GDC Consultant. We specialize in geotech inspections to ensure your project's success and safety.",
     title: "Geotechnical Engineering",
     description: "​",
-    image: "/images/services/geotechnical-engineering-1.webp",
+    image: "/images/services/3/Geotechnical Engineering 1.png",
     sections: [
       {
         id: 1,
         title: "We Specialise in Geotechnical Engineering & Reporting",
         description:
           "We strive to design safe and effective retention systems and foundations, employing our extensive expertise and experience and a pragmatic approach. From investigation, to reporting, to designing and implementing solutions, we provide industry-leading geotechnical services within New Zealand.",
-        image: "/images/services/geotechnical.webp",
+        image: "/images/services/3/Geotechnical Engineering 2.png",
       },
       {
         id: 2,
@@ -223,7 +223,7 @@ const services = {
           "Site improvement systems design",
           "Pile load test analysis",
         ],
-        image: "/images/services/6.-Geotechnical-Assessment-J000853.webp",
+        image: "/images/services/3/Geotechnical Engineering 3.png",
       },
       {
         id: 3,
@@ -236,7 +236,7 @@ const services = {
           "Large, medium and small scale subdivision",
           "Infrastructure and Public works (pipelines, pavements, roads)",
         ],
-        image: "/images/services/image-34.webp",
+        image: "/images/services/3/Geotechnical Engineering 1.png",
       },
     ],
   },
@@ -247,7 +247,7 @@ const services = {
       "Discover expert insights on commercial building valuation, subdivision costs in NZ, and engineering consultancy services with GDC Consultant.",
     title: "Infrastructure & Subdivision Engineering",
     description: "",
-    image: "/images/services/infrastructure-subdivision-gdc.webp",
+    image: "/images/services/10/Infrastructure and Subdivision Engineering 1.png",
     sections: [
       {
         id: 1,
@@ -268,14 +268,14 @@ const services = {
         title: "Feasibility Studies",
         description:
           "GDC Consultants can help with evaluating the financial feasibility of a project by performing a comprehensive study of its design costs, maintenance and construction costs, servicing capacities, and any applicable council rates and fees.",
-        image: "/images/services/pexels-canva-studio-3153199-1.webp",
+        image: "/images/services/10/Infrastructure and Subdivision Engineering 2.png",
       },
       {
         id: 4,
         title: "Low Impact Development",
         description:
           "Low Impact Development is a progressive approach to storm water management that utilizes rainfall as a resource to benefit and enhance the natural environment of your property and its surroundings. We have embraced LID at GDC, and we are able to design green roofs, rain gardens, absorbent landscapes, bio-swales, permeable pavements, and other innovative designs which encourage on-site retention and absorption.",
-        image: "/images/services/low-impact.webp",
+        image: "/images/services/10/Infrastructure and Subdivision Engineering 3.png",
       },
       {
         id: 5,
@@ -289,7 +289,7 @@ const services = {
         title: "Sedimentation and Erosion Control",
         description:
           "Side grading, dewatering, and the disturbance of exposed subsoils by wind and construction equipment are all significant potential issues for your project because they can result in sediments blocking storm sewers and water channels. \nWe are certified experts in preparing erosion and sediment control reports, recommending potential mitigation methods, and providing construction monitoring to ensure that these methods are properly implemented.",
-        image: "/images/services/image-39.webp",
+        image: "/images/services/10/Infrastructure and Subdivision Engineering 1.png",
       },
       {
         id: 7,
@@ -307,7 +307,7 @@ const services = {
       "Process consultancy and R&D are both essential to any successful project. The need to ensure quality, follow a timeline, and facilitate collaboration between disciplines, all has to be balanced against the need for R&D.Research and Development is crucial to any project involving unusual design or construction challenges. We embrace these challenges, and pride ourselves on our ability to deliver innovative solutions every time. By keeping our skills updated, developing extensive expertise, and maintaining a high capacity for flexibility, we offer high-quality and innovative product development that can be completely customized to the needs of any particular client and their problems",
     title: "Research & Development",
     description: "",
-    image: "/images/services/research-and-development.webp",
+    image: "/images/services/4/Research and Development 2.png",
     sections: [
       {
         id: 1,
@@ -321,7 +321,7 @@ const services = {
           "Reliable solutions for complex issues",
           "Cost optimization through extensive R&D expertise.",
         ],
-        image: "/images/services/Research & Development.webp",
+        image: "/images/services/4/Research and Development 3.png",
       },
       {
         id: 2,
@@ -357,7 +357,7 @@ const services = {
           "Full scale testing",
           "Product development.",
         ],
-        image: "/images/services/jason-goodman-bzqU01v-G54-unsplash-1.webp",
+        image: "/images/services/4/Research and Development.png",
       },
     ],
     uniqueContent: "internshipsUniqueContent",
@@ -369,7 +369,7 @@ const services = {
       "Stay informed about land transport road closures with GDC Consultant. Our engineering consultancy provides timely updates and expert insights for safe travel.",
     title: "Road Transport",
     description: "​",
-    image: "/images/services/pexels-kampus-production-8636598-1.webp",
+    image: "/images/services/11/Roading 2.png",
     sections: [
       {
         id: 1,
@@ -377,14 +377,14 @@ const services = {
           "GDC Consultants: Road Engineering & Design Services for Modern Infrastructure",
         description:
           "For our communities to progress and thrive economically, they must have the latest and most effective transportation infrastructure possible. Our industry-leading road engineering and design consultancy services provide a variety of transportation infrastructure solutions, from major highways, roads, and bridges to works on local transport networks. \nWe are constantly helping our country grow by connecting its people, services, and goods.We operate across several different infrastructure markets as both an employer and a design contractor. Our clients include government and local authorities, contractors, and private developers.",
-        image: "/images/services/image-42.webp",
+        image: "/images/services/11/Roading 3.png",
       },
       {
         id: 2,
         title: "Road Safety Consultancy",
         description:
           "In addition to providing our own designs, we also offer advice and support to other roading designers by undertaking road safety audits. Our services can consider junction geometry, vehicle restraint, traffic signage, road markings, and other utility management features.",
-        image: "/images/services/image-43-1.webp",
+        image: "/images/services/11/Roading 4.png",
       },
       {
         id: 3,
@@ -423,14 +423,14 @@ const services = {
       "Discover expert soil testing services in New Zealand, along with comprehensive environmental impact assessments. An Engineering consultancy tailored to your needs.",
     title: "Seismic Engineering",
     description: "​",
-    image: "/images/services/Screenshot-2024-01-25-133840.webp",
+    image: "/images/services/5/Seismic Engineering 2.png",
     sections: [
       {
         id: 1,
         title: "One of the Forefront Areas for Engineering",
         description:
           "At GDC Consultants, our commitment to Seismic engineering excellence in New Zealand sets us apart. With a wealth of expertise, we specialize in crafting robust designs for buildings and structures, ensuring their resilience to seismic activity. Our approach is meticulous, considering the unique requirements of each project, the geographical location, and the inherent level of seismic risk. \nAdhering to the highest standards and codes, our dedicated team employs cutting-edge techniques to develop structures that not only meet regulatory requirements but also exceed expectations. We understand the importance of risk reduction, and our designs are strategically crafted to minimize the reliance on seismic braces, promoting a streamlined and efficient structural response during seismic events. \nIn our pursuit of innovation, GDC Consultants prioritizes the integration of cost-effective solutions that not only enhance seismic performance but also optimize construction efficiency. By implementing state-of-the-art technology and forward-thinking engineering practices, we ensure that our designs not only withstand seismic challenges but also contribute to sustainable and resource-efficient construction processes. \nOur commitment to seismic engineering excellence is underlined by our continuous efforts to stay abreast of the latest developments in the field. At GDC Consultants, we pride ourselves on being at the forefront of seismic engineering in New Zealand, delivering solutions that safeguard lives, investments, and the integrity of structures in the face of seismic uncertainties.",
-        image: "/images/services/Seismic Engineering.webp",
+        image: "/images/services/5/Seismic Engineering 3.png",
       },
       {
         id: 2,
@@ -454,8 +454,13 @@ const services = {
           "Peer review of new design",
           "Seismic repair design",
           "Non-structural systems assessment",
+          // Newly added details
+          "IEP Reports (Initial Evaluation Procedure Reports) for assessing building seismic resilience",
+          "Detailed Seismic Assessments (DSA) for in-depth building evaluations",
+          "Building strengthening services for buildings with performance levels above 34% NBS (New Building Standard)",
+          "Building strengthening services for buildings with performance levels above 67% NBS (New Building Standard)",
         ],
-        image: "/images/services/image-52.webp",
+        image: "/images/services/5/Seismic Engineering 1.png",
       },
       {
         id: 3,
@@ -483,7 +488,7 @@ const services = {
     title: "Structural Engineering",
     description:
       "At GDC Consultants, we match every structure with a redesign that is innovative and responsive to changing demands. From large corporate structures to distinctive home designs –we create a masterpiece every time. Stay on schedule and avoid expensive and time-consuming reworkings with GDC’s flexible structural engineering consulting services!​",
-    image: "/images/services/structural-engineering.webp",
+    image: "/images/services/12/Structural Engineering 1.png",
     sections: [
       {
         id: 1,
@@ -491,7 +496,7 @@ const services = {
           "Expert Structural Engineering for Safe and Cost-Effective Designs",
         description:
           "Having an expert structural team like ours onboard is crucial for the success of any multi-discipline engineering project. We cater to a wide range of industrial designs for small and large construction projects. We offer our services to owners and operators in both conventional and emerging industries. \nWe believe that design and construction should go hand-in-hand! This means that our structural engineering designs are always based not just on the applicable codes and standards, but also the latest and best design principles and ideas – making them both functional and aesthetic spaces. \nGDC’s structural engineering designs are created with a focus on safety, ease of installation, and constructability. We are experienced in designing optimal-modularized building systems, which lower costs, enhance safety, and help to limit field-work. \nWe are consistently ranked amongst the top consulting engineering companies in New Zealand – so you can be sure that we will provide cost-effective designs every time.",
-        image: "/images/services/structural.webp",
+        image: "/images/services/12/Structural Engineering 2.png",
       },
       {
         id: 2,
@@ -503,7 +508,7 @@ const services = {
           "Structural designs, rack supports, foundation drawings and main structural frames, platforms and access, architectural plans, and load foundation calculations.",
           "Structural engineering designs that include concrete and steel structures, piling and foundations, steel buildings, and related elements.",
         ],
-        image: "/images/services/image-47-1.webp",
+        image: "/images/services/12/Structural Engineering 3.png",
       },
     ],
   },
@@ -589,7 +594,7 @@ const services = {
       "GDC Consultant specializes in advanced surveying techniques for civil engineering. Explore our expertise to elevate your engineering projects to new heights. ",
     title: "Surveying",
     description: "​",
-    image: "/images/services/pexels-alena-darmel-7642124-scaled.webp",
+    image: "/images/services/13/Surveying 2.png",
     sections: [
       {
         id: 1,
@@ -603,7 +608,7 @@ const services = {
         title: "Precision in Project Finances: Excel in Quantity Surveying",
         description:
           "Additionally, our surveyors excel in budget preparation, cost monitoring, and value engineering to ensure optimal financial control throughout the lifecycle of the construction process. \nOur commitment lies in delivering detailed and accurate Quantity Surveying solutions to enhance overall project efficiency and success. \nWe utilise industry-leading systems, backed by comprehensive local data, ensuring that our clients can always rely on us for superior support and outcomes.",
-        image: "/images/services/survey.webp",
+        image: "/images/services/13/Surveying 3.png",
       },
       {
         id: 3,
@@ -623,7 +628,7 @@ const services = {
     title: "Training",
     description:
       "Training and retaining fresh talent is vital for a company’s future success. At GDC, we believe in supporting young engineers and consider them an important resource. The experienced professionals at GDC Consultants share always giving advice which accelerates the professional development of young talent. We strongly believe that by developing our staff, we increase the value of the company as a whole.​",
-    image: "/images/services/group photo madrid.webp",
+    image: "/images/services/7/Training 1.png",
     sections: [
       {
         id: 1,
@@ -638,7 +643,7 @@ const services = {
           "Member development through one-on-one coaching, career guidance, and performance management",
           "Leadership mentorship to prepare the bench strength of leaders for management responsibilities.",
         ],
-        image: "/images/services/Training.webp",
+        image: "/images/services/7/Training 2.png",
       },
     ],
   },

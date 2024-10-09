@@ -7,28 +7,31 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
-import { motion } from "framer-motion"; // Import Framer Motion
+import { motion } from "framer-motion";
 import Head from "next/head";
 
 const BlogGallery = () => {
   const [blogs, setBlogs] = useState([]);
-  const [error, setError] = useState(null); // State to handle errors
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true); // New loading state
   const sectionRef = useRef(null);
 
   // Fetch blogs from HubSpot API
   useEffect(() => {
     const loadBlogs = async () => {
       try {
-        const response = await fetch("/api/hubspot-blogs"); // Fetch from the API route
+        const response = await fetch("/api/hubspot-blogs");
         if (!response.ok) {
           throw new Error(`Failed to fetch blogs: ${response.statusText}`);
         }
         const data = await response.json();
-        console.log("Fetched Blogs in Component:", data); // Log to ensure data is fetched
-        setBlogs(data); // Update state with fetched data
+        console.log("Fetched Blogs in Component:", data);
+        setBlogs(data);
       } catch (error) {
         console.error("Error fetching blogs:", error);
         setError("Failed to load blogs. Please try again later.");
+      } finally {
+        setLoading(false); // Set loading to false when done
       }
     };
 
@@ -63,14 +66,65 @@ const BlogGallery = () => {
     },
   };
 
-  // Handle cases when fetching fails or data is empty
-  if (error) {
-    return (
-      <div className="text-center py-10">
-        <p className="text-red-500">{error}</p>
+  // Loading spinner
+  const LoadingSpinner = () => (
+    <div className="flex justify-center items-center h-full">
+      <div className="loader">
+        {/* This is a simple loading animation, customize as needed */}
+        <div className="dot"></div>
+        <div className="dot"></div>
+        <div className="dot"></div>
       </div>
-    );
-  }
+      <style jsx>{`
+        .loader {
+          display: flex;
+          gap: 8px;
+          animation: blink 1.5s infinite;
+        }
+
+        .dot {
+          width: 10px;
+          height: 10px;
+          background-color: black;
+          border-radius: 50%;
+          animation: bounce 1s infinite alternate;
+        }
+
+        .dot:nth-child(2) {
+          animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+          animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+          0% {
+            transform: translateY(0);
+          }
+          100% {
+            transform: translateY(-10px);
+          }
+        }
+
+        @keyframes blink {
+          0%,
+          20%,
+          50%,
+          80%,
+          100% {
+            opacity: 1;
+          }
+          40% {
+            opacity: 0.6;
+          }
+          60% {
+            opacity: 0.8;
+          }
+        }
+      `}</style>
+    </div>
+  );
 
   return (
     <>
@@ -81,10 +135,7 @@ const BlogGallery = () => {
           content="Stay updated with the latest news, insights, and updates from GDC Consultants. Explore our blog for expert articles on architecture, engineering, and project management across New Zealand."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
         <link rel="canonical" href="https://gdcgroup.netlify.app/blogs" />
-
-        {/* hrefLang tags */}
         <link
           rel="alternate"
           href="https://gdcgroup.netlify.app/blogs"
@@ -132,7 +183,10 @@ const BlogGallery = () => {
         </motion.div>
       </motion.div>
       <div className="px-10 py-10 min-h-screen">
-        {blogs.length > 0 ? (
+        {loading ? (
+          // Display loading spinner only in the blog section
+          <LoadingSpinner />
+        ) : blogs.length > 0 ? (
           <motion.section
             ref={sectionRef}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
@@ -154,7 +208,7 @@ const BlogGallery = () => {
                   >
                     <Image
                       src={
-                        blog.featuredImage || // Correctly mapping the featured image URL
+                        blog.featuredImage ||
                         "/images/GDC-OFFICE-EDIT-scaled.webp"
                       }
                       fill
@@ -176,6 +230,7 @@ const BlogGallery = () => {
           <p className="text-center text-gray-500">No blogs available.</p>
         )}
       </div>
+
       <Footer />
       <ScrollToTop />
     </>

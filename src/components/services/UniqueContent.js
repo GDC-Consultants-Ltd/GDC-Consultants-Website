@@ -14,7 +14,7 @@ export const WatersUniqueContent = () => {
         className={`relative w-full h-64 md:h-72 flex items-center justify-center bg-cover bg-center shadow-md rounded-md mb-6 md:mb-10 transition-all duration-700 ease-in-out ${
           isVisible ? "animate-slide-up" : "opacity-0" // Apply animations only when visible
         }`}
-        style={{ backgroundImage: `url('/images/services/image-50.webp')` }}
+        style={{ backgroundImage: `url('/images/services/1/3 Waters and Contamination 2.png')` }}
       >
         {/* Dark overlay for contrast */}
         <div className="absolute inset-0 bg-black opacity-50 rounded-md"></div>
@@ -149,7 +149,7 @@ export const ElectricalEngineeringUniqueContent = () => {
           isVisible ? "animate-fade-in-up" : "opacity-0" // Apply animation only when visible
         }`}
         style={{
-          backgroundImage: `url('/images/services/pexels-emmanuel-ikwuegbu-7861963-1-1.webp')`,
+          backgroundImage: `url('/images/services/2/Electrical Engineering 4.png')`,
         }}
       >
         {/* Dark overlay for contrast */}
@@ -341,7 +341,7 @@ export const SeismicEngineeringUniqueContent = () => {
           isVisible ? "animate-fade-in-up" : "opacity-0" // Apply animation only when visible
         }`}
         style={{
-          backgroundImage: `url('/images/services/Seismic Engineering.webp')`,
+          backgroundImage: `url('/images/services/5/Seismic Engineering 4.png')`,
         }}
       >
         {/* Dark overlay for contrast */}
@@ -491,7 +491,7 @@ export const PlanningUniqueContent = () => {
             isVisible ? "animate-fade-in-up" : "opacity-0" // Apply animation only when visible
           }`}
           style={{
-            backgroundImage: `url('/images/services/Seismic Engineering.webp')`,
+            backgroundImage: `url('/images/services/6/Planning 3.png')`,
           }}
         >
           {/* Dark overlay for contrast */}

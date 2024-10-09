@@ -18,7 +18,7 @@ const officeLocations = [
     email: "rotorua@gdcgroup.co.nz",
     phone: "+64 7 282 2173",
     mapSrc:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.2963503354163!2d176.34207127531417!3d-38.016870145672215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d6e84058629ea9b%3A0x5870df7af2301163!2s3%20Trout%20Pool%20Road%2C%20Okere%20Falls%203074%2C%20New%20Zealand!5e0!3m2!1sen!2slk!4v1726210709816!5m2!1sen!2slk",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.374160514904!2d176.339450575314!3d-38.015055845568085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d6e8510d8a9dbe1%3A0xebe67d7a5bde626!2s3H%20Trout%20Pool%20Road%2C%20Okere%20Falls%203074%2C%20New%20Zealand!5e0!3m2!1sen!2slk!4v1728451118961!5m2!1sen!2slk",
     qrCodeSrc: "/images/qr-code/Rotorua-QR.webp",
   },
   {
