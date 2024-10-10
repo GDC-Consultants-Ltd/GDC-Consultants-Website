@@ -2,13 +2,14 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import "../app/globals.css";
 import Head from "next/head";
 
+// Map categories using IDs for dynamic display
 const categoriesMap = {
   1: "GDC News",
   2: "GDC Team",
@@ -17,7 +18,7 @@ const categoriesMap = {
 
 const BlogPost = ({ blog, recentArticles }) => {
   const router = useRouter();
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState([]); // State to store fetched comments
   const [formData, setFormData] = useState({
     email: "",
     comment: "",
@@ -25,8 +26,12 @@ const BlogPost = ({ blog, recentArticles }) => {
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
 
-  // Fetch comments using useCallback to avoid dependency issues in useEffect
-  const fetchComments = useCallback(async () => {
+  useEffect(() => {
+    fetchComments(); // Fetch comments when the component mounts
+  }, [blog.slug, fetchComments]); // Add fetchComments as a dependency  
+
+  // Fetch comments related to the current blog post
+  const fetchComments = async () => {
     try {
       const response = await fetch(
         `/api/get-comments?formId=4712e0e3-c31d-482b-be76-3882c5ed3d77&slug=${blog.slug}`
@@ -36,14 +41,9 @@ const BlogPost = ({ blog, recentArticles }) => {
     } catch (error) {
       console.error("Error fetching comments:", error);
     }
-  }, [blog.slug]);
+  };
 
-  useEffect(() => {
-    if (blog.slug) {
-      fetchComments();
-    }
-  }, [blog.slug, fetchComments]);
-
+  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -51,17 +51,19 @@ const BlogPost = ({ blog, recentArticles }) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    // Prepare data to send to HubSpot
     const data = {
       fields: [
         { name: "email", value: formData.email },
         { name: "comment", value: formData.comment },
-        { name: "blog_post_slug", value: blog.slug },
+        { name: "blog_post_slug", value: blog.slug }, // Pass the slug to identify the post
       ],
     };
 
     try {
       const response = await axios.post(
-        `https://api.hsforms.com/submissions/v3/integration/submit/${process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID}/${process.env.NEXT_PUBLIC_HUBSPOT_COMMENT_FORM_ID}`,
+        `https://api.hsforms.com/submissions/v3/integration/submit/${process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID}/${process.env.NEXT_PUBLIC_HUBSPOT_COMMENT_FORM_ID}`, // Use environment variables
         data,
         {
           headers: {
@@ -73,8 +75,8 @@ const BlogPost = ({ blog, recentArticles }) => {
       if (response.status === 200) {
         setMessage("Comment submitted successfully.");
         setError(null);
-        fetchComments();
-        setFormData({ email: "", comment: "" });
+        fetchComments(); // Refresh comments after submission
+        setFormData({ email: "", comment: "" }); // Clear form fields
       }
     } catch (error) {
       setMessage(null);
@@ -91,6 +93,7 @@ const BlogPost = ({ blog, recentArticles }) => {
     return <div>Blog not found</div>;
   }
 
+  // Format publish date to MM/DD/YYYY format
   const formattedDate = new Date(blog.publishDate).toLocaleDateString("en-US", {
     month: "2-digit",
     day: "2-digit",
@@ -109,6 +112,7 @@ const BlogPost = ({ blog, recentArticles }) => {
           }
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <link
           rel="canonical"
           href={`https://gdcgroup.netlify.app/blog/${blog.slug}`}
@@ -116,9 +120,31 @@ const BlogPost = ({ blog, recentArticles }) => {
       </Head>
       <Header />
       <div className="bg-gray-50 min-h-screen">
+        {/* Categories section */}
+        {/* <div className="max-w-7xl mx-auto px-6 pt-6">
+          <nav className="flex space-x-10">
+            {Object.entries(categoriesMap).map(([id, name]) => (
+              <Link
+                key={id}
+                href={`#`}
+                className={`text-md font-medium hover:text-customYellow ${
+                  Number(id) === blog.categoryId
+                    ? "text-customBlue"
+                    : "text-gray-700"
+                }`}
+              >
+                {name}
+              </Link>
+            ))}
+          </nav>
+        </div> */}
+
         <main className="max-w-7xl mx-auto py-12 grid grid-cols-1 lg:grid-cols-3 gap-8 px-6">
+          {/* Main Blog Content */}
           <article className="lg:col-span-2">
-            <h1 className="text-4xl text-customBlue font-bold">{blog.name}</h1>
+            <h1 className="text-4xl text-customBlue font-bold">
+              {blog.name}
+            </h1>
             <p className="text-gray-600 flex items-center gap-2 py-3">
               GDC Admin <span className="mx-1">•</span> {formattedDate}
             </p>
@@ -135,10 +161,22 @@ const BlogPost = ({ blog, recentArticles }) => {
               className="text-gray-700 text-justify mb-4 leading-relaxed space-y-4"
               dangerouslySetInnerHTML={{ __html: blog.postBody }}
             />
+
+            {/* Leave a Reply Section */}
             <section className="mt-12">
               <h2 className="text-2xl text-customBlue font-bold mb-4">
                 Leave a Reply
               </h2>
+              <p className="text-gray-600 mb-4">
+                Your email address will not be published. Required fields are
+                marked *
+              </p>
+
+              {/* Display Success or Error Message */}
+              {message && <p className="text-green-500 mb-4">{message}</p>}
+              {error && <p className="text-red-500 mb-4">{error}</p>}
+
+              {/* Custom Form */}
               <form onSubmit={handleFormSubmit} className="space-y-4">
                 <div>
                   <label className="block text-gray-700">Comment*</label>
@@ -170,6 +208,8 @@ const BlogPost = ({ blog, recentArticles }) => {
               </form>
             </section>
           </article>
+
+          {/* Sidebar with Recent Articles */}
           <aside className="space-y-6">
             <h2 className="text-xl text-customBlue font-bold">
               Recent articles
@@ -193,9 +233,57 @@ const BlogPost = ({ blog, recentArticles }) => {
                   <h3 className="text-lg font-semibold text-gray-900">
                     {article.name}
                   </h3>
+                  <p className="text-sm text-gray-500">Bethany Rutter</p>
                 </div>
               </Link>
             ))}
+
+            {/* Recent Comments Section */}
+            <div className="p-4">
+              <h2 className="text-xl text-customBlue font-bold mb-4">
+                Recent Comments
+              </h2>
+              <ul className="list-none space-y-4">
+                {comments.length > 0 ? (
+                  comments.map((comment, index) => (
+                    <li key={index} className="flex space-x-3">
+                      {/* <Image
+                        src="/images/comment-avatar.webp" // Ensure the path is correct
+                        alt="Avatar"
+                        width={80} // Set the desired width
+                        height={80} // Set the desired height
+                        objectFit="cover" // Ensures the image fills the dimensions without distortion
+                        objectPosition="center" // Centers the image within its bounding box
+                        className="rounded-full" // Keeps the avatar shape rounded
+                        priority // Optional: speeds up image loading, useful for critical images like avatars
+                      /> */}
+
+                      <div>
+                        <div className="flex items-center space-x-2">
+                          <p className="text-sm font-semibold text-gray-800">
+                            {comment.name || "Anonymous"}
+                          </p>{" "}
+                          {/* Display name or default to 'Anonymous' */}
+                          <small className="text-xs text-gray-500">
+                            {new Date(comment.submittedOn).toLocaleDateString(
+                              "en-US",
+                              {
+                                month: "long",
+                                day: "numeric",
+                                year: "numeric",
+                              }
+                            )}
+                          </small>
+                        </div>
+                        <p className="mt-1 text-gray-700">{comment.comment}</p>
+                      </div>
+                    </li>
+                  ))
+                ) : (
+                  <p className="text-gray-500">No comments yet.</p>
+                )}
+              </ul>
+            </div>
           </aside>
         </main>
       </div>
@@ -205,59 +293,37 @@ const BlogPost = ({ blog, recentArticles }) => {
   );
 };
 
-import axios from 'axios';
+export async function getServerSideProps({ params }) {
+  const slugPath = params.slug.join("/"); // Join the slug parts to form the complete path
 
-export async function getStaticPaths() {
   try {
-    const res = await axios.get('https://api.hubapi.com/cms/v3/blogs/posts', {
+    // Fetch the data from your HubSpot API
+    const res = await axios.get(`https://api.hubapi.com/cms/v3/blogs/posts`, {
       headers: {
         Authorization: `Bearer ${process.env.HUBSPOT_BLOG_MANAGER_API_KEY}`,
       },
       params: {
-        limit: 100, // Fetch the number of posts needed to pre-generate paths
-        state: 'published',
+        limit: 10, // Adjust the limit as needed
+        state: "published",
       },
     });
 
-    const paths = res.data.results.map((post) => ({
-      params: { slug: post.slug.split('/') }, // Assuming slug is in path format
-    }));
-
-    return { paths, fallback: true }; // Enable fallback if some pages are not generated during build time
-  } catch (error) {
-    console.error('Error fetching paths:', error);
-    return { paths: [], fallback: true }; // Fallback allows on-demand generation for missing pages
-  }
-}
-
-export async function getStaticProps({ params }) {
-  const slugPath = params.slug.join('/'); // Join the slug parts to form the complete path
-
-  try {
-    const res = await axios.get('https://api.hubapi.com/cms/v3/blogs/posts', {
-      headers: {
-        Authorization: `Bearer ${process.env.HUBSPOT_BLOG_MANAGER_API_KEY}`,
-      },
-      params: {
-        limit: 100, // Adjust the limit as needed
-        state: 'published',
-      },
-    });
-
-    const blog = res.data.results.find((post) => post.slug === slugPath);
-
-    // Return 404 if the blog post is not found
-    if (!blog) {
+    // Check if any blogs exist
+    if (!res.data.results || res.data.results.length === 0) {
       return { notFound: true };
     }
 
+    // Fetch the specific blog by slug
+    const blog = res.data.results.find((post) => post.slug === slugPath);
+
+    // Map recent articles to include necessary fields for display
     const recentArticles = res.data.results
       .filter((post) => post.slug !== slugPath) // Exclude the current post
       .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate)) // Sort by publish date
       .slice(0, 3) // Get the top 3 recent articles
       .map((post) => ({
         name: post.name,
-        authorName: post.authorName || 'Unknown Author',
+        authorName: post.authorName || "Unknown Author",
         featuredImage: post.featuredImage,
         slug: post.slug,
       }));
@@ -269,7 +335,7 @@ export async function getStaticProps({ params }) {
       },
     };
   } catch (error) {
-    console.error('Error fetching the blog post:', error);
+    console.error("Error fetching the blog post:", error);
     return { notFound: true };
   }
 }
